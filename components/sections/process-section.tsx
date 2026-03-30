@@ -146,7 +146,7 @@ export function ProcessSection() {
             </div>
             <div className="w-full sm:h-[500px] h-[400px] rounded-[24px] overflow-hidden">
               <Image src={step.image} alt={step.label} width={900} height={500}
-                className="w-full h-full object-cover object-center" />
+                className="w-full h-full object-cover object-center" style={{ width: '100%', height: '100%' }} />
             </div>
           </div>
         </div>
