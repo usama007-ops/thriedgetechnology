@@ -6,12 +6,6 @@
 const WORDPRESS_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://admin.thrilledge.com'
 const API_URL = `${WORDPRESS_URL}/wp-json`
 
-// Debug logging for configuration verification
-if (typeof window === 'undefined') {
-  console.log('[v0] WordPress API URL:', API_URL)
-  console.log('[v0] WordPress URL from env:', process.env.NEXT_PUBLIC_WORDPRESS_URL)
-}
-
 interface RequestOptions extends RequestInit {
   cache?: RequestCache
 }
@@ -24,26 +18,32 @@ async function fetchFromWordPress<T>(
   options: RequestOptions = {}
 ): Promise<T> {
   const url = `${API_URL}${endpoint}`
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), 10000)
 
   try {
     const response = await fetch(url, {
       ...options,
+      signal: controller.signal,
       headers: {
         'Content-Type': 'application/json',
         ...options.headers,
       },
       cache: options.cache || 'no-store',
     })
+    clearTimeout(timer)
 
     if (!response.ok) {
-      console.error(`[WordPress API Error] ${response.status}: ${response.statusText} - ${url}`)
-      throw new Error(`Failed to fetch ${endpoint}: ${response.statusText}`)
+      throw new Error(`${response.status}: ${response.statusText}`)
     }
 
-    const data = await response.json()
-    return data as T
+    return await response.json() as T
   } catch (error) {
-    console.error(`[WordPress API Error] ${error instanceof Error ? error.message : 'Unknown error'}`)
+    clearTimeout(timer)
+    // Only log unexpected errors, not aborts/timeouts in production
+    if (process.env.NODE_ENV === 'development') {
+      console.error(`[WordPress API Error] ${endpoint} — ${error instanceof Error ? error.message : error}`)
+    }
     throw error
   }
 }
