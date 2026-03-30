@@ -6,7 +6,7 @@
 'use client'
 
 import { Header } from '@/components/layout/header'
-import { Footer } from '@/components/layout/footer'
+import Footer from '@/components/layout/footer'
 import { useCategories } from '@/hooks/use-posts'
 import { ShadowCard } from '@/components/common/shadow-card'
 import { ArrowRight, Loader } from 'lucide-react'

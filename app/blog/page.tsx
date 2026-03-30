@@ -5,7 +5,7 @@
 
 import { Metadata } from 'next'
 import { Header } from '@/components/layout/header'
-import { Footer } from '@/components/layout/footer'
+import Footer from '@/components/layout/footer'
 import { getPosts, getCategories } from '@/lib/wordpress'
 import { BlogList } from './blog-list'
 
