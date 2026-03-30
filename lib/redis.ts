@@ -16,10 +16,10 @@ const redis = process.env.UPSTASH_REDIS_REST_URL
 // Verify Redis configuration
 if (typeof window === 'undefined') {
   if (redis) {
-    console.log('[v0] Redis client initialized successfully')
-    console.log('[v0] Redis URL:', process.env.UPSTASH_REDIS_REST_URL)
+    console.log('Redis client initialized successfully')
+    console.log('Redis URL:', process.env.UPSTASH_REDIS_REST_URL)
   } else {
-    console.warn('[v0] Redis not configured - caching disabled')
+    console.warn('Redis not configured - caching disabled')
   }
 }
 
