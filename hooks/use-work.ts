@@ -18,9 +18,9 @@ export function useWorkItems(options: UseWorkItemsOptions = {}) {
   const { page = 1, per_page = 6, enabled = true } = options
 
   return useQuery({
-    queryKey: ['work-items', page],
+    queryKey: ['work-items', page, per_page],
     queryFn: async () => {
-      const cacheKey = cacheKeys.workItems(page)
+      const cacheKey = cacheKeys.workItems(page, per_page)
       return withCache(
         cacheKey,
         () => getWorkItems(page, per_page),

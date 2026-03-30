@@ -39,7 +39,7 @@ export default function Home() {
       <ValuePropositionSection />
       <WorkSection show={3} />
       <TestimonialsSection show={12} />
-      <ServicesSection show={3} />
+      <ServicesSection show={4} />
       <ProcessSection />
       <IndustriesSection />
       <ValueFeaturesSection />

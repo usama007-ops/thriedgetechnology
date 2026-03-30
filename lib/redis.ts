@@ -126,8 +126,8 @@ export const cacheKeys = {
   categoryPosts: (categoryId: number, page: number) =>
     generateCacheKey('category-posts', categoryId, page),
   
-  workItems: (page: number) =>
-    generateCacheKey('work', page),
+  workItems: (page: number, perPage: number = 6) =>
+    generateCacheKey('work', page, perPage),
   
   workItem: (slug: string) =>
     generateCacheKey('work', slug),
@@ -135,8 +135,8 @@ export const cacheKeys = {
   testimonials: () =>
     generateCacheKey('testimonials'),
   
-  services: () =>
-    generateCacheKey('services'),
+  services: (perPage: number = 12) =>
+    generateCacheKey('services', perPage),
   
   search: (query: string) =>
     generateCacheKey('search', query),

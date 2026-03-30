@@ -8,18 +8,18 @@ import { useQuery } from '@tanstack/react-query'
 import { getServices, getService, Service } from '@/lib/wordpress'
 import { cacheKeys, CACHE_TTL, withCache } from '@/lib/redis'
 
-export function useServices() {
+export function useServices(perPage: number = 12) {
   return useQuery({
-    queryKey: ['services'],
+    queryKey: ['services', perPage],
     queryFn: async () => {
-      const cacheKey = cacheKeys.services()
+      const cacheKey = cacheKeys.services(perPage)
       return withCache(
         cacheKey,
-        () => getServices(12),
+        () => getServices(perPage),
         CACHE_TTL.SERVICES
       )
     },
-    staleTime: 60 * 60 * 1000, // 1 hour
+    staleTime: 60 * 60 * 1000,
   })
 }
 
