@@ -41,14 +41,15 @@ export default function BrandsMarquee() {
       <div ref={trackRef} className="flex items-center will-change-transform w-max">
         {doubled.map((brand, i) => (
           <div key={i} className="sm:mx-[80px] mx-[40px] flex items-center shrink-0">
-            <Image
-              src={`/${brand}.svg`}
-              alt={brand}
-              width={124}
-              height={26}
-              className="h-[30px] w-auto"
-              style={{ width: 'auto', height: '30px' }}
-            />
+            <div className="relative h-[30px] w-[124px]">
+              <Image
+                src={`/${brand}.svg`}
+                alt={brand}
+                fill
+                sizes="124px"
+                className="object-contain"
+              />
+            </div>
           </div>
         ))}
       </div>

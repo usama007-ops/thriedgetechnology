@@ -24,7 +24,7 @@ export async function WorkSection() {
         {workItems.length > 0 ? (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-              {workItems.map((work) => {
+              {workItems.map((work, idx) => {
                 const featuredImage = work._embedded?.['wp:featuredmedia']?.[0]?.source_url
                 const industry = work.acf?.industry
                 const year = work.acf?.year
@@ -50,7 +50,10 @@ export async function WorkSection() {
                             width={655}
                             height={815}
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            priority={idx === 0}
+                            loading={idx === 0 ? 'eager' : 'lazy'}
                             className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                            style={{ width: '100%', height: '100%' }}
                           />
                         ) : (
                           <div className="w-full aspect-[4/5] bg-gradient-to-br from-gray-100 to-gray-200 rounded-[24px]" />

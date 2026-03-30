@@ -61,7 +61,9 @@ export function IndustriesSection() {
             <Link key={ind.slug} href={`/industries/${ind.slug}`}>
               <div className="rounded-[24px] border border-[#e5e5e5] group flex flex-col justify-end p-0 hover:border-[#111212] transition-colors duration-300">
                 <div className="flex flex-col gap-[24px] px-[20px] py-[24px]">
-                  <Image src={`/${ind.icon}`} alt={ind.title} width={30} height={30} className='invert' style={{ width: '30px', height: 'auto' }} />
+                  <div className="relative w-[30px] h-[30px]">
+                    <Image src={`/${ind.icon}`} alt={ind.title} fill sizes="30px" className="object-contain invert" />
+                  </div>
                   <div className="flex flex-col items-start gap-[8px]">
                     <h3 className="xl:text-[32px] text-[24px] font-semibold font-mont text-[#111212]">
                       {ind.title}
