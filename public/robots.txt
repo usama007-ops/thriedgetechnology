@@ -1,0 +1,23 @@
+# Robots.txt for Thrill Edge Technologies
+# Generated for search engine optimization
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+Disallow: /*.json$
+Disallow: /search/
+
+# Specific crawl delays
+User-agent: Googlebot
+Crawl-delay: 0
+Allow: /
+
+User-agent: Bingbot
+Crawl-delay: 1
+Allow: /
+
+# Sitemap location
+Sitemap: https://thrilledge.com/sitemap.xml
