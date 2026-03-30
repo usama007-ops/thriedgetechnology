@@ -8,8 +8,13 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 
-export async function WorkSection({ show = 6 }: { show?: number }) {
-  const workItems = await getWorkItems(1, show).catch(() => [])
+export async function WorkSection({ show = 6, industry }: { show?: number; industry?: string }) {
+  // Fetch more if filtering by industry so we have enough after filter
+  const fetchCount = industry ? Math.max(show * 4, 20) : show
+  const all = await getWorkItems(1, fetchCount).catch(() => [])
+  const workItems = industry
+    ? all.filter(w => w.acf?.industry?.toLowerCase().includes(industry.toLowerCase())).slice(0, show)
+    : all.slice(0, show)
 
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8">

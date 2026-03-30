@@ -43,7 +43,7 @@ export default function Home() {
       <ProcessSection />
       <IndustriesSection />
       <ValueFeaturesSection />
-      <LatestArticlesSection />
+      <LatestArticlesSection show={3} />
     </main>
   )
 }

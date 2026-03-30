@@ -9,8 +9,13 @@ function readingTime(html: string) {
   return `${mins} min${mins > 1 ? 's' : ''}`
 }
 
-export async function LatestArticlesSection() {
-  const posts = await getPosts(1, 3).catch(() => [])
+interface LatestArticlesSectionProps {
+  show?: number
+  categories?: number[]  // WP category IDs to filter by
+}
+
+export async function LatestArticlesSection({ show = 3, categories }: LatestArticlesSectionProps) {
+  const posts = await getPosts(1, show, undefined, categories).catch(() => [])
 
   if (!posts.length) return null
 
