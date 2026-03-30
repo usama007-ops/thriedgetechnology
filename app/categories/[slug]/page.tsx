@@ -7,7 +7,7 @@
 
 import { useState } from 'react'
 import { Header } from '@/components/layout/header'
-import { Footer } from '@/components/layout/footer'
+import Footer from '@/components/layout/footer'
 import { BlogCard } from '@/components/common/blog-card'
 import { useCategories, usePostsByCategory } from '@/hooks/use-posts'
 import { ArrowLeft, Loader } from 'lucide-react'
