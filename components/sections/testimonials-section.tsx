@@ -1,8 +1,8 @@
 import { getTestimonials, type Testimonial } from '@/lib/wordpress'
 import { TestimonialsMarquee } from './testimonials-marquee'
 
-export async function TestimonialsSection() {
-  const testimonials = await getTestimonials(20).catch(() => [] as Testimonial[])
+export async function TestimonialsSection({ show = 20 }: { show?: number }) {
+  const testimonials = await getTestimonials(show).catch(() => [] as Testimonial[])
   if (!testimonials.length) return null
 
   return (

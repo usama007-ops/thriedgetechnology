@@ -37,9 +37,9 @@ export default function Home() {
       <HeroSection />
       <BrandsMarquee />
       <ValuePropositionSection />
-      <WorkSection />
-      <TestimonialsSection />
-      <ServicesSection />
+      <WorkSection show={3} />
+      <TestimonialsSection show={12} />
+      <ServicesSection show={3} />
       <ProcessSection />
       <IndustriesSection />
       <ValueFeaturesSection />

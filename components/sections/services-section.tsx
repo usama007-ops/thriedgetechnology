@@ -8,8 +8,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 
-export async function ServicesSection() {
-  const services = await getServices(12).catch(() => [])
+export async function ServicesSection({ show = 12 }: { show?: number }) {
+  const services = await getServices(show).catch(() => [])
 
   return (
     <section id="services" className="py-24 px-4 sm:px-6 lg:px-8 bg-[#F3F3F3]">
