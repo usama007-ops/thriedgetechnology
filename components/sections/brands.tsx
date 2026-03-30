@@ -47,6 +47,7 @@ export default function BrandsMarquee() {
               width={124}
               height={26}
               className="h-[30px] w-auto"
+              style={{ width: 'auto', height: '30px' }}
             />
           </div>
         ))}

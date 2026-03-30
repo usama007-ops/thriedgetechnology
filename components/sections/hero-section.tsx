@@ -100,7 +100,15 @@ export default function HeroSection() {
                   {slides.map((img, i) => (
                     <div key={i} className="min-w-full">
                       <div className="relative h-[250px] sm:h-[400px] lg:h-[420px] rounded-[14px] overflow-hidden">
-                        <Image fill src={img} alt={`Slide ${i}`} className={`absolute inset-0 w-full h-full ${i === 0 ? "object-contain" : "object-cover"}`}/>
+                        <Image
+                          fill
+                          src={img}
+                          alt={`Slide ${i}`}
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                          priority={i === 0}
+                          loading={i === 0 ? 'eager' : 'lazy'}
+                          className={`absolute inset-0 w-full h-full ${i === 0 ? "object-contain" : "object-cover"}`}
+                        />
                       </div>
                     </div>
                   ))}
