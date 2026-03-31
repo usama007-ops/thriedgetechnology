@@ -63,7 +63,7 @@ function ShareButtons({ title }: { title: string }) {
   )
 }
 
-function PostPage({ params }: PostPageProps) {
+export default function PostPage({ params }: PostPageProps) {
   const { slug } = React.use(params)
   const { data: post, isLoading, error } = usePost(slug)
   const { data: relatedPosts } = usePosts({ page: 1, per_page: 4 })
