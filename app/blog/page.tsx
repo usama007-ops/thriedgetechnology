@@ -1,13 +1,7 @@
-/**
- * Blog PageServer Component
- * Initial data fetched server-side; pagination handled client-side
- */
-
 import { Metadata } from 'next'
-import { Header } from '@/components/layout/header'
-import Footer from '@/components/layout/footer'
 import { getPosts, getCategories } from '@/lib/wordpress'
 import { BlogList } from './blog-list'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Blog | Thrill Edge Technologies',
@@ -20,8 +14,16 @@ export default async function BlogPage() {
     getCategories().catch(() => []),
   ])
 
+  // Preload the first post's image server-side for LCP
+  const firstImg = initialPosts[0]?._embedded?.['wp:featuredmedia']?.[0]?.source_url
+
   return (
     <main className="min-h-screen bg-background text-foreground">
+      {/* Hidden eager-loaded LCP image */}
+      {firstImg && (
+        <Image src={firstImg} alt="" fill={false} width={1} height={1}
+          priority loading="eager" className="sr-only" sizes="1px" />
+      )}
 
       <section className="pt-40 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center space-y-6">
