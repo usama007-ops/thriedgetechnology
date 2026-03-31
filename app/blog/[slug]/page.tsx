@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { usePost, usePosts } from '@/hooks/use-posts'
 import { useQuery } from '@tanstack/react-query'
-import { getAuthor } from '@/lib/wordpress'
+import { getAuthor, getCategory } from '@/lib/wordpress'
 import { Loader, Clock, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -74,6 +74,16 @@ export default function PostPage({ params }: PostPageProps) {
     enabled: !!post?.author,
   })
 
+  const { data: category } = useQuery({
+    queryKey: ['category-by-id', post?.categories?.[0]],
+    queryFn: async () => {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/wp/v2/categories/${post!.categories[0]}`)
+      const data = await res.json()
+      return data as { id: number; name: string; slug: string }
+    },
+    enabled: !!post?.categories?.[0],
+  })
+
   const [activeId, setActiveId] = useState('')
 
   useEffect(() => {
@@ -125,7 +135,9 @@ export default function PostPage({ params }: PostPageProps) {
             style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.65) 35%, rgba(0,0,0,0.2) 65%, rgba(0,0,0,0.4) 100%)' }} />
           <div className="absolute inset-0 flex flex-col justify-end p-[24px] md:p-[40px] lg:p-[56px]">
             <div className="flex items-center gap-[8px] flex-wrap mb-[14px]">
-              <span className="text-[11px] font-inter font-semibold text-white/90 bg-white/15 backdrop-blur-sm border border-white/20 px-[10px] py-[4px] rounded-full tracking-wider uppercase">Article</span>
+              <span className="text-[11px] font-inter font-semibold text-white/90 bg-white/15 backdrop-blur-sm border border-white/20 px-[10px] py-[4px] rounded-full tracking-wider uppercase">
+                {category?.name ?? 'Article'}
+              </span>
               <span className="flex items-center gap-[5px] text-[12px] font-inter text-white/65 bg-white/10 backdrop-blur-sm px-[10px] py-[4px] rounded-full">
                 <Clock size={12} />{time}
               </span>
