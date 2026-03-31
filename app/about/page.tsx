@@ -219,44 +219,61 @@ export default function AboutPage() {
             </section>
 
             {/* Timeline */}
-            {/* Timeline — sticky overlap */}
-            <section className="w-full max-w-[1440px] mx-auto md:px-[36px] px-[16px] mb-[96px]">
-                <h3 className="text-[40px] font-mont font-semibold leading-[48px] text-center mb-[60px] pt-[40px]">Our history</h3>
-                <div className="flex flex-col">
-                    {TIMELINE.map((t, i) => (
-                        <div key={t.year} className="sticky" style={{ top: `${80 + i * 20}px`, zIndex: i + 1 }}>
-                            <div
-                                className="rounded-[20px] p-[32px] md:p-[56px] flex md:flex-row flex-col md:gap-[80px] gap-[20px] items-start"
-                                style={{
-                                    backgroundColor: i % 2 === 0 ? '#111212' : '#f3f3f3',
-                                    boxShadow: '0 -8px 32px rgba(0,0,0,0.12)',
-                                }}
-                            >
-                                <span
-                                    className="text-[80px] md:text-[120px] font-mont font-bold leading-none shrink-0 select-none"
-                                    style={{ color: i % 2 === 0 ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.07)' }}
-                                >
-                                    {t.year}
-                                </span>
-                                <div className="flex flex-col gap-[12px] pt-[8px]">
-                                    <span
-                                        className="text-[12px] font-inter font-semibold uppercase tracking-[0.15em]"
-                                        style={{ color: i % 2 === 0 ? 'rgba(255,255,255,0.4)' : '#929296' }}
-                                    >
-                                        {t.year}
-                                    </span>
-                                    <p
-                                        className="text-[20px] md:text-[24px] font-mont font-semibold leading-[1.35]"
-                                        style={{ color: i % 2 === 0 ? '#ffffff' : '#111212' }}
-                                    >
-                                        {t.text}
-                                    </p>
+            {/* Timeline — vertical alternating */}
+            <section className="w-full max-w-[1440px] mx-auto md:px-[36px] px-[16px] mb-[96px] pt-[40px]">
+                <h3 className="text-[40px] font-mont font-semibold leading-[48px] text-center mb-[80px]">Our history</h3>
+
+                <div className="relative">
+                    {/* Center vertical line */}
+                    <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-[#313131] -translate-x-1/2 hidden md:block" />
+                    {/* Mobile left line */}
+                    <div className="absolute left-[20px] top-0 bottom-0 w-[2px] bg-[#313131] md:hidden" />
+
+                    <div className="flex flex-col gap-0">
+                        {TIMELINE.map((t, i) => {
+                            const isLeft = i % 2 === 0
+                            return (
+                                <div key={t.year} className="relative flex md:items-center items-start min-h-[160px] md:mb-[0px] mb-[40px]">
+
+                                    {/* Desktop: left card */}
+                                    <div className={`hidden md:flex w-[calc(50%-32px)] ${isLeft ? 'justify-end pr-[48px]' : 'justify-start pl-[48px] order-last'}`}>
+                                        {isLeft && (
+                                            <div className="max-w-[420px] w-full rounded-[16px] p-[28px] bg-[#111212] shadow-lg">
+                                                <span className="text-[12px] font-inter font-semibold uppercase tracking-[0.15em] text-white/40 block mb-[10px]">{t.year}</span>
+                                                <p className="text-[18px] font-mont font-semibold text-white leading-[1.4]">{t.text}</p>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {/* Center dot + year label */}
+                                    <div className="hidden md:flex flex-col items-center shrink-0 w-[64px] relative z-10">
+                                        <div className="w-[18px] h-[18px] rounded-full bg-[#111212] border-[3px] border-[#313131] ring-4 ring-[#f3f3f3]" />
+                                        <span className="text-[13px] font-inter text-[#929296] mt-[8px] whitespace-nowrap">{t.year}</span>
+                                    </div>
+
+                                    {/* Desktop: right card */}
+                                    <div className={`hidden md:flex w-[calc(50%-32px)] ${!isLeft ? 'justify-start pl-[48px]' : 'justify-end pr-[48px] order-last'}`}>
+                                        {!isLeft && (
+                                            <div className="max-w-[420px] w-full rounded-[16px] p-[28px] bg-[#f3f3f3] shadow-lg">
+                                                <span className="text-[12px] font-inter font-semibold uppercase tracking-[0.15em] text-[#929296] block mb-[10px]">{t.year}</span>
+                                                <p className="text-[18px] font-mont font-semibold text-[#111212] leading-[1.4]">{t.text}</p>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {/* Mobile layout */}
+                                    <div className="md:hidden flex items-start gap-[20px] pl-[48px]">
+                                        <div className="absolute left-[12px] top-[4px] w-[18px] h-[18px] rounded-full bg-[#111212] border-[3px] border-[#313131] ring-4 ring-white z-10" />
+                                        <div className={`w-full rounded-[16px] p-[24px] ${i % 2 === 0 ? 'bg-[#111212]' : 'bg-[#f3f3f3]'}`}>
+                                            <span className={`text-[12px] font-inter font-semibold uppercase tracking-[0.15em] block mb-[8px] ${i % 2 === 0 ? 'text-white/40' : 'text-[#929296]'}`}>{t.year}</span>
+                                            <p className={`text-[16px] font-mont font-semibold leading-[1.4] ${i % 2 === 0 ? 'text-white' : 'text-[#111212]'}`}>{t.text}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    ))}
+                            )
+                        })}
+                    </div>
                 </div>
-                <div className="h-[120px]" />
             </section>
 
             {/* FAQ */}
