@@ -11,7 +11,6 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'sw
 export const metadata: Metadata = {
   title: 'Thrill Edge Technologies | Innovation Redefined',
   description: 'Cutting-edge technology solutions for modern enterprises. Experience innovation with Thrill Edge Technologies.',
-  generator: 'v0.app',
   applicationName: 'Thrill Edge Technologies',
   keywords: ['technology', 'innovation', 'enterprise solutions', 'digital transformation'],
   authors: [{ name: 'Thrill Edge Technologies' }],
