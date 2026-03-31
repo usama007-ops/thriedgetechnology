@@ -8,6 +8,14 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
+ * Force all WP emails to send from info@thrilledge.com
+ * This is critical for avoiding spam filters — the From domain
+ * must match the sending server's SPF/DKIM records.
+ */
+add_filter( 'wp_mail_from',      fn() => 'info@thrilledge.com' );
+add_filter( 'wp_mail_from_name', fn() => 'Thrill Edge' );
+
+/**
  * 1. Ensure the 'testimonial' CPT supports 'pending' status via REST.
  *    Add this to your theme's functions.php or this plugin if the CPT
  *    is registered elsewhere.
@@ -84,15 +92,21 @@ add_action( 'rest_insert_testimonial', function( $post, $request, $creating ) {
 add_action( 'rest_insert_testimonial', function( $post, $request, $creating ) {
     if ( ! $creating ) return;
 
-    $admin_email = get_option( 'admin_email' );
+    $admin_email = 'info@thrilledge.com';
     $title       = $post->post_title;
     $review_url  = admin_url( 'post.php?post=' . $post->ID . '&action=edit' );
+
+    $headers = [
+        'Content-Type: text/plain; charset=UTF-8',
+        'From: Thrill Edge <info@thrilledge.com>',
+        'Reply-To: info@thrilledge.com',
+    ];
 
     wp_mail(
         $admin_email,
         '[Thrill Edge] New review pending approval: ' . $title,
         "A new review has been submitted and is awaiting your approval.\n\nReview: {$title}\n\nApprove it here: {$review_url}",
-        [ 'Content-Type: text/plain; charset=UTF-8' ]
+        $headers
     );
 }, 10, 3 );
 
