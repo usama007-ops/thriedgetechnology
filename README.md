@@ -14,10 +14,10 @@ We are a forward-thinking company dedicated to delivering innovative solutions t
 
 ## Our Values
 
-- Customer First — we put our customers at the center of every decision
-- Innovation — we embrace new ideas and technologies
-- Integrity — we act with honesty and transparency
-- Collaboration — we work better together
+- Customer Firstwe put our customers at the center of every decision
+- Innovationwe embrace new ideas and technologies
+- Integritywe act with honesty and transparency
+- Collaborationwe work better together
 
 ## Contact
 

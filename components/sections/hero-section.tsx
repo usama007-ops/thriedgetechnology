@@ -46,7 +46,7 @@ export default function HeroSection() {
               </h1>
 
               <p className="animate-fade-in-up delay-200 max-w-[520px] text-[#111212] text-start font-inter sm:text-[16px] text-[14px] leading-[1.6]">
-                From zero to launched MVP in weeks — not months. Enterprise-grade web,
+                From zero to launched MVP in weeksnot months. Enterprise-grade web,
                 mobile, and AI solutions for teams that refuse to settle.
               </p>
             </div>

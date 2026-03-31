@@ -203,7 +203,7 @@ export default function WorkPage({ params }: WorkPageProps) {
           </h3>
           <div className="max-w-[354px] w-full flex items-start flex-col md:gap-[20px] gap-[40px]">
             <p className="text-[16px] leading-[24px] text-[#929296] font-inter">
-              Your idea, our brains — we&apos;ll send you a tailored game plan in 48h.
+              Your idea, our brainswe&apos;ll send you a tailored game plan in 48h.
             </p>
             <Link
               href="/contact"

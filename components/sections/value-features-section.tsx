@@ -79,7 +79,7 @@ export function ValueFeaturesSection() {
       <div className="w-full max-w-[1440px] lg:py-[96px] py-[64px] lg:px-[36px] px-[16px]">
         <div className="flex md:flex-row flex-col md:gap-[64px] gap-[48px] items-start">
 
-          {/* Left — sticky title */}
+          {/* Leftsticky title */}
           <div className="md:w-[420px] w-full shrink-0 md:sticky md:top-[100px]">
             <h2 className="text-black font-mont md:text-[48px] text-[32px] font-semibold md:leading-[56px] leading-[38px]">
               Validate your product idea, impress investors, and get to market faster.
@@ -89,7 +89,7 @@ export function ValueFeaturesSection() {
             </p>
           </div>
 
-          {/* Right — scrolling cards */}
+          {/* Rightscrolling cards */}
           <div className="flex-1 flex flex-col">
             {FEATURES.map((f, i) => (
               <FeatureCard key={f.title} feature={f} index={i} />

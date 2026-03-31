@@ -227,7 +227,7 @@ export function Header() {
         </div>
       </header>
 
-      {/* Mobile drawer — rendered outside header so it can be truly fixed */}
+      {/* Mobile drawerrendered outside header so it can be truly fixed */}
       <MobileDrawer open={isMobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
     </>
   )

@@ -156,7 +156,7 @@ export function MegaMenu() {
         </button>
       ))}
 
-      {/* single shared panel — positioned from the header via fixed top */}
+      {/* single shared panelpositioned from the header via fixed top */}
       {activeMenu && (
         <div
           className="fixed left-0 right-0 z-[9999] flex justify-center px-4"
@@ -194,7 +194,7 @@ export function MegaMenu() {
                 ))}
               </div>
             </div>
-            {/* RIGHT — image */}
+            {/* RIGHTimage */}
             <div className="relative max-w-[400px] w-full rounded-[16px] overflow-hidden flex shrink-0">
               <Image
                 src={activeMenu.image}

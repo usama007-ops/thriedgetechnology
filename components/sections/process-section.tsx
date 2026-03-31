@@ -20,7 +20,7 @@ const STEPS = [
   },
   {
     num: '03', label: 'Build & Secure',
-    description: 'Our engineers build your product with clean, scalable code following industry best practices. Security, performance, and maintainability are baked in from day one — not bolted on at the end.',
+    description: 'Our engineers build your product with clean, scalable code following industry best practices. Security, performance, and maintainability are baked in from day onenot bolted on at the end.',
     points: ['Agile sprints with weekly demos and feedback loops', 'Automated testing, CI/CD pipelines, and code reviews', 'Security-first development with penetration testing'],
     image: '/design-build.avif',
   },

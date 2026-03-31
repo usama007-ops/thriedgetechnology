@@ -1,5 +1,5 @@
 /**
- * Work/Portfolio Section — Server Component
+ * Work/Portfolio SectionServer Component
  * Data fetched at request time, no loading state, no client JS needed.
  */
 
@@ -64,14 +64,14 @@ export async function WorkSection({ show = 6, industry }: { show?: number; indus
                           <div className="w-full aspect-[4/5] bg-gradient-to-br from-gray-100 to-gray-200 rounded-[24px]" />
                         )}
 
-                        {/* Top-left badge — industry */}
+                        {/* Top-left badgeindustry */}
                         {industry && (
                           <span className="absolute top-4 left-4 z-10 bg-white/80 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-medium text-[#111212]">
                             {industry}
                           </span>
                         )}
 
-                        {/* Top-right badge — year */}
+                        {/* Top-right badgeyear */}
                         {year && (
                           <span className="absolute top-4 right-4 z-10 bg-white/80 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-medium text-[#111212]">
                             {year}

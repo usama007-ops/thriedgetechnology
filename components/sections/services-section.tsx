@@ -1,5 +1,5 @@
 /**
- * Services Section — Server Component
+ * Services SectionServer Component
  */
 
 import { getServices } from '@/lib/wordpress'

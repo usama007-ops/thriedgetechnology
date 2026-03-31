@@ -1,5 +1,5 @@
 /**
- * BlogList — Client Component
+ * BlogListClient Component
  * Handles category filtering + pagination after initial SSR load
  */
 

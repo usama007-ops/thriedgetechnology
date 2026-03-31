@@ -1,5 +1,5 @@
 /**
- * Blog Page — Server Component
+ * Blog PageServer Component
  * Initial data fetched server-side; pagination handled client-side
  */
 
