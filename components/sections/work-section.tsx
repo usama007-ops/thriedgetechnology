@@ -47,21 +47,19 @@ export async function WorkSection({ show = 6, industry }: { show?: number; indus
                   <Link key={work.id} href={`/work/${work.slug}`}>
                     <div className="w-full h-full flex flex-col group">
                       {/* Image container */}
-                      <div className="relative overflow-hidden rounded-[24px] h-full">
+                      <div className="relative overflow-hidden rounded-[24px] aspect-[4/5]">
                         {featuredImage ? (
                           <Image
                             src={featuredImage}
                             alt={`${work.title.rendered} card image`}
-                            width={655}
-                            height={815}
+                            fill
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             priority={idx === 0}
                             loading={idx === 0 ? 'eager' : 'lazy'}
-                            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                            style={{ width: '100%', height: '100%' }}
+                            className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                           />
                         ) : (
-                          <div className="w-full aspect-[4/5] bg-gradient-to-br from-gray-100 to-gray-200 rounded-[24px]" />
+                          <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 rounded-[24px]" />
                         )}
 
                         {/* Top-left badgeindustry */}
