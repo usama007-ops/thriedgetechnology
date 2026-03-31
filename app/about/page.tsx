@@ -220,61 +220,63 @@ export default function AboutPage() {
 
             {/* Timeline */}
             {/* Timeline — vertical alternating */}
-            <section className="w-full max-w-[1440px] mx-auto md:px-[36px] px-[16px] mb-[96px] pt-[40px]">
-                <h3 className="text-[40px] font-mont font-semibold leading-[48px] text-center mb-[80px]">Our history</h3>
+        <section className="w-full max-w-[1440px] mx-auto md:px-[36px] px-[16px] mb-[96px] pt-[40px]">
+  <h3 className="text-[40px] font-mont font-semibold leading-[48px] text-center mb-[80px]">
+    Our history
+  </h3>
 
-                <div className="relative">
-                    {/* Center vertical line */}
-                    <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-[#313131] -translate-x-1/2 hidden md:block" />
-                    {/* Mobile left line */}
-                    <div className="absolute left-[20px] top-0 bottom-0 w-[2px] bg-[#313131] md:hidden" />
+  <div className="relative">
+    {/* Center vertical line (Desktop) */}
+    <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-[#313131] -translate-x-1/2 hidden md:block" />
+    
+    {/* Left vertical line (Mobile) */}
+    <div className="absolute left-[20px] top-0 bottom-0 w-[2px] bg-[#313131] md:hidden" />
 
-                    <div className="flex flex-col gap-0">
-                        {TIMELINE.map((t, i) => {
-                            const isLeft = i % 2 === 0
-                            return (
-                                <div key={t.year} className="relative flex md:items-center items-start min-h-[160px] md:mb-[0px] mb-[40px]">
-
-                                    {/* Desktop: left card */}
-                                    <div className={`hidden md:flex w-[calc(50%-32px)] ${isLeft ? 'justify-end pr-[48px]' : 'justify-start pl-[48px] order-last'}`}>
-                                        {isLeft && (
-                                            <div className="max-w-[420px] w-full rounded-[16px] p-[28px] bg-[#111212] shadow-lg">
-                                                <span className="text-[12px] font-inter font-semibold uppercase tracking-[0.15em] text-white/40 block mb-[10px]">{t.year}</span>
-                                                <p className="text-[18px] font-mont font-semibold text-white leading-[1.4]">{t.text}</p>
-                                            </div>
-                                        )}
-                                    </div>
-
-                                    {/* Center dot + year label */}
-                                    <div className="hidden md:flex flex-col items-center shrink-0 w-[64px] relative z-10">
-                                        <div className="w-[18px] h-[18px] rounded-full bg-[#111212] border-[3px] border-[#313131] ring-4 ring-[#f3f3f3]" />
-                                        <span className="text-[13px] font-inter text-[#929296] mt-[8px] whitespace-nowrap">{t.year}</span>
-                                    </div>
-
-                                    {/* Desktop: right card */}
-                                    <div className={`hidden md:flex w-[calc(50%-32px)] ${!isLeft ? 'justify-start pl-[48px]' : 'justify-end pr-[48px] order-last'}`}>
-                                        {!isLeft && (
-                                            <div className="max-w-[420px] w-full rounded-[16px] p-[28px] bg-[#f3f3f3] shadow-lg">
-                                                <span className="text-[12px] font-inter font-semibold uppercase tracking-[0.15em] text-[#929296] block mb-[10px]">{t.year}</span>
-                                                <p className="text-[18px] font-mont font-semibold text-[#111212] leading-[1.4]">{t.text}</p>
-                                            </div>
-                                        )}
-                                    </div>
-
-                                    {/* Mobile layout */}
-                                    <div className="md:hidden flex items-start gap-[20px] pl-[48px]">
-                                        <div className="absolute left-[12px] top-[4px] w-[18px] h-[18px] rounded-full bg-[#111212] border-[3px] border-[#313131] ring-4 ring-white z-10" />
-                                        <div className={`w-full rounded-[16px] p-[24px] ${i % 2 === 0 ? 'bg-[#111212]' : 'bg-[#f3f3f3]'}`}>
-                                            <span className={`text-[12px] font-inter font-semibold uppercase tracking-[0.15em] block mb-[8px] ${i % 2 === 0 ? 'text-white/40' : 'text-[#929296]'}`}>{t.year}</span>
-                                            <p className={`text-[16px] font-mont font-semibold leading-[1.4] ${i % 2 === 0 ? 'text-white' : 'text-[#111212]'}`}>{t.text}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        })}
-                    </div>
+    <div className="flex flex-col">
+      {TIMELINE.map((t, i) => {
+        const isLeft = i % 2 === 0;
+        return (
+          <div key={t.year} className="relative mb-[40px] md:mb-0">
+            {/* DESKTOP LAYOUT */}
+            <div className="hidden md:grid grid-cols-[1fr_64px_1fr] items-center w-full">
+              
+              {/* Left Side */}
+              <div className={`flex justify-end pr-[48px] ${!isLeft ? 'invisible' : ''}`}>
+                <div className="max-w-[420px] w-full rounded-[16px] p-[28px] bg-[#111212] shadow-lg">
+                  <span className="text-[12px] font-inter font-semibold uppercase tracking-[0.15em] text-white/40 block mb-[10px]">{t.year}</span>
+                  <p className="text-[18px] font-mont font-semibold text-white leading-[1.4]">{t.text}</p>
                 </div>
-            </section>
+              </div>
+
+              {/* Center Dot */}
+              <div className="flex flex-col items-center justify-center relative z-10">
+                {/* <div className="w-[18px] h-[18px] rounded-full bg-[#111212] border-[3px] border-[#313131] ring-4 ring-[#f3f3f3]" /> */}
+                <span className="text-[13px] font-inter text-[#929296] bg-[#F3F3F3] mt-[8px] absolute top-[24px] whitespace-nowrap">{t.year}</span>
+              </div>
+
+              {/* Right Side */}
+              <div className={`flex justify-start pl-[48px] ${isLeft ? 'invisible' : ''}`}>
+                <div className="max-w-[420px] w-full rounded-[16px] p-[28px] bg-[#f3f3f3] shadow-lg">
+                  <span className="text-[12px] font-inter font-semibold uppercase tracking-[0.15em] text-[#929296] block mb-[10px]">{t.year}</span>
+                  <p className="text-[18px] font-mont font-semibold text-[#111212] leading-[1.4]">{t.text}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* MOBILE LAYOUT */}
+            <div className="md:hidden flex items-start pl-[48px] relative">
+              <div className="absolute left-[12px] top-[10px] w-[18px] h-[18px] rounded-full bg-[#111212] border-[3px] border-[#313131] ring-4 ring-white z-10" />
+              <div className={`w-full rounded-[16px] p-[24px] ${isLeft ? 'bg-[#111212]' : 'bg-[#f3f3f3]'}`}>
+                <span className={`text-[12px] font-inter font-semibold uppercase tracking-[0.15em] block mb-[8px] ${isLeft ? 'text-white/40' : 'text-[#929296]'}`}>{t.year}</span>
+                <p className={`text-[16px] font-mont font-semibold leading-[1.4] ${isLeft ? 'text-white' : 'text-[#111212]'}`}>{t.text}</p>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
 
             {/* FAQ */}
             <section className="w-full flex items-center justify-center">

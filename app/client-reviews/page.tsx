@@ -55,7 +55,13 @@ export default async function ClientReviewsPage() {
         </div>
       </div>
 
-      {/* Grid */}
+      {/* Submit Review button */}
+      <div className="w-full max-w-[1440px] mx-auto md:px-[36px] px-[16px] pb-[64px] flex justify-center">
+        <a href="/public-review"
+          className="flex items-center justify-center gap-2 px-[32px] pt-[16px] pb-[14px] bg-black text-white font-mont text-[15px] font-semibold rounded-full hover:scale-105 transition-all duration-300">
+          ✍️ Submit Your Review
+        </a>
+      </div>
       {testimonials.length > 0 ? (
         <div className="w-full max-w-[1440px] mx-auto md:px-[36px] px-[16px] pb-[96px]">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]">
