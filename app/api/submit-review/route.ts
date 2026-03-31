@@ -16,6 +16,10 @@ export async function POST(req: NextRequest) {
     const credentials = Buffer.from(`${WP_USER}:${WP_PASS}`).toString('base64')
 
     // Create testimonial post with status=pending (requires approval before showing)
+    const ratingMap: Record<string, number> = {
+      'Excellent': 5, 'Good': 4, 'Okay': 3, 'Bad': 2, 'Very Bad': 1,
+    }
+
     const res = await fetch(`${WP_URL}/wp-json/wp/v2/testimonial`, {
       method: 'POST',
       headers: {
@@ -23,19 +27,14 @@ export async function POST(req: NextRequest) {
         Authorization: `Basic ${credentials}`,
       },
       body: JSON.stringify({
-        title: `${first_name} ${last_name} — ${company_name || email}`,
+        title: company_name || `${first_name} ${last_name}`,
         content: written_review,
-        status: 'pending',   // won't show until approved in WP admin
+        status: 'pending',
         acf: {
-          author_name: `${first_name} ${last_name}`,
+          author_name: `${first_name} ${last_name}`.trim(),
           author_title: rating,
           author_company: company_name,
-          rating: rating === 'Excellent' ? 5 : rating === 'Good' ? 4 : rating === 'Okay' ? 3 : rating === 'Bad' ? 2 : 1,
-        },
-        meta: {
-          reviewer_email: email,
-          reviewer_phone: phone,
-          reviewer_website: website,
+          rating: ratingMap[rating] ?? 5,
         },
       }),
     })
