@@ -55,6 +55,7 @@ export default function PublicReviewPage() {
   )
 
   return (
+     <div className="relative bg-[#F3F3F3]">
     <section className="max-w-[1440px] w-full mx-auto md:mt-[64px] mt-[64px]">
       <div className="w-full md:px-[36px] px-[16px] md:pb-[96px] pb-[64px]">
         <div className="w-full flex flex-col px-[28px] py-[64px] gap-[32px] bg-white rounded-[20px]">
@@ -156,6 +157,7 @@ export default function PublicReviewPage() {
         </div>
       </div>
     </section>
+    </div>
   )
 }
 
