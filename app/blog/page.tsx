@@ -22,7 +22,6 @@ export default async function BlogPage() {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <Header />
 
       <section className="pt-40 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center space-y-6">
@@ -38,8 +37,6 @@ export default async function BlogPage() {
           <BlogList initialPosts={initialPosts} categories={categories} />
         </div>
       </section>
-
-      <Footer />
     </main>
   )
 }

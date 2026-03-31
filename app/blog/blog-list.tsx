@@ -78,7 +78,7 @@ export function BlogList({ initialPosts, categories }: Props) {
       {!loading && posts.length > 0 && (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {posts.map((post) => <BlogCard key={post.id} post={post} />)}
+            {posts.map((post, idx) => <BlogCard key={post.id} post={post} priority={idx === 0} />)}
           </div>
 
           <div className="flex items-center justify-center gap-4 pt-8 border-t border-border">
