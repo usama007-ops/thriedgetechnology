@@ -414,6 +414,17 @@ export async function getJobs(per_page = 100): Promise<Job[]> {
   }
 }
 
+export async function getJob(slug: string): Promise<Job | null> {
+  try {
+    const items = await fetchFromWordPress<Job[]>(
+      `/wp/v2/job?slug=${slug}&acf_format=standard&_embed`
+    )
+    return items.length > 0 ? items[0] : null
+  } catch {
+    return null
+  }
+}
+
 /**
  * Media API - Get featured image URL
  */
