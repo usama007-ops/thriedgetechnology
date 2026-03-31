@@ -60,6 +60,7 @@ export interface Post {
   date: string
   modified: string
   featured_media: number
+  author: number
   categories: number[]
   acf?: Record<string, any>
   _embedded?: {
@@ -362,6 +363,27 @@ export async function getService(slug: string): Promise<Service | null> {
       `/wp/v2/service?slug=${slug}&_embed&acf_format=standard`
     )
     return items.length > 0 ? items[0] : null
+  } catch {
+    return null
+  }
+}
+
+/**
+ * Author
+ */
+export interface Author {
+  id: number
+  name: string
+  description: string
+  slug: string
+  designation?: string
+  avatar_urls: { '24': string; '48': string; '96': string }
+  link: string
+}
+
+export async function getAuthor(id: number): Promise<Author | null> {
+  try {
+    return await fetchFromWordPress<Author>(`/wp/v2/users/${id}`)
   } catch {
     return null
   }

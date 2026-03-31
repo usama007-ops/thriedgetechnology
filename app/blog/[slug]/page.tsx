@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from 'react'
 import { usePost, usePosts } from '@/hooks/use-posts'
+import { useQuery } from '@tanstack/react-query'
+import { getAuthor } from '@/lib/wordpress'
 import { Loader, Clock, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -38,7 +40,7 @@ function ShareButtons({ title }: { title: string }) {
   }
 
   return (
-    <div className="flex items-center gap-[8px] flex-wrap">
+    <div className="flex items-center gap-[8px] flex-wrap ">
       <p className="text-[11px] font-inter font-semibold text-[#929296] uppercase tracking-widest w-full mb-[4px]">Share</p>
       <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`}
         target="_blank" rel="noopener noreferrer" aria-label="Share on X"
@@ -61,10 +63,17 @@ function ShareButtons({ title }: { title: string }) {
   )
 }
 
-export default function PostPage({ params }: PostPageProps) {
+function PostPage({ params }: PostPageProps) {
   const { slug } = React.use(params)
   const { data: post, isLoading, error } = usePost(slug)
   const { data: relatedPosts } = usePosts({ page: 1, per_page: 4 })
+
+  const { data: author } = useQuery({
+    queryKey: ['author', post?.author],
+    queryFn: () => getAuthor(post!.author),
+    enabled: !!post?.author,
+  })
+
   const [activeId, setActiveId] = useState('')
 
   useEffect(() => {
@@ -95,7 +104,6 @@ export default function PostPage({ params }: PostPageProps) {
 
       {/* Hero banner */}
       <section className="max-w-[1440px] w-full mx-auto md:px-[24px] px-[16px]">
-        {/* Breadcrumb */}
         <div className="pt-[16px] pb-[20px]">
           <nav aria-label="Breadcrumb">
             <ol className="flex items-center gap-[6px] flex-wrap font-inter text-[13px] text-[#929296]">
@@ -107,22 +115,17 @@ export default function PostPage({ params }: PostPageProps) {
           </nav>
         </div>
 
-        {/* Cover image + overlay */}
         <div className="relative w-full rounded-[24px] overflow-hidden min-h-[480px] md:min-h-[560px] lg:min-h-[620px]">
           {featuredImage && (
             <Image src={featuredImage} alt={post.title.rendered} fill priority
               sizes="100vw" className="object-cover object-center" />
           )}
           {!featuredImage && <div className="absolute inset-0 bg-[#111212]" />}
-
           <div className="absolute inset-0"
             style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.65) 35%, rgba(0,0,0,0.2) 65%, rgba(0,0,0,0.4) 100%)' }} />
-
           <div className="absolute inset-0 flex flex-col justify-end p-[24px] md:p-[40px] lg:p-[56px]">
             <div className="flex items-center gap-[8px] flex-wrap mb-[14px]">
-              <span className="text-[11px] font-inter font-semibold text-white/90 bg-white/15 backdrop-blur-sm border border-white/20 px-[10px] py-[4px] rounded-full tracking-wider uppercase">
-                Article
-              </span>
+              <span className="text-[11px] font-inter font-semibold text-white/90 bg-white/15 backdrop-blur-sm border border-white/20 px-[10px] py-[4px] rounded-full tracking-wider uppercase">Article</span>
               <span className="flex items-center gap-[5px] text-[12px] font-inter text-white/65 bg-white/10 backdrop-blur-sm px-[10px] py-[4px] rounded-full">
                 <Clock size={12} />{time}
               </span>
@@ -134,13 +137,18 @@ export default function PostPage({ params }: PostPageProps) {
                 dangerouslySetInnerHTML={{ __html: post.excerpt.rendered.replace(/<[^>]*>/g, '') }} />
             )}
             <div className="flex items-center gap-[10px]">
-              <div className="w-[38px] h-[38px] rounded-full bg-white/20 flex items-center justify-center text-white font-mont font-bold text-sm shrink-0">
-                TE
-              </div>
+              {author?.avatar_urls?.['48'] ? (
+                <Image src={author.avatar_urls['48']} alt={author.name} width={38} height={38}
+                  className="rounded-full object-cover w-[38px] h-[38px] shrink-0 ring-2 ring-white/25" />
+              ) : (
+                <div className="w-[38px] h-[38px] rounded-full bg-white/20 flex items-center justify-center text-white font-mont font-bold text-sm shrink-0">
+                  {author?.name?.charAt(0) ?? 'T'}
+                </div>
+              )}
               <div className="flex flex-col gap-[2px]">
-                <span className="text-[13px] font-mont font-semibold text-white leading-none">Thrill Edge</span>
+                <span className="text-[13px] font-mont font-semibold text-white leading-none">{author?.name ?? 'Thrill Edge'}</span>
                 <span className="text-[12px] font-inter text-white/55 leading-none">
-                  {format(publishDate, 'MMMM d, yyyy')}
+                  {author?.designation ? `${author.designation} · ` : ''}{format(publishDate, 'MMMM d, yyyy')}
                 </span>
               </div>
             </div>
@@ -151,10 +159,7 @@ export default function PostPage({ params }: PostPageProps) {
       {/* Content + Sidebar */}
       <section className="max-w-[1440px] mx-auto md:px-[36px] px-[16px] md:py-[96px] py-[64px]">
         <div className="flex gap-[48px] items-start">
-
-          {/* Main content */}
           <div className="flex-1 min-w-0 max-w-[72ch]">
-            {/* Mobile TOC */}
             {headings.length > 0 && (
               <details className="lg:hidden mb-[32px] border border-[#E5E4E0] rounded-[8px] p-[16px]">
                 <summary className="text-[13px] font-inter font-semibold text-black cursor-pointer list-none flex items-center justify-between">
@@ -165,31 +170,19 @@ export default function PostPage({ params }: PostPageProps) {
                   <ul className="flex flex-col gap-[8px]">
                     {headings.map(h => (
                       <li key={h.id}>
-                        <a href={`#${h.id}`} className="text-[13px] font-inter text-[#555] hover:text-black transition-colors duration-200 leading-[1.4]">
-                          {h.text}
-                        </a>
+                        <a href={`#${h.id}`} className="text-[13px] font-inter text-[#555] hover:text-black transition-colors duration-200 leading-[1.4]">{h.text}</a>
                       </li>
                     ))}
                   </ul>
                 </nav>
               </details>
             )}
-
-            {/* Post body */}
-            <div className="blog-content"
-              dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
-
-            {/* Mobile share */}
-            <div className="lg:hidden mt-[32px]">
-              <ShareButtons title={post.title.rendered} />
-            </div>
+            <div className="blog-content" dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+            <div className="lg:hidden mt-[32px]"><ShareButtons title={post.title.rendered} /></div>
           </div>
 
-          {/* Desktop sidebar */}
           <aside className="hidden lg:block w-[300px] flex-shrink-0 sticky top-6" style={{ maxHeight: 'calc(100vh - 3rem)', overflowY: 'auto' }}>
             <div className="flex flex-col gap-[32px]">
-
-              {/* TOC */}
               {headings.length > 0 && (
                 <section>
                   <h2 className="text-[11px] font-inter font-semibold text-[#929296] uppercase tracking-widest mb-[12px]">On this page</h2>
@@ -207,19 +200,14 @@ export default function PostPage({ params }: PostPageProps) {
                   </nav>
                 </section>
               )}
-
-              {/* CTA card */}
               <section className="relative rounded-[16px] p-[20px] flex flex-col gap-[14px] overflow-hidden"
                 style={{ background: 'linear-gradient(135deg, #111 0%, #1a1a2e 100%)' }}>
                 <p className="text-[11px] font-inter font-semibold text-white/40 uppercase tracking-[0.12em]">Work with us</p>
                 <p className="text-[15px] font-mont font-semibold text-white leading-[1.35]">Ready to scope your next project?</p>
-                <Link href="/contact"
-                  className="inline-flex items-center gap-[7px] text-[12px] font-mont font-semibold text-black bg-white px-[14px] py-[8px] rounded-[8px] hover:bg-white/90 transition-colors duration-200 w-fit">
+                <Link href="/contact" className="inline-flex items-center gap-[7px] text-[12px] font-mont font-semibold text-black bg-white px-[14px] py-[8px] rounded-[8px] hover:bg-white/90 transition-colors duration-200 w-fit">
                   Book a Call <ArrowRight size={12} />
                 </Link>
               </section>
-
-              {/* Related articles */}
               {others.length > 0 && (
                 <section>
                   <h2 className="text-[11px] font-inter font-semibold text-[#929296] uppercase tracking-widest mb-[12px]">Related Articles</h2>
@@ -241,8 +229,6 @@ export default function PostPage({ params }: PostPageProps) {
                   </ul>
                 </section>
               )}
-
-              {/* Desktop share */}
               <ShareButtons title={post.title.rendered} />
             </div>
           </aside>
@@ -250,29 +236,39 @@ export default function PostPage({ params }: PostPageProps) {
       </section>
 
       {/* Author card */}
-      <section className="w-full mt-[56px]">
+      <section className="w-full py-[56px]">
         <div className="max-w-[1440px] mx-auto md:px-[36px] px-[16px]">
           <div className="max-w-[720px] bg-[#F7F6F4] rounded-[20px] p-[24px] md:p-[32px]">
             <div className="flex items-start gap-[20px]">
-              <div className="w-[72px] h-[72px] rounded-full bg-[#111212] flex items-center justify-center text-white font-mont font-bold text-xl shrink-0 ring-4 ring-white">
-                TE
-              </div>
+              {author?.avatar_urls?.['96'] ? (
+                <Image src={author.avatar_urls['96']} alt={author.name} width={72} height={72}
+                  className="rounded-full object-cover w-[72px] h-[72px] shrink-0 ring-4 ring-white" />
+              ) : (
+                <div className="w-[72px] h-[72px] rounded-full bg-[#111212] flex items-center justify-center text-white font-mont font-bold text-xl shrink-0 ring-4 ring-white">
+                  {author?.name?.charAt(0) ?? 'T'}
+                </div>
+              )}
               <div className="flex flex-col gap-[4px]">
-                <p className="text-[17px] font-mont font-bold text-black">Thrill Edge</p>
-                <p className="text-[12px] font-inter font-medium text-[#929296] uppercase tracking-wider">Founder, Thrill Edge Technologies</p>
-                <p className="text-[14px] font-inter text-[#555] leading-[1.65] mt-[10px]">
-                  Building software products for global teams. We write about SaaS, product development, AI, and engineering culture.
-                </p>
-                <a target="_blank" rel="noopener noreferrer"
-                  href="https://www.linkedin.com/company/thrilledge"
-                  className="mt-[12px] inline-flex items-center gap-[7px] text-[13px] font-inter font-semibold text-black bg-white border border-[#E5E4E0] px-[14px] py-[7px] rounded-full hover:border-black hover:shadow-sm transition-all duration-200 w-fit">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                    <rect x="2" y="9" width="4" height="12" />
-                    <circle cx="4" cy="4" r="2" />
-                  </svg>
-                  Connect on LinkedIn
-                </a>
+                <p className="text-[17px] font-mont font-bold text-black">{author?.name ?? 'Thrill Edge'}</p>
+                {author?.designation && (
+                  <p className="text-[12px] font-inter font-medium text-[#929296] uppercase tracking-wider">
+                    {author.designation}, Thrill Edge Technologies
+                  </p>
+                )}
+                {author?.description && (
+                  <p className="text-[14px] font-inter text-[#555] leading-[1.65] mt-[10px]">{author.description}</p>
+                )}
+                {author?.link && (
+                  <a target="_blank" rel="noopener noreferrer" href={author.link}
+                    className="mt-[12px] inline-flex items-center gap-[7px] text-[13px] font-inter font-semibold text-black bg-white border border-[#E5E4E0] px-[14px] py-[7px] rounded-full hover:border-black hover:shadow-sm transition-all duration-200 w-fit">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                      <rect x="2" y="9" width="4" height="12" />
+                      <circle cx="4" cy="4" r="2" />
+                    </svg>
+                    View Profile
+                  </a>
+                )}
               </div>
             </div>
           </div>
