@@ -29,9 +29,13 @@ export function BlogCard({ post, featured = false, priority = false }: BlogCardP
               className="object-cover group-hover:scale-110 transition-transform duration-300"
             />
           ) : (
-            <div className="w-full h-full bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center">
-              <span className="text-accent/50 text-sm">No image</span>
-            </div>
+            <Image
+              src="/placeholder.jpg"
+              alt={post.title.rendered}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover"
+            />
           )}
         </div>
 
