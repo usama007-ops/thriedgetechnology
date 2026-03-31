@@ -1,126 +1,134 @@
-import { getJobs } from '@/lib/wordpress'
+'use client'
+
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import type { Metadata } from 'next'
-import { MapPin, Briefcase, ArrowRight } from 'lucide-react'
+import { getJobs } from '@/lib/wordpress'
+import type { Job } from '@/lib/wordpress'
+import { useQuery } from '@tanstack/react-query'
 
-export const metadata: Metadata = {
-  title: 'Careers | Thrill Edge Technologies',
-  description: 'Join the Thrill Edge team. We\'re hiring engineers, designers, and product thinkers.',
-}
+const PAGE_SIZE = 9
 
-const TYPE_LABEL: Record<string, string> = {
-  onsite: 'Onsite', hybrid: 'Hybrid', remote: 'Remote',
-}
-const TYPE_COLOR: Record<string, string> = {
-  onsite: 'bg-[#f3f3f3] text-[#111212]',
-  hybrid: 'bg-[#fff8e6] text-[#92600a]',
-  remote: 'bg-[#e8f5e9] text-[#2e7d32]',
-}
+export default function CareersPage() {
+  const [activeDept, setActiveDept] = useState('All')
+  const [visible, setVisible] = useState(PAGE_SIZE)
 
-export default async function CareersPage() {
-  const jobs = await getJobs()
+  const { data: jobs = [] } = useQuery<Job[]>({
+    queryKey: ['jobs'],
+    queryFn: () => getJobs(100),
+    staleTime: 10 * 60 * 1000,
+  })
 
-  // Group by department name (from _embedded terms or fallback)
-  const grouped: Record<string, typeof jobs> = {}
+  // Build department list from fetched jobs
+  const deptCounts: Record<string, number> = { All: jobs.length }
   for (const job of jobs) {
-    const dept = job.department?.[0]?.name ?? 'General'
-    if (!grouped[dept]) grouped[dept] = []
-    grouped[dept].push(job)
+    const d = job.department?.[0]?.name ?? 'General'
+    deptCounts[d] = (deptCounts[d] ?? 0) + 1
   }
+  const depts = ['All', ...Object.keys(deptCounts).filter(d => d !== 'All')]
+
+  const filtered = activeDept === 'All'
+    ? jobs
+    : jobs.filter(j => (j.department?.[0]?.name ?? 'General') === activeDept)
+
+  const shown = filtered.slice(0, visible)
+
+  // Reset visible on filter change
+  useEffect(() => setVisible(PAGE_SIZE), [activeDept])
 
   return (
-    <div className="relative bg-white">
+    <section className="relative max-w-[1440px] w-full mx-auto">
 
       {/* Hero */}
-      <div className="w-full max-w-[1440px] mx-auto md:px-[36px] px-[16px] md:py-[80px] py-[64px]">
-        <p className="text-[12px] font-inter font-semibold uppercase tracking-[0.2em] text-[#929296] mb-[16px]">Careers</p>
-        <h1 className="text-[40px] md:text-[64px] font-mont font-bold md:leading-[64px] leading-[44px] text-[#111212] max-w-[800px] mb-[24px]">
-          Build the future with us
+      <div className="w-full max-w-[1440px] mx-auto flex md:flex-row flex-col md:items-end md:gap-[64px] gap-[32px] md:px-[36px] px-[16px] md:py-[64px] py-[64px]">
+        <h1 className="text-[24px] font-mont font-semibold w-full max-w-[610px]">
+          We have {jobs.length} open position{jobs.length !== 1 ? 's' : ''} now!
         </h1>
-        <p className="text-[18px] font-inter text-[#929296] leading-[1.65] max-w-[560px]">
-          We keep teams small and senior. If you&apos;ve shipped production code and care about craft, we want to hear from you.
+        <p className="w-full max-w-[694px] text-[40px] font-mont leading-[48px] font-semibold">
+          Join Thrill Edge. We are a team of innovators building custom software and next-gen AI solutions.
         </p>
       </div>
 
-      {/* Values strip */}
-      <div className="w-full max-w-[1440px] mx-auto md:px-[36px] px-[16px] pb-[64px]">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-[1px] bg-[#e5e5e5] rounded-[16px] overflow-hidden">
-          {[
-            { title: 'Senior-only teams', desc: 'Every engineer has shipped production code in your stack before.' },
-            { title: 'No bureaucracy', desc: 'Small teams, direct communication, real ownership of your work.' },
-            { title: 'Remote-friendly', desc: 'We have team members across US, Canada, Australia, and Europe.' },
-          ].map(v => (
-            <div key={v.title} className="bg-white px-[28px] py-[32px] flex flex-col gap-[8px]">
-              <p className="text-[18px] font-mont font-semibold text-[#111212]">{v.title}</p>
-              <p className="text-[14px] font-inter text-[#929296] leading-[1.6]">{v.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+      <div className="w-full flex flex-col items-center md:px-[36px] px-[16px] md:pb-[96px] pb-[64px]">
 
-      {/* Job listings */}
-      <div className="w-full max-w-[1440px] mx-auto md:px-[36px] px-[16px] pb-[96px]">
-        {jobs.length === 0 ? (
-          <div className="text-center py-[80px] border border-[#e5e5e5] rounded-[20px]">
+        {/* Sticky pill filter bar */}
+        <div className="sticky top-0 z-[99] max-w-[1440px] w-full flex items-center justify-center py-[20px]">
+          <div className="w-full p-[16px] rounded-[120px] bg-white shadow-sm">
+            <div className="w-full flex gap-[5px] rounded-full overflow-x-auto no-scrollbar">
+              {depts.map(dept => {
+                const isActive = activeDept === dept
+                const count = deptCounts[dept] ?? 0
+                return (
+                  <button key={dept} onClick={() => setActiveDept(dept)}
+                    className={`w-full min-w-fit h-[54px] flex items-center justify-center px-[24px] pt-[14px] pb-[12px] rounded-full text-[14px] font-mont font-semibold cursor-pointer transition-all duration-300 ease-in-out
+                      ${isActive ? 'bg-[#111212] text-white' : 'bg-[#EFEEEC] text-[#313131] hover:bg-[#111212] hover:text-white'}`}>
+                    {dept === 'All' ? `All positions (${count})` : `${dept} (${count})`}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* Job cards grid */}
+        {shown.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px] w-full py-[36px]">
+            {shown.map(job => {
+              const dept = job.department?.[0]?.name
+              const type = job.acf?.type
+              const excerpt = job.content?.rendered?.replace(/<[^>]*>/g, '').slice(0, 160) ?? ''
+
+              return (
+                <div key={job.id} className="bg-white p-[24px] rounded-[18px] flex flex-col gap-[16px] border border-[#f0f0f0] hover:border-[#e0e0e0] hover:shadow-md transition-all duration-300">
+                  <h2 className="text-[#111212] font-mont text-[24px] font-semibold leading-[1.3]">
+                    {job.title.rendered}
+                  </h2>
+                  <div className="flex gap-[12px] flex-wrap">
+                    {type && (
+                      <span className="px-[20px] py-[8px] rounded-full bg-[#EFEEEC] text-[14px] font-mont font-semibold text-[#313131] capitalize">
+                        {type}
+                      </span>
+                    )}
+                    {dept && (
+                      <span className="px-[20px] py-[8px] rounded-full bg-[#EFEEEC] text-[14px] font-mont font-semibold text-[#313131]">
+                        {dept}
+                      </span>
+                    )}
+                  </div>
+                  {excerpt && (
+                    <p className="text-[#929296] font-inter text-[16px] font-normal leading-[24px] line-clamp-3">
+                      {excerpt}
+                    </p>
+                  )}
+                  <Link
+                    href={`/careers/apply?position=${encodeURIComponent(job.title.rendered)}`}
+                    className="ms-auto mt-auto flex items-center justify-center px-[24px] pt-[14px] pb-[12px] bg-black text-white font-mont text-[14px] font-semibold rounded-full hover:scale-105 transition-all duration-300 ease-in-out w-fit"
+                  >
+                    Apply
+                  </Link>
+                </div>
+              )
+            })}
+          </div>
+        ) : (
+          <div className="w-full py-[80px] text-center">
             <p className="text-[24px] font-mont font-semibold text-[#111212] mb-[12px]">No open positions right now</p>
             <p className="text-[16px] font-inter text-[#929296] mb-[32px]">We&apos;re always looking for great people. Send us your CV anyway.</p>
             <Link href="/careers/apply?position=General+Application"
-              className="inline-flex items-center gap-2 px-[24px] pt-[14px] pb-[12px] bg-black text-white font-mont text-[14px] font-semibold rounded-full hover:scale-105 transition-all duration-300">
-              Send your CV <ArrowRight size={16} />
-            </Link>
-          </div>
-        ) : (
-          <div className="flex flex-col gap-[48px]">
-            {Object.entries(grouped).map(([dept, deptJobs]) => (
-              <div key={dept}>
-                <p className="text-[12px] font-inter font-semibold uppercase tracking-[0.15em] text-[#929296] mb-[16px]">{dept}</p>
-                <div className="flex flex-col gap-[1px] bg-[#e5e5e5] rounded-[16px] overflow-hidden">
-                  {deptJobs.map(job => (
-                    <div key={job.id} className="bg-white px-[28px] py-[24px] flex md:flex-row flex-col md:items-center justify-between gap-[16px] group hover:bg-[#f9f9f9] transition-colors duration-200">
-                      <div className="flex flex-col gap-[6px]">
-                        <h3 className="text-[18px] font-mont font-semibold text-[#111212]">{job.title.rendered}</h3>
-                        <div className="flex items-center gap-[12px] flex-wrap">
-                          {job.acf?.position && (
-                            <span className="flex items-center gap-[5px] text-[13px] font-inter text-[#929296]">
-                              <Briefcase size={13} />{job.acf.position}
-                            </span>
-                          )}
-                          {job.acf?.type && (
-                            <span className={`text-[11px] font-inter font-semibold px-[10px] py-[3px] rounded-full ${TYPE_COLOR[job.acf.type] ?? 'bg-[#f3f3f3] text-[#111212]'}`}>
-                              {TYPE_LABEL[job.acf.type] ?? job.acf.type}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                      <Link href={`/careers/${job.slug}`}
-                        className="shrink-0 flex items-center gap-[8px] px-[20px] py-[10px] border border-[#111212] text-[#111212] font-mont text-[13px] font-semibold rounded-full hover:bg-[#111212] hover:text-white transition-all duration-300">
-                        View role <ArrowRight size={14} />
-                      </Link>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* CTA */}
-      <section className="w-full flex items-center justify-center p-[20px]">
-        <div className="w-full max-w-[1400px] flex md:flex-row flex-col justify-between md:gap-[96px] gap-[8px] rounded-[24px] md:px-[48px] px-[16px] md:py-[40px] py-[20px] bg-white border border-[#e5e5e5]">
-          <h3 className="lg:text-[56px] text-[30px] lg:leading-[64px] font-semibold font-mont text-[#111212] max-w-[642px]">
-            Don&apos;t see your role?
-          </h3>
-          <div className="max-w-[354px] w-full flex items-start flex-col md:gap-[20px] gap-[40px]">
-            <p className="text-[16px] leading-[24px] text-[#929296] font-inter">Send us your CV and tell us what you&apos;re great at.</p>
-            <Link href="/careers/apply?position=General+Application"
-              className="flex items-center justify-center px-[24px] pt-[14px] pb-[12px] bg-black text-white font-mont text-[14px] font-semibold rounded-full hover:scale-105 transition-all duration-300">
+              className="inline-flex items-center justify-center px-[24px] pt-[14px] pb-[12px] bg-black text-white font-mont text-[14px] font-semibold rounded-full hover:scale-105 transition-all duration-300">
               Send your CV
             </Link>
           </div>
-        </div>
-      </section>
+        )}
 
-    </div>
+        {/* Load more */}
+        {visible < filtered.length && (
+          <button onClick={() => setVisible(v => v + PAGE_SIZE)}
+            className="flex items-center justify-center px-[24px] pt-[14px] pb-[12px] border border-black text-black bg-transparent font-mont text-[14px] font-semibold rounded-full hover:scale-105 transition-all duration-300 ease-in-out">
+            Load more
+          </button>
+        )}
+      </div>
+
+    </section>
   )
 }
