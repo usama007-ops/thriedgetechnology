@@ -171,7 +171,7 @@ export default function PostPage({ params }: PostPageProps) {
       {/* Content + Sidebar */}
       <section className="max-w-[1440px] mx-auto md:px-[36px] px-[16px] md:py-[96px] py-[64px]">
         <div className="flex gap-[48px] items-start">
-          <div className="flex-1 min-w-0 max-w-[72ch]">
+          <div className="flex-1 min-w-0 max-w-[80%]">
             {headings.length > 0 && (
               <details className="lg:hidden mb-[32px] border border-[#E5E4E0] rounded-[8px] p-[16px]">
                 <summary className="text-[13px] font-inter font-semibold text-black cursor-pointer list-none flex items-center justify-between">
@@ -193,10 +193,10 @@ export default function PostPage({ params }: PostPageProps) {
             <div className="lg:hidden mt-[32px]"><ShareButtons title={post.title.rendered} /></div>
           </div>
 
-          <aside className="hidden lg:block w-[300px] flex-shrink-0 sticky top-6" style={{ maxHeight: 'calc(100vh - 3rem)', overflowY: 'auto' }}>
+          <aside className="hidden lg:block w-[300px] flex-shrink-0 sticky top-[100px]">
             <div className="flex flex-col gap-[32px]">
               {headings.length > 0 && (
-                <section>
+                <section className='h-[400px] overflow-auto'>
                   <h2 className="text-[11px] font-inter font-semibold text-[#929296] uppercase tracking-widest mb-[12px]">On this page</h2>
                   <nav aria-label="Table of contents">
                     <ul className="flex flex-col gap-[4px]">

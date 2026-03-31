@@ -3,19 +3,20 @@
 
 @font-face {
   font-family: 'Mont';
-  src: url('/mont-extra-heavy.otf') format('opentype');
-  font-weight: 800;
+  src: url('/Mont_SemiBold-s.p.2bc533ef.woff2') format('woff2');
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Mont';
-  src: url('/mont-extra-light.otf') format('opentype');
-  font-weight: 200;
+  src: url('/Mont_Regular-s.p.3eca531d.woff2') format('woff2');
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
+
 
 @custom-variant dark (&:is(.dark *));
 
@@ -373,3 +374,25 @@ figure.wp-block-image.size-large {
   overflow-x: auto; margin-bottom: 24px; font-size: 14px; line-height: 1.6;
 }
 .blog-content pre code { background: none; padding: 0; color: inherit; }
+
+
+/* Target all scrollbars */
+::-webkit-scrollbar {
+  width: 10px; /* Width for vertical scrollbar */
+}
+
+/* Style the track */
+::-webkit-scrollbar-track {
+  background: #ddd;
+}
+
+/* Style the thumb */
+::-webkit-scrollbar-thumb {
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+/* Add a hover effect to the thumb */
+::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}

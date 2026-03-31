@@ -40,9 +40,9 @@ async function fetchFromWordPress<T>(
     return await response.json() as T
   } catch (error) {
     clearTimeout(timer)
-    // Only log unexpected errors, not aborts/timeouts in production
-    if (process.env.NODE_ENV === 'development') {
-      console.error(`[WordPress API Error] ${endpoint}${error instanceof Error ? error.message : error}`)
+    // Only log on server-side in development — suppress noisy client retry errors
+    if (process.env.NODE_ENV === 'development' && typeof window === 'undefined') {
+      console.error(`[WordPress API Error] ${endpoint} — ${error instanceof Error ? error.message : error}`)
     }
     throw error
   }
