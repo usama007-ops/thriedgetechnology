@@ -249,6 +249,36 @@ export default function PostPage({ params }: PostPageProps) {
         </div>
       </section>
 
+      {/* Author card */}
+      <section className="w-full mt-[56px]">
+        <div className="max-w-[1440px] mx-auto md:px-[36px] px-[16px]">
+          <div className="max-w-[720px] bg-[#F7F6F4] rounded-[20px] p-[24px] md:p-[32px]">
+            <div className="flex items-start gap-[20px]">
+              <div className="w-[72px] h-[72px] rounded-full bg-[#111212] flex items-center justify-center text-white font-mont font-bold text-xl shrink-0 ring-4 ring-white">
+                TE
+              </div>
+              <div className="flex flex-col gap-[4px]">
+                <p className="text-[17px] font-mont font-bold text-black">Thrill Edge</p>
+                <p className="text-[12px] font-inter font-medium text-[#929296] uppercase tracking-wider">Founder, Thrill Edge Technologies</p>
+                <p className="text-[14px] font-inter text-[#555] leading-[1.65] mt-[10px]">
+                  Building software products for global teams. We write about SaaS, product development, AI, and engineering culture.
+                </p>
+                <a target="_blank" rel="noopener noreferrer"
+                  href="https://www.linkedin.com/company/thrilledge"
+                  className="mt-[12px] inline-flex items-center gap-[7px] text-[13px] font-inter font-semibold text-black bg-white border border-[#E5E4E0] px-[14px] py-[7px] rounded-full hover:border-black hover:shadow-sm transition-all duration-200 w-fit">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                    <rect x="2" y="9" width="4" height="12" />
+                    <circle cx="4" cy="4" r="2" />
+                  </svg>
+                  Connect on LinkedIn
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Dark CTA banner */}
       <section className="relative w-full overflow-hidden"
         style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0f0f23 100%)' }}>
