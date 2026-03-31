@@ -4,8 +4,10 @@ import { useRef, useEffect } from 'react'
 import type { Testimonial } from '@/lib/wordpress'
 
 function TestimonialCard({ t }: { t: Testimonial }) {
-  const quote = t.content.rendered.replace(/<[^>]*>/g, '').substring(0, 150)
-  const rating = t.acf?.rating || 5
+  const quote = t.content.rendered.replace(/<[^>]*>/g, '').trim()
+  const rating = t.acf?.rating ?? 5
+  const name = t.acf?.author_name || t.title.rendered
+  const role = [t.acf?.author_title, t.acf?.author_company].filter(Boolean).join(' at ')
   return (
     <div className="mx-3 w-[340px] shrink-0 rounded-2xl border border-white/10 bg-white/5 p-6 flex flex-col gap-4">
       <div className="flex gap-0.5">
@@ -14,13 +16,14 @@ function TestimonialCard({ t }: { t: Testimonial }) {
         ))}
       </div>
       <p className="text-white/80 text-sm leading-relaxed line-clamp-3">"{quote}"</p>
-      <div className="pt-3 border-t border-white/10">
-        <p className="text-white font-semibold text-sm">
-          {t.acf?.author_name || t.title.rendered || 'Anonymous'}
-        </p>
-        <p className="text-white/50 text-xs mt-0.5">
-          {[t.acf?.author_title, t.acf?.author_company].filter(Boolean).join(' · ')}
-        </p>
+      <div className="flex items-center gap-[12px] pt-[16px] border-t border-[#353535]">
+        <div className="w-[40px] h-[40px] rounded-full bg-[#111212] flex items-center justify-center text-white font-mont font-bold text-[14px] shrink-0">
+          {name.charAt(0).toUpperCase()}
+        </div>
+        <div>
+          <p className="text-[14px] font-mont font-semibold text-[#fff] leading-none">{name}</p>
+          {role && <p className="text-[12px] font-inter text-[#929296] mt-[3px]">{role}</p>}
+        </div>
       </div>
     </div>
   )

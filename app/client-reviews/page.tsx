@@ -23,7 +23,7 @@ export default async function ClientReviewsPage() {
   const testimonials = await getTestimonials(100).catch(() => [])
 
   return (
-    <div className="relative bg-white">
+    <div className="relative bg-[#f3f3f3]">
 
       {/* Hero */}
       <div className="w-full max-w-[1440px] mx-auto flex md:flex-row flex-col md:items-end md:gap-[64px] gap-[24px] md:px-[36px] px-[16px] md:py-[80px] py-[64px]">
@@ -69,8 +69,8 @@ export default async function ClientReviewsPage() {
               const quote = t.content.rendered.replace(/<[^>]*>/g, '').trim()
               const rating = t.acf?.rating ?? 5
               const name = t.acf?.author_name || t.title.rendered
-              const role = [t.acf?.author_title, t.acf?.author_company].filter(Boolean).join(', ')
-
+              const role = [t.acf?.author_title, t.acf?.author_company].filter(Boolean).join(' at ')
+// d
               return (
                 <div key={t.id}
                   className="flex flex-col gap-[20px] p-[28px] rounded-[20px] border border-[#e5e5e5] hover:border-[#111212] hover:shadow-lg transition-all duration-300 bg-white">

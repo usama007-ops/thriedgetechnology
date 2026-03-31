@@ -390,6 +390,31 @@ export async function getAuthor(id: number): Promise<Author | null> {
 }
 
 /**
+ * Jobs / Careers
+ */
+export interface Job {
+  id: number
+  title: { rendered: string }
+  content: { rendered: string }
+  slug: string
+  acf?: {
+    position?: string
+    type?: 'onsite' | 'hybrid' | 'remote'
+  }
+  department?: Array<{ id: number; name: string; slug: string }>
+}
+
+export async function getJobs(per_page = 100): Promise<Job[]> {
+  try {
+    return await fetchFromWordPress<Job[]>(
+      `/wp/v2/job?per_page=${per_page}&acf_format=standard&_embed&orderby=date&order=desc`
+    )
+  } catch {
+    return []
+  }
+}
+
+/**
  * Media API - Get featured image URL
  */
 export async function getFeaturedImageUrl(mediaId: number): Promise<string | null> {

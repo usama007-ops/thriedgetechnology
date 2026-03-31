@@ -43,7 +43,7 @@ export default function ServicePage({ params }: ServicePageProps) {
   const projects = acf.projects ?? []
 
   return (
-    <div className="relative bg-white">
+    <div className="relative bg-[#f3f3f3]">
 
       {/* Hero */}
       <div className="w-full max-w-[1440px] mx-auto flex md:flex-row flex-col md:gap-[64px] gap-[32px] md:px-[36px] px-[16px] py-[64px]">

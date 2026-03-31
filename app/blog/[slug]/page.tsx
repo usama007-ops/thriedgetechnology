@@ -110,7 +110,7 @@ export default function PostPage({ params }: PostPageProps) {
   const others = relatedPosts?.filter(p => p.id !== post.id).slice(0, 3) ?? []
 
   return (
-    <div className="relative bg-white">
+    <div className="relative bg-[#f3f3f3]">
 
       {/* Hero banner */}
       <section className="max-w-[1440px] w-full mx-auto md:px-[24px] px-[16px]">

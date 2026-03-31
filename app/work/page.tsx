@@ -13,7 +13,7 @@ export default async function WorkPage() {
   const workItems = await getWorkItems(1, 100).catch(() => [])
 
   return (
-    <div className="relative bg-white">
+    <div className="relative bg-[#f3f3f3]">
 
       {/* Hero */}
       <div className="w-full max-w-[1440px] mx-auto flex md:flex-row flex-col md:items-end md:gap-[64px] gap-[24px] md:px-[36px] px-[16px] md:py-[80px] py-[64px]">
