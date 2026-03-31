@@ -27,16 +27,19 @@ interface MenuItem {
 
 interface MenuGroup {
   label: string
-  categoryLabel: string
-  image: string
-  imageAlt: string
-  ctaLabel: string
-  ctaHref: string
-  items: MenuItem[]
+  href?: string
+  children?: string
+  categoryLabel?: string
+  image?: string
+  imageAlt?: string
+  ctaLabel?: string
+  ctaHref?: string
+  items?: MenuItem[]
 }
 
 // ─── data ─────────────────────────────────────────────────────────────────────
 const menus: MenuGroup[] = [
+   { label: 'Our work', href: '/work' },
   {
     label: 'Company', categoryLabel: 'Company', image: '/company-menu.avif', imageAlt: 'About us', ctaLabel: 'About us', ctaHref: '/about',
     items: [
@@ -143,17 +146,18 @@ export function MegaMenu() {
     >
       {/* trigger buttons */}
       {menus.map((menu) => (
-        <button
-          key={menu.label}
-          onMouseEnter={() => setActive(menu.label)}
-          className="flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-[#111212] hover:text-accent transition-colors cursor-pointer"
-        >
-          {menu.label}
-          <ChevronDown
-            size={14}
-            className={`transition-transform duration-200 ${active === menu.label ? 'rotate-180' : ''}`}
-          />
-        </button>
+        menu.href ? (
+          <Link key={menu.label} href={menu.href}
+            className="flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-[#111212] hover:text-accent transition-colors cursor-pointer">
+            {menu.label}
+          </Link>
+        ) : (
+          <button key={menu.label} onMouseEnter={() => setActive(menu.label)}
+            className="flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-[#111212] hover:text-accent transition-colors cursor-pointer">
+            {menu.label}
+            <ChevronDown size={14} className={`transition-transform duration-200 ${active === menu.label ? 'rotate-180' : ''}`} />
+          </button>
+        )
       ))}
 
       {/* single shared panelpositioned from the header via fixed top */}
@@ -169,7 +173,7 @@ export function MegaMenu() {
             <div className="w-full px-[32px] py-[40px]">
               <p className="text-[16px] font-normal text-[#929296] mb-4">{activeMenu.categoryLabel}</p>
               <ul className="grid grid-cols-2 gap-[24px]">
-                {activeMenu.items.map((item) => (
+                {(activeMenu.items ?? []).map((item) => (
                   <li key={item.href} className="h-full">
                     <Link
                       href={item.href}
@@ -197,14 +201,14 @@ export function MegaMenu() {
             {/* RIGHTimage */}
             <div className="relative max-w-[400px] w-full rounded-[16px] overflow-hidden flex shrink-0">
               <Image
-                src={activeMenu.image}
-                alt={activeMenu.imageAlt}
+                src={activeMenu.image!}
+                alt={activeMenu.imageAlt!}
                 width={1000}
                 height={1000}
                 className="w-full h-full object-cover"
               />
               <Link
-                href={activeMenu.ctaHref}
+                href={activeMenu.ctaHref!}
                 onClick={() => setActive(null)}
                 className="flex items-center justify-center gap-1 px-[24px] pt-[14px] pb-[12px] bg-white text-[#111212] text-[14px] font-semibold backdrop-blur-[12px] cursor-pointer rounded-full absolute bottom-[12px] left-[12px] hover:scale-105 transition-all duration-300 ease-in-out"
               >
