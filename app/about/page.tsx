@@ -129,24 +129,78 @@ export default function AboutPage() {
             </div>
 
             {/* Stats ticker */}
-            <div className="w-full max-w-[1440px] mx-auto md:px-[36px] px-[16px] py-[40px]">
-              <div className="w-full px-[28px] py-[24px] bg-[#111212] rounded-[16px] flex sm:flex-row flex-col sm:items-center gap-[20px]">
-                <p className="flex-shrink-0 text-white text-[20px] leading-[24px] font-mont font-bold">Why Work with Us</p>
-                <div className="hidden sm:block flex-shrink-0 w-[1px] h-[32px] bg-[#333]" />
-                <div className="overflow-x-auto no-scrollbar flex-1 text-[#929296] font-inter text-[15px] leading-[24px]">
-                  <p className="flex items-center justify-center gap-[20px] whitespace-nowrap">
-                    4.9★ on Clutch (68 reviews)
-                    <span className="inline-block w-[5px] h-[5px] bg-[#EFEEEC] rounded-full" />
-                    50+ products shipped since 2012
-                    <span className="inline-block w-[5px] h-[5px] bg-[#EFEEEC] rounded-full" />
-                    Healthcare, fintech, and eCommerce clients
-                    <span className="inline-block w-[5px] h-[5px] bg-[#EFEEEC] rounded-full" />
-                    US, Canada, Australia, Europe
-                    <span className="inline-block w-[5px] h-[5px] bg-[#EFEEEC] rounded-full" />
-                    On-time delivery tracked weekly
-                  </p>
+            <div className="w-[100%] max-w-[1440px] mx-auto md:px-[36px] px-[16px] py-[40px]">
+                <div className="w-[100%] px-[28px] py-[24px] bg-[#111212] rounded-[16px] flex sm:flex-row flex-col sm:items-center gap-[20px]">
+
+                    <p className="flex-shrink-0 text-white text-[20px] leading-[24px] font-mont font-[700]">
+                        Why Work with
+                    </p>
+
+                    <div className="hidden sm:block flex-shrink-0 w-[1px] h-[32px] bg-[#333]" />
+
+                    <div className="overflow-x-auto no-scrollbar flex-1 text-[#929296] font-inter text-[15px] leading-[24px]">
+                        <p
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                gap: "20px",
+                               
+                            }}
+                        >
+                            4.9★ on Clutch (68 reviews)
+
+                            <span
+                                style={{
+                                    display: "inline-block",
+                                    width: "5px",
+                                    height: "5px",
+                                    backgroundColor: "#EFEEEC",
+                                    borderRadius: "100%",
+                                }}
+                            ></span>
+
+                            50+ products shipped since 2012
+
+                            <span
+                                style={{
+                                    display: "inline-block",
+                                    width: "5px",
+                                    height: "5px",
+                                    backgroundColor: "#EFEEEC",
+                                    borderRadius: "100%",
+                                }}
+                            ></span>
+
+                            Healthcare, fintech, and eCommerce clients
+
+                            <span
+                                style={{
+                                    display: "inline-block",
+                                    width: "5px",
+                                    height: "5px",
+                                    backgroundColor: "#EFEEEC",
+                                    borderRadius: "100%",
+                                }}
+                            ></span>
+
+                            US, Canada, Australia, Europe
+
+                            <span
+                                style={{
+                                    display: "inline-block",
+                                    width: "5px",
+                                    height: "5px",
+                                    backgroundColor: "#EFEEEC",
+                                    borderRadius: "100%",
+                                }}
+                            ></span>
+
+                            On-time delivery tracked weekly
+                        </p>
+                    </div>
+
                 </div>
-              </div>
             </div>
             {/* Culture */}
             <div className="w-full max-w-[1440px] mx-auto flex md:flex-row flex-col md:gap-[96px] gap-[32px] md:px-[36px] px-[16px] md:py-[96px] py-[64px]">
@@ -160,51 +214,49 @@ export default function AboutPage() {
 
             {/* Second banner */}
             <section className="w-full max-w-[1440px] md:px-[36px] px-[16px] mx-auto rounded-[16px] overflow-hidden md:pb-[96px] pb-[48px]">
-                <Image src="/banner-v2.avif" alt="Our team" width={1440} height={769}
+                <Image src="/about-ban.avif" alt="Our team" width={1440} height={769}
                     className="w-full h-auto max-h-[769px] min-h-[256px] rounded-[16px] object-cover" />
             </section>
 
             {/* Timeline */}
-            <section className="relative w-full max-w-[1440px] mx-auto md:px-[36px] px-[16px] bg-white rounded-[20px] pt-[40px] pb-[40px] mb-[96px]">
-                <h3 className="text-[40px] font-mont font-semibold leading-[48px] w-full text-center mb-[60px]">Our history</h3>
-
-                {/* Mobile: vertical */}
-                <div className="md:hidden flex flex-col relative pl-[36px]">
-                    <div className="absolute left-[11px] top-0 bottom-0 w-[2px] bg-[#313131]" />
-                    {TIMELINE.map(t => (
-                        <div key={t.year} className="relative flex flex-col gap-[8px] pb-[32px] last:pb-0">
-                            <div className="absolute left-[-36px] top-[4px] z-10 w-[24px] h-[24px] bg-white border-[2px] border-[#313131] rounded-full flex items-center justify-center">
-                                <div className="w-[10px] h-[10px] bg-[#313131] rounded-full" />
+            {/* Timeline — sticky overlap */}
+            <section className="w-full max-w-[1440px] mx-auto md:px-[36px] px-[16px] mb-[96px]">
+                <h3 className="text-[40px] font-mont font-semibold leading-[48px] text-center mb-[60px] pt-[40px]">Our history</h3>
+                <div className="flex flex-col">
+                    {TIMELINE.map((t, i) => (
+                        <div key={t.year} className="sticky" style={{ top: `${80 + i * 20}px`, zIndex: i + 1 }}>
+                            <div
+                                className="rounded-[20px] p-[32px] md:p-[56px] flex md:flex-row flex-col md:gap-[80px] gap-[20px] items-start"
+                                style={{
+                                    backgroundColor: i % 2 === 0 ? '#111212' : '#f3f3f3',
+                                    boxShadow: '0 -8px 32px rgba(0,0,0,0.12)',
+                                }}
+                            >
+                                <span
+                                    className="text-[80px] md:text-[120px] font-mont font-bold leading-none shrink-0 select-none"
+                                    style={{ color: i % 2 === 0 ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.07)' }}
+                                >
+                                    {t.year}
+                                </span>
+                                <div className="flex flex-col gap-[12px] pt-[8px]">
+                                    <span
+                                        className="text-[12px] font-inter font-semibold uppercase tracking-[0.15em]"
+                                        style={{ color: i % 2 === 0 ? 'rgba(255,255,255,0.4)' : '#929296' }}
+                                    >
+                                        {t.year}
+                                    </span>
+                                    <p
+                                        className="text-[20px] md:text-[24px] font-mont font-semibold leading-[1.35]"
+                                        style={{ color: i % 2 === 0 ? '#ffffff' : '#111212' }}
+                                    >
+                                        {t.text}
+                                    </p>
+                                </div>
                             </div>
-                            <span className="text-[20px] font-semibold font-mont text-[#313131] leading-[24px]">{t.year}</span>
-                            <p className="text-[13px] leading-[20px] font-inter text-[#111212] bg-[#f4f4f4] px-[14px] py-[14px] rounded-[10px]">{t.text}</p>
                         </div>
                     ))}
                 </div>
-
-                {/* Desktop: horizontal alternating */}
-                <div className="hidden md:block relative">
-                    <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-[#313131]" />
-                    <div className="relative w-full h-[339px] flex gap-[40px]">
-                        {TIMELINE.map((t, i) => {
-                            const isTop = i % 2 === 0
-                            return (
-                                <div key={t.year} className="relative min-w-[260px] w-full max-w-[300px] flex flex-col items-center">
-                                    <div className={`w-full flex gap-[30px] absolute ${isTop ? 'top-0 flex-col' : 'bottom-0 flex-col-reverse'}`}>
-                                        <div className="relative w-full px-[10px] py-[20px] rounded-[10px] text-[14px] leading-[18px] font-inter text-[#111212] text-center bg-[#f3f3f3]">
-                                            {t.text}
-                                            <div className={`absolute w-[2px] h-[20px] bg-[#313131] left-1/2 ${isTop ? 'bottom-[-20px]' : 'top-[-20px]'}`} />
-                                        </div>
-                                        <div className={`flex items-center gap-[20px] ${isTop ? 'flex-col' : 'flex-col-reverse'}`}>
-                                            <div className="w-[19px] h-[19px] bg-[#313131] rounded-full" />
-                                            <div className="text-[24px] font-semibold font-mont text-[#313131]">{t.year}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        })}
-                    </div>
-                </div>
+                <div className="h-[120px]" />
             </section>
 
             {/* FAQ */}
