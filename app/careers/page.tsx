@@ -36,14 +36,14 @@ export default function CareersPage() {
   useEffect(() => setVisible(PAGE_SIZE), [activeDept])
 
   return (
-    <section className="relative max-w-[1440px] w-full mx-auto">
+    <section className="relative max-w-[1440px] w-full mx-auto text-[#F3F3F3]">
 
       {/* Hero */}
       <div className="w-full max-w-[1440px] mx-auto flex md:flex-row flex-col md:items-end md:gap-[64px] gap-[32px] md:px-[36px] px-[16px] md:py-[64px] py-[64px]">
         <h1 className="text-[24px] font-mont font-semibold w-full max-w-[610px]">
           We have {jobs.length} open position{jobs.length !== 1 ? 's' : ''} now!
         </h1>
-        <p className="w-full max-w-[694px] text-[40px] font-mont leading-[48px] font-semibold">
+        <p className="w-full max-w-[694px] text-[40px] font-mont leading-[48px] font-semibold text-black">
           Join Thrill Edge. We are a team of innovators building custom software and next-gen AI solutions.
         </p>
       </div>
@@ -100,7 +100,7 @@ export default function CareersPage() {
                     </p>
                   )}
                   <Link
-                    href={`/careers/apply?position=${encodeURIComponent(job.title.rendered)}`}
+                    href={`/careers/${job.slug}`}
                     className="ms-auto mt-auto flex items-center justify-center px-[24px] pt-[14px] pb-[12px] bg-black text-white font-mont text-[14px] font-semibold rounded-full hover:scale-105 transition-all duration-300 ease-in-out w-fit"
                   >
                     Apply

@@ -81,7 +81,7 @@ export default function RootLayout({
         <meta charSet="utf-8" />
         <link rel="canonical" href="https://thrilledge.com" />
       </head>
-      <body className={`${inter.variable} antialiased bg-[background] text-foreground`} suppressHydrationWarning>
+      <body className={`${inter.variable} antialiased bg-[#F3F3F3]`} suppressHydrationWarning>
         <Providers>
           <Header />
           {children}
