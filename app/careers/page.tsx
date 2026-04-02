@@ -58,11 +58,6 @@ export default function CareersPage() {
               </div>
               <div className="w-[1px] h-[40px] bg-white/10" />
               <div className="flex flex-col gap-[2px]">
-                <span className="text-[28px] font-mont font-bold text-white">8</span>
-                <span className="text-[12px] font-inter text-white/40 uppercase tracking-wider">Countries</span>
-              </div>
-              <div className="w-[1px] h-[40px] bg-white/10" />
-              <div className="flex flex-col gap-[2px]">
                 <span className="text-[28px] font-mont font-bold text-white">100%</span>
                 <span className="text-[12px] font-inter text-white/40 uppercase tracking-wider">Senior-only</span>
               </div>
