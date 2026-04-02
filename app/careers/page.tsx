@@ -5,8 +5,11 @@ import Link from 'next/link'
 import { getJobs } from '@/lib/wordpress'
 import type { Job } from '@/lib/wordpress'
 import { useQuery } from '@tanstack/react-query'
+import { ArrowRight, MapPin } from 'lucide-react'
 
 const PAGE_SIZE = 9
+
+const TYPE_LABEL: Record<string, string> = { onsite: 'Onsite', hybrid: 'Hybrid', remote: 'Remote' }
 
 export default function CareersPage() {
   const [activeDept, setActiveDept] = useState('All')
@@ -18,7 +21,6 @@ export default function CareersPage() {
     staleTime: 10 * 60 * 1000,
   })
 
-  // Build department list from fetched jobs
   const deptCounts: Record<string, number> = { All: jobs.length }
   for (const job of jobs) {
     const d = job.department?.[0]?.name ?? 'General'
@@ -31,104 +33,149 @@ export default function CareersPage() {
     : jobs.filter(j => (j.department?.[0]?.name ?? 'General') === activeDept)
 
   const shown = filtered.slice(0, visible)
-
-  // Reset visible on filter change
   useEffect(() => setVisible(PAGE_SIZE), [activeDept])
 
   return (
-    <section className="relative max-w-[1440px] w-full mx-auto text-[#F3F3F3]">
+    <div className="bg-white">
 
-      {/* Hero */}
-      <div className="w-full max-w-[1440px] mx-auto flex md:flex-row flex-col md:items-end md:gap-[64px] gap-[32px] md:px-[36px] px-[16px] md:py-[64px] py-[64px]">
-        <h1 className="text-[24px] font-mont font-semibold w-full max-w-[610px]">
-          We have {jobs.length} open position{jobs.length !== 1 ? 's' : ''} now!
-        </h1>
-        <p className="w-full max-w-[694px] text-[40px] font-mont leading-[48px] font-semibold text-black">
-          Join Thrill Edge. We are a team of innovators building custom software and next-gen AI solutions.
-        </p>
-      </div>
-
-      <div className="w-full flex flex-col items-center md:px-[36px] px-[16px] md:pb-[96px] pb-[64px]">
-
-        {/* Sticky pill filter bar */}
-        <div className="sticky top-0 z-[99] max-w-[1440px] w-full flex items-center justify-center py-[20px]">
-          <div className="w-full p-[16px] rounded-[120px] bg-white shadow-sm">
-            <div className="w-full flex gap-[5px] rounded-full overflow-x-auto no-scrollbar">
-              {depts.map(dept => {
-                const isActive = activeDept === dept
-                const count = deptCounts[dept] ?? 0
-                return (
-                  <button key={dept} onClick={() => setActiveDept(dept)}
-                    className={`w-full min-w-fit h-[54px] flex items-center justify-center px-[24px] pt-[14px] pb-[12px] rounded-full text-[14px] font-mont font-semibold cursor-pointer transition-all duration-300 ease-in-out
-                      ${isActive ? 'bg-[#111212] text-white' : 'bg-[#EFEEEC] text-[#313131] hover:bg-[#111212] hover:text-white'}`}>
-                    {dept === 'All' ? `All positions (${count})` : `${dept} (${count})`}
-                  </button>
-                )
-              })}
+      {/* Dark hero */}
+      <div className="bg-[#111212] w-full">
+        <div className="max-w-[1440px] mx-auto md:px-[36px] px-[16px] pt-[80px] pb-[64px] flex md:flex-row flex-col md:items-end justify-between gap-[40px]">
+          <div className="flex flex-col gap-[20px]">
+            <span className="text-[12px] font-inter font-semibold uppercase tracking-[0.2em] text-white/40">Careers</span>
+            <h1 className="text-[48px] md:text-[72px] font-mont font-bold leading-[1.05] text-white max-w-[700px]">
+              Work on things<br />that actually ship.
+            </h1>
+          </div>
+          <div className="flex flex-col gap-[16px] max-w-[380px]">
+            <p className="text-[16px] font-inter text-white/50 leading-[1.7]">
+              Small teams. Senior engineers. Real ownership. We&apos;re building software that powers businesses across healthcare, fintech, and eCommerce.
+            </p>
+            <div className="flex items-center gap-[24px]">
+              <div className="flex flex-col gap-[2px]">
+                <span className="text-[28px] font-mont font-bold text-white">{jobs.length}</span>
+                <span className="text-[12px] font-inter text-white/40 uppercase tracking-wider">Open roles</span>
+              </div>
+              <div className="w-[1px] h-[40px] bg-white/10" />
+              <div className="flex flex-col gap-[2px]">
+                <span className="text-[28px] font-mont font-bold text-white">8</span>
+                <span className="text-[12px] font-inter text-white/40 uppercase tracking-wider">Countries</span>
+              </div>
+              <div className="w-[1px] h-[40px] bg-white/10" />
+              <div className="flex flex-col gap-[2px]">
+                <span className="text-[28px] font-mont font-bold text-white">100%</span>
+                <span className="text-[12px] font-inter text-white/40 uppercase tracking-wider">Senior-only</span>
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Job cards grid */}
+      {/* Department tabs */}
+      <div className="sticky top-0 z-[99] bg-white border-b border-[#e5e5e5]">
+        <div className="max-w-[1440px] mx-auto md:px-[36px] px-[16px]">
+          <div className="flex gap-0 overflow-x-auto no-scrollbar">
+            {depts.map(dept => {
+              const isActive = activeDept === dept
+              const count = deptCounts[dept] ?? 0
+              return (
+                <button key={dept} onClick={() => setActiveDept(dept)}
+                  className={`shrink-0 flex items-center gap-[6px] px-[20px] py-[18px] text-[14px] font-mont font-semibold border-b-2 transition-all duration-200 cursor-pointer
+                    ${isActive ? 'border-[#111212] text-[#111212]' : 'border-transparent text-[#929296] hover:text-[#111212]'}`}>
+                  {dept === 'All' ? 'All roles' : dept}
+                  <span className={`text-[11px] font-inter px-[7px] py-[2px] rounded-full ${isActive ? 'bg-[#111212] text-white' : 'bg-[#f3f3f3] text-[#929296]'}`}>
+                    {count}
+                  </span>
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* Job list */}
+      <div className="max-w-[1440px] mx-auto md:px-[36px] px-[16px] py-[64px]">
         {shown.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px] w-full py-[36px]">
-            {shown.map(job => {
+          <div className="flex flex-col gap-0">
+            {shown.map((job, idx) => {
               const dept = job.department?.[0]?.name
               const type = job.acf?.type
-              const excerpt = job.content?.rendered?.replace(/<[^>]*>/g, '').slice(0, 160) ?? ''
-
+              const excerpt = job.content?.rendered?.replace(/<[^>]*>/g, '').slice(0, 120) ?? ''
               return (
-                <div key={job.id} className="bg-white p-[24px] rounded-[18px] flex flex-col gap-[16px] border border-[#f0f0f0] hover:border-[#e0e0e0] hover:shadow-md transition-all duration-300">
-                  <h2 className="text-[#111212] font-mont text-[24px] font-semibold leading-[1.3]">
-                    {job.title.rendered}
-                  </h2>
-                  <div className="flex gap-[12px] flex-wrap">
-                    {type && (
-                      <span className="px-[20px] py-[8px] rounded-full bg-[#EFEEEC] text-[14px] font-mont font-semibold text-[#313131] capitalize">
-                        {type}
-                      </span>
-                    )}
-                    {dept && (
-                      <span className="px-[20px] py-[8px] rounded-full bg-[#EFEEEC] text-[14px] font-mont font-semibold text-[#313131]">
-                        {dept}
-                      </span>
-                    )}
+                <div key={job.id}
+                  className="group flex md:flex-row flex-col md:items-center justify-between gap-[24px] py-[28px] border-b border-[#e5e5e5] hover:bg-[#f9f9f9] px-[20px] -mx-[20px] rounded-[12px] transition-all duration-200">
+                  <div className="flex md:flex-row flex-col md:items-center gap-[20px] flex-1 min-w-0">
+                    {/* Index */}
+                    <span className="text-[13px] font-inter text-[#CCCCCC] tabular-nums shrink-0 hidden md:block">
+                      {String(idx + 1).padStart(2, '0')}
+                    </span>
+                    <div className="flex flex-col gap-[6px] flex-1 min-w-0">
+                      <h2 className="text-[20px] font-mont font-semibold text-[#111212] leading-[1.3]">
+                        {job.title.rendered}
+                      </h2>
+                      {excerpt && (
+                        <p className="text-[14px] font-inter text-[#929296] leading-[1.6] line-clamp-1">{excerpt}</p>
+                      )}
+                    </div>
+                    {/* Tags */}
+                    <div className="flex items-center gap-[8px] shrink-0 flex-wrap">
+                      {type && (
+                        <span className="flex items-center gap-[5px] text-[12px] font-inter text-[#929296] bg-[#f3f3f3] px-[12px] py-[5px] rounded-full">
+                          <MapPin size={11} />{TYPE_LABEL[type] ?? type}
+                        </span>
+                      )}
+                      {dept && (
+                        <span className="text-[12px] font-inter text-[#929296] bg-[#f3f3f3] px-[12px] py-[5px] rounded-full">
+                          {dept}
+                        </span>
+                      )}
+                    </div>
                   </div>
-                  {excerpt && (
-                    <p className="text-[#929296] font-inter text-[16px] font-normal leading-[24px] line-clamp-3">
-                      {excerpt}
-                    </p>
-                  )}
-                  <Link
-                    href={`/careers/${job.slug}`}
-                    className="ms-auto mt-auto flex items-center justify-center px-[24px] pt-[14px] pb-[12px] bg-black text-white font-mont text-[14px] font-semibold rounded-full hover:scale-105 transition-all duration-300 ease-in-out w-fit"
-                  >
-                    Apply
+                  <Link href={`/careers/${job.slug}`}
+                    className="shrink-0 flex items-center gap-[8px] px-[20px] py-[10px] border border-[#111212] text-[#111212] font-mont text-[13px] font-semibold rounded-full group-hover:bg-[#111212] group-hover:text-white transition-all duration-300">
+                    View role <ArrowRight size={14} className="group-hover:translate-x-[2px] transition-transform duration-300" />
                   </Link>
                 </div>
               )
             })}
           </div>
         ) : (
-          <div className="w-full py-[80px] text-center">
-            <p className="text-[24px] font-mont font-semibold text-[#111212] mb-[12px]">No open positions right now</p>
-            <p className="text-[16px] font-inter text-[#929296] mb-[32px]">We&apos;re always looking for great people. Send us your CV anyway.</p>
-            <Link href="/careers/apply?position=General+Application"
-              className="inline-flex items-center justify-center px-[24px] pt-[14px] pb-[12px] bg-black text-white font-mont text-[14px] font-semibold rounded-full hover:scale-105 transition-all duration-300">
-              Send your CV
-            </Link>
+          <div className="text-center py-[80px] border border-dashed border-[#e5e5e5] rounded-[20px]">
+            <p className="text-[20px] font-mont font-semibold text-[#111212] mb-[8px]">No open positions in this department</p>
+            <p className="text-[14px] font-inter text-[#929296]">Check back soon or send us your CV.</p>
           </div>
         )}
 
         {/* Load more */}
         {visible < filtered.length && (
-          <button onClick={() => setVisible(v => v + PAGE_SIZE)}
-            className="flex items-center justify-center px-[24px] pt-[14px] pb-[12px] border border-black text-black bg-transparent font-mont text-[14px] font-semibold rounded-full hover:scale-105 transition-all duration-300 ease-in-out">
-            Load more
-          </button>
+          <div className="flex justify-center mt-[48px]">
+            <button onClick={() => setVisible(v => v + PAGE_SIZE)}
+              className="flex items-center gap-[8px] px-[28px] py-[12px] border border-[#e5e5e5] text-[#111212] font-mont text-[14px] font-semibold rounded-full hover:border-[#111212] transition-all duration-300">
+              Load more <ArrowRight size={14} />
+            </button>
+          </div>
         )}
       </div>
 
-    </section>
+      {/* Bottom CTA */}
+      <div className="bg-[#111212] w-full">
+        <div className="max-w-[1440px] mx-auto md:px-[36px] px-[16px] py-[64px] flex md:flex-row flex-col md:items-center justify-between gap-[32px]">
+          <div className="flex flex-col gap-[12px]">
+            <p className="text-[11px] font-inter font-semibold uppercase tracking-[0.15em] text-white/30">Don&apos;t see your role?</p>
+            <h3 className="text-[32px] md:text-[40px] font-mont font-bold text-white leading-[1.15] max-w-[480px]">
+              Send us your CV anyway.
+            </h3>
+            <p className="text-[15px] font-inter text-white/50 leading-[1.65] max-w-[400px]">
+              We&apos;re always looking for great engineers, designers, and product thinkers.
+            </p>
+          </div>
+          <Link href="/careers/apply?position=General+Application"
+            className="shrink-0 flex items-center gap-[10px] bg-white text-black font-mont text-[14px] font-semibold px-[28px] py-[14px] rounded-[10px] hover:bg-white/90 transition-all duration-200 whitespace-nowrap">
+            Send your CV <ArrowRight size={14} />
+          </Link>
+        </div>
+      </div>
+
+    </div>
   )
 }
