@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { getPosts, getCategories } from '@/lib/wordpress'
 import { BlogList } from './blog-list'
 import Image from 'next/image'
+import { PageHero } from '@/components/common/page-hero'
 
 export const metadata: Metadata = {
   title: 'Blog | Thrill Edge Technologies',

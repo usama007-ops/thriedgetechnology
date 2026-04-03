@@ -19,7 +19,7 @@ const mobileNav = [
     label: 'Company', href: null,
     children: [
       { label: 'About',    href: '/about' },
-      { label: 'Reviews',  href: '/reviews' },
+      { label: 'Reviews',  href: '/client-reviews' },
       { label: 'FAQs',     href: '/faqs' },
       { label: 'Careers',  href: '/careers' },
       { label: 'Blogs',    href: '/blog' },
@@ -29,23 +29,22 @@ const mobileNav = [
   {
     label: 'Services', href: null,
     children: [
-      { label: 'AI & ML Solutions',      href: '/services/ai-ml' },
-      { label: 'Custom Web Development', href: '/services/web-development' },
+      { label: 'AI & ML Solutions',      href: '/services/ai-ml-solutions' },
+      { label: 'Custom Web Development', href: '/services/custom-web-development' },
       { label: 'UI/UX Design',           href: '/services/ui-ux-design' },
-      { label: 'Mobile App Development', href: '/services/mobile-development' },
-      { label: 'MVP & Product Strategy', href: '/services/mvp-strategy' },
-      { label: 'SaaS Solutions',         href: '/services/saas' },
+      { label: 'Mobile App Development', href: '/services/mobile-app-development' },
+      { label: 'MVP & Product Strategy', href: '/services/mvp-and-product-strategy' },
+      { label: 'SaaS Solutions',         href: '/services/saas-solutions' },
     ],
   },
   {
     label: 'Technologies', href: null,
     children: [
-      { label: 'AI & Machine Learning', href: '/technologies/ai-ml' },
-      { label: 'Frontend Development',  href: '/technologies/frontend' },
-      { label: 'Backend Development',   href: '/technologies/backend' },
-      { label: 'Mobile Development',    href: '/technologies/mobile' },
+      { label: 'AI & Machine Learning', href: '/technologies/ai-machine-learning' },
+      { label: 'Frontend Development',  href: '/technologies/frontend-development' },
+      { label: 'Backend Development',   href: '/technologies/backend-development' },
+      { label: 'Mobile Development',    href: '/technologies/mobile-development' },
       { label: 'Databases',             href: '/technologies/databases' },
-      { label: 'DevOps & Cloud',        href: '/technologies/devops' },
     ],
   },
   {

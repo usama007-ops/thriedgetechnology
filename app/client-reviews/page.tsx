@@ -1,5 +1,6 @@
 import { getTestimonials } from '@/lib/wordpress'
 import type { Metadata } from 'next'
+import { PageHero } from '@/components/common/page-hero'
 
 export const metadata: Metadata = {
   title: 'Client Reviews | Thrill Edge Technologies',
@@ -23,20 +24,8 @@ export default async function ClientReviewsPage() {
   const testimonials = await getTestimonials(100).catch(() => [])
 
   return (
-    <div className="relative bg-[#f3f3f3]">
-
-      {/* Hero */}
-      <div className="w-full max-w-[1440px] mx-auto flex md:flex-row flex-col md:items-end md:gap-[64px] gap-[24px] md:px-[36px] px-[16px] md:py-[80px] py-[64px]">
-        <div className="w-full max-w-[610px]">
-          <p className="text-[12px] font-inter font-semibold uppercase tracking-[0.2em] text-[#929296] mb-[16px]">Client Reviews</p>
-          <h1 className="text-[40px] md:text-[56px] font-mont font-bold leading-[1.1] text-[#111212]">
-            What our clients say
-          </h1>
-        </div>
-        <p className="w-full max-w-[560px] text-[18px] font-inter text-[#929296] leading-[1.65]">
-          We let our work speak for itself. Here&apos;s what the teams we&apos;ve built with have to say.
-        </p>
-      </div>
+    <div className="relative bg-white">
+      <PageHero label="Client Reviews" title="What our clients say" subtitle="We let our work speak for itself. Here's what the teams we've built with have to say." />
 
       {/* Stats bar */}
       <div className="w-full max-w-[1440px] mx-auto md:px-[36px] px-[16px] pb-[64px]">

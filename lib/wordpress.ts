@@ -40,8 +40,8 @@ async function fetchFromWordPress<T>(
     return await response.json() as T
   } catch (error) {
     clearTimeout(timer)
-    // Only log on server-side in development — suppress noisy client retry errors
-    if (process.env.NODE_ENV === 'development' && typeof window === 'undefined') {
+    // Only log server-side to avoid noisy client retry errors
+    if (typeof window === 'undefined') {
       console.error(`[WordPress API Error] ${endpoint} — ${error instanceof Error ? error.message : error}`)
     }
     throw error
@@ -236,7 +236,11 @@ export async function getPosts(
     endpoint += `&categories=${categories.join(',')}`
   }
 
-  return fetchFromWordPress<Post[]>(endpoint)
+  try {
+    return await fetchFromWordPress<Post[]>(endpoint)
+  } catch {
+    return []
+  }
 }
 
 export async function getPost(slug: string): Promise<Post | null> {
@@ -267,7 +271,11 @@ export async function getPostCount(): Promise<number> {
  * Categories API
  */
 export async function getCategories(): Promise<Category[]> {
-  return fetchFromWordPress<Category[]>(`/wp/v2/categories?per_page=100`)
+  try {
+    return await fetchFromWordPress<Category[]>(`/wp/v2/categories?per_page=100`)
+  } catch {
+    return []
+  }
 }
 
 export async function getCategory(slug: string): Promise<Category | null> {
@@ -286,9 +294,13 @@ export async function getPostsByCategory(
   page: number = 1,
   per_page: number = 10
 ): Promise<Post[]> {
-  return fetchFromWordPress<Post[]>(
-    `/wp/v2/posts?categories=${categoryId}&page=${page}&per_page=${per_page}&_embed&orderby=date&order=desc`
-  )
+  try {
+    return await fetchFromWordPress<Post[]>(
+      `/wp/v2/posts?categories=${categoryId}&page=${page}&per_page=${per_page}&_embed&orderby=date&order=desc`
+    )
+  } catch {
+    return []
+  }
 }
 
 /**
@@ -298,9 +310,13 @@ export async function getWorkItems(
   page: number = 1,
   per_page: number = 6
 ): Promise<WorkItem[]> {
-  return fetchFromWordPress<WorkItem[]>(
-    `/wp/v2/work?page=${page}&per_page=${per_page}&_embed&acf_format=standard&orderby=date&order=desc`
-  )
+  try {
+    return await fetchFromWordPress<WorkItem[]>(
+      `/wp/v2/work?page=${page}&per_page=${per_page}&_embed&acf_format=standard&orderby=date&order=desc`
+    )
+  } catch {
+    return []
+  }
 }
 
 export async function getWorkItem(slug: string): Promise<WorkItem | null> {
@@ -333,9 +349,13 @@ export async function getAdjacentWorkItems(currentId: number): Promise<{ prev: W
 export async function getTestimonials(
   per_page: number = 12
 ): Promise<Testimonial[]> {
-  return fetchFromWordPress<Testimonial[]>(
-    `/wp/v2/testimonial?per_page=${per_page}&acf_format=standard&orderby=date&order=desc`
-  )
+  try {
+    return await fetchFromWordPress<Testimonial[]>(
+      `/wp/v2/testimonial?per_page=${per_page}&acf_format=standard&orderby=date&order=desc`
+    )
+  } catch {
+    return []
+  }
 }
 
 export async function getTestimonial(id: number): Promise<Testimonial | null> {
@@ -352,9 +372,13 @@ export async function getTestimonial(id: number): Promise<Testimonial | null> {
 export async function getServices(
   per_page: number = 12
 ): Promise<Service[]> {
-  return fetchFromWordPress<Service[]>(
-    `/wp/v2/service?per_page=${per_page}&_embed&acf_format=standard&orderby=date&order=asc`
-  )
+  try {
+    return await fetchFromWordPress<Service[]>(
+      `/wp/v2/service?per_page=${per_page}&_embed&acf_format=standard&orderby=date&order=asc`
+    )
+  } catch {
+    return []
+  }
 }
 
 export async function getService(slug: string): Promise<Service | null> {

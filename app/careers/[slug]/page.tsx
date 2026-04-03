@@ -38,25 +38,18 @@ export default async function JobPage({ params }: Props) {
   return (
     <div className="relative bg-white">
 
-      {/* Breadcrumb */}
-      <div className="w-full max-w-[1440px] mx-auto md:px-[36px] px-[16px] pt-[32px]">
-        <Link href="/careers" className="inline-flex items-center gap-[6px] text-[13px] font-inter text-[#929296] hover:text-black transition-colors duration-200">
-          <ArrowLeft size={14} /> Back to Careers
-        </Link>
-      </div>
-
       {/* Hero */}
-      <div className="w-full max-w-[1440px] mx-auto md:px-[36px] px-[16px] md:py-[64px] py-[48px] flex md:flex-row flex-col md:items-end justify-between gap-[32px]">
+      <div className="flex md:flex-row flex-col justify-between md:items-end gap-[32px] mx-auto px-[16px] md:px-[36px] py-[48px] md:py-[64px] w-full max-w-[1440px]">
         <div className="flex flex-col gap-[16px]">
           {dept && (
-            <p className="text-[12px] font-inter font-semibold uppercase tracking-[0.2em] text-[#929296]">{dept}</p>
+            <p className="font-inter font-semibold text-[#929296] text-[12px] uppercase tracking-[0.2em]">{dept}</p>
           )}
-          <h1 className="text-[40px] md:text-[56px] font-mont font-bold leading-[1.1] text-[#111212]">
+          <h1 className="font-mont font-bold text-[#111212] text-[40px] md:text-[56px] leading-[1.1]">
             {job.title.rendered}
           </h1>
-          <div className="flex items-center gap-[12px] flex-wrap">
+          <div className="flex flex-wrap items-center gap-[12px]">
             {position && (
-              <span className="flex items-center gap-[6px] text-[14px] font-inter text-[#929296]">
+              <span className="flex items-center gap-[6px] font-inter text-[#929296] text-[14px]">
                 <Briefcase size={14} />{position}
               </span>
             )}
@@ -70,14 +63,14 @@ export default async function JobPage({ params }: Props) {
 
         <Link
           href={`/careers/apply?position=${encodeURIComponent(job.title.rendered)}`}
-          className="shrink-0 flex items-center gap-[8px] px-[28px] pt-[14px] pb-[12px] bg-black text-white font-mont text-[14px] font-semibold rounded-full hover:scale-105 transition-all duration-300"
+          className="flex items-center gap-[8px] bg-black px-[28px] pt-[14px] pb-[12px] rounded-full font-mont font-semibold text-[14px] text-white hover:scale-105 transition-all duration-300 shrink-0"
         >
           Apply now <ArrowRight size={16} />
         </Link>
       </div>
 
       {/* Content + sidebar */}
-      <div className="w-full max-w-[1440px] mx-auto md:px-[36px] px-[16px] pb-[96px] flex md:flex-row flex-col gap-[64px] items-start">
+      <div className="flex md:flex-row flex-col items-start gap-[64px] mx-auto px-[16px] md:px-[36px] pb-[96px] w-full max-w-[1440px]">
 
         {/* Job description */}
         <div className="flex-1 min-w-0">
@@ -87,30 +80,30 @@ export default async function JobPage({ params }: Props) {
               dangerouslySetInnerHTML={{ __html: job.content.rendered }}
             />
           ) : (
-            <p className="text-[16px] font-inter text-[#929296]">No description available.</p>
+            <p className="font-inter text-[#929296] text-[16px]">No description available.</p>
           )}
         </div>
 
         {/* Sidebar */}
-        <div className="md:w-[300px] w-full shrink-0 md:sticky md:top-[100px] flex flex-col gap-[24px]">
+        <div className="md:top-[100px] md:sticky flex flex-col gap-[24px] w-full md:w-[300px] shrink-0">
           {/* Details card */}
-          <div className="border border-[#e5e5e5] rounded-[16px] p-[24px] flex flex-col gap-[16px]">
-            <p className="text-[11px] font-inter font-semibold uppercase tracking-[0.15em] text-[#929296]">Role details</p>
+          <div className="flex flex-col gap-[16px] p-[24px] border border-[#e5e5e5] rounded-[16px]">
+            <p className="font-inter font-semibold text-[#929296] text-[11px] uppercase tracking-[0.15em]">Role details</p>
             {dept && (
               <div className="flex flex-col gap-[4px]">
-                <p className="text-[12px] font-inter text-[#929296]">Department</p>
-                <p className="text-[14px] font-mont font-semibold text-[#111212]">{dept}</p>
+                <p className="font-inter text-[#929296] text-[12px]">Department</p>
+                <p className="font-mont font-semibold text-[#111212] text-[14px]">{dept}</p>
               </div>
             )}
             {position && (
               <div className="flex flex-col gap-[4px]">
-                <p className="text-[12px] font-inter text-[#929296]">Position</p>
-                <p className="text-[14px] font-mont font-semibold text-[#111212]">{position}</p>
+                <p className="font-inter text-[#929296] text-[12px]">Position</p>
+                <p className="font-mont font-semibold text-[#111212] text-[14px]">{position}</p>
               </div>
             )}
             {type && (
               <div className="flex flex-col gap-[4px]">
-                <p className="text-[12px] font-inter text-[#929296]">Work type</p>
+                <p className="font-inter text-[#929296] text-[12px]">Work type</p>
                 <span className={`text-[12px] font-inter font-semibold px-[10px] py-[3px] rounded-full w-fit ${TYPE_COLOR[type]}`}>
                   {TYPE_LABEL[type]}
                 </span>
@@ -119,13 +112,13 @@ export default async function JobPage({ params }: Props) {
           </div>
 
           {/* Apply CTA */}
-          <div className="rounded-[16px] p-[24px] flex flex-col gap-[14px]"
+          <div className="flex flex-col gap-[14px] p-[24px] rounded-[16px]"
             style={{ background: 'linear-gradient(135deg, #111 0%, #1a1a2e 100%)' }}>
-            <p className="text-[11px] font-inter font-semibold text-white/40 uppercase tracking-[0.12em]">Interested?</p>
-            <p className="text-[15px] font-mont font-semibold text-white leading-[1.35]">Apply for this role today.</p>
+            <p className="font-inter font-semibold text-[11px] text-white/40 uppercase tracking-[0.12em]">Interested?</p>
+            <p className="font-mont font-semibold text-[15px] text-white leading-[1.35]">Apply for this role today.</p>
             <Link
               href={`/careers/apply?position=${encodeURIComponent(job.title.rendered)}`}
-              className="inline-flex items-center gap-[7px] text-[12px] font-mont font-semibold text-black bg-white px-[14px] py-[8px] rounded-[8px] hover:bg-white/90 transition-colors duration-200 w-fit"
+              className="inline-flex items-center gap-[7px] bg-white hover:bg-white/90 px-[14px] py-[8px] rounded-[8px] w-fit font-mont font-semibold text-[12px] text-black transition-colors duration-200"
             >
               Apply now <ArrowRight size={12} />
             </Link>
