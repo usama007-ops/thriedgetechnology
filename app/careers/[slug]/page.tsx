@@ -13,9 +13,18 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const job = await getJob(slug)
+  const job = await getJob(slug).catch(() => null)
+  if (!job) return { title: 'Careers | Thrill Edge Technologies' }
+  const title = `${job.title.rendered} | Careers — Thrill Edge Technologies`
   return {
-    title: job ? `${job.title.rendered} | Careers — Thrill Edge` : 'Job Not Found',
+    title,
+    description: `Apply for the ${job.title.rendered} role at Thrill Edge Technologies. ${job.acf?.position ? job.acf.position + ' position.' : ''}`,
+    alternates: { canonical: `https://thrilledge.com/careers/${slug}` },
+    openGraph: {
+      title,
+      type: 'website',
+      url: `https://thrilledge.com/careers/${slug}`,
+    },
   }
 }
 

@@ -227,9 +227,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: industry.metaTitle,
       description: industry.metaDescription,
       type: 'website',
+      url: `https://thrilledge.com/industries/${slug}`,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: industry.metaTitle,
+      description: industry.metaDescription,
     },
     alternates: {
-      canonical: 'https://thrilledge.com/industries/' + slug,
+      canonical: `https://thrilledge.com/industries/${slug}`,
     },
   }
 }
@@ -243,10 +249,19 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
   const industry = INDUSTRIES[slug]
   if (!industry) notFound()
 
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: `${industry.title} Software Development`,
+    description: industry.description,
+    provider: { '@type': 'Organization', name: 'Thrill Edge Technologies', url: 'https://thrilledge.com' },
+    url: `https://thrilledge.com/industries/${slug}`,
+    areaServed: ['GB', 'US', 'AU', 'CA'],
+  }
+
   return (
     <div className="relative bg-[#F3F3F3]">
-
-      {/* Hero */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <PageHero
         label={industry.title + ' Software Development'}
         title={industry.headline}
@@ -254,12 +269,12 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
       />
 
       <section className={cn('max-w-360', 'w-full', 'mx-auto', 'p-4')}>
-        <div className="relative w-full h-[480px] md:h-[640px] rounded-[20px] overflow-hidden">
+        <div className="relative rounded-[20px] w-full h-[480px] md:h-[640px] overflow-hidden">
           <Image
             src={industry.image}
             alt={industry.title}
             fill
-            className="object-cover object-center"
+            className="object-center object-cover"
             sizes="100vw"
             priority
           />

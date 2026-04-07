@@ -170,35 +170,7 @@ const TECHNOLOGIES: Record<string, TechData> = {
     ],
     image: '/core.avif',
   },
-  devops: {
-    title: 'DevOps & Cloud',
-    headline: 'Infrastructure that deploys fast, scales automatically, and never goes down.',
-    description: 'We build and manage cloud infrastructure, CI/CD pipelines, and observability stacks that let your team ship with confidence.',
-    stats: [
-      { number: '10x', label: 'Faster deployment cycles' },
-      { number: '99.9%', label: 'Infrastructure uptime' },
-      { number: '60%', label: 'Average cloud cost reduction' },
-    ],
-    tools: [
-      { name: 'AWS', icon: '/aws.svg' },
-      { name: 'Docker', icon: '/docker.svg' },
-      { name: 'Kubernetes', icon: '/kubernetes.svg' },
-      { name: 'Terraform', icon: '/terraform.svg' },
-      { name: 'GitHub Actions', icon: '/github.svg' },
-      { name: 'Datadog', icon: '/datadog.svg' },
-      { name: 'Vercel', icon: '/vercel.svg' },
-      { name: 'Cloudflare', icon: '/cloudflare.svg' },
-    ],
-    capabilities: [
-      { title: 'CI/CD Pipelines', desc: 'Automated build, test, and deploy pipelines with GitHub Actions, CircleCI, or GitLab CI that ship code safely every time.' },
-      { title: 'Container Orchestration', desc: 'Docker and Kubernetes setups that scale your services horizontally and recover from failures automatically.' },
-      { title: 'Infrastructure as Code', desc: 'Terraform and Pulumi configurations that make your infrastructure reproducible, reviewable, and version-controlled.' },
-      { title: 'Cloud Cost Optimization', desc: 'Right-sizing, reserved instances, and architectural changes that typically cut cloud bills by 40-60%.' },
-      { title: 'Observability & Monitoring', desc: 'Datadog, Grafana, and PagerDuty setups that give you full visibility into system health and alert you before users notice.' },
-      { title: 'Security & Compliance', desc: 'SOC 2, HIPAA, and GDPR-ready infrastructure with secrets management, network policies, and audit logging.' },
-    ],
-    image: '/elevation.avif',
-  },
+
 }
 
 
@@ -209,6 +181,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${tech.title} | Thrill Edge Technologies`,
     description: tech.description,
+    alternates: { canonical: `https://thrilledge.com/technologies/${slug}` },
+    openGraph: {
+      title: `${tech.title} | Thrill Edge Technologies`,
+      description: tech.description,
+      type: 'website',
+      url: `https://thrilledge.com/technologies/${slug}`,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${tech.title} | Thrill Edge Technologies`,
+      description: tech.description,
+    },
   }
 }
 
@@ -221,9 +205,19 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
   const tech = TECHNOLOGIES[slug]
   if (!tech) notFound()
 
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: tech.title,
+    description: tech.description,
+    provider: { '@type': 'Organization', name: 'Thrill Edge Technologies', url: 'https://thrilledge.com' },
+    url: `https://thrilledge.com/technologies/${slug}`,
+    areaServed: ['GB', 'US', 'AU', 'CA'],
+  }
+
   return (
-    <div className="relative bg-[#F3F3F3]">
-      {/* Hero */}
+    <div className={cn('relative', 'bg-[#F3F3F3]')}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <PageHero
         label={tech.title}
         title={tech.headline}
@@ -231,12 +225,12 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
       />
 
       <section className={cn('max-w-360', 'w-full', 'mx-auto', 'p-4')}>
-        <div className="relative w-full h-[480px] md:h-[640px] rounded-[20px] overflow-hidden">
+        <div className={cn('relative', 'rounded-[20px]', 'w-full', 'h-[480px]', 'md:h-[640px]', 'overflow-hidden')}>
           <Image
             src={tech.image}
             alt={tech.title}
             fill
-            className="object-cover object-center"
+            className={cn('object-center', 'object-cover')}
             sizes="100vw"
             priority
           />
@@ -255,32 +249,32 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
         </div>
       </section>
 
-      <div className="gap-[20px] grid grid-cols-1 md:grid-cols-3 mx-auto px-[16px] md:px-[36px] pb-[64px] w-full max-w-[1440px]">
+      <div className={cn('gap-[20px]', 'grid', 'grid-cols-1', 'md:grid-cols-3', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
         {tech.stats.map((s, i) => (
-          <div key={i} className="flex flex-col gap-[4px] px-[24px] py-[32px] border-[#CCCCCC] border-l">
-            <p className="font-mont font-semibold text-[40px] text-black xl:text-[80px] xl:leading-[80px]">{s.number}</p>
-            <p className="font-inter text-[#929296] text-[14px]">{s.label}</p>
+          <div key={i} className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[24px]', 'py-[32px]', 'border-[#CCCCCC]', 'border-l')}>
+            <p className={cn('font-mont', 'font-semibold', 'text-[40px]', 'text-black', 'xl:text-[80px]', 'xl:leading-[80px]')}>{s.number}</p>
+            <p className={cn('font-inter', 'text-[#929296]', 'text-[14px]')}>{s.label}</p>
           </div>
         ))}
       </div>
 
       {/* Description */}
-      <div className="mx-auto px-[16px] md:px-[36px] pb-[96px] w-full max-w-[1440px]">
-        <p className="max-w-[800px] font-inter text-[#555] text-[20px] leading-[32px]">{tech.description}</p>
+      <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[96px]', 'w-full', 'max-w-[1440px]')}>
+        <p className={cn('max-w-[800px]', 'font-inter', 'text-[#555]', 'text-[20px]', 'leading-[32px]')}>{tech.description}</p>
       </div>
 
       {/* Capabilities */}
-      <div className="bg-white w-full">
-        <div className="mx-auto px-[16px] md:px-[36px] py-[96px] w-full max-w-[1440px]">
-          <h2 className="mb-[64px] max-w-[600px] font-mont font-bold text-[#111212] text-[48px] leading-[52px]">
+      <div className={cn('bg-white', 'w-full')}>
+        <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[96px]', 'w-full', 'max-w-[1440px]')}>
+          <h2 className={cn('mb-[64px]', 'max-w-[600px]', 'font-mont', 'font-bold', 'text-[#111212]', 'text-[48px]', 'leading-[52px]')}>
             What we build with {tech.title}
           </h2>
-          <div className="gap-[2px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 bg-[#e5e5e5]">
+          <div className={cn('gap-[2px]', 'grid', 'grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3', 'bg-[#e5e5e5]')}>
             {tech.capabilities.map((cap, i) => (
-              <div key={i} className="flex flex-col gap-[16px] bg-white hover:bg-[#F3F3F3] p-[32px] transition-colors duration-300">
-                <span className="font-inter tabular-nums text-[#929296] text-[13px]">{String(i + 1).padStart(2, '0')}</span>
-                <h3 className="font-mont font-semibold text-[#111212] text-[20px]">{cap.title}</h3>
-                <p className="font-inter text-[#555] text-[15px] leading-[24px]">{cap.desc}</p>
+              <div key={i} className={cn('flex', 'flex-col', 'gap-[16px]', 'bg-white', 'hover:bg-[#F3F3F3]', 'p-[32px]', 'transition-colors', 'duration-300')}>
+                <span className={cn('font-inter', 'tabular-nums', 'text-[#929296]', 'text-[13px]')}>{String(i + 1).padStart(2, '0')}</span>
+                <h3 className={cn('font-mont', 'font-semibold', 'text-[#111212]', 'text-[20px]')}>{cap.title}</h3>
+                <p className={cn('font-inter', 'text-[#555]', 'text-[15px]', 'leading-[24px]')}>{cap.desc}</p>
               </div>
             ))}
           </div>
@@ -288,22 +282,22 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
       </div>
 
       {/* Tools & Stack */}
-      <div className="mx-auto px-[16px] md:px-[36px] py-[96px] w-full max-w-[1440px]">
-        <div className="flex md:flex-row flex-col justify-between md:items-end gap-[32px] mb-[48px]">
-          <h2 className="max-w-[500px] font-mont font-bold text-[#111212] text-[48px] leading-[52px]">
+      <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[96px]', 'w-full', 'max-w-[1440px]')}>
+        <div className={cn('flex', 'md:flex-row', 'flex-col', 'justify-between', 'md:items-end', 'gap-[32px]', 'mb-[48px]')}>
+          <h2 className={cn('max-w-[500px]', 'font-mont', 'font-bold', 'text-[#111212]', 'text-[48px]', 'leading-[52px]')}>
             Our {tech.title} stack
           </h2>
-          <p className="max-w-[400px] font-inter text-[#929296] text-[16px]">
+          <p className={cn('max-w-[400px]', 'font-inter', 'text-[#929296]', 'text-[16px]')}>
             Tools and frameworks we use in production — chosen for reliability, performance, and developer experience.
           </p>
         </div>
-        <div className="gap-[16px] grid grid-cols-2 sm:grid-cols-4">
+        <div className={cn('gap-[16px]', 'grid', 'grid-cols-2', 'sm:grid-cols-4')}>
           {tech.tools.map((tool) => (
-            <div key={tool.name} className="flex flex-col items-center gap-[12px] bg-white p-[24px] border border-[#e5e5e5] hover:border-[#111212] rounded-[16px] transition-colors duration-300">
-              <div className="relative w-[40px] h-[40px]">
+            <div key={tool.name} className={cn('flex', 'flex-col', 'items-center', 'gap-[12px]', 'bg-white', 'p-[24px]', 'border', 'border-[#e5e5e5]', 'hover:border-[#111212]', 'rounded-[16px]', 'transition-colors', 'duration-300')}>
+              <div className={cn('relative', 'w-[40px]', 'h-[40px]')}>
                 <Image src={tool.icon} alt={tool.name} fill sizes="40px" className="object-contain" />
               </div>
-              <p className="font-mont font-semibold text-[#111212] text-[14px] text-center">{tool.name}</p>
+              <p className={cn('font-mont', 'font-semibold', 'text-[#111212]', 'text-[14px]', 'text-center')}>{tool.name}</p>
             </div>
           ))}
         </div>
@@ -338,26 +332,26 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
       <IndustriesSection />
 
       {/* CTA */}
-      <div className="bg-[#111212] w-full">
-        <div className="flex md:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[16px] md:px-[36px] py-[96px] w-full max-w-[1440px]">
-          <div className="flex flex-col gap-[16px] max-w-[600px]">
-            <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">
+      <div className={cn('bg-[#111212]', 'w-full')}>
+        <div className={cn('flex', 'md:flex-row', 'flex-col', 'justify-between', 'md:items-center', 'gap-[48px]', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[96px]', 'w-full', 'max-w-[1440px]')}>
+          <div className={cn('flex', 'flex-col', 'gap-[16px]', 'max-w-[600px]')}>
+            <h2 className={cn('font-mont', 'font-bold', 'text-[48px]', 'text-white', 'leading-[52px]')}>
               Ready to build with {tech.title}?
             </h2>
-            <p className="font-inter text-[#929296] text-[16px] leading-[24px]">
+            <p className={cn('font-inter', 'text-[#929296]', 'text-[16px]', 'leading-[24px]')}>
               Let&apos;s talk about your project. We&apos;ll scope it, plan it, and ship it.
             </p>
           </div>
-          <div className="flex sm:flex-row flex-col gap-[16px]">
+          <div className={cn('flex', 'sm:flex-row', 'flex-col', 'gap-[16px]')}>
             <Link
               href="/contact"
-              className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300"
+              className={cn('flex', 'justify-center', 'items-center', 'bg-white', 'px-[32px]', 'py-[16px]', 'rounded-full', 'font-mont', 'font-semibold', 'text-[#111212]', 'text-[16px]', 'hover:scale-105', 'transition-all', 'duration-300')}
             >
               Start a project
             </Link>
             <Link
               href="/work"
-              className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300"
+              className={cn('flex', 'justify-center', 'items-center', 'hover:bg-white', 'px-[32px]', 'py-[16px]', 'border', 'border-white', 'rounded-full', 'font-mont', 'font-semibold', 'text-[16px]', 'text-white', 'hover:text-[#111212]', 'transition-all', 'duration-300')}
             >
               See our work
             </Link>

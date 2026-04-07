@@ -146,7 +146,7 @@
   }
   
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background font-sans text-foreground antialiased;
     font-family: var(--font-inter);
   }
 
@@ -155,12 +155,12 @@
   }
 
   h1 {
-    @apply text-5xl md:text-6xl leading-tight text-balance tracking-tight;
+    @apply text-5xl md:text-6xl text-balance leading-tight tracking-tight;
     font-weight: 800;
   }
 
   h2 {
-    @apply text-3xl md:text-4xl leading-tight text-balance;
+    @apply text-3xl md:text-4xl text-balance leading-tight;
     font-weight: 800;
   }
 
@@ -175,7 +175,7 @@
   }
 
   p {
-    @apply text-base leading-relaxed text-muted-foreground;
+    @apply text-muted-foreground text-base leading-relaxed;
   }
 
   a {
@@ -383,18 +383,18 @@ figure.wp-block-image.size-large {
 
 /* Style the track */
 ::-webkit-scrollbar-track {
-  background: #ddd;
+  background: transparent;
 }
 
 /* Style the thumb */
 ::-webkit-scrollbar-thumb {
-  background: #f1f1f1;
+  background: #000000b0;
   border-radius: 5px;
 }
 
 /* Add a hover effect to the thumb */
 ::-webkit-scrollbar-thumb:hover {
-  background: #aaa;
+  background: #000;
 }
 
 @keyframes marquee {

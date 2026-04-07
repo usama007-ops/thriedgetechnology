@@ -10,6 +10,70 @@ interface RequestOptions extends RequestInit {
   cache?: RequestCache
 }
 
+const TIMEOUT_MS = 20000   // 20s per attempt
+const MAX_RETRIES = 3      // 3 attempts total
+
+/** Sleep helper for backoff */
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+
+/**
+ * Core fetch with timeout + exponential backoff retry.
+ * Retries on network errors and 5xx responses. Never retries 4xx.
+ */
+async function wpFetch(url: string, options: RequestOptions = {}): Promise<Response> {
+  let lastError: unknown
+
+  for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+    const controller = new AbortController()
+    const timer = setTimeout(() => controller.abort(), TIMEOUT_MS)
+
+    try {
+      const response = await fetch(url, {
+        ...options,
+        signal: controller.signal,
+        headers: { 'Content-Type': 'application/json', ...options.headers },
+        cache: options.cache || 'no-store',
+      })
+      clearTimeout(timer)
+
+      // Don't retry client errors (4xx) — they won't change
+      if (response.status >= 400 && response.status < 500) {
+        throw new Error(`${response.status}: ${response.statusText}`)
+      }
+
+      // Retry server errors (5xx)
+      if (!response.ok) {
+        throw new Error(`${response.status}: ${response.statusText}`)
+      }
+
+      return response
+    } catch (error) {
+      clearTimeout(timer)
+      lastError = error
+
+      const isAbort = error instanceof Error && error.name === 'AbortError'
+      const isClientError = error instanceof Error && /^4\d\d:/.test(error.message)
+
+      // Don't retry client errors or if it's the last attempt
+      if (isClientError || attempt === MAX_RETRIES - 1) break
+
+      const backoff = 300 * Math.pow(2, attempt) // 300ms, 600ms, 1200ms
+      if (typeof window === 'undefined') {
+        console.warn(
+          `[WordPress API] ${isAbort ? 'Timeout' : 'Error'} on attempt ${attempt + 1}/${MAX_RETRIES} — ${url} — retrying in ${backoff}ms`
+        )
+      }
+      await sleep(backoff)
+    }
+  }
+
+  if (typeof window === 'undefined') {
+    const msg = lastError instanceof Error ? lastError.message : String(lastError)
+    console.error(`[WordPress API Error] ${url} — ${msg}`)
+  }
+  throw lastError
+}
+
 /**
  * Generic fetch wrapper with error handling
  */
@@ -17,35 +81,22 @@ async function fetchFromWordPress<T>(
   endpoint: string,
   options: RequestOptions = {}
 ): Promise<T> {
-  const url = `${API_URL}${endpoint}`
-  const controller = new AbortController()
-  const timer = setTimeout(() => controller.abort(), 10000)
+  const response = await wpFetch(`${API_URL}${endpoint}`, options)
+  return response.json() as Promise<T>
+}
 
-  try {
-    const response = await fetch(url, {
-      ...options,
-      signal: controller.signal,
-      headers: {
-        'Content-Type': 'application/json',
-        ...options.headers,
-      },
-      cache: options.cache || 'no-store',
-    })
-    clearTimeout(timer)
-
-    if (!response.ok) {
-      throw new Error(`${response.status}: ${response.statusText}`)
-    }
-
-    return await response.json() as T
-  } catch (error) {
-    clearTimeout(timer)
-    // Only log server-side to avoid noisy client retry errors
-    if (typeof window === 'undefined') {
-      console.error(`[WordPress API Error] ${endpoint} — ${error instanceof Error ? error.message : error}`)
-    }
-    throw error
-  }
+/**
+ * Fetch wrapper that also returns X-WP-TotalPages header.
+ * Use this for paginated list endpoints to avoid requesting beyond the last page.
+ */
+async function fetchPagedFromWordPress<T>(
+  endpoint: string,
+  options: RequestOptions = {}
+): Promise<{ data: T; totalPages: number }> {
+  const response = await wpFetch(`${API_URL}${endpoint}`, options)
+  const totalPages = parseInt(response.headers.get('X-WP-TotalPages') || '1', 10)
+  const data = await response.json() as T
+  return { data, totalPages }
 }
 
 /**
@@ -484,19 +535,16 @@ export async function getAllPostSlugs(): Promise<string[]> {
   try {
     const allPosts: Post[] = []
     let page = 1
-    let hasMore = true
+    let totalPages = 1
 
-    while (hasMore) {
-      const posts = await fetchFromWordPress<Post[]>(
+    do {
+      const { data, totalPages: tp } = await fetchPagedFromWordPress<Post[]>(
         `/wp/v2/posts?page=${page}&per_page=100&orderby=date&order=desc`
       )
-      if (posts.length === 0) {
-        hasMore = false
-      } else {
-        allPosts.push(...posts)
-        page++
-      }
-    }
+      totalPages = tp
+      allPosts.push(...data)
+      page++
+    } while (page <= totalPages)
 
     return allPosts.map(post => post.slug)
   } catch (error) {
@@ -518,19 +566,16 @@ export async function getAllWorkSlugs(): Promise<string[]> {
   try {
     const allItems: WorkItem[] = []
     let page = 1
-    let hasMore = true
+    let totalPages = 1
 
-    while (hasMore) {
-      const items = await fetchFromWordPress<WorkItem[]>(
+    do {
+      const { data, totalPages: tp } = await fetchPagedFromWordPress<WorkItem[]>(
         `/wp/v2/work?page=${page}&per_page=100`
       )
-      if (items.length === 0) {
-        hasMore = false
-      } else {
-        allItems.push(...items)
-        page++
-      }
-    }
+      totalPages = tp
+      allItems.push(...data)
+      page++
+    } while (page <= totalPages)
 
     return allItems.map(item => item.slug)
   } catch {

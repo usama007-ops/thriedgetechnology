@@ -64,7 +64,6 @@ const currentYear = new Date().getFullYear()
               <li><Link href="/technologies/backend-development">Backend Development</Link></li>
               <li><Link href="/technologies/mobile-development">Mobile Development</Link></li>
               <li><Link href="/technologies/databases">Databases</Link></li>
-              <li><Link href="/technologies/devops">DevOps & Cloud</Link></li>
             </ul>
           </div>
 
@@ -106,7 +105,7 @@ const currentYear = new Date().getFullYear()
           </span>
 
           <div className={cn('flex', 'gap-3', 'text-white')}>
-            <Link href="/sitemap-0.xml">Sitemap</Link>
+            <Link href="/sitemap.xml">Sitemap</Link>
             <Link href="/privacy-policy">Privacy Policy</Link>
             <Link href="/terms-condition">Terms & Conditions</Link>
             <Link href="/terms-of-service">Terms of Service</Link>

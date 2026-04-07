@@ -63,8 +63,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  colorScheme: 'dark',
-  themeColor: '#00d4ff',
+  themeColor: '#111212',
   initialScale: 1,
   width: 'device-width',
   userScalable: true,
@@ -79,7 +78,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <head>
         <meta charSet="utf-8" />
-        <link rel="canonical" href="https://thrilledge.com" />
       </head>
       <body className={`${inter.variable} antialiased bg-[#F3F3F3]`} suppressHydrationWarning>
         <Providers>
