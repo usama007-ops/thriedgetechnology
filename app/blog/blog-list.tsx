@@ -42,7 +42,7 @@ export function BlogList({ initialPosts, categories }: Props) {
     <>
       {/* Category filter */}
       {categories.length > 0 && (
-        <div className="mb-12 flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 mb-12">
           <button
             onClick={() => handleCategory(null)}
             className={`px-4 py-2 rounded-full transition-all ${
@@ -53,7 +53,7 @@ export function BlogList({ initialPosts, categories }: Props) {
           >
             All Posts
           </button>
-          {categories.map((cat) => (
+          {categories.filter((cat) => cat.count > 0).map((cat) => (
             <button
               key={cat.id}
               onClick={() => handleCategory(cat.id)}
@@ -70,22 +70,22 @@ export function BlogList({ initialPosts, categories }: Props) {
       )}
 
       {loading && (
-        <div className="flex items-center justify-center py-20">
+        <div className="flex justify-center items-center py-20">
           <Loader size={32} className="text-accent animate-spin" />
         </div>
       )}
 
       {!loading && posts.length > 0 && (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <div className="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-12">
             {posts.map((post, idx) => <BlogCard key={post.id} post={post} priority={idx === 0} />)}
           </div>
 
-          <div className="flex items-center justify-center gap-4 pt-8 border-t border-border">
+          <div className="flex justify-center items-center gap-4 pt-8 border-border border-t">
             <button
               onClick={() => fetchPosts(currentPage - 1, selectedCategory)}
               disabled={currentPage === 1}
-              className="px-4 py-2 rounded-lg bg-card hover:bg-card/80 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              className="bg-card hover:bg-card/80 disabled:opacity-50 px-4 py-2 rounded-lg transition-all disabled:cursor-not-allowed"
             >
               Previous
             </button>
@@ -93,7 +93,7 @@ export function BlogList({ initialPosts, categories }: Props) {
             <button
               onClick={() => fetchPosts(currentPage + 1, selectedCategory)}
               disabled={posts.length < 12}
-              className="px-4 py-2 rounded-lg bg-card hover:bg-card/80 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              className="bg-card hover:bg-card/80 disabled:opacity-50 px-4 py-2 rounded-lg transition-all disabled:cursor-not-allowed"
             >
               Next
             </button>
@@ -102,7 +102,7 @@ export function BlogList({ initialPosts, categories }: Props) {
       )}
 
       {!loading && posts.length === 0 && (
-        <div className="text-center py-20 text-muted-foreground">
+        <div className="py-20 text-muted-foreground text-center">
           <p>No posts found.</p>
         </div>
       )}

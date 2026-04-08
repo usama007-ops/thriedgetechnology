@@ -7,6 +7,7 @@ import { Loader } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import { cn } from "../../../lib/utils";
 
 interface ServicePageProps {
   params: Promise<{ slug: string }>
@@ -20,8 +21,8 @@ export default function ServicePage({ params }: ServicePageProps) {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <Loader size={32} className="animate-spin text-black" />
+      <div className={cn('flex', 'justify-center', 'items-center', 'bg-white', 'min-h-screen')}>
+        <Loader size={32} className={cn('text-black', 'animate-spin')} />
       </div>
     )
   }
@@ -43,15 +44,15 @@ export default function ServicePage({ params }: ServicePageProps) {
   const projects = acf.projects ?? []
 
   return (
-    <div className="relative bg-[#f3f3f3]">
+    <div className={cn('relative', 'bg-[#f3f3f3]')}>
 
       {/* Hero */}
-      <div className="w-full max-w-[1440px] mx-auto flex md:flex-row flex-col md:gap-[64px] gap-[32px] md:px-[36px] px-[16px] py-[64px]">
-        <h1 className="text-[24px] font-mont font-semibold w-full max-w-[610px]"
+      <div className={cn('flex', 'md:flex-row', 'flex-col', 'gap-[32px]', 'md:gap-[64px]', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[64px]', 'w-full', 'max-w-[1440px]')}>
+        <h1 className={cn('w-full', 'max-w-[610px]', 'font-mont', 'font-semibold', 'text-[24px]')}
           dangerouslySetInnerHTML={{ __html: service.title.rendered }}
         />
         {acf.service_solutions && (
-          <p className="w-full max-w-[694px] text-[40px] font-mont leading-[48px] font-semibold">
+          <p className={cn('w-full', 'max-w-[694px]', 'font-mont', 'font-semibold', 'text-[40px]', 'leading-[48px]')}>
             {acf.service_solutions}
           </p>
         )}
@@ -64,13 +65,13 @@ export default function ServicePage({ params }: ServicePageProps) {
 
       {/* Stats */}
       {counts.length > 0 && (
-        <div className="w-full max-w-[1440px] mx-auto grid md:grid-cols-3 grid-cols-1 gap-[20px] md:px-[36px] px-[16px] py-[64px]">
+        <div className={cn('gap-[20px]', 'grid', 'grid-cols-1', 'md:grid-cols-3', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[64px]', 'w-full', 'max-w-[1440px]')}>
           {counts.map((c, i) => (
-            <div key={i} className="flex flex-col gap-[4px] px-[24px] py-[32px] border-l border-[#CCCCCC]">
-              <p className="xl:text-[80px] text-[40px] font-mont font-semibold text-black xl:leading-[80px]">
+            <div key={i} className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[24px]', 'py-[32px]', 'border-[#CCCCCC]', 'border-l')}>
+              <p className={cn('font-mont', 'font-semibold', 'text-[40px]', 'text-black', 'xl:text-[80px]', 'xl:leading-[80px]')}>
                 {c!.number}
               </p>
-              <p className="text-[14px] font-inter text-[#929296]">{c!.label}</p>
+              <p className={cn('font-inter', 'text-[#929296]', 'text-[14px]')}>{c!.label}</p>
             </div>
           ))}
         </div>
@@ -78,15 +79,15 @@ export default function ServicePage({ params }: ServicePageProps) {
 
       {/* About Us */}
       {(acf.about_us?.title || acf.about_us?.text) && (
-        <div className="w-full max-w-[1440px] mx-auto flex md:flex-row flex-col gap-[96px] md:px-[36px] px-[16px] md:py-[96px] py-[64px]">
+        <div className={cn('flex', 'md:flex-row', 'flex-col', 'gap-[96px]', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[64px]', 'md:py-[96px]', 'w-full', 'max-w-[1440px]')}>
           {acf.about_us.title && (
-            <h2 className="text-[40px] font-mont font-semibold leading-[48px] w-full">
+            <h2 className={cn('w-full', 'font-mont', 'font-semibold', 'text-[40px]', 'leading-[48px]')}>
               {acf.about_us.title}
             </h2>
           )}
           {acf.about_us.text && (
             <div
-              className="w-full flex flex-col gap-[16px] text-[#111212] font-inter text-[16px] font-normal leading-[24px] [&_p]:text-[16px] [&_p]:leading-[24px] [&_strong]:font-semibold"
+              className={cn('flex', 'flex-col', 'gap-[16px]', 'w-full', 'font-inter', 'font-normal', '[&_strong]:font-semibold', 'text-[#111212]', 'text-[16px]', '[&_p]:text-[16px]', 'leading-[24px]', '[&_p]:leading-[24px]')}
               dangerouslySetInnerHTML={{ __html: acf.about_us.text }}
             />
           )}
@@ -99,14 +100,14 @@ export default function ServicePage({ params }: ServicePageProps) {
 
       {/* How We Work */}
       {hwwSteps.length > 0 && (
-        <div className="w-full max-w-[1440px] mx-auto md:px-[36px] px-[16px] md:py-[96px] py-[64px]">
-          <h2 className="text-[40px] font-mont font-semibold leading-[48px] mb-[48px]">How we work</h2>
-          <div className="grid md:grid-cols-3 grid-cols-1 gap-[1px] bg-[#e5e5e5]">
+        <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[64px]', 'md:py-[96px]', 'w-full', 'max-w-[1440px]')}>
+          <h2 className={cn('mb-[48px]', 'font-mont', 'font-semibold', 'text-[40px]', 'leading-[48px]')}>How we work</h2>
+          <div className={cn('gap-px', 'grid', 'grid-cols-1', 'md:grid-cols-3', 'bg-[#e5e5e5]')}>
             {hwwSteps.map((step) => (
-              <div key={step.key} className="bg-white flex flex-col gap-[16px] p-[32px]">
-                <span className="text-[14px] font-inter text-[#929296]">{step.key}</span>
-                <p className="text-[20px] font-mont font-semibold text-black leading-[28px]">{step.label}</p>
-                <p className="text-[16px] font-inter text-[#929296] leading-[24px]">{step.text}</p>
+              <div key={step.key} className={cn('flex', 'flex-col', 'gap-[16px]', 'bg-white', 'p-[32px]')}>
+                <span className={cn('font-inter', 'text-[#929296]', 'text-[14px]')}>{step.key}</span>
+                <p className={cn('font-mont', 'font-semibold', 'text-[20px]', 'text-black', 'leading-[28px]')}>{step.label}</p>
+                <p className={cn('font-inter', 'text-[#929296]', 'text-[16px]', 'leading-[24px]')}>{step.text}</p>
               </div>
             ))}
           </div>
@@ -115,16 +116,16 @@ export default function ServicePage({ params }: ServicePageProps) {
 
       {/* Our Core Points */}
       {coreSteps.length > 0 && (
-        <div className="w-full max-w-[1440px] mx-auto md:px-[36px] px-[16px] md:py-[96px] py-[64px]">
+        <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[64px]', 'md:py-[96px]', 'w-full', 'max-w-[1440px]')}>
           {acf.our_core_title && (
-            <h2 className="text-[40px] font-mont font-semibold leading-[48px] mb-[48px]">{acf.our_core_title}</h2>
+            <h2 className={cn('mb-[48px]', 'font-mont', 'font-semibold', 'text-[40px]', 'leading-[48px]')}>{acf.our_core_title}</h2>
           )}
-          <div className="grid md:grid-cols-3 grid-cols-1 gap-[1px] bg-[#e5e5e5]">
+          <div className={cn('gap-px', 'grid', 'grid-cols-1', 'md:grid-cols-3', 'bg-[#e5e5e5]')}>
             {coreSteps.map((step) => (
-              <div key={step.key} className="bg-white flex flex-col gap-[16px] p-[32px]">
-                <span className="text-[14px] font-inter text-[#929296]">{step.key}</span>
-                <p className="text-[20px] font-mont font-semibold text-black leading-[28px]">{step.label}</p>
-                <p className="text-[16px] font-inter text-[#929296] leading-[24px]">{step.text}</p>
+              <div key={step.key} className={cn('flex', 'flex-col', 'gap-[16px]', 'bg-white', 'p-[32px]')}>
+                <span className={cn('font-inter', 'text-[#929296]', 'text-[14px]')}>{step.key}</span>
+                <p className={cn('font-mont', 'font-semibold', 'text-[20px]', 'text-black', 'leading-[28px]')}>{step.label}</p>
+                <p className={cn('font-inter', 'text-[#929296]', 'text-[16px]', 'leading-[24px]')}>{step.text}</p>
               </div>
             ))}
           </div>
@@ -133,32 +134,32 @@ export default function ServicePage({ params }: ServicePageProps) {
 
       {/* Service Image */}
       {acf.image?.url && (
-        <div className="w-full max-w-[1440px] mx-auto md:px-[36px] px-[16px] pb-[64px]">
-          <div className="relative w-full rounded-[20px] overflow-hidden">
+        <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
+          <div className={cn('relative', 'rounded-[20px]', 'w-full', 'overflow-hidden')}>
             <Image
               src={acf.image.url}
               alt={acf.image.alt || service.title.rendered}
               width={acf.image.width || 1440}
               height={acf.image.height || 800}
-              className="w-full h-auto object-cover rounded-[20px]"
+              className={cn('rounded-[20px]', 'w-full', 'h-auto', 'object-cover')}
             />
           </div>
         </div>
       )}
 
       {/* CTA */}
-      <section className="w-full flex items-center justify-center p-[20px]">
-        <div className="w-full max-w-[1400px] flex md:flex-row flex-col justify-between md:gap-[96px] gap-[8px] rounded-[24px] md:px-[48px] px-[16px] md:py-[40px] py-[20px] bg-white border border-[#e5e5e5]">
-          <h3 className="lg:text-[56px] text-[30px] lg:leading-[64px] font-semibold font-mont text-[#111212] max-w-[642px]">
+      <section className={cn('flex', 'justify-center', 'items-center', 'p-[20px]', 'w-full')}>
+        <div className={cn('flex', 'md:flex-row', 'flex-col', 'justify-between', 'gap-[8px]', 'md:gap-[96px]', 'bg-white', 'px-[16px]', 'md:px-[48px]', 'py-[20px]', 'md:py-[40px]', 'border', 'border-[#e5e5e5]', 'rounded-[24px]', 'w-full', 'max-w-[1400px]')}>
+          <h3 className={cn('max-w-[642px]', 'font-mont', 'font-semibold', 'text-[#111212]', 'text-[30px]', 'lg:text-[56px]', 'lg:leading-[64px]')}>
             Let&apos;s Build Your Next Big Thing
           </h3>
-          <div className="max-w-[354px] w-full flex items-start flex-col md:gap-[20px] gap-[40px]">
-            <p className="text-[16px] leading-[24px] text-[#929296] font-inter">
+          <div className={cn('flex', 'flex-col', 'items-start', 'gap-[40px]', 'md:gap-[20px]', 'w-full', 'max-w-[354px]')}>
+            <p className={cn('font-inter', 'text-[#929296]', 'text-[16px]', 'leading-[24px]')}>
               Your idea, our brainswe&apos;ll send you a tailored game plan in 48h.
             </p>
             <Link
               href="/contact"
-              className="flex items-center justify-center px-[24px] pt-[14px] pb-[12px] bg-black text-white font-mont text-[14px] font-semibold rounded-full hover:scale-105 transition-all duration-300"
+              className={cn('flex', 'justify-center', 'items-center', 'bg-black', 'px-[24px]', 'pt-[14px]', 'pb-[12px]', 'rounded-full', 'font-mont', 'font-semibold', 'text-[14px]', 'text-white', 'hover:scale-105', 'transition-all', 'duration-300')}
             >
               Book a call
             </Link>
@@ -218,26 +219,26 @@ function ProjectsMarquee({ projects }: { projects: Array<{ ID: number; post_titl
   const doubled = [...projects, ...projects]
 
   return (
-    <section className="w-full overflow-hidden bg-transparent py-0">
-      <div ref={trackRef} className="flex items-center will-change-transform gap-[20px]">
+    <section className={cn('bg-transparent', 'py-0', 'w-full', 'overflow-hidden')}>
+      <div ref={trackRef} className={cn('flex', 'items-center', 'gap-[20px]', 'will-change-transform')}>
         {doubled.map((p, i) => {
           const img = imageMap[p.ID]
           return (
-            <div key={i} className="flex-shrink-0">
+            <div key={i} className="shrink-0">
               <Link href={`/work/${p.post_name}`}>
-                <div className="relative rounded-[20px] overflow-hidden lg:w-[600px] sm:w-[400px] w-[300px] md:h-[400px] h-[250px] bg-[#111212]">
+                <div className={cn('relative', 'bg-[#111212]', 'rounded-[20px]', 'w-[300px]', 'sm:w-[400px]', 'lg:w-[600px]', 'h-[250px]', 'md:h-[400px]', 'overflow-hidden')}>
                   {img && (
                     <Image
                       src={img}
                       alt={p.post_title}
                       fill
-                      className="object-cover opacity-80"
+                      className={cn('opacity-80', 'object-cover')}
                       sizes="(max-width: 640px) 300px, (max-width: 1024px) 400px, 600px"
                     />
                   )}
                   {/* gradient + title overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                  <span className="absolute bottom-[20px] left-[20px] right-[20px] font-mont font-semibold text-[18px] text-white leading-[24px]">
+                  <div className={cn('absolute', 'inset-0', 'bg-linear-to-t', 'from-black/70', 'via-black/10', 'to-transparent')} />
+                  <span className={cn('right-[20px]', 'bottom-[20px]', 'left-[20px]', 'absolute', 'font-mont', 'font-semibold', 'text-[18px]', 'text-white', 'leading-[24px]')}>
                     {p.post_title}
                   </span>
                 </div>
@@ -276,12 +277,12 @@ function MarqueeStrip() {
   const items = Array(8).fill(text)
 
   return (
-    <section className="overflow-hidden whitespace-nowrap py-4">
-      <div ref={trackRef} className="flex gap-[100px] will-change-transform w-max">
+    <section className={cn('py-4', 'overflow-hidden', 'whitespace-nowrap')}>
+      <div ref={trackRef} className={cn('flex', 'gap-[100px]', 'w-max', 'will-change-transform')}>
         {items.map((t, i) => (
           <span
             key={i}
-            className="font-mont font-semibold lg:text-[180px] text-[100px] leading-normal text-transparent"
+            className={cn('font-mont', 'font-semibold', 'text-[100px]', 'text-transparent', 'lg:text-[180px]', 'leading-normal')}
             style={{ WebkitTextStroke: '2px rgb(146, 146, 150)' }}
           >
             {t}

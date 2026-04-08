@@ -236,7 +236,7 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
           />
           <div
             className={cn('absolute', 'inset-0', 'rounded-[20px]')}
-            style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.3), rgba(0,0,0,0))' }}
+            style={{ background: 'linear-gradient(to top, rgba(0,0,0), rgba(0,0,0, 72), rgba(0,0,0,0))' }}
           />
           <div className={cn('absolute', 'bottom-0', 'left-0', 'right-0', 'flex', 'lg:flex-row', 'flex-col', 'justify-between', 'lg:items-end', 'gap-4', 'lg:px-9', 'px-5', 'lg:py-8', 'py-6')}>
             <h2 className={cn('text-[32px]', 'lg:text-[56px]', 'lg:leading-[60px]', 'leading-9', 'font-mont', 'font-semibold', 'text-white', 'max-w-2xl')}>

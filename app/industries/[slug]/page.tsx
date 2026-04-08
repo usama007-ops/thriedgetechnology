@@ -260,7 +260,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
   }
 
   return (
-    <div className="relative bg-[#F3F3F3]">
+    <div className={cn('relative', 'bg-[#F3F3F3]')}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <PageHero
         label={industry.title + ' Software Development'}
@@ -269,18 +269,18 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
       />
 
       <section className={cn('max-w-360', 'w-full', 'mx-auto', 'p-4')}>
-        <div className="relative rounded-[20px] w-full h-[480px] md:h-[640px] overflow-hidden">
+        <div className={cn('relative', 'rounded-[20px]', 'w-full', 'h-[480px]', 'md:h-[640px]', 'overflow-hidden')}>
           <Image
             src={industry.image}
             alt={industry.title}
             fill
-            className="object-center object-cover"
+            className={cn('object-center', 'object-cover')}
             sizes="100vw"
             priority
           />
           <div
             className={cn('absolute', 'inset-0', 'rounded-[20px]')}
-            style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.3), rgba(0,0,0,0))' }}
+            style={{ background: 'linear-gradient(to top, rgba(0,0,0), rgba(0,0,0, 72), rgba(0,0,0,0))' }}
           />
           <div className={cn('absolute', 'bottom-0', 'left-0', 'right-0', 'flex', 'lg:flex-row', 'flex-col', 'justify-between', 'lg:items-end', 'gap-4', 'lg:px-9', 'px-5', 'lg:py-8', 'py-6')}>
             <h2 className={cn('text-[32px]', 'lg:text-[56px]', 'lg:leading-[60px]', 'leading-9', 'font-mont', 'font-semibold', 'text-white', 'max-w-2xl')}>
@@ -293,56 +293,56 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
         </div>
       </section>
 
-      <div className="gap-[20px] grid grid-cols-1 md:grid-cols-3 mx-auto px-[16px] md:px-[36px] pb-[64px] w-full max-w-[1440px]">
+      <div className={cn('gap-[20px]', 'grid', 'grid-cols-1', 'md:grid-cols-3', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
         {industry.stats.map((s, i) => (
-          <div key={i} className="flex flex-col gap-[4px] px-[24px] py-[32px] border-[#CCCCCC] border-l">
-            <p className="font-mont font-semibold text-[40px] text-black xl:text-[80px] xl:leading-[80px]">{s.number}</p>
-            <p className="font-inter text-[#929296] text-[14px]">{s.label}</p>
+          <div key={i} className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[24px]', 'py-[32px]', 'border-[#CCCCCC]', 'border-l', 'first:border-l-0')}>
+            <p className={cn('font-mont', 'font-semibold', 'text-[40px]', 'text-black', 'xl:text-[80px]', 'xl:leading-[80px]')}>{s.number}</p>
+            <p className={cn('font-inter', 'text-[#929296]', 'text-[14px]')}>{s.label}</p>
           </div>
         ))}
       </div>
 
-      <div className="mx-auto px-[16px] md:px-[36px] pb-[96px] w-full max-w-[1440px]">
-        <p className="max-w-[800px] font-inter text-[#555] text-[20px] leading-[32px]">{industry.description}</p>
+      <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[96px]', 'w-full', 'max-w-[1440px]')}>
+        <p className={cn('max-w-[800px]', 'font-inter', 'text-[#555]', 'text-[20px]', 'leading-[32px]')}>{industry.description}</p>
       </div>
 
-      <div className="bg-white w-full">
-        <div className="mx-auto px-[16px] md:px-[36px] py-[96px] w-full max-w-[1440px]">
-          <div className="flex md:flex-row flex-col justify-between md:items-end gap-[32px] mb-[64px]">
-            <h2 className="max-w-[560px] font-mont font-bold text-[#111212] text-[48px] leading-[52px]">
+      <div className={cn('bg-white', 'w-full')}>
+        <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[96px]', 'w-full', 'max-w-[1440px]')}>
+          <div className={cn('flex', 'md:flex-row', 'flex-col', 'justify-between', 'md:items-end', 'gap-[32px]', 'mb-[64px]')}>
+            <h2 className={cn('max-w-[560px]', 'font-mont', 'font-bold', 'text-[#111212]', 'text-[48px]', 'leading-[52px]')}>
               Challenges we solve in {industry.title}
             </h2>
-            <p className="max-w-[400px] font-inter text-[#929296] text-[16px]">
+            <p className={cn('max-w-[400px]', 'font-inter', 'text-[#929296]', 'text-[16px]')}>
               Deep domain expertise means we understand your problems before you explain them.
             </p>
           </div>
-          <div className="gap-[2px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 bg-[#e5e5e5]">
+          <div className={cn('gap-[2px]', 'grid', 'grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3', 'bg-[#e5e5e5]')}>
             {industry.challenges.map((item, i) => (
-              <div key={i} className="flex flex-col gap-[16px] bg-white hover:bg-[#F3F3F3] p-[32px] transition-colors duration-300">
-                <span className="font-inter tabular-nums text-[#929296] text-[13px]">{String(i + 1).padStart(2, '0')}</span>
-                <h3 className="font-mont font-semibold text-[#111212] text-[20px]">{item.title}</h3>
-                <p className="font-inter text-[#555] text-[15px] leading-[24px]">{item.desc}</p>
+              <div key={i} className={cn('flex', 'flex-col', 'gap-[16px]', 'bg-white', 'hover:bg-[#F3F3F3]', 'p-[32px]', 'transition-colors', 'duration-300')}>
+                <span className={cn('font-inter', 'tabular-nums', 'text-[#929296]', 'text-[13px]')}>{String(i + 1).padStart(2, '0')}</span>
+                <h3 className={cn('font-mont', 'font-semibold', 'text-[#111212]', 'text-[20px]')}>{item.title}</h3>
+                <p className={cn('font-inter', 'text-[#555]', 'text-[15px]', 'leading-[24px]')}>{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      <div className="mx-auto px-[16px] md:px-[36px] py-[96px] w-full max-w-[1440px]">
-        <div className="flex md:flex-row flex-col justify-between md:items-end gap-[32px] mb-[64px]">
-          <h2 className="max-w-[560px] font-mont font-bold text-[#111212] text-[48px] leading-[52px]">
+      <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[96px]', 'w-full', 'max-w-[1440px]')}>
+        <div className={cn('flex', 'md:flex-row', 'flex-col', 'justify-between', 'md:items-end', 'gap-[32px]', 'mb-[64px]')}>
+          <h2 className={cn('max-w-[560px]', 'font-mont', 'font-bold', 'text-[#111212]', 'text-[48px]', 'leading-[52px]')}>
             What we build for {industry.title}
           </h2>
-          <p className="max-w-[400px] font-inter text-[#929296] text-[16px]">
+          <p className={cn('max-w-[400px]', 'font-inter', 'text-[#929296]', 'text-[16px]')}>
             Production-ready software tailored to the specific demands of your industry.
           </p>
         </div>
-        <div className="gap-[20px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <div className={cn('gap-[20px]', 'grid', 'grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3')}>
           {industry.solutions.map((item, i) => (
-            <div key={i} className="flex flex-col gap-[16px] bg-white p-[32px] border border-[#e5e5e5] hover:border-[#111212] rounded-[16px] transition-colors duration-300">
-              <span className="font-inter tabular-nums text-[#929296] text-[13px]">{String(i + 1).padStart(2, '0')}</span>
-              <h3 className="font-mont font-semibold text-[#111212] text-[20px]">{item.title}</h3>
-              <p className="font-inter text-[#555] text-[15px] leading-[24px]">{item.desc}</p>
+            <div key={i} className={cn('flex', 'flex-col', 'gap-[16px]', 'bg-white', 'p-[32px]', 'border', 'border-[#e5e5e5]', 'hover:border-[#111212]', 'rounded-[16px]', 'transition-colors', 'duration-300')}>
+              <span className={cn('font-inter', 'tabular-nums', 'text-[#929296]', 'text-[13px]')}>{String(i + 1).padStart(2, '0')}</span>
+              <h3 className={cn('font-mont', 'font-semibold', 'text-[#111212]', 'text-[20px]')}>{item.title}</h3>
+              <p className={cn('font-inter', 'text-[#555]', 'text-[15px]', 'leading-[24px]')}>{item.desc}</p>
             </div>
           ))}
         </div>
@@ -374,21 +374,21 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
         <LatestArticlesSection show={3} />
       </Suspense>
 
-      <div className="bg-[#111212] w-full">
-        <div className="flex md:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[16px] md:px-[36px] py-[96px] w-full max-w-[1440px]">
-          <div className="flex flex-col gap-[16px] max-w-[600px]">
-            <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">
+      <div className={cn('bg-[#111212]', 'w-full')}>
+        <div className={cn('flex', 'md:flex-row', 'flex-col', 'justify-between', 'md:items-center', 'gap-[48px]', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[96px]', 'w-full', 'max-w-[1440px]')}>
+          <div className={cn('flex', 'flex-col', 'gap-[16px]', 'max-w-[600px]')}>
+            <h2 className={cn('font-mont', 'font-bold', 'text-[48px]', 'text-white', 'leading-[52px]')}>
               Building something in {industry.title}?
             </h2>
-            <p className="font-inter text-[#929296] text-[16px] leading-[24px]">
+            <p className={cn('font-inter', 'text-[#929296]', 'text-[16px]', 'leading-[24px]')}>
               We have shipped production software in your industry. Lets talk about your project.
             </p>
           </div>
-          <div className="flex sm:flex-row flex-col gap-[16px]">
-            <Link href="/contact" className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">
+          <div className={cn('flex', 'sm:flex-row', 'flex-col', 'gap-[16px]')}>
+            <Link href="/contact" className={cn('flex', 'justify-center', 'items-center', 'bg-white', 'px-[32px]', 'py-[16px]', 'rounded-full', 'font-mont', 'font-semibold', 'text-[#111212]', 'text-[16px]', 'hover:scale-105', 'transition-all', 'duration-300')}>
               Start a project
             </Link>
-            <Link href="/work" className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">
+            <Link href="/work" className={cn('flex', 'justify-center', 'items-center', 'hover:bg-white', 'px-[32px]', 'py-[16px]', 'border', 'border-white', 'rounded-full', 'font-mont', 'font-semibold', 'text-[16px]', 'text-white', 'hover:text-[#111212]', 'transition-all', 'duration-300')}>
               See our work
             </Link>
           </div>
