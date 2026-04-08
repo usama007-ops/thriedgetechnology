@@ -96,7 +96,7 @@ export default function TermsConditions() {
               </div>
             </div>
             <p className="font-inter text-[#555] text-[15px] leading-[1.8]">
-              All content on this website — including text, graphics, logos, and code — is the property of Thrill Edge Technologies
+              All content on this website, including text, graphics, logos, and code, is the property of Thrill Edge Technologies
               and may not be reproduced without written permission.
             </p>
           </TermSection>

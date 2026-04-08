@@ -16,7 +16,7 @@ function makeTransport() {
 /**
  * Upload a file to WordPress media library.
  * Requires a WP user with at least Author role.
- * Uses WP Application Password — generate one at:
+ * Uses WP Application Password, generate one at:
  * WP Admin → Users → Your Profile → Application Passwords
  */
 async function uploadToWordPress(
@@ -76,7 +76,7 @@ export async function POST(req: NextRequest) {
         console.log('[Apply API] CV uploaded:', cvUrl)
       } catch (uploadErr) {
         console.error('[Apply API] CV upload failed:', uploadErr)
-        // Non-fatal — email still sends, just without CV link
+        // Non-fatal, email still sends, just without CV link
       }
     }
 
@@ -177,7 +177,7 @@ export async function POST(req: NextRequest) {
       from:    `"Thrill Edge Careers" <${process.env.SMTP_FROM}>`,
       to:      process.env.SMTP_TO,
       replyTo: email,
-      subject: `[Careers] ${position || 'Application'} — ${name}`,
+      subject: `[Careers] ${position || 'Application'}, ${name}`,
       html,
     })
 

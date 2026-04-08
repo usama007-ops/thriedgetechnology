@@ -27,7 +27,7 @@ const TECHNOLOGIES: Record<string, TechData> = {
   'ai-machine-learning': {
     title: 'AI & Machine Learning',
     headline: 'Intelligent systems that learn, adapt, and drive real business outcomes.',
-    description: 'We build production-grade AI and ML solutions — from custom model training to intelligent automation — that turn your data into a competitive advantage.',
+    description: 'We build production-grade AI and ML solutions, from custom model training to intelligent automation, that turn your data into a competitive advantage.',
     stats: [
       { number: '20+', label: 'AI models shipped to production' },
       { number: '98%', label: 'Model accuracy on client projects' },
@@ -45,7 +45,7 @@ const TECHNOLOGIES: Record<string, TechData> = {
     ],
     capabilities: [
       { title: 'Custom Model Training', desc: 'We train and fine-tune models on your proprietary data for domain-specific accuracy that off-the-shelf APIs cannot match.' },
-      { title: 'LLM Integration', desc: 'We integrate large language models into your products — chatbots, document processing, semantic search, and more.' },
+      { title: 'LLM Integration', desc: 'We integrate large language models into your products, chatbots, document processing, semantic search, and more.' },
       { title: 'Computer Vision', desc: 'Image classification, object detection, and visual inspection systems built for real-world production environments.' },
       { title: 'Predictive Analytics', desc: 'Forecasting models that help you anticipate demand, detect anomalies, and make data-driven decisions at scale.' },
       { title: 'MLOps & Deployment', desc: 'End-to-end ML pipelines with monitoring, retraining, and CI/CD so your models stay accurate over time.' },
@@ -57,7 +57,7 @@ const TECHNOLOGIES: Record<string, TechData> = {
   'frontend-development': {
     title: 'Frontend Development',
     headline: 'Interfaces that are fast, accessible, and built to convert.',
-    description: 'We craft pixel-perfect, high-performance frontends using React, Next.js, and Vue.js — designed for real users and optimized for every device.',
+    description: 'We craft pixel-perfect, high-performance frontends using React, Next.js, and Vue.js, designed for real users and optimized for every device.',
     stats: [
       { number: '150+', label: 'Frontend projects delivered' },
       { number: '<1s', label: 'Average page load time' },
@@ -86,7 +86,7 @@ const TECHNOLOGIES: Record<string, TechData> = {
   'backend-development': {
     title: 'Backend Development',
     headline: 'Scalable, secure APIs and systems that power your product at any scale.',
-    description: 'We build the infrastructure behind great products — robust APIs, microservices, and data pipelines using Node.js, Python, Go, and more.',
+    description: 'We build the infrastructure behind great products, robust APIs, microservices, and data pipelines using Node.js, Python, Go, and more.',
     stats: [
       { number: '99.9%', label: 'Uptime SLA on production systems' },
       { number: '10M+', label: 'API requests handled daily' },
@@ -108,14 +108,14 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { title: 'Authentication & Security', desc: 'OAuth2, JWT, RBAC, and zero-trust security patterns baked into every system we build.' },
       { title: 'Real-time Systems', desc: 'WebSocket and event-driven architectures for live dashboards, notifications, and collaborative features.' },
       { title: 'Background Jobs & Queues', desc: 'Reliable job processing with Bull, Celery, or SQS for async workflows that never drop a task.' },
-      { title: 'Third-party Integrations', desc: 'Stripe, Twilio, SendGrid, Salesforce — we integrate the tools your business runs on cleanly and reliably.' },
+      { title: 'Third-party Integrations', desc: 'Stripe, Twilio, SendGrid, Salesforce, we integrate the tools your business runs on cleanly and reliably.' },
     ],
     image: '/design-build.avif',
   },
   'mobile-development': {
     title: 'Mobile Development',
     headline: 'Native and cross-platform apps that users actually keep on their phones.',
-    description: 'We build iOS and Android apps with Flutter and React Native — performant, polished, and shipped on time.',
+    description: 'We build iOS and Android apps with Flutter and React Native, performant, polished, and shipped on time.',
     stats: [
       { number: '50+', label: 'Mobile apps shipped' },
       { number: '4.8', label: 'Average App Store rating' },
@@ -135,7 +135,7 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { title: 'Cross-Platform with Flutter', desc: 'Single codebase, native performance. Flutter lets us ship iOS and Android simultaneously without compromising on feel.' },
       { title: 'React Native Apps', desc: 'JavaScript-based cross-platform development with access to native modules for camera, biometrics, and push notifications.' },
       { title: 'Native iOS & Android', desc: 'When performance and platform-specific features matter most, we build fully native with Swift and Kotlin.' },
-      { title: 'Offline-First Architecture', desc: 'Apps that work without a connection and sync seamlessly when back online — critical for field and enterprise use cases.' },
+      { title: 'Offline-First Architecture', desc: 'Apps that work without a connection and sync seamlessly when back online, critical for field and enterprise use cases.' },
       { title: 'App Store Optimization', desc: 'We handle submission, metadata, screenshots, and ASO strategy to maximize visibility and conversion on both stores.' },
       { title: 'Push Notifications & Analytics', desc: 'Firebase, OneSignal, and Mixpanel integrations to keep users engaged and give you visibility into behavior.' },
     ],
@@ -144,7 +144,7 @@ const TECHNOLOGIES: Record<string, TechData> = {
   databases: {
     title: 'Databases',
     headline: 'Data architectures designed for reliability, speed, and scale.',
-    description: 'We design, optimize, and migrate database systems — SQL and NoSQL — that keep your data safe, fast, and queryable at any volume.',
+    description: 'We design, optimize, and migrate database systems, SQL and NoSQL, that keep your data safe, fast, and queryable at any volume.',
     stats: [
       { number: '100TB+', label: 'Data managed across client systems' },
       { number: '5ms', label: 'Median query response time' },
@@ -288,7 +288,7 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
             Our {tech.title} stack
           </h2>
           <p className={cn('max-w-[400px]', 'font-inter', 'text-[#929296]', 'text-[16px]')}>
-            Tools and frameworks we use in production — chosen for reliability, performance, and developer experience.
+            Tools and frameworks we use in production, chosen for reliability, performance, and developer experience.
           </p>
         </div>
         <div className={cn('gap-[16px]', 'grid', 'grid-cols-2', 'sm:grid-cols-4')}>

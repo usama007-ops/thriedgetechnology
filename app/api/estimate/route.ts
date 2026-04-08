@@ -111,7 +111,7 @@ export async function POST(req: NextRequest) {
       from:    `"Thrill Edge Estimator" <${process.env.SMTP_FROM}>`,
       to:      process.env.SMTP_TO,
       replyTo: email,
-      subject: `[Estimate] ${name}${company ? ` — ${company}` : ''}`,
+      subject: `[Estimate] ${name}${company ? `, ${company}` : ''}`,
       html,
     })
 

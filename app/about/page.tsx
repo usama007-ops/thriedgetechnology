@@ -13,12 +13,12 @@ const TIMELINE = [
 ]
 
 const FAQS = [
-    { q: 'How do you handle bugs that reach production?', a: 'We run automated test coverage on every release. When a bug reaches production, our on-call engineer responds within 2 hours. We document root causes and update our test suite to prevent recurrence. Most issues are caught in staging — not after launch.' },
-    { q: 'How do you manage collaboration across different time zones?', a: 'We operate across US, Canada, Australia, and Europe. Every project runs on weekly sprint reviews with written status updates. If a deadline shifts, you hear it from us first — not after the fact.' },
+    { q: 'How do you handle bugs that reach production?', a: 'We run automated test coverage on every release. When a bug reaches production, our on-call engineer responds within 2 hours. We document root causes and update our test suite to prevent recurrence. Most issues are caught in staging, not after launch.' },
+    { q: 'How do you manage collaboration across different time zones?', a: 'We operate across US, Canada, Australia, and Europe. Every project runs on weekly sprint reviews with written status updates. If a deadline shifts, you hear it from us first, not after the fact.' },
     { q: 'How do you vet your engineering talent?', a: 'Every engineer on your project has shipped production code in your stack before. We review every pull request before it merges. No code written by a junior goes unreviewed.' },
-    { q: 'Have you ever pushed back on a client\'s approach?', a: 'Yes — regularly. We flag technical debt, scope creep, and architectural decisions that will cost more to fix later. Our job is to ship the right product, not just the requested one.' },
+    { q: 'Have you ever pushed back on a client\'s approach?', a: 'Yes, regularly. We flag technical debt, scope creep, and architectural decisions that will cost more to fix later. Our job is to ship the right product, not just the requested one.' },
     { q: 'Who owns the code and IP at the end of a project?', a: 'You do. Full IP transfer is included in every engagement. We retain no rights to your codebase, designs, or data.' },
-    { q: 'Can your team work inside our existing engineering workflow?', a: 'Yes. We adapt to your tools — GitHub, Jira, Linear, Slack, whatever you use. We embed into your workflow, not the other way around.' },
+    { q: 'Can your team work inside our existing engineering workflow?', a: 'Yes. We adapt to your tools, GitHub, Jira, Linear, Slack, whatever you use. We embed into your workflow, not the other way around.' },
     { q: 'Do you have experience with regulated industries?', a: 'Yes. Our codebase and workflows meet SOC 2, GDPR, and HIPAA requirements by default. We deliver audit-ready documentation alongside every release.' },
 ]
 
@@ -32,7 +32,7 @@ const AWARDS = [
 ]
 
 const CARDS = [
-    { icon: '/search.svg', title: 'On-Time Delivery, Tracked Weekly', desc: 'We operate across US, Canada, Australia, and Europe. Every project runs on weekly sprint reviews with written status updates. If a deadline shifts, you hear it from us first — not after the fact.' },
+    { icon: '/search.svg', title: 'On-Time Delivery, Tracked Weekly', desc: 'We operate across US, Canada, Australia, and Europe. Every project runs on weekly sprint reviews with written status updates. If a deadline shifts, you hear it from us first, not after the fact.' },
     { icon: '/varified-user.svg', title: 'Compliance Built In, Not Added Later', desc: 'Our codebase and workflows meet SOC 2, GDPR, and HIPAA requirements by default. We deliver audit-ready documentation alongside every release. No separate compliance review sprint required.' },
     { icon: '/prototype.svg', title: 'AI and Cloud That Ship to Production', desc: 'We have deployed 20+ AI models across healthcare and fintech clients. We modernize legacy systems without rewriting working code. Every architectural decision is weighed against your operating costs.' },
 ]
@@ -40,18 +40,18 @@ const CARDS = [
 function FAQ({ items }: { items: typeof FAQS }) {
     const [open, setOpen] = useState<number | null>(0)
     return (
-        <div className="w-full border-t border-[#d0d0ce]">
+        <div className="border-[#d0d0ce] border-t w-full">
             {items.map((item, i) => (
-                <div key={i} className="border-b border-[#d0d0ce]">
+                <div key={i} className="border-[#d0d0ce] border-b">
                     <button onClick={() => setOpen(open === i ? null : i)}
-                        className="w-full flex justify-between items-start gap-[24px] text-left cursor-pointer py-[28px]">
-                        <span className="font-mont text-[18px] leading-[1.35] font-semibold text-[#111212] pr-[8px]">
-                            <span className="font-inter text-[13px] font-normal text-[#999] mr-[14px] tabular-nums">
+                        className="flex justify-between items-start gap-[24px] py-[28px] w-full text-left cursor-pointer">
+                        <span className="pr-[8px] font-mont font-semibold text-[#111212] text-[18px] leading-[1.35]">
+                            <span className="mr-[14px] font-inter font-normal tabular-nums text-[#999] text-[13px]">
                                 {String(i + 1).padStart(2, '0')}
                             </span>
                             {item.q}
                         </span>
-                        <span className="flex-shrink-0 mt-[4px] w-[24px] h-[24px] flex items-center justify-center transition-transform duration-300"
+                        <span className="flex flex-shrink-0 justify-center items-center mt-[4px] w-[24px] h-[24px] transition-transform duration-300"
                             style={{ transform: open === i ? 'rotate(45deg)' : 'none' }}>
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                                 <path d="M8 1V15M1 8H15" stroke="#111212" strokeWidth="1.5" strokeLinecap="round" />
@@ -59,7 +59,7 @@ function FAQ({ items }: { items: typeof FAQS }) {
                         </span>
                     </button>
                     {open === i && (
-                        <p className="font-inter text-[16px] leading-[1.75] text-[#555] pb-[28px] max-w-[680px]">{item.a}</p>
+                        <p className="pb-[28px] max-w-[680px] font-inter text-[#555] text-[16px] leading-[1.75]">{item.a}</p>
                     )}
                 </div>
             ))}
@@ -72,30 +72,30 @@ export default function AboutPage() {
         <div className="relative bg-[#F3F3F3]">
 
             {/* Hero */}
-            <div className="w-full max-w-[1440px] mx-auto flex md:flex-row flex-col md:items-end md:gap-[64px] gap-[32px] md:px-[36px] px-[16px] md:py-[64px] py-[64px]">
-                <h1 className="text-[24px] font-mont font-semibold w-full max-w-[610px]">About us</h1>
-                <p className="w-full max-w-[694px] text-[40px] font-mont leading-[48px] font-semibold">
-                    Custom software and websites built to spec — no templates, no bloat.
+            <div className="flex md:flex-row flex-col md:items-end gap-[32px] md:gap-[64px] mx-auto px-[16px] md:px-[36px] py-[64px] md:py-[64px] w-full max-w-[1440px]">
+                <h1 className="w-full max-w-[610px] font-mont font-semibold text-[24px]">About us</h1>
+                <p className="w-full max-w-[694px] font-mont font-semibold text-[40px] leading-[48px]">
+                    Custom software and websites built to spec, no templates, no bloat.
                 </p>
             </div>
 
             {/* Banner image */}
-            <section className="w-full max-w-[1440px] md:px-[36px] px-[16px] mx-auto rounded-[16px] overflow-hidden">
+            <section className="mx-auto px-[16px] md:px-[36px] rounded-[16px] w-full max-w-[1440px] overflow-hidden">
                 <Image src="/about-banner.avif" alt="About us" width={1440} height={769}
-                    className="w-full h-auto max-h-[769px] min-h-[256px] rounded-[16px] object-cover" priority />
+                    className="rounded-[16px] w-full h-auto min-h-[256px] max-h-[769px] object-cover" priority />
             </section>
 
-            {/* Awards — desktop static */}
-            <div className="w-full max-w-[1440px] mx-auto md:flex hidden items-center justify-around gap-[48px] flex-wrap py-[24px] md:px-[36px] border-t border-b border-[#ebebeb]">
+            {/* Awards, desktop static */}
+            <div className="hidden md:flex flex-wrap justify-around items-center gap-[48px] mx-auto md:px-[36px] py-[24px] border-[#ebebeb] border-t border-b w-full max-w-[1440px]">
                 {AWARDS.map(a => (
                     <Image key={a.alt} src={a.src} alt={a.alt} width={100} height={20}
-                        className="w-fit opacity-50 hover:opacity-100 transition-opacity duration-200" />
+                        className="opacity-50 hover:opacity-100 w-fit transition-opacity duration-200" />
                 ))}
             </div>
 
-            {/* Awards — mobile marquee */}
-            <div className="w-full overflow-hidden relative md:hidden py-[20px]">
-                <div className="flex w-max gap-[40px] animate-marquee">
+            {/* Awards, mobile marquee */}
+            <div className="md:hidden relative py-[20px] w-full overflow-hidden">
+                <div className="flex gap-[40px] w-max animate-marquee">
                     {[...AWARDS, ...AWARDS].map((a, i) => (
                         <Image key={i} src={a.src} alt={a.alt} width={124} height={26}
                             className="w-fit h-[24px]" style={{ width: 'auto', height: '24px' }} />
@@ -104,41 +104,41 @@ export default function AboutPage() {
             </div>
 
             {/* Who We Are */}
-            <div className="w-full max-w-[1440px] mx-auto flex md:flex-row flex-col md:gap-[96px] gap-[32px] md:px-[36px] px-[16px] md:py-[96px] py-[64px]">
-                <h2 className="text-[40px] font-mont font-semibold leading-[48px] w-full">Who We Are</h2>
-                <div className="w-full flex flex-col gap-[16px] text-[#111212] font-inter text-[16px] font-normal leading-[24px]">
-                    <p className="text-[20px] font-inter leading-[28px] font-medium"></p>
+            <div className="flex md:flex-row flex-col gap-[32px] md:gap-[96px] mx-auto px-[16px] md:px-[36px] py-[64px] md:py-[96px] w-full max-w-[1440px]">
+                <h2 className="w-full font-mont font-semibold text-[40px] leading-[48px]">Who We Are</h2>
+                <div className="flex flex-col gap-[16px] w-full font-inter font-normal text-[#111212] text-[16px] leading-[24px]">
+                    <p className="font-inter font-medium text-[20px] leading-[28px]"></p>
                     <p><strong>Since 2012, we have shipped over 50 products for clients across healthcare, fintech, and eCommerce.</strong></p>
-                    <p>We hold a 4.9-star rating on Clutch based on verified client reviews. Clients like PetScreening and Rodeo chose us to build and scale their core product — not just their marketing site.</p>
+                    <p>We hold a 4.9-star rating on Clutch based on verified client reviews. Clients like PetScreening and Rodeo chose us to build and scale their core product, not just their marketing site.</p>
                     <p>We keep teams small and senior. Your project is handled by the same engineers who scoped it, not handed off to juniors after kickoff.</p>
                 </div>
             </div>
 
             {/* Value cards */}
-            <div className="w-full max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-[20px] py-[20px] md:px-[36px] px-[16px]">
+            <div className="gap-[20px] grid grid-cols-1 md:grid-cols-3 mx-auto px-[16px] md:px-[36px] py-[20px] w-full max-w-[1440px]">
                 {CARDS.map(c => (
-                    <div key={c.title} className="group flex flex-col gap-[20px] items-start px-[24px] py-[24px] bg-white rounded-[16px] border border-transparent hover:border-[#e8eeff] hover:bg-[#f9f9ff] transition-all duration-200">
+                    <div key={c.title} className="group flex flex-col items-start gap-[20px] bg-white hover:bg-[#f9f9ff] px-[24px] py-[24px] border border-transparent hover:border-[#e8eeff] rounded-[16px] transition-all duration-200">
                         <Image src={c.icon} alt={c.title} width={40} height={40}
                             className="group-hover:scale-105 transition-transform duration-200" style={{ width: '40px', height: 'auto' }} />
                         <div className="flex flex-col gap-[14px]">
-                            <h3 className="text-black font-mont text-[24px] font-semibold leading-normal">{c.title}</h3>
-                            <p className="text-[#929296] font-inter text-[16px] font-normal leading-[24px]">{c.desc}</p>
+                            <h3 className="font-mont font-semibold text-[24px] text-black leading-normal">{c.title}</h3>
+                            <p className="font-inter font-normal text-[#929296] text-[16px] leading-[24px]">{c.desc}</p>
                         </div>
                     </div>
                 ))}
             </div>
 
             {/* Stats ticker */}
-            <div className="w-[100%] max-w-[1440px] mx-auto md:px-[36px] px-[16px] py-[40px]">
-                <div className="w-[100%] px-[28px] py-[24px] bg-[#111212] rounded-[16px] flex sm:flex-row flex-col sm:items-center gap-[20px]">
+            <div className="mx-auto px-[16px] md:px-[36px] py-[40px] w-[100%] max-w-[1440px]">
+                <div className="flex sm:flex-row flex-col sm:items-center gap-[20px] bg-[#111212] px-[28px] py-[24px] rounded-[16px] w-[100%]">
 
-                    <p className="flex-shrink-0 text-white text-[20px] leading-[24px] font-mont font-[700]">
+                    <p className="flex-shrink-0 font-[700] font-mont text-[20px] text-white leading-[24px]">
                         Why Work with
                     </p>
 
-                    <div className="hidden sm:block flex-shrink-0 w-[1px] h-[32px] bg-[#333]" />
+                    <div className="hidden sm:block flex-shrink-0 bg-[#333] w-[1px] h-[32px]" />
 
-                    <div className="overflow-x-auto no-scrollbar flex-1 text-[#929296] font-inter text-[15px] leading-[24px]">
+                    <div className="flex-1 overflow-x-auto font-inter text-[#929296] text-[15px] leading-[24px] no-scrollbar">
                         <p
                             style={{
                                 display: "flex",
@@ -203,9 +203,9 @@ export default function AboutPage() {
                 </div>
             </div>
             {/* Culture */}
-            <div className="w-full max-w-[1440px] mx-auto flex md:flex-row flex-col md:gap-[96px] gap-[32px] md:px-[36px] px-[16px] md:py-[96px] py-[64px]">
-                <h2 className="text-[40px] font-mont font-semibold leading-[48px] w-full">Our Culture</h2>
-                <div className="w-full flex flex-col gap-[16px] text-[#111212] font-inter text-[16px] font-normal leading-[24px]">
+            <div className="flex md:flex-row flex-col gap-[32px] md:gap-[96px] mx-auto px-[16px] md:px-[36px] py-[64px] md:py-[96px] w-full max-w-[1440px]">
+                <h2 className="w-full font-mont font-semibold text-[40px] leading-[48px]">Our Culture</h2>
+                <div className="flex flex-col gap-[16px] w-full font-inter font-normal text-[#111212] text-[16px] leading-[24px]">
                     <p>We do not hire generalists and hope for the best. Every engineer on your project has shipped production code in your stack before.</p>
                     <p>We review every pull request before it merges. No code written by a junior goes unreviewed.</p>
                     <p>Our error rate across client deployments is under 1%. That is the policy, not a goal.</p>
@@ -213,24 +213,24 @@ export default function AboutPage() {
             </div>
 
             {/* Second banner */}
-            <section className="w-full max-w-[1440px] md:px-[36px] px-[16px] mx-auto rounded-[16px] overflow-hidden md:pb-[96px] pb-[48px]">
+            <section className="mx-auto px-[16px] md:px-[36px] pb-[48px] md:pb-[96px] rounded-[16px] w-full max-w-[1440px] overflow-hidden">
                 <Image src="/about-ban.avif" alt="Our team" width={1440} height={769}
-                    className="w-full h-auto max-h-[769px] min-h-[256px] rounded-[16px] object-cover" />
+                    className="rounded-[16px] w-full h-auto min-h-[256px] max-h-[769px] object-cover" />
             </section>
 
             {/* Timeline */}
-            {/* Timeline — vertical alternating */}
-        <section className="w-full max-w-[1440px] mx-auto md:px-[36px] px-[16px] mb-[96px] pt-[40px]">
-  <h3 className="text-[40px] font-mont font-semibold leading-[48px] text-center mb-[80px]">
+            {/* Timeline, vertical alternating */}
+        <section className="mx-auto mb-[96px] px-[16px] md:px-[36px] pt-[40px] w-full max-w-[1440px]">
+  <h3 className="mb-[80px] font-mont font-semibold text-[40px] text-center leading-[48px]">
     Our history
   </h3>
 
   <div className="relative">
     {/* Center vertical line (Desktop) */}
-    <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-[#313131] -translate-x-1/2 hidden md:block" />
+    <div className="hidden md:block top-0 bottom-0 left-1/2 absolute bg-[#313131] w-[2px] -translate-x-1/2" />
     
     {/* Left vertical line (Mobile) */}
-    <div className="absolute left-[20px] top-0 bottom-0 w-[2px] bg-[#313131] md:hidden" />
+    <div className="md:hidden top-0 bottom-0 left-[20px] absolute bg-[#313131] w-[2px]" />
 
     <div className="flex flex-col">
       {TIMELINE.map((t, i) => {
@@ -238,34 +238,34 @@ export default function AboutPage() {
         return (
           <div key={t.year} className="relative mb-[40px] md:mb-0">
             {/* DESKTOP LAYOUT */}
-            <div className="hidden md:grid grid-cols-[1fr_64px_1fr] items-center w-full">
+            <div className="hidden items-center md:grid grid-cols-[1fr_64px_1fr] w-full">
               
               {/* Left Side */}
               <div className={`flex justify-end pr-[48px] ${!isLeft ? 'invisible' : ''}`}>
-                <div className="max-w-[420px] w-full rounded-[16px] p-[28px] bg-[#111212] shadow-lg">
-                  <span className="text-[12px] font-inter font-semibold uppercase tracking-[0.15em] text-white/40 block mb-[10px]">{t.year}</span>
-                  <p className="text-[18px] font-mont font-semibold text-white leading-[1.4]">{t.text}</p>
+                <div className="bg-[#111212] shadow-lg p-[28px] rounded-[16px] w-full max-w-[420px]">
+                  <span className="block mb-[10px] font-inter font-semibold text-[12px] text-white/40 uppercase tracking-[0.15em]">{t.year}</span>
+                  <p className="font-mont font-semibold text-[18px] text-white leading-[1.4]">{t.text}</p>
                 </div>
               </div>
 
               {/* Center Dot */}
-              <div className="flex flex-col items-center justify-center relative z-10">
-                {/* <div className="w-[18px] h-[18px] rounded-full bg-[#111212] border-[3px] border-[#313131] ring-4 ring-[#f3f3f3]" /> */}
-                <span className="text-[13px] font-inter text-[#929296] bg-[#F3F3F3] mt-[8px] absolute top-[24px] whitespace-nowrap">{t.year}</span>
+              <div className="z-10 relative flex flex-col justify-center items-center">
+                {/* <div className="bg-[#111212] border-[#313131] border-[3px] rounded-full ring-[#f3f3f3] ring-4 w-[18px] h-[18px]" /> */}
+                <span className="top-[24px] absolute bg-[#F3F3F3] mt-[8px] font-inter text-[#929296] text-[13px] whitespace-nowrap">{t.year}</span>
               </div>
 
               {/* Right Side */}
               <div className={`flex justify-start pl-[48px] ${isLeft ? 'invisible' : ''}`}>
-                <div className="max-w-[420px] w-full rounded-[16px] p-[28px] bg-[#f3f3f3] shadow-lg">
-                  <span className="text-[12px] font-inter font-semibold uppercase tracking-[0.15em] text-[#929296] block mb-[10px]">{t.year}</span>
-                  <p className="text-[18px] font-mont font-semibold text-[#111212] leading-[1.4]">{t.text}</p>
+                <div className="bg-[#f3f3f3] shadow-lg p-[28px] rounded-[16px] w-full max-w-[420px]">
+                  <span className="block mb-[10px] font-inter font-semibold text-[#929296] text-[12px] uppercase tracking-[0.15em]">{t.year}</span>
+                  <p className="font-mont font-semibold text-[#111212] text-[18px] leading-[1.4]">{t.text}</p>
                 </div>
               </div>
             </div>
 
             {/* MOBILE LAYOUT */}
-            <div className="md:hidden flex items-start pl-[48px] relative">
-              <div className="absolute left-[12px] top-[10px] w-[18px] h-[18px] rounded-full bg-[#111212] border-[3px] border-[#313131] ring-4 ring-white z-10" />
+            <div className="md:hidden relative flex items-start pl-[48px]">
+              <div className="top-[10px] left-[12px] z-10 absolute bg-[#111212] border-[#313131] border-[3px] rounded-full ring-4 ring-white w-[18px] h-[18px]" />
               <div className={`w-full rounded-[16px] p-[24px] ${isLeft ? 'bg-[#111212]' : 'bg-[#f3f3f3]'}`}>
                 <span className={`text-[12px] font-inter font-semibold uppercase tracking-[0.15em] block mb-[8px] ${isLeft ? 'text-white/40' : 'text-[#929296]'}`}>{t.year}</span>
                 <p className={`text-[16px] font-mont font-semibold leading-[1.4] ${isLeft ? 'text-white' : 'text-[#111212]'}`}>{t.text}</p>
@@ -279,9 +279,9 @@ export default function AboutPage() {
 </section>
 
             {/* FAQ */}
-            <section className="w-full flex items-center justify-center">
-                <div className="w-full max-w-[1440px] flex flex-col items-center gap-[40px] lg:pb-[96px] pb-[64px] lg:px-[36px] px-[16px]">
-                    <h2 className="text-black font-mont lg:text-[64px] text-[32px] lg:font-bold font-semibold lg:leading-[64px] leading-[38px] text-start w-full">
+            <section className="flex justify-center items-center w-full">
+                <div className="flex flex-col items-center gap-[40px] px-[16px] lg:px-[36px] pb-[64px] lg:pb-[96px] w-full max-w-[1440px]">
+                    <h2 className="w-full font-mont font-semibold lg:font-bold text-[32px] text-black lg:text-[64px] text-start leading-[38px] lg:leading-[64px]">
                         Frequently asked <br /> questions
                     </h2>
                     <FAQ items={FAQS} />
@@ -289,15 +289,15 @@ export default function AboutPage() {
             </section>
 
             {/* CTA */}
-            <section className="w-full flex items-center justify-center p-[20px]">
-                <div className="w-full max-w-[1400px] flex md:flex-row flex-col justify-between md:gap-[96px] gap-[8px] rounded-[24px] md:px-[48px] px-[16px] md:py-[40px] py-[20px] bg-white border border-[#e5e5e5]">
-                    <h3 className="lg:text-[56px] text-[30px] lg:leading-[64px] font-semibold font-mont text-[#111212] max-w-[642px]">
+            <section className="flex justify-center items-center p-[20px] w-full">
+                <div className="flex md:flex-row flex-col justify-between gap-[8px] md:gap-[96px] bg-white px-[16px] md:px-[48px] py-[20px] md:py-[40px] border border-[#e5e5e5] rounded-[24px] w-full max-w-[1400px]">
+                    <h3 className="max-w-[642px] font-mont font-semibold text-[#111212] text-[30px] lg:text-[56px] lg:leading-[64px]">
                         Let&apos;s Build Your Next Big Thing
                     </h3>
-                    <div className="max-w-[354px] w-full flex items-start flex-col md:gap-[20px] gap-[40px]">
-                        <p className="text-[16px] leading-[24px] text-[#929296] font-inter">Your idea, our brains — we&apos;ll send you a tailored game plan in 48h.</p>
+                    <div className="flex flex-col items-start gap-[40px] md:gap-[20px] w-full max-w-[354px]">
+                        <p className="font-inter text-[#929296] text-[16px] leading-[24px]">Your idea, our brains, we&apos;ll send you a tailored game plan in 48h.</p>
                         <Link href="/contact"
-                            className="flex items-center justify-center px-[24px] pt-[14px] pb-[12px] bg-black text-white font-mont text-[14px] font-semibold rounded-full hover:scale-105 transition-all duration-300">
+                            className="flex justify-center items-center bg-black px-[24px] pt-[14px] pb-[12px] rounded-full font-mont font-semibold text-[14px] text-white hover:scale-105 transition-all duration-300">
                             Book a call
                         </Link>
                     </div>

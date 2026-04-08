@@ -295,7 +295,7 @@ export default function PostPage({ params }: PostPageProps) {
           <div className={cn('flex', 'flex-col', 'gap-[10px]')}>
             <p className={cn('text-[11px]', 'font-inter', 'font-semibold', 'text-white/40', 'uppercase', 'tracking-[0.15em]')}>Start your project</p>
             <p className={cn('text-[26px]', 'md:text-[34px]', 'font-mont', 'font-bold', 'text-white', 'leading-[1.15]', 'max-w-[520px]')}>Ready to build? Let&apos;s scope your project.</p>
-            <p className={cn('text-[15px]', 'font-inter', 'text-white/50', 'leading-[1.65]', 'max-w-[400px]')}>Get a tailored breakdown in 48 hours — no fluff, no commitment.</p>
+            <p className={cn('text-[15px]', 'font-inter', 'text-white/50', 'leading-[1.65]', 'max-w-[400px]')}>Get a tailored breakdown in 48 hours, no fluff, no commitment.</p>
           </div>
           <Link href="/contact"
             className={cn('shrink-0', 'inline-flex', 'items-center', 'gap-[10px]', 'bg-white', 'text-black', 'text-[14px]', 'font-mont', 'font-semibold', 'px-[28px]', 'py-[14px]', 'rounded-[10px]', 'hover:bg-white/90', 'transition-all', 'duration-200', 'whitespace-nowrap')}>

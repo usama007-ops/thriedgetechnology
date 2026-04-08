@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const job = await getJob(slug).catch(() => null)
   if (!job) return { title: 'Careers | Thrill Edge Technologies' }
-  const title = `${job.title.rendered} | Careers — Thrill Edge Technologies`
+  const title = `${job.title.rendered} | Careers, Thrill Edge Technologies`
   return {
     title,
     description: `Apply for the ${job.title.rendered} role at Thrill Edge Technologies. ${job.acf?.position ? job.acf.position + ' position.' : ''}`,

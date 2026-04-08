@@ -17,11 +17,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!work) return { title: 'Work | Thrill Edge Technologies' }
 
   const title = work.title.rendered.replace(/<[^>]*>/g, '')
-  const description = work.acf?.long_title ?? `${title} — a project by Thrill Edge Technologies.`
+  const description = work.acf?.long_title ?? `${title}, a project by Thrill Edge Technologies.`
   const image = work._embedded?.['wp:featuredmedia']?.[0]?.source_url
 
   return {
-    title: `${title} | Work — Thrill Edge Technologies`,
+    title: `${title} | Work, Thrill Edge Technologies`,
     description,
     alternates: { canonical: `https://thrilledge.com/work/${slug}` },
     openGraph: {

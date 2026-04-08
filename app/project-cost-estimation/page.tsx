@@ -303,7 +303,7 @@ export default function ProjectCostEstimation() {
               Estimate Your<br />Project Cost
             </h1>
             <p className="max-w-lg font-inter text-[16px] text-white/50 leading-[1.7]">
-              Answer 3 quick questions and receive a free, tailored estimate from our team — usually within 24 hours.
+              Answer 3 quick questions and receive a free, tailored estimate from our team, usually within 24 hours.
             </p>
           </div>
           <div className="flex flex-row md:flex-col flex-wrap gap-4 shrink-0">
@@ -325,12 +325,12 @@ export default function ProjectCostEstimation() {
       <section className="mx-auto px-4 md:px-9 py-16 w-full max-w-360">
         <div className="flex lg:flex-row flex-col items-start gap-12 lg:gap-16">
 
-          {/* Left — sticky summary */}
+          {/* Left, sticky summary */}
           <div className="lg:top-24 lg:sticky w-full lg:w-72 shrink-0">
             <SummaryPanel step={step} form={form} />
           </div>
 
-          {/* Right — form card */}
+          {/* Right, form card */}
           <div className="flex-1 min-w-0">
             <form onSubmit={handleSubmit}>
 
@@ -344,7 +344,7 @@ export default function ProjectCostEstimation() {
                       What are you building?
                     </h2>
                     <p className="font-inter text-[#929296] text-[15px]">
-                      Select all that apply — this is the primary cost driver.
+                      Select all that apply, this is the primary cost driver.
                     </p>
                   </div>
 
@@ -485,7 +485,7 @@ export default function ProjectCostEstimation() {
                   <div className="gap-5 grid grid-cols-1 md:grid-cols-2">
                     <Field label="Full Name" id="name" required value={form.name} onChange={v => set('name', v)} placeholder="Jane Smith" />
                     <Field label="Work Email" id="email" type="email" required value={form.email} onChange={v => set('email', v)} placeholder="jane@company.com" />
-                    <Field label="Phone" id="phone" type="tel" value={form.phone} onChange={v => set('phone', v)} placeholder="Optional — we'll reach out by email first" />
+                    <Field label="Phone" id="phone" type="tel" value={form.phone} onChange={v => set('phone', v)} placeholder="Optional, we'll reach out by email first" />
                     <Field label="Company / Startup" id="company" value={form.company} onChange={v => set('company', v)} placeholder="Optional" />
                   </div>
 

@@ -70,7 +70,7 @@ export default function PrivacyPolicy() {
             <div className={cn('gap-4', 'grid', 'sm:grid-cols-3')}>
               {[
                 { label: "Personal Information", desc: "Name, email, phone number, and company details submitted via forms or project inquiries." },
-                { label: "Usage Data", desc: "IP address, browser type, pages visited, time on page, and referring URLs — collected automatically." },
+                { label: "Usage Data", desc: "IP address, browser type, pages visited, time on page, and referring URLs, collected automatically." },
                 { label: "Cookies", desc: "Small data files stored on your device to improve browsing experience and analyze site traffic." },
               ].map((item) => (
                 <div key={item.label} className={cn('bg-[#fafafa]', 'p-5', 'border', 'border-border', 'rounded-xl')}>

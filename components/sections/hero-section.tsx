@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
+import { cn } from "../../lib/utils";
 
 const slides = [
   "/banner-v2.avif",
@@ -24,63 +25,63 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <div className="w-full xl:h-[calc(100vh-87px)]">
-      <div className="relative h-full w-full mx-auto flex xl:flex-row flex-col items-center justify-center gap-[32px] bg-[#F3F3F3] md:px-[64px] px-[16px] md:py-[32px] py-[32px]">
+    <div className={cn('w-full', 'xl:h-[calc(100vh-87px)]')}>
+      <div className={cn('relative', 'flex', 'xl:flex-row', 'flex-col', 'justify-center', 'items-center', 'gap-[32px]', 'bg-[#F3F3F3]', 'mx-auto', 'px-[16px]', 'md:px-[64px]', 'py-[32px]', 'md:py-[32px]', 'w-full', 'h-full')}>
 
-        <div className="w-full max-w-[1440px] h-fit flex lg:flex-row flex-col xl:items-start items-center xl:gap-[30px] gap-[36px]">
+        <div className={cn('flex', 'lg:flex-row', 'flex-col', 'items-center', 'xl:items-start', 'gap-[36px]', 'xl:gap-[30px]', 'w-full', 'max-w-[1440px]', 'h-fit')}>
 
           {/* LEFT CONTENT */}
-          <div className="w-full xl:h-full h-fit inset-0 flex flex-col items-start justify-center xl:gap-[40px] gap-[36px]">
-            <div className="flex flex-col md:items-start items-start gap-[24px]">
+          <div className={cn('inset-0', 'flex', 'flex-col', 'justify-center', 'items-start', 'gap-[36px]', 'xl:gap-[40px]', 'w-full', 'h-fit', 'xl:h-full')}>
+            <div className={cn('flex', 'flex-col', 'items-start', 'md:items-start', 'gap-[24px]')}>
 
-              <p className="animate-fade-in-up text-[#111212] text-start font-mont sm:text-[14px] text-[12px] font-semibold tracking-[0.2em] uppercase">
+              <p className={cn('font-mont', 'font-semibold', 'text-[#111212]', 'text-[12px]', 'sm:text-[14px]', 'text-start', 'uppercase', 'tracking-[0.2em]', 'animate-fade-in-up')}>
                 Your Last Agency
               </p>
 
-              <h1 className="animate-fade-in-up delay-100 max-w-[636px] text-[#111212] text-start font-mont lg:text-[72px] md:text-[54px] text-[33px] font-[600] lg:leading-[80px] md:leading-[54px] leading-[33px]">
+              <h1 className={cn('max-w-[636px]', 'font-[600]', 'font-mont', 'text-[#111212]', 'text-[33px]', 'md:text-[54px]', 'lg:text-[72px]', 'text-start', 'leading-[33px]', 'md:leading-[54px]', 'lg:leading-[80px]', 'animate-fade-in-up', 'delay-100')}>
                 We Ship Software That Actually{" "}
-                <span className="relative italic">
+                <span className={cn('relative', 'italic')}>
                   Works
-                  <span className="absolute -bottom-1 left-0 w-full h-[4px] bg-[#111212] rounded-full"></span>
+                  <span className={cn('-bottom-1', 'left-0', 'absolute', 'bg-[#111212]', 'rounded-full', 'w-full', 'h-[4px]')}></span>
                 </span>.
               </h1>
 
-              <p className="animate-fade-in-up delay-200 max-w-[520px] text-[#111212] text-start font-inter sm:text-[16px] text-[14px] leading-[1.6]">
+              <p className={cn('max-w-[520px]', 'font-inter', 'text-[#111212]', 'text-[14px]', 'sm:text-[16px]', 'text-start', 'leading-[1.6]', 'animate-fade-in-up', 'delay-200')}>
                 From zero to launched MVP in weeksnot months. Enterprise-grade web,
                 mobile, and AI solutions for teams that refuse to settle.
               </p>
             </div>
 
-            <div className="animate-fade-in-up delay-300 flex flex-col gap-[24px]">
+            <div className={cn('flex', 'flex-col', 'gap-[24px]', 'animate-fade-in-up', 'delay-300')}>
               
-              <div className="flex flex-wrap items-center gap-[20px]">
-                <Link className="flex items-center justify-center gap-1 px-[24px] pt-[14px] pb-[12px] font-mont text-[14px] font-semibold cursor-pointer hover:scale-105 transition-all duration-300 rounded-full !bg-black !text-white"
+              <div className={cn('flex', 'flex-wrap', 'items-center', 'gap-[20px]')}>
+                <Link className={cn('flex', 'justify-center', 'items-center', 'gap-1', '!bg-black', 'px-[24px]', 'pt-[14px]', 'pb-[12px]', 'rounded-full', 'font-mont', 'font-semibold', '!text-white', 'text-[14px]', 'hover:scale-105', 'transition-all', 'duration-300', 'cursor-pointer')}
                   href={"/contact"}>
                   Book a Free Strategy Call
                 </Link>
 
-                <Link className="flex items-center justify-center gap-1 px-[24px] pt-[14px] pb-[12px] font-mont text-[14px] font-semibold cursor-pointer hover:scale-105 transition-all duration-300 rounded-full border border-[#111212]"
+                <Link className={cn('flex', 'justify-center', 'items-center', 'gap-1', 'px-[24px]', 'pt-[14px]', 'pb-[12px]', 'border', 'border-[#111212]', 'rounded-full', 'font-mont', 'font-semibold', 'text-[14px]', 'hover:scale-105', 'transition-all', 'duration-300', 'cursor-pointer')}
                   href={"/work"}>
                   See Our Work
                 </Link>
               </div>
 
-              <div className="flex flex-wrap items-center gap-6 sm:gap-8">
-                <div className="flex items-center gap-2">
-                  <span className="text-lg font-bold text-[#111212] font-mont">4.9★</span>
-                  <span className="text-sm text-[#111212] font-inter opacity-60">Clutch</span>
+              <div className={cn('flex', 'flex-wrap', 'items-center', 'gap-6', 'sm:gap-8')}>
+                <div className={cn('flex', 'items-center', 'gap-2')}>
+                  <span className={cn('font-mont', 'font-bold', 'text-[#111212]', 'text-lg')}>4.9★</span>
+                  <span className={cn('opacity-60', 'font-inter', 'text-[#111212]', 'text-sm')}>Clutch</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-lg font-bold text-[#111212] font-mont">5.0★</span>
-                  <span className="text-sm text-[#111212] font-inter opacity-60">Google</span>
+                <div className={cn('flex', 'items-center', 'gap-2')}>
+                  <span className={cn('font-mont', 'font-bold', 'text-[#111212]', 'text-lg')}>5.0★</span>
+                  <span className={cn('opacity-60', 'font-inter', 'text-[#111212]', 'text-sm')}>Google</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-lg font-bold text-[#111212] font-mont">15+</span>
-                  <span className="text-sm text-[#111212] font-inter opacity-60">Years</span>
+                <div className={cn('flex', 'items-center', 'gap-2')}>
+                  <span className={cn('font-mont', 'font-bold', 'text-[#111212]', 'text-lg')}>15+</span>
+                  <span className={cn('opacity-60', 'font-inter', 'text-[#111212]', 'text-sm')}>Years</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-lg font-bold text-[#111212] font-mont">50+</span>
-                  <span className="text-sm text-[#111212] font-inter opacity-60">Products Shipped</span>
+                <div className={cn('flex', 'items-center', 'gap-2')}>
+                  <span className={cn('font-mont', 'font-bold', 'text-[#111212]', 'text-lg')}>50+</span>
+                  <span className={cn('opacity-60', 'font-inter', 'text-[#111212]', 'text-sm')}>Products Shipped</span>
                 </div>
               </div>
 
@@ -90,16 +91,16 @@ export default function HeroSection() {
           {/* RIGHT SLIDER */}
           <div className="w-full">
 
-            <section className="w-full max-w-[1400px] mx-auto flex flex-col gap-3 select-none">
+            <section className={cn('flex', 'flex-col', 'gap-3', 'mx-auto', 'w-full', 'max-w-[1400px]', 'select-none')}>
               
-              <div className="overflow-hidden w-full cursor-grab active:cursor-grabbing">
+              <div className={cn('w-full', 'overflow-hidden', 'cursor-grab', 'active:cursor-grabbing')}>
                 <div
-                  className="flex transition-transform duration-700 ease-in-out"
+                  className={cn('flex', 'transition-transform', 'duration-700', 'ease-in-out')}
                   style={{ transform: `translateX(-${current * 100}%)` }}
                 >
                   {slides.map((img, i) => (
                     <div key={i} className="min-w-full">
-                      <div className="relative h-[250px] sm:h-[400px] lg:h-[420px] rounded-[14px] overflow-hidden">
+                      <div className={cn('relative', 'rounded-[14px]', 'h-[250px]', 'sm:h-[400px]', 'lg:h-[420px]', 'overflow-hidden')}>
                         <Image
                           fill
                           src={img}
@@ -116,7 +117,7 @@ export default function HeroSection() {
               </div>
 
               {/* DOTS */}
-              <div className="flex gap-2 rounded-full p-1 mx-auto bg-gray-100">
+              <div className={cn('flex', 'gap-2', 'bg-gray-100', 'mx-auto', 'p-1', 'rounded-full')}>
                 {slides.map((_, i) => (
                   <button
                     key={i}

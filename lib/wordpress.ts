@@ -36,7 +36,7 @@ async function wpFetch(url: string, options: RequestOptions = {}): Promise<Respo
       })
       clearTimeout(timer)
 
-      // Don't retry client errors (4xx) — they won't change
+      // Don't retry client errors (4xx), they won't change
       if (response.status >= 400 && response.status < 500) {
         throw new Error(`${response.status}: ${response.statusText}`)
       }
@@ -60,7 +60,7 @@ async function wpFetch(url: string, options: RequestOptions = {}): Promise<Respo
       const backoff = 300 * Math.pow(2, attempt) // 300ms, 600ms, 1200ms
       if (typeof window === 'undefined') {
         console.warn(
-          `[WordPress API] ${isAbort ? 'Timeout' : 'Error'} on attempt ${attempt + 1}/${MAX_RETRIES} — ${url} — retrying in ${backoff}ms`
+          `[WordPress API] ${isAbort ? 'Timeout' : 'Error'} on attempt ${attempt + 1}/${MAX_RETRIES}, ${url}, retrying in ${backoff}ms`
         )
       }
       await sleep(backoff)
@@ -69,7 +69,7 @@ async function wpFetch(url: string, options: RequestOptions = {}): Promise<Respo
 
   if (typeof window === 'undefined') {
     const msg = lastError instanceof Error ? lastError.message : String(lastError)
-    console.error(`[WordPress API Error] ${url} — ${msg}`)
+    console.error(`[WordPress API Error] ${url}, ${msg}`)
   }
   throw lastError
 }

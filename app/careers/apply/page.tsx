@@ -81,7 +81,7 @@ function ApplyForm() {
 
         {/* CV upload */}
         <div className="flex flex-col gap-[8px]">
-          <label className="font-inter text-[#111212] text-[14px]">CV / Resume <span className="text-[#929296]">(PDF, DOC — max 5MB)</span></label>
+          <label className="font-inter text-[#111212] text-[14px]">CV / Resume <span className="text-[#929296]">(PDF, DOC, max 5MB)</span></label>
           <div
             onClick={() => fileRef.current?.click()}
             className="flex flex-col items-center gap-[8px] px-[24px] py-[32px] border-[#CCC] border-2 hover:border-[#111212] border-dashed rounded-[12px] w-full transition-colors duration-200 cursor-pointer">
