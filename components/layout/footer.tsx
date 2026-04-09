@@ -10,8 +10,13 @@ const currentYear = new Date().getFullYear()
       <div className={cn('max-w-[1440px]', 'mx-auto', 'flex', 'flex-col', 'items-center', 'md:gap-12', 'gap-8', 'md:px-9', 'px-4', 'pt-12', 'pb-5')}>
 
         {/* Links Grid */}
-        <div className={cn('w-full', 'flex', 'sm:flex-row', 'flex-col', 'flex-wrap', 'justify-between', 'gap-5')}>
-
+        <div className={cn('w-full', 'grid', 'md:grid-cols-3', 'lg:grid-cols-5', 'justify-between', 'gap-5')}>
+            {/* Socials */}
+          <div className={cn('flex', 'flex-col', 'gap-4' , 'text-white','mr-5','mt-[-15px]')}>
+            <Image src="/Thrill Edge.png" width={250} height={70} alt="logo" ></Image>
+            <p className="text-white flex-col flex">Thrill Edge Technologies delivers innovative web, mobile, and AI solutions, transforming ideas into scalable, high-impact software products.</p>
+          </div>
+        
           {/* Company */}
           <div className={cn('flex', 'flex-col', 'gap-4')}>
             <p className={cn('text-sm', 'text-[#929296]')}>Company</p>
@@ -56,7 +61,7 @@ const currentYear = new Date().getFullYear()
           </div>
 
           {/* Technologies */}
-          <div className={cn('flex', 'flex-col', 'gap-4')}>
+          <div className={cn('flex', 'flex-col', 'gap-4','ml-[-30px]')}>
             <p className={cn('text-sm', 'text-[#929296]')}>Technologies</p>
             <ul className={cn('flex', 'flex-col', 'gap-2', 'text-white')}>
               <li><Link href="/technologies/machine-learning">AI & Machine Learning</Link></li>
@@ -64,33 +69,6 @@ const currentYear = new Date().getFullYear()
               <li><Link href="/technologies/backend-development">Backend Development</Link></li>
               <li><Link href="/technologies/mobile-development">Mobile Development</Link></li>
               <li><Link href="/technologies/databases">Databases</Link></li>
-            </ul>
-          </div>
-
-          {/* Socials */}
-          <div className={cn('flex', 'flex-col', 'gap-4')}>
-            <p className={cn('text-sm', 'text-[#929296]')}>Socials</p>
-            <ul className={cn('flex', 'flex-col', 'gap-2', 'text-white')}>
-              <li>
-                <Link href="#" target="_blank">
-                  Facebook
-                </Link>
-              </li>
-              <li>
-                <Link href="#" target="_blank">
-                  Instagram
-                </Link>
-              </li>
-              <li>
-                <Link href="#" target="_blank">
-                  Twitter
-                </Link>
-              </li>
-              <li>
-                <Link href="#" target="_blank">
-                  LinkedIn
-                </Link>
-              </li>
             </ul>
           </div>
         </div>
