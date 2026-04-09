@@ -90,7 +90,9 @@ export default function HeroSection() {
 
           {/* RIGHT SLIDER */}
           <div className="w-full">
+
             <section className={cn('flex', 'flex-col', 'gap-3', 'mx-auto', 'w-full', 'max-w-[1400px]', 'select-none')}>
+              
               <div className={cn('w-full', 'overflow-hidden', 'cursor-grab', 'active:cursor-grabbing')}>
                 <div
                   className={cn('flex', 'transition-transform', 'duration-700', 'ease-in-out')}

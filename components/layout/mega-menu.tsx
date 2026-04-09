@@ -12,11 +12,10 @@ import {
   ChevronDown, Users, Star, HelpCircle, Briefcase, BookOpen, Mail,
   Brain, Globe, Palette, Smartphone, Rocket, Cloud,
   Cpu, PanelsTopLeft, Server, Database, GitBranch,
-  Heart, GraduationCap, Building2, Blocks, Landmark, Truck, 
+  Heart, GraduationCap, Building2, Blocks, Landmark, Truck,
   type LucideIcon,
 } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
-import { cn } from "../../lib/utils";
 
 // ─── types ────────────────────────────────────────────────────────────────────
 interface MenuItem {
@@ -98,14 +97,14 @@ const badgeLogos = [
 
 // ─── lucide icon renderer ─────────────────────────────────────────────────────
 function MenuIcon({ icon: Icon }: { icon: LucideIcon }) {
-  return <Icon size={24} className={cn('text-[#111212]', 'shrink-0')} />
+  return <Icon size={24} className="shrink-0 text-[#111212]" />
 }
 
 // ─── badge with image fallback ────────────────────────────────────────────────
 function BadgeLogo({ src, alt }: { src: string; alt: string }) {
   const [err, setErr] = useState(false)
   if (err) {
-    return <span className={cn('font-bold', 'text-[#111212]', 'text-xs')}>{alt}</span>
+    return <span className="text-xs font-bold text-[#111212]">{alt}</span>
   }
   return (
     // eslint-disable-next-line @next/next/no-img-element
@@ -114,7 +113,7 @@ function BadgeLogo({ src, alt }: { src: string; alt: string }) {
       alt={alt}
       width={100}
       height={100}
-      className={cn('w-[67px]', 'xl:w-[100px]')}
+      className="w-[67px] xl:w-[100px]"
       onError={() => setErr(true)}
     />
   )
@@ -141,19 +140,19 @@ export function MegaMenu() {
   return (
     <div
       ref={navRef}
-      className={cn('hidden', 'md:flex', 'items-center', 'gap-1')}
+      className="hidden md:flex items-center gap-1"
       onMouseLeave={() => setActive(null)}
     >
       {/* trigger buttons */}
       {menus.map((menu) => (
         menu.href ? (
           <Link key={menu.label} href={menu.href}
-            className={cn('flex', 'items-center', 'gap-1.5', 'px-3', 'py-2', 'font-semibold', 'text-[#111212]', 'hover:text-accent', 'text-sm', 'transition-colors', 'cursor-pointer')}>
+            className="flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-[#111212] hover:text-accent transition-colors cursor-pointer">
             {menu.label}
           </Link>
         ) : (
           <button key={menu.label} onMouseEnter={() => setActive(menu.label)}
-            className={cn('flex', 'items-center', 'gap-1.5', 'px-3', 'py-2', 'font-semibold', 'text-[#111212]', 'hover:text-accent', 'text-sm', 'transition-colors', 'cursor-pointer')}>
+            className="flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-[#111212] hover:text-accent transition-colors cursor-pointer">
             {menu.label}
             <ChevronDown size={14} className={`transition-transform duration-200 ${active === menu.label ? 'rotate-180' : ''}`} />
           </button>
@@ -163,28 +162,28 @@ export function MegaMenu() {
       {/* single shared panelpositioned from the header via fixed top */}
       {activeMenu && (
         <div
-          className={cn('right-0', 'left-0', 'z-[9999]', 'fixed', 'flex', 'justify-center', 'px-4')}
+          className="fixed left-0 right-0 z-[9999] flex justify-center px-4"
           style={{ top: '50px' }}
           onMouseEnter={() => setActive(activeMenu.label)}
           onMouseLeave={() => setActive(null)}
         >
-          <div className={cn('flex', 'gap-[24px]', 'bg-white', 'p-[12px]', 'rounded-[20px]', 'w-full', 'max-w-[1440px]')}>
+          <div className="max-w-[1440px] w-full bg-white rounded-[20px] p-[12px] flex gap-[24px]">
             {/* LEFT */}
-            <div className={cn('px-[32px]', 'py-[40px]', 'w-full')}>
-              <p className={cn('mb-4', 'font-normal', 'text-[#929296]', 'text-[16px]')}>{activeMenu.categoryLabel}</p>
-              <ul className={cn('gap-[24px]', 'grid', 'grid-cols-2')}>
+            <div className="w-full px-[32px] py-[40px]">
+              <p className="text-[16px] font-normal text-[#929296] mb-4">{activeMenu.categoryLabel}</p>
+              <ul className="grid grid-cols-2 gap-[24px]">
                 {(activeMenu.items ?? []).map((item) => (
                   <li key={item.href} className="h-full">
                     <Link
                       href={item.href}
                       onClick={() => setActive(null)}
-                      className={cn('block', 'box-border', 'hover:bg-gray-50', 'px-4', 'py-2', 'border', 'border-white', 'hover:border-[#F2F2F2]', 'rounded-[8px]', 'w-full', 'h-full', 'font-semibold', 'text-[16px]', 'text-black', 'leading-[24px]', 'cursor-pointer')}
+                      className="w-full h-full hover:bg-gray-50 border box-border border-white hover:border-[#F2F2F2] py-2 px-4 rounded-[8px] text-black block text-[16px] font-semibold cursor-pointer leading-[24px]"
                     >
-                      <div className={cn('flex', 'items-start', 'gap-[16px]')}>
+                      <div className="flex gap-[16px] items-start">
                         <MenuIcon icon={item.icon} />
-                        <div className={cn('flex', 'flex-col', 'gap-[8px]')}>
+                        <div className="flex flex-col gap-[8px]">
                           <p>{item.label}</p>
-                          <p className={cn('font-normal', 'text-[#929296]', 'text-[14px]', 'leading-[18px]')}>{item.description}</p>
+                          <p className="text-[#929296] text-[14px] leading-[18px] font-normal">{item.description}</p>
                         </div>
                       </div>
                     </Link>
@@ -192,25 +191,25 @@ export function MegaMenu() {
                 ))}
               </ul>
               {/* badge bar */}
-              <div className={cn('flex', 'justify-between', 'items-center', 'gap-[12px]', 'bg-[#f7f7f7]', 'mt-[30px]', 'p-[20px]', 'border', 'border-[#e5e5e5]', 'rounded-[8px]')}>
+              <div className="flex items-center justify-between gap-[12px] bg-[#f7f7f7] p-[20px] rounded-[8px] border border-[#e5e5e5] mt-[30px]">
                 {badgeLogos.map((b) => (
                   <BadgeLogo key={b.alt} src={b.src} alt={b.alt} />
                 ))}
               </div>
             </div>
             {/* RIGHTimage */}
-            <div className={cn('relative', 'flex', 'rounded-[16px]', 'w-full', 'max-w-[400px]', 'overflow-hidden', 'shrink-0')}>
+            <div className="relative max-w-[400px] w-full rounded-[16px] overflow-hidden flex shrink-0">
               <Image
                 src={activeMenu.image!}
                 alt={activeMenu.imageAlt!}
                 width={1000}
                 height={1000}
-                className={cn('w-full', 'h-full', 'object-cover')}
+                className="w-full h-full object-cover"
               />
               <Link
                 href={activeMenu.ctaHref!}
                 onClick={() => setActive(null)}
-                className={cn('bottom-[12px]', 'left-[12px]', 'absolute', 'flex', 'justify-center', 'items-center', 'gap-1', 'bg-white', 'backdrop-blur-[12px]', 'px-[24px]', 'pt-[14px]', 'pb-[12px]', 'rounded-full', 'font-semibold', 'text-[#111212]', 'text-[14px]', 'hover:scale-105', 'transition-all', 'duration-300', 'ease-in-out', 'cursor-pointer')}
+                className="flex items-center justify-center gap-1 px-[24px] pt-[14px] pb-[12px] bg-white text-[#111212] text-[14px] font-semibold backdrop-blur-[12px] cursor-pointer rounded-full absolute bottom-[12px] left-[12px] hover:scale-105 transition-all duration-300 ease-in-out"
               >
                 <span>{activeMenu.ctaLabel}</span>
               </Link>
