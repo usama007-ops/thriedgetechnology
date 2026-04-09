@@ -51,7 +51,7 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { title: 'MLOps & Deployment', desc: 'End-to-end ML pipelines with monitoring, retraining, and CI/CD so your models stay accurate over time.' },
       { title: 'RAG & Knowledge Bases', desc: 'Retrieval-augmented generation systems that ground AI responses in your own documents and data sources.' },
     ],
-    image: '/ai-development-image-1.avif',
+    image: '/ai.png',
     workIndustry: 'ai',
   },
   'frontend-development': {
@@ -71,7 +71,7 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { name: 'Tailwind CSS', icon: '/tailwind.svg' },
       { name: 'Framer Motion', icon: '/framer.svg' },
       { name: 'GraphQL', icon: '/graphql.svg' },
-      { name: 'Storybook', icon: '/storybook.svg' },
+      { name: 'WordPress', icon: '/wordpress.svg' },
     ],
     capabilities: [
       { title: 'React & Next.js Apps', desc: 'Server-side rendered and statically generated applications that load fast and rank well in search engines.' },
@@ -81,7 +81,7 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { title: 'Animation & Interaction', desc: 'Smooth, purposeful animations using Framer Motion and GSAP that enhance UX without hurting performance.' },
       { title: 'Accessibility (a11y)', desc: 'WCAG-aligned implementations with keyboard navigation, screen reader support, and semantic HTML throughout.' },
     ],
-    image: '/computer.avif',
+    image: '/frontenddevelopment.png',
   },
   'backend-development': {
     title: 'Backend Development',
@@ -110,7 +110,7 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { title: 'Background Jobs & Queues', desc: 'Reliable job processing with Bull, Celery, or SQS for async workflows that never drop a task.' },
       { title: 'Third-party Integrations', desc: 'Stripe, Twilio, SendGrid, Salesforce, we integrate the tools your business runs on cleanly and reliably.' },
     ],
-    image: '/design-build.avif',
+    image: '/backend.png',
   },
   'mobile-development': {
     title: 'Mobile Development',
@@ -139,7 +139,7 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { title: 'App Store Optimization', desc: 'We handle submission, metadata, screenshots, and ASO strategy to maximize visibility and conversion on both stores.' },
       { title: 'Push Notifications & Analytics', desc: 'Firebase, OneSignal, and Mixpanel integrations to keep users engaged and give you visibility into behavior.' },
     ],
-    image: '/banner-v2.avif',
+    image: '/mobi.png',
   },
   databases: {
     title: 'Databases',
@@ -168,7 +168,7 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { title: 'Search & Analytics', desc: 'Elasticsearch and vector database integrations for full-text search, semantic search, and real-time analytics.' },
       { title: 'Backup & Disaster Recovery', desc: 'Automated backup strategies, point-in-time recovery, and tested restore procedures for every production system.' },
     ],
-    image: '/core.avif',
+    image: '/database.png',
   },
 
 }
@@ -218,17 +218,18 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
   return (
     <div className={cn('relative', 'bg-[#F3F3F3]')}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
-      <PageHero
+      {/* <PageHero
         label={tech.title}
         title={tech.headline}
         bgColor="#111212"
-      />
+      /> */}
 
-      <section className={cn('max-w-360', 'w-full', 'mx-auto', 'p-4')}>
+      <section className={cn( 'w-full', 'mx-auto', 'p-2')}>
         <div className={cn('relative', 'rounded-[20px]', 'w-full', 'h-[480px]', 'md:h-[640px]', 'overflow-hidden')}>
           <Image
             src={tech.image}
             alt={tech.title}
+
             fill
             className={cn('object-center', 'object-cover')}
             sizes="100vw"
@@ -236,12 +237,15 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
           />
           <div
             className={cn('absolute', 'inset-0', 'rounded-[20px]')}
-            style={{ background: 'linear-gradient(to top, rgba(0,0,0), rgba(0,0,0, 72), rgba(0,0,0,0))' }}
+            style={{ background: 'linear-gradient(to top, rgba(0,0,0), rgba(0,0,0,0.6), rgba(0,0,0,0))' }}
           />
-          <div className={cn('absolute', 'bottom-0', 'left-0', 'right-0', 'flex', 'lg:flex-row', 'flex-col', 'justify-between', 'lg:items-end', 'gap-4', 'lg:px-9', 'px-5', 'lg:py-8', 'py-6')}>
+          <div className={cn('absolute', 'bottom-0', 'left-0','max-w-360', 'right-0', 'flex', 'lg:flex-row', 'flex-col', 'justify-between', 'lg:items-end', 'gap-4', 'lg:px-9', 'px-5', 'lg:py-8', 'py-6')}>
+           <div className="flex flex-col gap-4">
+            <span className={cn('text-sm', 'font-inter', 'text-white/70')}>{tech.title}</span>
             <h2 className={cn('text-[32px]', 'lg:text-[56px]', 'lg:leading-[60px]', 'leading-9', 'font-mont', 'font-semibold', 'text-white', 'max-w-2xl')}>
-              {tech.title}
+              {tech.headline}
             </h2>
+           </div>
             <p className={cn('lg:text-[18px]', 'text-[15px]', 'font-inter', 'text-white/70', 'lg:max-w-xs', 'leading-7')}>
               {tech.description.slice(0, 140)}...
             </p>
@@ -249,9 +253,9 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
         </div>
       </section>
 
-      <div className={cn('gap-[20px]', 'grid', 'grid-cols-1', 'md:grid-cols-3', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
+      <div className={cn('gap-[20px]','text-center', 'mt-11', 'grid', 'grid-cols-1', 'md:grid-cols-3', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
         {tech.stats.map((s, i) => (
-          <div key={i} className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[24px]', 'py-[32px]', 'border-[#CCCCCC]', 'border-l')}>
+          <div key={i} className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[24px]', 'py-[32px]', 'border-[#CCCCCC]', 'border-l', 'first:border-l-0')}>
             <p className={cn('font-mont', 'font-semibold', 'text-[40px]', 'text-black', 'xl:text-[80px]', 'xl:leading-[80px]')}>{s.number}</p>
             <p className={cn('font-inter', 'text-[#929296]', 'text-[14px]')}>{s.label}</p>
           </div>
@@ -259,7 +263,7 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
       </div>
 
       {/* Description */}
-      <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[96px]', 'w-full', 'max-w-[1440px]')}>
+      <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[96px]', 'w-full','mt-10', 'max-w-[1440px]')}>
         <p className={cn('max-w-[800px]', 'font-inter', 'text-[#555]', 'text-[20px]', 'leading-[32px]')}>{tech.description}</p>
       </div>
 
