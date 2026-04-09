@@ -7,28 +7,30 @@ const STEP_DURATION = 5000
 
 const STEPS = [
   {
-    num: '01', label: 'Discovery',
-    description: 'We start by deeply understanding your business, users, and goals. Through stakeholder interviews, competitive analysis, and technical audits, we define the problem space and align on a clear product vision.',
-    points: ['Stakeholder interviews & requirement mapping', 'Technical feasibility and architecture planning', 'Clear project scope, timeline, and milestones'],
-    image: '/discover.avif',
+    num: '01', label: 'Strategic Discovery',
+    description: 'We start by developing a deep understanding of your business, users, and long-term goals. Through research and strategic discussions, we define a clear direction for your product.',
+    points: ['Stakeholder consultations & requirement analysis',
+              'Technical feasibility assessment',
+              'Defined project scope, roadmap, and milestones'],
+    image: '/discovery.jfif',
   },
   {
-    num: '02', label: 'Design & Validate',
-    description: 'Our design team translates insights into wireframes, user flows, and interactive prototypes. We validate every design decision through usability testing and user feedback to ensure your product truly solves real problems.',
-    points: ['High-fidelity UI/UX designs aligned with brand and goals', 'Interactive prototype ready for stakeholder review', 'Validated user experience through usability testing'],
-    image: '/computer.avif',
+    num: '02', label: 'Experience Design & Validation',
+    description: ' We craft intuitive, user-centric designs that align with your brand and user expectations. Every concept is validated to ensure usability, functionality, and impact.',
+    points: ['Wireframes & high-fidelity UI/UX designs', 'User journey mapping & experience strategy', 'Feedback-driven validation and iteration'],
+    image: '/exp&design.jfif',
   },
   {
-    num: '03', label: 'Build & Secure',
-    description: 'Our engineers build your product with clean, scalable code following industry best practices. Security, performance, and maintainability are baked in from day onenot bolted on at the end.',
-    points: ['Agile sprints with weekly demos and feedback loops', 'Automated testing, CI/CD pipelines, and code reviews', 'Security-first development with penetration testing'],
-    image: '/design-build.avif',
+    num: '03', label: 'Engineering & Security',
+    description: 'We build robust, scalable applications using modern technologies, ensuring performance, security, and reliability at every stage of development.',
+    points: ['Clean, scalable, and maintainable codebase', 'Secure architecture & best practices implementation', 'Thorough testing and quality assurance'],
+    image: '/security.jfif',
   },
   {
-    num: '04', label: 'Scale & Optimize',
-    description: 'After launch, we help you measure success, scale infrastructure, and continuously improve based on user data. From performance tuning to adding new features, we make sure your product grows with your business.',
-    points: ['Analytics-driven insights and optimization', 'Performance improvements and feature scaling', 'Ongoing support and maintenance for long-term'],
-    image: '/scale-optimize.avif',
+    num: '04', label: 'Growth, Scaling & Optimization',
+    description: 'Post-launch, we focus on continuous improvement—enhancing performance, scaling infrastructure, and optimizing user experience for long-term success.',
+    points: ['Performance monitoring & optimization', 'Scalable infrastructure enhancements', 'Ongoing support and iteration'],
+    image: '/growth.jfif',
   },
 ]
 
@@ -72,7 +74,7 @@ export function ProcessSection() {
       <div className="w-full max-w-[1440px] flex flex-col items-start gap-[32px] lg:py-[96px] py-[64px] lg:px-[36px] px-[16px]">
 
         <h2 className="text-black font-mont md:text-[64px] text-[32px] md:font-bold font-semibold md:leading-[64px] leading-[32px]">
-          A proven, transparent process that takes you from idea to production.
+        Built with Strategy. Designed to Scale. Delivered with Precision.
         </h2>
 
         {/* Tabs */}
