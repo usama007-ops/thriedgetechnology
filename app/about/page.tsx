@@ -6,10 +6,10 @@ import Link from 'next/link'
 
 const TIMELINE = [
     { year: '2012', text: 'Founded to build custom software for startups that needed production-ready code, not templates. First clients were early-stage product companies in the US and UK.' },
-    { year: '2016', text: 'Launched a dedicated mobile engineering practice. By year-end we had shipped 50+ products for clients in the US, UK, and Australia across iOS and Android.' },
-    { year: '2019', text: 'Opened operational hubs in the USA, Canada, Australia, and Europe. Moved all active projects to cloud-native infrastructure. Reduced median deployment cycles from bi-weekly to daily.' },
-    { year: '2023', text: 'Shipped first production AI models for healthcare and fintech clients. Clutch rating reached 4.9 stars across 68 verified reviews.' },
-    { year: '2025', text: 'Focused on three areas: AI-assisted product development, mobile commerce, and healthcare software. Current active projects span 8 countries.' },
+    { year: '2016', text: 'Established a dedicated mobile engineering practice, expanding our capabilities across iOS and Android platforms. By the end of the year, we had successfully delivered over 50 products for clients across the United States, United Kingdom, and Australia.' },
+    { year: '2019', text: 'Expanded our global presence with operational hubs across the United States, Canada, Australia, and Europe. Transitioned all active projects to cloud-native architectures, significantly enhancing scalability and reliability. This shift enabled us to accelerate delivery cycles, reducing median deployment timelines from bi-weekly to daily.' },
+    { year: '2023', text: 'Delivered our first production-grade AI models for healthcare and fintech clients, marking a significant expansion into advanced, data-driven solutions. During this period, our Clutch rating reached 4.9 stars across 68 verified client reviews, reflecting consistent delivery excellence and client satisfaction.' },
+    { year: '2025', text: 'Strategically focused on three core domains: AI-assisted product development, mobile commerce, and healthcare software systems. Our current active engagements span 8 countries, reflecting continued global expansion and domain specialization.' },
 ]
 
 const FAQS = [
@@ -32,9 +32,9 @@ const AWARDS = [
 ]
 
 const CARDS = [
-    { icon: '/search.svg', title: 'On-Time Delivery, Tracked Weekly', desc: 'We operate across US, Canada, Australia, and Europe. Every project runs on weekly sprint reviews with written status updates. If a deadline shifts, you hear it from us first, not after the fact.' },
-    { icon: '/varified-user.svg', title: 'Compliance Built In, Not Added Later', desc: 'Our codebase and workflows meet SOC 2, GDPR, and HIPAA requirements by default. We deliver audit-ready documentation alongside every release. No separate compliance review sprint required.' },
-    { icon: '/prototype.svg', title: 'AI and Cloud That Ship to Production', desc: 'We have deployed 20+ AI models across healthcare and fintech clients. We modernize legacy systems without rewriting working code. Every architectural decision is weighed against your operating costs.' },
+    { icon: '/search.svg', title: 'On-Time Delivery, Transparently Managed', desc: 'We operate across the United States, Canada, Australia, and Europe, delivering projects with precision and accountability.        Every engagement is structured around weekly sprint cycles, supported by detailed progress reports and stakeholder updates. Our communication is proactive—any shift in scope or timeline is clearly communicated in advance, ensuring full transparency and zero surprises.' },
+    { icon: '/varified-user.svg', title: 'Compliance by Design, Not as an Afterthought', desc: 'Security and compliance are embedded into every layer of our development lifecycle, aligning with SOC 2, GDPR, and HIPAA standards from day one.Our engineering practices ensure that every release is accompanied by comprehensive, audit ready documentation eliminating the need for separate compliance cycles. This integrated approach reduces risk, accelerates delivery, and ensures your product is always prepared for regulatory scrutiny.' },
+    { icon: '/prototype.svg', title: 'AI & Cloud Solutions, Built for Production', desc: 'We design, deploy, and scale AI-powered systems across industries including healthcare and fintech, with a proven track record of delivering production grade solutions.Our approach focuses on modernization without disruption enhancing legacy systems without unnecessary rewrites. Every architectural decision is carefully evaluated against performance, scalability, and long term operational efficiency, ensuring measurable business impact. '},
 ]
 
 function FAQ({ items }: { items: typeof FAQS }) {
@@ -72,21 +72,61 @@ export default function AboutPage() {
         <div className="relative bg-[#F3F3F3]">
 
             {/* Hero */}
-            <div className="flex md:flex-row flex-col md:items-end gap-[32px] md:gap-[64px] mx-auto px-[16px] md:px-[36px] py-[64px] md:py-[64px] w-full max-w-[1440px]">
+            {/* <div className="flex md:flex-row flex-col md:items-end gap-[32px] md:gap-[64px] mx-auto px-[16px] md:px-[36px] py-[64px] md:py-[64px] w-full max-w-[1440px]">
                 <h1 className="w-full max-w-[610px] font-mont font-semibold text-[24px]">About us</h1>
                 <p className="w-full max-w-[694px] font-mont font-semibold text-[40px] leading-[48px]">
                     Custom software and websites built to spec, no templates, no bloat.
                 </p>
-            </div>
+            </div> */}
 
             {/* Banner image */}
-            <section className="mx-auto px-[16px] md:px-[36px] rounded-[16px] w-full max-w-[1440px] overflow-hidden">
-                <Image src="/about-banner.avif" alt="About us" width={1440} height={769}
-                    className="rounded-[16px] w-full h-auto min-h-[256px] max-h-[769px] object-cover" priority />
-            </section>
+            <section className="mx-auto px-[12px] md:px-[10px] w-full max-w-[1800px]">
+  <div className="relative w-full h-[480px] md:h-[640px] rounded-[20px] overflow-hidden">
+    
+    {/* Background Image */}
+    <Image
+      src="/aboutus.jpg"
+      alt="About us"
+      fill
+      priority
+      className="object-cover object-center"
+      sizes="100vw "
+    />
+
+    {/* Gradient Overlay */}
+    <div
+      className="absolute inset-0 rounded-[20px]"
+      style={{
+        background:
+          "linear-gradient(to top, rgba(0,0,0), rgba(0,0,0,0.6), rgba(0,0,0,0))",
+      }}
+    />
+
+    {/* Content Overlay */}
+    <div className="absolute bottom-0 left-0 right-0 flex flex-col max-w-[1440px] lg:flex-row justify-between lg:items-end gap-4 lg:px-9 px-5 lg:py-8 py-6">
+      
+      {/* Left Text */}
+      <div className="flex flex-col gap-4 max-w-2xl">
+        <span className="text-sm font-inter text-white/70">
+          About Us
+        </span>
+
+        <h2 className="text-[32px] lg:text-[56px] lg:leading-[60px] leading-9 font-mont font-semibold text-white">
+          We Build Modern Digital Experiences
+        </h2>
+      </div>
+
+      {/* Right Description */}
+      <p className="lg:text-[18px] text-[15px] font-inter text-white/70 lg:max-w-xs leading-7">
+        We are a team of developers and designers focused on building scalable, 
+        high-performance digital products that help businesses grow online.
+      </p>
+    </div>
+  </div>
+</section>
 
             {/* Awards, desktop static */}
-            <div className="hidden md:flex flex-wrap justify-around items-center gap-[48px] mx-auto md:px-[36px] py-[24px] border-[#ebebeb] border-t border-b w-full max-w-[1440px]">
+            <div className="hidden md:flex flex-wrap justify-around  items-center gap-[48px] mx-auto md:px-[36px] py-[24px] border-[#ebebeb] border-t border-b w-full max-w-[1440px]">
                 {AWARDS.map(a => (
                     <Image key={a.alt} src={a.src} alt={a.alt} width={100} height={20}
                         className="opacity-50 hover:opacity-100 w-fit transition-opacity duration-200" />
@@ -105,14 +145,45 @@ export default function AboutPage() {
 
             {/* Who We Are */}
             <div className="flex md:flex-row flex-col gap-[32px] md:gap-[96px] mx-auto px-[16px] md:px-[36px] py-[64px] md:py-[96px] w-full max-w-[1440px]">
-                <h2 className="w-full font-mont font-semibold text-[40px] leading-[48px]">Who We Are</h2>
-                <div className="flex flex-col gap-[16px] w-full font-inter font-normal text-[#111212] text-[16px] leading-[24px]">
-                    <p className="font-inter font-medium text-[20px] leading-[28px]"></p>
-                    <p><strong>Since 2012, we have shipped over 50 products for clients across healthcare, fintech, and eCommerce.</strong></p>
-                    <p>We hold a 4.9-star rating on Clutch based on verified client reviews. Clients like PetScreening and Rodeo chose us to build and scale their core product, not just their marketing site.</p>
-                    <p>We keep teams small and senior. Your project is handled by the same engineers who scoped it, not handed off to juniors after kickoff.</p>
-                </div>
-            </div>
+      
+      {/* Image */}
+      <div className="w-full md:w-1/2 flex justify-center items-center">
+        <Image
+          src="/aboutus2.jpg" // ✅ make sure this is inside /public
+          alt="team collaboration"
+          width={500}
+          height={400}
+          className="rounded-xl object-cover"
+        />
+      </div>
+
+      {/* Content */}
+      <div className="flex flex-col gap-[16px] w-full md:w-1/2 font-inter font-normal text-[#111212] text-[16px] leading-[24px]">
+        
+        <p className="font-medium text-[20px] leading-[28px] text-gray-500">
+          About Us
+        </p>
+
+        <h2 className="font-mont font-semibold text-[32px] md:text-[40px] leading-[40px] md:leading-[48px]">
+          Who We Are
+        </h2>
+
+        <p>
+          <strong>
+           We are a product focused technology partner, delivering scalable digital solutions across healthcare, fintech, and eCommerce since 2012.
+          </strong>
+        </p>
+
+        <p>
+          With a proven track record and a 4.9 star client rating, we are trusted by companies like PetScreening and Rodeo to design, build, and scale mission critical products not just marketing websites.
+        </p>
+
+        <p>
+        Our approach is rooted in excellence and accountability. We operate with lean, senior-led teams, ensuring that the same experts who define your strategy are the ones executing it—bringing consistency, speed, and high-quality outcomes at every stage.
+        </p>
+
+      </div>
+    </div>
 
             {/* Value cards */}
             <div className="gap-[20px] grid grid-cols-1 md:grid-cols-3 mx-auto px-[16px] md:px-[36px] py-[20px] w-full max-w-[1440px]">
@@ -204,18 +275,35 @@ export default function AboutPage() {
             </div>
             {/* Culture */}
             <div className="flex md:flex-row flex-col gap-[32px] md:gap-[96px] mx-auto px-[16px] md:px-[36px] py-[64px] md:py-[96px] w-full max-w-[1440px]">
-                <h2 className="w-full font-mont font-semibold text-[40px] leading-[48px]">Our Culture</h2>
+                 <Image
+          src="/culture.jpg" 
+          alt="team collaboration"
+          width={500}
+          height={400}
+          className="rounded-xl object-cover"
+        />
+      
                 <div className="flex flex-col gap-[16px] w-full font-inter font-normal text-[#111212] text-[16px] leading-[24px]">
-                    <p>We do not hire generalists and hope for the best. Every engineer on your project has shipped production code in your stack before.</p>
-                    <p>We review every pull request before it merges. No code written by a junior goes unreviewed.</p>
-                    <p>Our error rate across client deployments is under 1%. That is the policy, not a goal.</p>
+                     <h2 className="w-full font-mont font-semibold text-[40px] leading-[48px]">Our Culture</h2>
+                    <p>We build teams with precision every engineer brings proven experience delivering production-grade solutions in your stack.</p>
+                    <p>Our process is driven by strict quality standards, with every pull request undergoing thorough peer review to ensure consistency and reliability.</p>
+                    <p>We maintain an error rate below 1% across deployments not as a goal, but as a defined engineering standard.</p>
                 </div>
             </div>
 
             {/* Second banner */}
             <section className="mx-auto px-[16px] md:px-[36px] pb-[48px] md:pb-[96px] rounded-[16px] w-full max-w-[1440px] overflow-hidden">
-                <Image src="/about-ban.avif" alt="Our team" width={1440} height={769}
-                    className="rounded-[16px] w-full h-auto min-h-[256px] max-h-[769px] object-cover" />
+                <video
+  className="rounded-[16px] w-full h-auto min-h-[256px] max-h-[769px] object-cover"
+  width={1440}
+  height={769}
+  autoPlay
+  muted
+  loop
+>
+  <source src="/culture2.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
             </section>
 
             {/* Timeline */}

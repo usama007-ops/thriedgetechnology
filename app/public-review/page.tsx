@@ -150,7 +150,7 @@ export default function PublicReviewPage() {
                             {/* Right image */}
                             <div className="w-full flex items-center justify-center lg:justify-end">
                                 <div className="w-full max-w-[600px] h-[600px] relative rounded-[16px] overflow-hidden bg-[#efeeec]">
-                                    <Image src="/services-menu.avif" alt="Happy customer reviewing" fill sizes="600px" className="object-cover" />
+                                    <Image src="/publicreview.jpg" alt="Happy customer reviewing" fill sizes="600px" className="object-cover" />
                                 </div>
                             </div>
                         </div>
