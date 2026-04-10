@@ -1,15 +1,25 @@
-import { PageHero } from "@/components/common/page-hero";
 import { Mail, Phone, MapPin } from "lucide-react";
+import Image from "next/image";
 import { cn } from "../../lib/utils";
 
 export default function Contact() {
     return (
         <>
-            <PageHero
-                label="Contact us"
-                title="Tell us what you're building."
-                subtitle="We respond to every submission within one business day."
-            />
+      {/* Hero */}
+      <section className={cn('mx-auto', 'p-2', 'w-full')}>
+        <div className={cn('relative', 'rounded-[20px]', 'w-full', 'h-[480px]', 'overflow-hidden')}>
+          <Image src="/contact-hero.jpg" alt="Contact" fill className={cn('object-center', 'object-cover')} sizes="100vw" priority />
+          <div className={cn('absolute', 'inset-0', 'rounded-[20px]')} style={{ background: 'linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0.6), rgba(0,0,0,0))' }} />
+          <div className={cn('right-0', 'bottom-0', 'left-0', 'absolute', 'flex', 'lg:flex-row', 'flex-col', 'justify-between', 'lg:items-end', 'gap-4', 'mx-auto', 'px-5', 'lg:px-9', 'py-6', 'lg:py-8', 'max-w-[1440px]')}>
+            <h1 className={cn('max-w-2xl', 'font-mont', 'font-semibold', 'text-[32px]', 'text-white', 'lg:text-[56px]', 'leading-9', 'lg:leading-[60px]')}>
+              Tell us what you&apos;re building.
+            </h1>
+            <p className={cn('lg:max-w-xs', 'font-inter', 'text-[15px]', 'text-white/70', 'lg:text-[18px]', 'leading-7')}>
+              We respond to every submission within one business day.
+            </p>
+          </div>
+        </div>
+      </section>
 
             {/* Calendly Section */}
             <section className={cn('py-20', 'px-4', 'sm:px-6', 'lg:px-8', 'bg-background')}>

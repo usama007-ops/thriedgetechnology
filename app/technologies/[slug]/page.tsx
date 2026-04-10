@@ -225,7 +225,7 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
       /> */}
 
       <section className={cn( 'w-full', 'mx-auto', 'p-2')}>
-        <div className={cn('relative', 'rounded-[20px]', 'w-full', 'h-[480px]', 'md:h-[640px]', 'overflow-hidden')}>
+        <div className={cn('relative', 'rounded-[20px]', 'w-full', 'h-[480px]', 'overflow-hidden')}>
           <Image
             src={tech.image}
             alt={tech.title}
