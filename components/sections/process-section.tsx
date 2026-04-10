@@ -12,25 +12,25 @@ const STEPS = [
     points: ['Stakeholder consultations & requirement analysis',
               'Technical feasibility assessment',
               'Defined project scope, roadmap, and milestones'],
-    image: '/discovery.jfif',
+    image: '/discovery.jpg',
   },
   {
     num: '02', label: 'Experience Design & Validation',
     description: ' We craft intuitive, user-centric designs that align with your brand and user expectations. Every concept is validated to ensure usability, functionality, and impact.',
     points: ['Wireframes & high-fidelity UI/UX designs', 'User journey mapping & experience strategy', 'Feedback-driven validation and iteration'],
-    image: '/exp&design.jfif',
+    image: '/exp&design.jpg',
   },
   {
     num: '03', label: 'Engineering & Security',
     description: 'We build robust, scalable applications using modern technologies, ensuring performance, security, and reliability at every stage of development.',
     points: ['Clean, scalable, and maintainable codebase', 'Secure architecture & best practices implementation', 'Thorough testing and quality assurance'],
-    image: '/security.jfif',
+    image: '/security.jpg',
   },
   {
     num: '04', label: 'Growth, Scaling & Optimization',
     description: 'Post-launch, we focus on continuous improvement—enhancing performance, scaling infrastructure, and optimizing user experience for long-term success.',
     points: ['Performance monitoring & optimization', 'Scalable infrastructure enhancements', 'Ongoing support and iteration'],
-    image: '/growth.jfif',
+    image: '/growth.jpg',
   },
 ]
 
