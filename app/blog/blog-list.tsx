@@ -10,6 +10,7 @@ import { BlogCard } from '@/components/common/blog-card'
 import { getPosts } from '@/lib/wordpress'
 import type { Post, Category } from '@/lib/wordpress'
 import { Loader } from 'lucide-react'
+import { decodeHtml } from '@/lib/utils'
 
 interface Props {
   initialPosts: Post[]
@@ -63,7 +64,7 @@ export function BlogList({ initialPosts, categories }: Props) {
                   : 'bg-card border border-border text-foreground hover:bg-card/80'
               }`}
             >
-              {cat.name}
+              {decodeHtml(cat.name)}
             </button>
           ))}
         </div>
