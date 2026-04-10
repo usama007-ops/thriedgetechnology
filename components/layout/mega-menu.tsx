@@ -171,7 +171,7 @@ export function MegaMenu() {
             {/* LEFT */}
             <div className="w-full px-[32px] py-[40px]">
               <p className="text-[16px] font-normal text-[#929296] mb-4">{activeMenu.categoryLabel}</p>
-              <ul className="grid grid-cols-2 gap-[24px]">
+              <ul className="grid grid-cols-3 gap-[24px]">
                 {(activeMenu.items ?? []).map((item) => (
                   <li key={item.href} className="h-full">
                     <Link
@@ -198,22 +198,22 @@ export function MegaMenu() {
               </div>
             </div>
             {/* RIGHTimage */}
-            <div className="relative max-w-[400px] w-full rounded-[16px] overflow-hidden flex shrink-0">
-              <Image
+            {/* <div className="relative max-w-[400px] w-full rounded-[16px] overflow-hidden flex shrink-0">
+              {/* <Image
                 src={activeMenu.image!}
                 alt={activeMenu.imageAlt!}
                 width={1000}
                 height={1000}
                 className="w-full h-full object-cover"
-              />
-              <Link
+              /> */}
+              {/* <Link
                 href={activeMenu.ctaHref!}
                 onClick={() => setActive(null)}
                 className="flex items-center justify-center gap-1 px-[24px] pt-[14px] pb-[12px] bg-white text-[#111212] text-[14px] font-semibold backdrop-blur-[12px] cursor-pointer rounded-full absolute bottom-[12px] left-[12px] hover:scale-105 transition-all duration-300 ease-in-out"
               >
                 <span>{activeMenu.ctaLabel}</span>
               </Link>
-            </div>
+            </div> */} 
           </div>
         </div>
       )}
