@@ -1,9 +1,11 @@
-import { getWorkItems } from '@/lib/wordpress'
-import Link from 'next/link'
-import Image from 'next/image'
-import { ArrowRight } from 'lucide-react'
 import type { Metadata } from 'next'
-import { PageHero } from '@/components/common/page-hero'
+import Link from 'next/link'
+import { getTestimonials } from '@/lib/wordpress'
+import { WorkGrid } from './work-grid'
+import BrandsMarquee from '@/components/sections/brands'
+import { TestimonialsMarquee } from '@/components/sections/testimonials-marquee'
+import ValuePropositionSection from '@/components/sections/value-proposition'
+import { ProcessSection } from '@/components/sections/process-section'
 
 export const metadata: Metadata = {
   title: 'Our Work | Thrill Edge Technologies',
@@ -11,98 +13,80 @@ export const metadata: Metadata = {
 }
 
 export default async function WorkPage() {
-  const workItems = await getWorkItems(1, 100).catch(() => [])
+  const testimonials = await getTestimonials(20).catch(() => [])
 
   return (
-    <div className="relative bg-white">
-      <PageHero label="Portfolio" title="We deliver.<br/>Period." subtitle="50+ products shipped across healthcare, fintech, eCommerce, and more."  />
+    <div className="bg-white min-h-screen">
 
-      {/* Grid */}
-      {workItems.length > 0 ? (
-        <div className="mx-auto px-4 md:px-9 py-24 w-full max-w-360">
-          <div className="gap-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {workItems.map((work, idx) => {
-              const featuredImage = work._embedded?.['wp:featuredmedia']?.[0]?.source_url
-              const industry = work.acf?.industry
-              const year = work.acf?.year
-              const longTitle = work.acf?.long_title || work.title.rendered
-              const servicesTags = work.acf?.services
-                ? work.acf.services.replace(/<[^>]*>/g, '').split(/[,\n]/).map(s => s.trim()).filter(Boolean).slice(0, 3)
-                : []
-
-              return (
-                <Link key={work.id} href={`/work/${work.slug}`}>
-                  <div className="group flex flex-col w-full h-full">
-                    <div className="relative rounded-3xl aspect-4/5 overflow-hidden">
-                      {featuredImage ? (
-                        <Image
-                          src={featuredImage}
-                          alt={`${work.title.rendered} card image`}
-                          fill
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          priority={idx < 3}
-                          loading={idx < 3 ? 'eager' : 'lazy'}
-                          className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                        />
-                      ) : (
-                        <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-gray-200 rounded-3xl" />
-                      )}
-
-                      {industry && (
-                        <span className="top-4 left-4 z-10 absolute bg-white/80 backdrop-blur-sm px-3 py-1 rounded-full font-medium text-[#111212] text-xs">
-                          {industry}
-                        </span>
-                      )}
-                      {year && (
-                        <span className="top-4 right-4 z-10 absolute bg-white/80 backdrop-blur-sm px-3 py-1 rounded-full font-medium text-[#111212] text-xs">
-                          {year}
-                        </span>
-                      )}
-
-                      <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                      <div className="right-0 bottom-0 left-0 absolute flex flex-col gap-3 p-5">
-                        <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0 duration-300 delay-100">
-                          <p className="flex-1 text-white text-sm line-clamp-2">{longTitle}</p>
-                          <ArrowRight size={20} className="text-white shrink-0" />
-                        </div>
-                        {servicesTags.length > 0 && (
-                          <div className="flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0 duration-300 delay-200">
-                            {servicesTags.map(tag => (
-                              <span key={tag} className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="mt-4">
-                      <h3 className="font-semibold xl:font-bold text-[#111212] text-[24px] xl:text-[32px] leading-normal">
-                        {work.title.rendered}
-                      </h3>
-                    </div>
-                  </div>
-                </Link>
-              )
-            })}
+      {/* ── Hero ── */}
+      <section className="mx-auto p-2 w-full">
+        <div className="relative bg-[#111212] rounded-[20px] w-full h-[480px] overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.04]"
+            style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '80px 80px' }} />
+          <div className="right-0 bottom-0 left-0 absolute flex lg:flex-row flex-col justify-between lg:items-end gap-4 mx-auto px-5 lg:px-9 py-8 lg:py-10 max-w-[1440px]">
+            <div className="flex flex-col gap-3">
+              <span className="font-inter font-semibold text-[11px] text-white/30 uppercase tracking-[0.2em]">Portfolio</span>
+              <h1 className="max-w-2xl font-mont font-bold text-[40px] text-white lg:text-[72px] leading-none">
+                We deliver.<br />Period.
+              </h1>
+            </div>
+            <p className="lg:max-w-xs font-inter text-[15px] text-white/50 lg:text-[17px] lg:text-right leading-7">
+              50+ products shipped across healthcare, fintech, eCommerce, and more.
+            </p>
           </div>
         </div>
-      ) : (
-        <div className="mx-auto px-4 md:px-9 py-20 pb-24 w-full max-w-360 text-center">
-          <p className="font-inter text-[#929296] text-[16px]">No work items available at the moment.</p>
-        </div>
+      </section>
+
+      {/* ── Interactive filter + cards (client) ── */}
+      <WorkGrid />
+
+      {/* ── Brands marquee ── */}
+      <BrandsMarquee />
+
+      {/* ── Testimonials ── */}
+      {testimonials.length > 0 && (
+        <section className="bg-[#111212] py-24 overflow-hidden">
+          <div className="mb-10 text-center">
+            <p className="mb-3 font-inter font-semibold text-[11px] text-white/30 uppercase tracking-[0.2em]">Social proof</p>
+            <h2 className="font-mont font-bold text-[32px] text-white md:text-[48px]">
+              What Our Clients Say
+            </h2>
+          </div>
+          <TestimonialsMarquee testimonials={testimonials} />
+          <div className="mx-auto px-4 md:px-9 max-w-[1440px]">
+            <div className="gap-8 grid grid-cols-2 md:grid-cols-4 mt-16 pt-10 border-white/10 border-t">
+              {[
+                { number: '4.9/5', label: 'Average Rating' },
+                { number: '98%', label: 'Satisfaction Rate' },
+                { number: `${testimonials.length}+`, label: 'Happy Clients' },
+                { number: '2M+', label: 'Revenue Generated' },
+              ].map(s => (
+                <div key={s.label} className="text-center">
+                  <p className="font-mont font-bold text-[32px] text-white">{s.number}</p>
+                  <p className="mt-1 font-inter text-[14px] text-white/50">{s.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       )}
 
-      {/* CTA */}
+      {/* ── Value proposition ── */}
+      <ValuePropositionSection />
+
+      {/* ── Process ── */}
+      <ProcessSection />
+
+      {/* ── CTA ── */}
       <section className="flex justify-center items-center p-5 w-full">
-        <div className="flex md:flex-row flex-col justify-between gap-2 md:gap-24 bg-white px-4 md:px-12 py-5 md:py-10 border border-[#e5e5e5] rounded-3xl w-full max-w-350">
-          <h3 className="max-w-160.5 font-mont font-semibold text-[#111212] text-[30px] lg:text-[56px] lg:leading-16">
+        <div className="flex md:flex-row flex-col justify-between gap-2 md:gap-24 bg-white px-4 md:px-12 py-5 md:py-10 border border-[#e5e5e5] rounded-3xl w-full max-w-[1400px]">
+          <h3 className="max-w-[644px] font-mont font-semibold text-[#111212] text-[30px] lg:text-[56px] lg:leading-[64px]">
             Let&apos;s Build Your Next Big Thing
           </h3>
-          <div className="flex flex-col items-start gap-10 md:gap-5 w-full max-w-88.5">
-            <p className="font-inter text-[#929296] text-[16px] leading-6">Your idea, our brains, we&apos;ll send you a tailored game plan in 48h.</p>
+          <div className="flex flex-col items-start gap-10 md:gap-5 w-full max-w-[354px]">
+            <p className="font-inter text-[#929296] text-[16px] leading-6">
+              Your idea, our brains — we&apos;ll send you a tailored game plan in 48h.
+            </p>
             <Link href="/contact"
               className="flex justify-center items-center bg-black px-6 pt-3.5 pb-3 rounded-full font-mont font-semibold text-[14px] text-white hover:scale-105 transition-all duration-300">
               Book a call

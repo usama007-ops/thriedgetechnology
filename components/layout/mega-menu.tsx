@@ -172,9 +172,9 @@ export function MegaMenu() {
         >
           <div className={cn('flex', 'gap-[24px]', 'bg-white', 'p-[12px]', 'rounded-[20px]', 'w-full', 'max-w-[1440px]')}>
             {/* LEFT */}
-            <div className="w-full px-[32px] py-[40px]">
-              <p className="text-[16px] font-normal text-[#929296] mb-4">{activeMenu.categoryLabel}</p>
-              <ul className="grid grid-cols-2 gap-[24px]">
+            <div className={cn('px-[32px]', 'py-[40px]', 'w-full')}>
+              <p className={cn('mb-4', 'font-normal', 'text-[#929296]', 'text-[16px]')}>{activeMenu.categoryLabel}</p>
+              <ul className={cn('gap-[24px]', 'grid', 'grid-cols-2')}>
                 {(activeMenu.items ?? []).map((item) => (
                   <li key={item.href} className="h-full">
                     <Link
@@ -201,13 +201,13 @@ export function MegaMenu() {
               </div>
             </div>
             {/* RIGHTimage */}
-            {/* <div className="relative max-w-[400px] w-full rounded-[16px] overflow-hidden flex shrink-0">
+            <div className={cn('relative', 'flex', 'rounded-[16px]', 'w-full', 'max-w-[400px]', 'overflow-hidden', 'shrink-0')}>
               <Image
                 src={activeMenu.image!}
                 alt={activeMenu.imageAlt!}
                 width={1000}
                 height={1000}
-                className="w-full h-full object-cover"
+                className={cn('w-full', 'h-full', 'object-cover')}
               />
               <Link
                 href={activeMenu.ctaHref!}
