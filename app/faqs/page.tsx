@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
+import { cn } from "../../lib/utils";
 
 const FAQS = [
   // Partnership Basics (6)
@@ -57,27 +59,35 @@ export default function FAQsPage() {
   const filtered = activeTopic === 'All' ? FAQS : FAQS.filter(f => f.topic === activeTopic)
 
   return (
-    <div className="relative bg-white">
+    <div className={cn('relative', 'bg-white')}>
 
       {/* Hero */}
-      <div className="mx-auto px-[16px] md:px-[36px] py-[64px] md:py-[80px] w-full max-w-[1440px]">
-        <p className="mb-[16px] font-inter font-semibold text-[#929296] text-[12px] uppercase tracking-[0.2em]">FAQs</p>
-        <h1 className="max-w-[800px] font-mont font-bold text-[#111212] text-[40px] md:text-[64px] leading-[44px] md:leading-[64px]">
-          Frequently asked questions
-        </h1>
-      </div>
+      <section className={cn('mx-auto', 'p-2', 'w-full')}>
+        <div className={cn('relative', 'rounded-[20px]', 'w-full', 'h-[480px]', 'overflow-hidden')}>
+          <Image src="/faqs-hero.jpg" alt="FAQs" fill className={cn('object-center', 'object-cover')} sizes="100vw" priority />
+          <div className={cn('absolute', 'inset-0', 'rounded-[20px]')} style={{ background: 'linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0.6), rgba(0,0,0,0))' }} />
+          <div className={cn('right-0', 'bottom-0', 'left-0', 'absolute', 'flex', 'lg:flex-row', 'flex-col', 'justify-between', 'lg:items-end', 'gap-4', 'mx-auto', 'px-5', 'lg:px-9', 'py-6', 'lg:py-8', 'max-w-[1440px]')}>
+            <h1 className={cn('max-w-2xl', 'font-mont', 'font-semibold', 'text-[32px]', 'text-white', 'lg:text-[56px]', 'leading-9', 'lg:leading-[60px]')}>
+              Frequently Asked Questions
+            </h1>
+            <p className={cn('lg:max-w-xs', 'font-inter', 'text-[15px]', 'text-white/70', 'lg:text-[18px]', 'leading-7')}>
+              Answers to the most common questions about working with us.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* Topics + FAQ */}
-      <div className="flex md:flex-row flex-col items-start gap-[48px] mx-auto px-[16px] md:px-[36px] pb-[96px] w-full max-w-[1440px]">
+      <div className={cn('flex', 'md:flex-row', 'flex-col', 'items-start', 'gap-[48px]', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[96px]', 'w-full', 'max-w-[1440px]')}>
 
         {/* Sidebar topics */}
-        <div className="md:top-[100px] md:sticky w-full md:w-[260px] shrink-0">
-          <p className="mb-[16px] font-inter font-semibold text-[#929296] text-[11px] uppercase tracking-[0.15em]">Topics</p>
-          <div className="flex flex-col gap-[4px]">
+        <div className={cn('md:top-[100px]', 'md:sticky', 'w-full', 'md:w-[260px]', 'shrink-0')}>
+          <p className={cn('mb-[16px]', 'font-inter', 'font-semibold', 'text-[#929296]', 'text-[11px]', 'uppercase', 'tracking-[0.15em]')}>Topics</p>
+          <div className={cn('flex', 'flex-col', 'gap-[4px]')}>
             {TOPICS.map(t => (
               <button key={t} onClick={() => { setActiveTopic(t); setOpenIdx(null) }}
                 className={`flex items-center justify-between w-full text-left px-[14px] py-[10px] rounded-[10px] transition-all duration-200 ${activeTopic === t ? 'bg-[#111212] text-white' : 'text-[#111212] hover:bg-[#f3f3f3]'}`}>
-                <span className="font-inter font-medium text-[14px]">{t}</span>
+                <span className={cn('font-inter', 'font-medium', 'text-[14px]')}>{t}</span>
                 <span className={`text-[12px] font-inter tabular-nums ${activeTopic === t ? 'text-white/60' : 'text-[#929296]'}`}>
                   {TOPIC_COUNTS[t]}
                 </span>
@@ -87,24 +97,24 @@ export default function FAQsPage() {
         </div>
 
         {/* FAQ list */}
-        <div className="flex-1 min-w-0">
+        <div className={cn('flex-1', 'min-w-0')}>
           {activeTopic !== 'All' && (
-            <p className="mb-[24px] font-inter font-semibold text-[#929296] text-[12px] uppercase tracking-[0.15em]">
+            <p className={cn('mb-[24px]', 'font-inter', 'font-semibold', 'text-[#929296]', 'text-[12px]', 'uppercase', 'tracking-[0.15em]')}>
               {activeTopic} · {filtered.length} questions
             </p>
           )}
-          <div className="border-[#e5e5e5] border-t">
+          <div className={cn('border-[#e5e5e5]', 'border-t')}>
             {filtered.map((item, i) => (
-              <div key={i} className="border-[#e5e5e5] border-b">
+              <div key={i} className={cn('border-[#e5e5e5]', 'border-b')}>
                 <button onClick={() => setOpenIdx(openIdx === i ? null : i)}
-                  className="flex justify-between items-start gap-[24px] py-[24px] w-full text-left cursor-pointer">
-                  <span className="pr-[8px] font-mont font-semibold text-[#111212] text-[17px] leading-[1.4]">
-                    <span className="mr-[12px] font-inter font-normal tabular-nums text-[#999] text-[12px]">
+                  className={cn('flex', 'justify-between', 'items-start', 'gap-[24px]', 'py-[24px]', 'w-full', 'text-left', 'cursor-pointer')}>
+                  <span className={cn('pr-[8px]', 'font-mont', 'font-semibold', 'text-[#111212]', 'text-[17px]', 'leading-[1.4]')}>
+                    <span className={cn('mr-[12px]', 'font-inter', 'font-normal', 'tabular-nums', 'text-[#999]', 'text-[12px]')}>
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     {item.q}
                   </span>
-                  <span className="flex flex-shrink-0 justify-center items-center mt-[3px] w-[22px] h-[22px] transition-transform duration-300"
+                  <span className={cn('flex', 'flex-shrink-0', 'justify-center', 'items-center', 'mt-[3px]', 'w-[22px]', 'h-[22px]', 'transition-transform', 'duration-300')}
                     style={{ transform: openIdx === i ? 'rotate(45deg)' : 'none' }}>
                     <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                       <path d="M8 1V15M1 8H15" stroke="#111212" strokeWidth="1.5" strokeLinecap="round" />
@@ -112,7 +122,7 @@ export default function FAQsPage() {
                   </span>
                 </button>
                 {openIdx === i && (
-                  <p className="pb-[24px] max-w-[680px] font-inter text-[#555] text-[16px] leading-[1.75]">{item.a}</p>
+                  <p className={cn('pb-[24px]', 'max-w-[680px]', 'font-inter', 'text-[#555]', 'text-[16px]', 'leading-[1.75]')}>{item.a}</p>
                 )}
               </div>
             ))}
@@ -121,15 +131,15 @@ export default function FAQsPage() {
       </div>
 
       {/* CTA */}
-      <section className="flex justify-center items-center p-[20px] w-full">
-        <div className="flex md:flex-row flex-col justify-between gap-[8px] md:gap-[96px] bg-white px-[16px] md:px-[48px] py-[20px] md:py-[40px] border border-[#e5e5e5] rounded-[24px] w-full max-w-[1400px]">
-          <h3 className="max-w-[642px] font-mont font-semibold text-[#111212] text-[30px] lg:text-[56px] lg:leading-[64px]">
+      <section className={cn('flex', 'justify-center', 'items-center', 'p-[20px]', 'w-full')}>
+        <div className={cn('flex', 'md:flex-row', 'flex-col', 'justify-between', 'gap-[8px]', 'md:gap-[96px]', 'bg-white', 'px-[16px]', 'md:px-[48px]', 'py-[20px]', 'md:py-[40px]', 'border', 'border-[#e5e5e5]', 'rounded-[24px]', 'w-full', 'max-w-[1400px]')}>
+          <h3 className={cn('max-w-[642px]', 'font-mont', 'font-semibold', 'text-[#111212]', 'text-[30px]', 'lg:text-[56px]', 'lg:leading-[64px]')}>
             Still have questions?
           </h3>
-          <div className="flex flex-col items-start gap-[40px] md:gap-[20px] w-full max-w-[354px]">
-            <p className="font-inter text-[#929296] text-[16px] leading-[24px]">Book a free call and we&apos;ll answer everything directly.</p>
+          <div className={cn('flex', 'flex-col', 'items-start', 'gap-[40px]', 'md:gap-[20px]', 'w-full', 'max-w-[354px]')}>
+            <p className={cn('font-inter', 'text-[#929296]', 'text-[16px]', 'leading-[24px]')}>Book a free call and we&apos;ll answer everything directly.</p>
             <Link href="/contact"
-              className="flex justify-center items-center bg-black px-[24px] pt-[14px] pb-[12px] rounded-full font-mont font-semibold text-[14px] text-white hover:scale-105 transition-all duration-300">
+              className={cn('flex', 'justify-center', 'items-center', 'bg-black', 'px-[24px]', 'pt-[14px]', 'pb-[12px]', 'rounded-full', 'font-mont', 'font-semibold', 'text-[14px]', 'text-white', 'hover:scale-105', 'transition-all', 'duration-300')}>
               Book a call
             </Link>
           </div>

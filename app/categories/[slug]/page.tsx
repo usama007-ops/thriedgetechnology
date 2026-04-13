@@ -13,6 +13,7 @@ import { useCategories, usePostsByCategory } from '@/hooks/use-posts'
 import { ArrowLeft, Loader } from 'lucide-react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { decodeHtml } from '@/lib/utils'
 
 interface CategoryPageProps {
   params: Promise<{ slug: string }>
@@ -32,12 +33,12 @@ export default function CategoryPage({ params }: CategoryPageProps) {
   }
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="bg-background min-h-screen text-foreground">
       <Header />
       
       {/* Back Button */}
-      <section className="pt-32 pb-8 px-4">
-        <div className="max-w-6xl mx-auto">
+      <section className="px-4 pt-32 pb-8">
+        <div className="mx-auto max-w-6xl">
           <Link
             href="/categories"
             className="inline-flex items-center gap-2 text-accent hover:text-primary transition-colors"
@@ -50,17 +51,17 @@ export default function CategoryPage({ params }: CategoryPageProps) {
 
       {/* Category Header */}
       {category && (
-        <section className="py-12 px-4 sm:px-6 lg:px-8 border-b border-border">
-          <div className="max-w-6xl mx-auto space-y-4">
-            <h1 className="text-5xl md:text-6xl font-bold text-foreground">
-              {category.name}
+        <section className="px-4 sm:px-6 lg:px-8 py-12 border-border border-b">
+          <div className="space-y-4 mx-auto max-w-6xl">
+            <h1 className="font-bold text-foreground text-5xl md:text-6xl">
+              {decodeHtml(category.name)}
             </h1>
             {category.description && (
-              <p className="text-lg text-muted-foreground max-w-2xl">
+              <p className="max-w-2xl text-muted-foreground text-lg">
                 {category.description}
               </p>
             )}
-            <p className="text-accent font-semibold">
+            <p className="font-semibold text-accent">
               {category.count} {category.count === 1 ? 'Article' : 'Articles'}
             </p>
           </div>
@@ -68,19 +69,19 @@ export default function CategoryPage({ params }: CategoryPageProps) {
       )}
 
       {/* Posts Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
+      <section className="px-4 sm:px-6 lg:px-8 py-16">
+        <div className="mx-auto max-w-6xl">
           {/* Loading State */}
           {isLoading && (
-            <div className="flex items-center justify-center py-20">
+            <div className="flex justify-center items-center py-20">
               <Loader size={32} className="text-accent animate-spin" />
             </div>
           )}
 
           {/* Error State */}
           {error && (
-            <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-6 text-center">
-              <p className="text-destructive font-semibold mb-2">Failed to load posts</p>
+            <div className="bg-destructive/10 p-6 border border-destructive/20 rounded-lg text-center">
+              <p className="mb-2 font-semibold text-destructive">Failed to load posts</p>
               <p className="text-muted-foreground text-sm">{error.message}</p>
             </div>
           )}
@@ -88,18 +89,18 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           {/* Posts Grid */}
           {!isLoading && posts && posts.length > 0 ? (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+              <div className="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-12">
                 {posts.map((post) => (
                   <BlogCard key={post.id} post={post} />
                 ))}
               </div>
 
               {/* Pagination */}
-              <div className="flex items-center justify-center gap-4 pt-8 border-t border-border">
+              <div className="flex justify-center items-center gap-4 pt-8 border-border border-t">
                 <button
                   onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                   disabled={currentPage === 1}
-                  className="px-4 py-2 rounded-lg bg-card hover:bg-card/80 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                  className="bg-card hover:bg-card/80 disabled:opacity-50 px-4 py-2 rounded-lg transition-all disabled:cursor-not-allowed"
                 >
                   Previous
                 </button>
@@ -109,7 +110,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                 <button
                   onClick={() => setCurrentPage(p => p + 1)}
                   disabled={posts.length < 10}
-                  className="px-4 py-2 rounded-lg bg-card hover:bg-card/80 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                  className="bg-card hover:bg-card/80 disabled:opacity-50 px-4 py-2 rounded-lg transition-all disabled:cursor-not-allowed"
                 >
                   Next
                 </button>
@@ -117,7 +118,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
             </>
           ) : (
             !isLoading && (
-              <div className="text-center py-20 text-muted-foreground">
+              <div className="py-20 text-muted-foreground text-center">
                 <p>No posts found in this category.</p>
               </div>
             )

@@ -53,7 +53,7 @@ export default function HeroSection() {
     //         </div>
 
     //         <div className={cn('flex', 'flex-col', 'gap-[24px]', 'animate-fade-in-up', 'delay-300')}>
-              
+
     //           <div className={cn('flex', 'flex-wrap', 'items-center', 'gap-[20px]')}>
     //             <Link className={cn('flex', 'justify-center', 'items-center', 'gap-1', '!bg-black', 'px-[24px]', 'pt-[14px]', 'pb-[12px]', 'rounded-full', 'font-mont', 'font-semibold', '!text-white', 'text-[14px]', 'hover:scale-105', 'transition-all', 'duration-300', 'cursor-pointer')}
     //               href={"/contact"}>
@@ -92,7 +92,7 @@ export default function HeroSection() {
     //       <div className="w-full">
 
     //         <section className={cn('flex', 'flex-col', 'gap-3', 'mx-auto', 'w-full', 'max-w-[1400px]', 'select-none')}>
-              
+
     //           <div className={cn('w-full', 'overflow-hidden', 'cursor-grab', 'active:cursor-grabbing')}>
     //             <div
     //               className={cn('flex', 'transition-transform', 'duration-700', 'ease-in-out')}
@@ -136,50 +136,64 @@ export default function HeroSection() {
     //     </div>
     //   </div>
     // </div>
-       <section
+    <section
       id="home"
-      className="relative z-10 w-full min-h-screen flex items-center justify-center pt-24 pb-12 px-6 bg-black" 
+      className="relative z-10 w-full min-h-screen"
     >
-      <div className="text-center max-w-4xl mx-auto flex flex-col items-center">
-        
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 mb-8 backdrop-blur-md">
-          <span className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
-          <span className="text-xs font-medium tracking-wide text-indigo-300 uppercase">
-    //             Your Last Agency
-          </span>
-        </div>
+      <div className="relative w-full ">
+       <video
+  src="/mainpage.mp4"
+  loop
+  autoPlay
+  muted
+  playsInline
 
-        {/* Heading */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-slate-500 mb-6 leading-tight">
-         We Ship Software That Actually{" "} <br className="hidden md:block" />
-          Works
-        </h1>
+></video>
 
-        {/* Paragraph */}
-        <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl font-light leading-relaxed">
-          Experience the future of decentralized finance. Sen  From zero to launched MVP in weeksnot months. Enterprise-grade web,
-mobile, and AI solutions for teams that refuse to settle.d, receive, and manage your digital assets with absolute security, low fees, and near-instant settlement.
-        </p>
+        <div className="top-0 left-0 text-center bg-black/75 mx-auto flex flex-col items-center absolute  h-full w-full">
+          <div className="max-w-5xl mx-auto flex flex-col justify-center items-center">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 mt-7 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 mb-8 backdrop-blur-md">
+              <span className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+              <span className="text-xs font-medium tracking-wide text-indigo-300 uppercase">
+                {" "}
+                Your Last Agency
+              </span>
+            </div>
 
-        {/* Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-          
-          <a
-            href="#wallet"
-            className="bg-white hover:bg-slate-100 text-slate-950 px-8 py-4 rounded-full text-sm font-semibold transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] text-center flex items-center justify-center gap-2"
-          >
-            Book a Free Strategy Call
-            <span className="text-lg">↗</span>
-          </a>
+            {/* Heading */}
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-slate-500 mb-6 leading-tight">
+              We Ship Software That Actually <br className="hidden md:block" />
+              Works
+            </h1>
 
-          <a
-            href="#features"
-            className="bg-white/5 hover:bg-white/10 backdrop-blur-md text-white border border-white px-8 py-4 rounded-full text-sm font-medium transition-all duration-300 text-center flex items-center justify-center gap-2"
-          >
-            See Our Work
-          </a>
+            {/* Paragraph */}
+            <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl font-light leading-relaxed">
+              Experience the future of decentralized finance. Sen From zero to
+              launched MVP in weeksnot months. Enterprise-grade web, mobile, and
+              AI solutions for teams that refuse to settle.d, receive, and
+              manage your digital assets with absolute security, low fees, and
+              near-instant settlement.
+            </p>
 
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+              <a
+                href="#wallet"
+                className="bg-white hover:bg-slate-100 text-slate-950 px-8 py-4 rounded-full text-sm font-semibold transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] text-center flex items-center justify-center gap-2"
+              >
+                Book a Free Strategy Call
+                <span className="text-lg">↗</span>
+              </a>
+
+              <a
+                href="#features"
+                className="bg-white/5 hover:bg-white/10 backdrop-blur-md text-white border border-white px-8 py-4 rounded-full text-sm font-medium transition-all duration-300 text-center flex items-center justify-center gap-2"
+              >
+                See Our Work
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

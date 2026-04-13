@@ -1,88 +1,199 @@
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "../../lib/utils";
+import { Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 
 export default function Footer() {
-const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
 
   return (
-    <footer className={cn('w-full', 'bg-[#111212]')}>
-      <div className={cn('max-w-[1440px]', 'mx-auto', 'flex', 'flex-col', 'items-center', 'md:gap-12', 'gap-8', 'md:px-9', 'px-4', 'pt-12', 'pb-5')}>
+    <footer className={cn("w-full", "bg-[#111212]")}>
+      <div
+        className={cn(
+          "max-w-[1440px]",
+          "mx-auto",
+          "flex",
+          "flex-col",
+          "gap-10",
+          "md:px-9",
+          "px-4",
+          "pt-12",
+          "pb-5",
+        )}
+      >
+        {/* GRID */}
+        <div className="w-full grid grid-cols-1 md:grid-cols-[35%_65%] gap-8">
+          {/* LOGO + DESC */}
+          <div className="flex flex-col gap-4 text-white">
+            <Image src="/Thrill Edge.png" width={180} height={60} alt="logo" />
+            <p className=" leading-relaxed text-lg text-white">
+              Thrill Edge Technologies delivers innovative web, mobile, and AI
+              solutions, transforming ideas into scalable, high-impact software
+              products.
+            </p>
 
-        {/* Links Grid */}
-        <div className={cn('w-full', 'grid', 'md:grid-cols-3', 'lg:grid-cols-5', 'justify-between', 'gap-5')}>
-            {/* Socials */}
-          <div className={cn('flex', 'flex-col', 'gap-4' , 'text-white','mr-5','mt-[-15px]')}>
-            <Image src="/Thrill Edge.png" width={250} height={70} alt="logo" ></Image>
-            <p className="text-white flex-col flex">Thrill Edge Technologies delivers innovative web, mobile, and AI solutions, transforming ideas into scalable, high-impact software products.</p>
-          </div>
-        
-          {/* Company */}
-          <div className={cn('flex', 'flex-col', 'gap-4')}>
-            <p className={cn('text-sm', 'text-[#929296]')}>Company</p>
-            <ul className={cn('flex', 'flex-col', 'gap-2', 'text-white')}>
-              <li><Link href="/about-us">About</Link></li>
-              <li><Link href="/client-reviews">Reviews</Link></li>
-              <li><Link href="/faqs">FAQs</Link></li>
-              <li><Link href="/careers">Careers</Link></li>
-              <li><Link href="/blog">Blogs</Link></li>
-              <li><Link href="/contact">Contact</Link></li>
-              <li><Link href="/partners">Partners</Link></li>
-              <li><Link href="/project-cost-estimation">Project Time Estimator</Link></li>
-              <li><Link href="/for-ai">For AI Crawlers</Link></li>
-            </ul>
-          </div>
+             <div className="flex items-center gap-9 mt-2">
+    <Link href="#" className="p-2 rounded-full bg-[#1a1a1a] hover:bg-white/10 transition">
+      <Facebook size={18} />
+    </Link>
 
-          {/* Services */}
-          <div className={cn('flex', 'flex-col', 'gap-4')}>
-            <p className={cn('text-sm', 'text-[#929296]')}>Services</p>
-            <ul className={cn('flex', 'flex-col', 'gap-2', 'text-white')}>
-              <li><Link href="/services/ai-and-ml-solutions">AI & ML Solutions</Link></li>
-              <li><Link href="/services/custom-web-development">Custom Web Development</Link></li>
-              <li><Link href="/services/ui-ux-design">UI/UX Design</Link></li>
-              <li><Link href="/services/mobile-app-development">Mobile App Development</Link></li>
-              <li><Link href="/services/mvp-and-product-strategy">MVP & Product Strategy</Link></li>
-              <li><Link href="/services/saas-solutions">SaaS Solutions</Link></li>
-              <li><Link href="/services/shopify-plus-agency">Shopify Plus Agency</Link></li>
-            </ul>
-          </div>
+    <Link href="#" className="p-2 rounded-full bg-[#1a1a1a] hover:bg-white/10 transition">
+      <Twitter size={18} />
+    </Link>
 
-          {/* Industries */}
-          <div className={cn('flex', 'flex-col', 'gap-4')}>
-            <p className={cn('text-sm', 'text-[#929296]')}>Industries</p>
-            <ul className={cn('flex', 'flex-col', 'gap-2', 'text-white')}>
-              <li><Link href="/industries/healthcare">Healthcare</Link></li>
-              <li><Link href="/industries/education">Education</Link></li>
-              <li><Link href="/industries/real-estate">Real Estate</Link></li>
-              <li><Link href="/industries/blockchain">Blockchain</Link></li>
-              <li><Link href="/industries/fintech">Fintech</Link></li>
-              <li><Link href="/industries/logistics">Logistics</Link></li>
-            </ul>
+    <Link href="#" className="p-2 rounded-full bg-[#1a1a1a] hover:bg-white/10 transition">
+      <Linkedin size={18} />
+    </Link>
+
+    <Link href="#" className="p-2 rounded-full bg-[#1a1a1a] hover:bg-white/10 transition">
+      <Instagram size={18} />
+    </Link>
+  </div>
+
           </div>
 
-          {/* Technologies */}
-          <div className={cn('flex', 'flex-col', 'gap-4','ml-[-30px]')}>
-            <p className={cn('text-sm', 'text-[#929296]')}>Technologies</p>
-            <ul className={cn('flex', 'flex-col', 'gap-2', 'text-white')}>
-              <li><Link href="/technologies/machine-learning">AI & Machine Learning</Link></li>
-              <li><Link href="/technologies/frontend-development">Frontend Development</Link></li>
-              <li><Link href="/technologies/backend-development">Backend Development</Link></li>
-              <li><Link href="/technologies/mobile-development">Mobile Development</Link></li>
-              <li><Link href="/technologies/databases">Databases</Link></li>
-            </ul>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+            {/* COMPANY */}
+            <div className="flex flex-col gap-4">
+              <p className="text-sm text-[#929296]">Company</p>
+              <ul className="flex flex-col gap-2 text-white">
+                <li>
+                  <Link href="/about-us">About</Link>
+                </li>
+                <li>
+                  <Link href="/client-reviews">Reviews</Link>
+                </li>
+                <li>
+                  <Link href="/faqs">FAQs</Link>
+                </li>
+                <li>
+                  <Link href="/careers">Careers</Link>
+                </li>
+                <li>
+                  <Link href="/blog">Blogs</Link>
+                </li>
+                <li>
+                  <Link href="/contact">Contact</Link>
+                </li>
+                <li>
+                  <Link href="/partners">Partners</Link>
+                </li>
+                <li>
+                  <Link href="/project-cost-estimation">
+                    Project Time Estimator
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/for-ai">For AI Crawlers</Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* SERVICES */}
+            <div className="flex flex-col gap-4">
+              <p className="text-sm text-[#929296]">Services</p>
+              <ul className="flex flex-col gap-2 text-white">
+                <li>
+                  <Link href="/services/ai-and-ml-solutions">
+                    AI & ML Solutions
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/services/custom-web-development">
+                    Custom Web Development
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/services/ui-ux-design">UI/UX Design</Link>
+                </li>
+                <li>
+                  <Link href="/services/mobile-app-development">
+                    Mobile App Development
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/services/mvp-and-product-strategy">
+                    MVP & Product Strategy
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/services/saas-solutions">SaaS Solutions</Link>
+                </li>
+                <li>
+                  <Link href="/services/shopify-plus-agency">
+                    Shopify Plus Agency
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* INDUSTRIES */}
+            <div className="flex flex-col gap-4">
+              <p className="text-sm text-[#929296]">Industries</p>
+              <ul className="flex flex-col gap-2 text-white">
+                <li>
+                  <Link href="/industries/healthcare">Healthcare</Link>
+                </li>
+                <li>
+                  <Link href="/industries/education">Education</Link>
+                </li>
+                <li>
+                  <Link href="/industries/real-estate">Real Estate</Link>
+                </li>
+                <li>
+                  <Link href="/industries/blockchain">Blockchain</Link>
+                </li>
+                <li>
+                  <Link href="/industries/fintech">Fintech</Link>
+                </li>
+                <li>
+                  <Link href="/industries/logistics">Logistics</Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* TECHNOLOGIES */}
+            <div className="flex flex-col gap-4">
+              <p className="text-sm text-[#929296]">Technologies</p>
+              <ul className="flex flex-col gap-2 text-white">
+                <li>
+                  <Link href="/technologies/machine-learning">
+                    AI & Machine Learning
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/technologies/frontend-development">
+                    Frontend Development
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/technologies/backend-development">
+                    Backend Development
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/technologies/mobile-development">
+                    Mobile Development
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/technologies/databases">Databases</Link>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
         {/* Divider */}
-        <div className={cn('w-full', 'border-t', 'border-[#313131]')} />
+        <div className="w-full border-t border-[#313131]" />
 
         {/* Bottom */}
-        <div className={cn('w-full', 'flex', 'sm:flex-row', 'flex-col-reverse', 'gap-4', 'items-center', 'justify-between', 'text-sm')}>
+        <div className="w-full flex sm:flex-row flex-col-reverse gap-4 items-center justify-between text-sm">
           <span className="text-[#929296]">
             © {currentYear} Thrill Edge Technologies. All rights reserved.
           </span>
 
-          <div className={cn('flex', 'gap-3', 'text-white')}>
+          <div className="flex gap-3 text-white">
             <Link href="/sitemap.xml">Sitemap</Link>
             <Link href="/privacy-policy">Privacy Policy</Link>
             <Link href="/terms-condition">Terms & Conditions</Link>
