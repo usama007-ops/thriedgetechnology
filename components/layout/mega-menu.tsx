@@ -165,7 +165,7 @@ export function MegaMenu() {
       {/* single shared panelpositioned from the header via fixed top */}
       {activeMenu && (
         <div
-          className={cn('right-0', 'left-0', 'z-[9999]', 'fixed', 'flex', 'justify-center', 'px-4')}
+          className={cn('grid','grid-cols-3','right-0', 'left-0', 'z-[9999]', 'fixed', 'flex', 'justify-center', 'px-4')}
           style={{ top: '50px' }}
           onMouseEnter={() => setActive(activeMenu.label)}
           onMouseLeave={() => setActive(null)}
@@ -216,7 +216,7 @@ export function MegaMenu() {
               >
                 <span>{activeMenu.ctaLabel}</span>
               </Link>
-            </div>
+            </div>  */}
           </div>
         </div>
       )}
