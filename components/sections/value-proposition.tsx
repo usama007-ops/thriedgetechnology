@@ -1,42 +1,89 @@
+import Link from 'next/link'
+import { ArrowUpRight } from 'lucide-react'
+
+const PILLARS = [
+  {
+    number: '01',
+    title: 'Revenue-first thinking',
+    body: 'Every decision we make is tied to your bottom line. We ask "does this ship value?" before writing a single line of code.',
+  },
+  {
+    number: '02',
+    title: "Founders who've been there",
+    body: 'Our leadership has taken products from zero to market. We bring that scar tissue to every engagement.',
+  },
+  {
+    number: '03',
+    title: 'Start-up to Fortune 500',
+    body: "Whether you're pre-seed or publicly traded, our process scales to your stage without losing speed.",
+  },
+]
+
 export default function ValuePropositionSection() {
   return (
-    <section className="w-[100%] flex flex-col items-center justify-center gap-[48px] lg:py-[96px] py-[64px] lg:px-[36px] px-[16px] bg-[#111212]">
-      
-      <div className="flex flex-col items-center justify-center gap-[16px] max-w-[1046px]">
-        <p className="text-[#929296] font-inter text-[16px] font-normal leading-6">
-          Every project starts with one question
-        </p>
+    <section className="bg-[#111212] w-full overflow-hidden">
+      <div className="mx-auto px-4 md:px-9 py-20 lg:py-28 max-w-[1440px]">
 
-        <h2 className="text-white text-center font-mont lg:text-[64px] text-[32px] lg:leading-[64px] leading-[38px] lg:font-bold font-semibold">
-          What’s the maximum amount of value we can contribute?
-        </h2>
+        {/* Top row — label + big question */}
+        <div className="flex flex-col gap-6 pb-16 border-white/10 border-b">
+          <span className="font-inter font-semibold text-[11px] text-white/30 uppercase tracking-[0.2em]">
+            Every project starts with one question
+          </span>
+          <h2 className="max-w-[900px] font-mont font-bold text-[40px] text-white md:text-[64px] lg:text-[80px] leading-none">
+            What&apos;s the maximum value we can contribute?
+          </h2>
+        </div>
+
+        {/* Middle row — statement + pillars */}
+        <div className="flex md:flex-row flex-col gap-12 md:gap-20 pt-16 pb-16 border-white/10 border-b">
+
+          {/* Left — sticky statement */}
+          <div className="flex flex-col gap-6 md:w-[380px] shrink-0">
+            <p className="font-mont font-semibold text-[24px] text-white md:text-[32px] leading-tight">
+              We build software that builds your bottom line.
+            </p>
+            <p className="font-inter text-[15px] text-white/40 leading-7">
+              Our founders and product directors have shipped products that drive real revenue. We don&apos;t just build — we help you grow.
+            </p>
+            <Link href="/about"
+              className="group flex items-center self-start gap-2 hover:bg-white px-5 py-2.5 border border-white/20 hover:border-white rounded-full font-mont font-semibold text-[13px] text-white hover:text-[#111212] transition-all duration-300">
+              Get to know us
+              <ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 duration-300" />
+            </Link>
+          </div>
+
+          {/* Right — pillars */}
+          <div className="flex flex-col flex-1 divide-y divide-white/10">
+            {PILLARS.map((p) => (
+              <div key={p.number} className="group flex gap-6 py-7">
+                <span className="pt-1 w-6 font-inter tabular-nums text-[13px] text-white/20 shrink-0">{p.number}</span>
+                <div className="flex flex-col gap-2">
+                  <h3 className="font-mont font-semibold text-[18px] text-white group-hover:text-white/80 transition-colors duration-200">
+                    {p.title}
+                  </h3>
+                  <p className="font-inter text-[14px] text-white/40 leading-6">{p.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom row — stats */}
+        <div className="gap-px grid grid-cols-2 md:grid-cols-4 bg-white/10 mt-0">
+          {[
+            { number: '50+', label: 'Products shipped' },
+            { number: '98%', label: 'Client satisfaction' },
+            { number: '8+', label: 'Years in market' },
+            { number: '2M+', label: 'Revenue generated' },
+          ].map((s) => (
+            <div key={s.label} className="flex flex-col gap-1 bg-[#111212] px-6 py-8">
+              <p className="font-mont font-bold text-[36px] text-white md:text-[48px] leading-none">{s.number}</p>
+              <p className="mt-1 font-inter text-[13px] text-white/40">{s.label}</p>
+            </div>
+          ))}
+        </div>
+
       </div>
-
-      <div className="flex flex-col gap-[8px] items-center text-center">
-        <h1 className="text-white text-center font-mont lg:text-[32px] text-[24px] lg:font-bold font-semibold">
-          We build software that builds your bottom line.
-        </h1>
-
-        <p className="text-[#929296] font-inter text-[16px] font-normal">
-          Our Founders and Product Directors have years of experience bringing products to market that drive revenue. Now, let us do it for you.
-        </p>
-
-        <p className="text-[#929296] font-inter text-[16px] font-normal">
-          Whether you’re a start-up or a Fortune 500 company, our team can take you to the next level.
-        </p>
-
-        <p className="text-[#929296] font-inter text-[16px] font-normal">
-          We don’t just build your software, we help you grow your business.
-        </p>
-      </div>
-
-      <a
-        href="/about-us"
-        className="flex items-center justify-center gap-1 px-[24px] pt-[14px] pb-[12px] font-mont text-[14px] font-semibold cursor-pointer backdrop-blur-[12px] hover:scale-105 transition-all duration-300 ease-in-out rounded-full !bg-[#111212] !text-white border !border-white"
-      >
-        <span>Get to know us</span>
-      </a>
-
     </section>
-  );
+  )
 }
