@@ -3,10 +3,15 @@
 import React, { useRef, useEffect, useMemo } from 'react'
 import { useService } from '@/hooks/use-services'
 import { useQuery } from '@tanstack/react-query'
-import { Loader } from 'lucide-react'
+import { Loader, ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import { WorkSection } from '@/components/sections/work-section'
+import { TestimonialsSection } from '@/components/sections/testimonials-section'
+import { ProcessSection } from '@/components/sections/process-section'
+import { ValueFeaturesSection } from '@/components/sections/value-features-section'
+import { Suspense } from 'react'
 
 interface ServicePageProps {
   params: Promise<{ slug: string }>
@@ -20,7 +25,7 @@ export default function ServicePage({ params }: ServicePageProps) {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center bg-white min-h-screen">
+      <div className="flex justify-center items-center bg-[#F3F3F3] min-h-screen">
         <Loader size={32} className="text-black animate-spin" />
       </div>
     )
@@ -29,6 +34,8 @@ export default function ServicePage({ params }: ServicePageProps) {
   if (!service) notFound()
 
   const acf = service.acf ?? {}
+  const heroImg = acf.image?.url || service._embedded?.['wp:featuredmedia']?.[0]?.source_url
+
   const howWeWork = acf.how_we_work ?? {}
   const hwwSteps = Object.entries(howWeWork)
     .sort(([a], [b]) => a.localeCompare(b))
@@ -43,64 +50,43 @@ export default function ServicePage({ params }: ServicePageProps) {
   const projects = acf.projects ?? []
 
   return (
-    <div className="relative bg-[#f3f3f3]">
+    <div className="relative bg-[#F3F3F3]">
 
       {/* Hero */}
-      {(() => {
-        const heroImg = acf.image?.url || service._embedded?.['wp:featuredmedia']?.[0]?.source_url
-        return heroImg ? (
-          <section className="mx-auto p-2 w-full">
-            <div className="relative rounded-[20px] w-full h-[480px] md:h-[640px] overflow-hidden">
-              <Image
-                src={heroImg}
-                alt={service.title.rendered}
-                fill
-                className="object-center object-cover"
-                sizes="100vw"
-                priority
-              />
-              <div
-                className="absolute inset-0 rounded-[20px]"
-                style={{ background: 'linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0.6), rgba(0,0,0,0))' }}
-              />
-              <div className="right-0 bottom-0 left-0 absolute flex lg:flex-row flex-col justify-between lg:items-end gap-4 mx-auto px-5 lg:px-9 py-6 lg:py-8 max-w-[1440px]">
-                <h1
-                  className="max-w-2xl font-mont font-semibold text-[32px] text-white lg:text-[56px] leading-9 lg:leading-[60px]"
-                  dangerouslySetInnerHTML={{ __html: service.title.rendered }}
-                />
-                {acf.service_solutions && (
-                  <p className="lg:max-w-xs font-inter text-[15px] text-white/70 lg:text-[18px] leading-7">
-                    {acf.service_solutions.slice(0, 140)}
-                  </p>
-                )}
-              </div>
+      <section className="mx-auto p-2 w-full">
+        <div className="relative rounded-[20px] w-full h-[480px] md:h-[600px] overflow-hidden">
+          {heroImg ? (
+            <Image src={heroImg} alt={service.title.rendered} fill
+              className="object-center object-cover" sizes="100vw" priority />
+          ) : (
+            <div className="absolute inset-0 bg-[#111212]">
+              <div className="absolute inset-0 opacity-[0.04]"
+                style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '80px 80px' }} />
             </div>
-          </section>
-        ) : (
-          <div className="flex md:flex-row flex-col gap-[32px] md:gap-[64px] mx-auto px-[16px] md:px-[36px] py-[64px] w-full max-w-[1440px]">
-            <h1 className="w-full max-w-[610px] font-mont font-semibold text-[24px]"
-              dangerouslySetInnerHTML={{ __html: service.title.rendered }}
-            />
+          )}
+          <div className="absolute inset-0 rounded-[20px]"
+            style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.5), rgba(0,0,0,0))' }} />
+          <div className="right-0 bottom-0 left-0 absolute flex lg:flex-row flex-col justify-between lg:items-end gap-4 mx-auto px-5 lg:px-9 py-6 lg:py-10 max-w-[1440px]">
+            <div className="flex flex-col gap-3">
+              <span className="font-inter font-semibold text-[11px] text-white/40 uppercase tracking-[0.2em]">Service</span>
+              <h1 className="max-w-2xl font-mont font-semibold text-[32px] text-white lg:text-[60px] leading-none"
+                dangerouslySetInnerHTML={{ __html: service.title.rendered }} />
+            </div>
             {acf.service_solutions && (
-              <p className="w-full max-w-[694px] font-mont font-semibold text-[40px] leading-[48px]">
-                {acf.service_solutions}
+              <p className="lg:max-w-sm font-inter text-[15px] text-white/60 lg:text-[17px] lg:text-right leading-7">
+                {acf.service_solutions.slice(0, 160)}
               </p>
             )}
           </div>
-        )
-      })()}
-
-      {/* Projects Marquee */}
-      {projects.length > 0 && (
-        <ProjectsMarquee projects={projects} />
-      )}
+        </div>
+      </section>
 
       {/* Stats */}
       {counts.length > 0 && (
-        <div className="gap-[20px] grid grid-cols-1 md:grid-cols-3 mx-auto px-[16px] md:px-[36px] py-[64px] w-full max-w-[1440px]">
+        <div className="gap-[2px] grid grid-cols-1 md:grid-cols-3 bg-[#e5e5e5] mx-auto mt-2 mt-20 px-2 max-w-[1440px] rounded-[20px] overflow-hidden">
           {counts.map((c, i) => (
-            <div key={i} className="flex flex-col gap-[4px] px-[24px] py-[32px] border-[#CCCCCC] border-l">
-              <p className="font-mont font-semibold text-[40px] text-black xl:text-[80px] xl:leading-[80px]">
+            <div key={i} className="flex flex-col gap-[8px] bg-white px-[32px] py-[40px]">
+              <p className="font-mont font-semibold text-[48px] text-black xl:text-[80px] xl:leading-[80px]">
                 {c!.number}
               </p>
               <p className="font-inter text-[#929296] text-[14px]">{c!.label}</p>
@@ -109,95 +95,145 @@ export default function ServicePage({ params }: ServicePageProps) {
         </div>
       )}
 
-      {/* About Us */}
+      {/* About / Description */}
       {(acf.about_us?.title || acf.about_us?.text) && (
-        <div className="flex md:flex-row flex-col gap-[96px] mx-auto px-[16px] md:px-[36px] py-[64px] md:py-[96px] w-full max-w-[1440px]">
+        <div className="flex md:flex-row flex-col gap-[64px] md:gap-[96px] mx-auto px-[16px] md:px-[36px] py-[80px] md:py-[112px] w-full max-w-[1440px]">
           {acf.about_us.title && (
-            <h2 className="w-full font-mont font-semibold text-[40px] leading-[48px]">
+            <h2 className="w-full max-w-[480px] font-mont font-semibold text-[32px] md:text-[48px] leading-[1.1]">
               {acf.about_us.title}
             </h2>
           )}
           {acf.about_us.text && (
             <div
-              className="flex flex-col gap-[16px] w-full font-inter font-normal [&_strong]:font-semibold text-[#111212] text-[16px] [&_p]:text-[16px] leading-[24px] [&_p]:leading-[24px]"
+              className="flex flex-col gap-[16px] w-full font-inter text-[#555] text-[18px] [&_p]:text-[18px] leading-[30px] [&_p]:leading-[30px] [&_strong]:font-semibold [&_strong]:text-[#111212]"
               dangerouslySetInnerHTML={{ __html: acf.about_us.text }}
             />
           )}
         </div>
       )}
 
-      {/* Marquee text strip */}
-      <MarqueeStrip />
-
+      {/* Projects Marquee */}
+      {projects.length > 0 && (
+        <div className="py-4">
+          <ProjectsMarquee projects={projects} />
+        </div>
+      )}
 
       {/* How We Work */}
       {hwwSteps.length > 0 && (
-        <div className="mx-auto px-[16px] md:px-[36px] py-[64px] md:py-[96px] w-full max-w-[1440px]">
-          <h2 className="mb-[48px] font-mont font-semibold text-[40px] leading-[48px]">How we work</h2>
-          <div className="gap-[1px] grid grid-cols-1 md:grid-cols-3 bg-[#e5e5e5]">
-            {hwwSteps.map((step) => (
-              <div key={step.key} className="flex flex-col gap-[16px] bg-white p-[32px]">
-                <span className="font-inter text-[#929296] text-[14px]">{step.key}</span>
-                <p className="font-mont font-semibold text-[20px] text-black leading-[28px]">{step.label}</p>
-                <p className="font-inter text-[#929296] text-[16px] leading-[24px]">{step.text}</p>
+        <div className="bg-white w-full">
+          <div className="mx-auto px-[16px] md:px-[36px] py-[80px] md:py-[112px] w-full max-w-[1440px]">
+            <div className="flex md:flex-row flex-col md:gap-[64px] gap-[48px] items-start">
+
+              {/* Left sticky title */}
+              <div className="md:w-[420px] w-full shrink-0 md:sticky md:top-[100px]">
+                <h2 className="font-mont font-bold text-[#111212] text-[32px] md:text-[48px] leading-[1.15]">
+                  How we work
+                </h2>
+                <p className="mt-[20px] font-inter text-[#929296] text-[16px] leading-[26px]">
+                  A clear, repeatable process that keeps projects on track and clients informed at every step.
+                </p>
               </div>
-            ))}
+
+              {/* Right scrolling steps */}
+              <div className="flex-1 flex flex-col">
+                {hwwSteps.map((step, i) => (
+                  <div key={step.key}
+                    className="group flex flex-col gap-[16px] items-start px-[20px] py-[32px] border-t border-[#D9D9D9] hover:border-[#111212] transition-all duration-300">
+                    <div className="flex justify-center items-center bg-[#f7f7f7] group-hover:bg-[#111212] rounded-[12px] w-[48px] h-[48px] transition-colors duration-300">
+                      <span className="font-mont font-bold text-[#929296] group-hover:text-white text-[14px] tabular-nums transition-colors duration-300">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center gap-[20px] w-full">
+                      <h3 className="font-mont font-semibold text-black text-[20px] md:text-[24px]">{step.label}</h3>
+                    </div>
+                    <p className="font-inter text-[#111212] text-[16px] leading-[26px]">{step.text}</p>
+                  </div>
+                ))}
+              </div>
+
+            </div>
           </div>
         </div>
       )}
 
-      {/* Our Core Points */}
+      {/* Marquee text strip */}
+      <MarqueeStrip />
+
+      {/* Core Points */}
       {coreSteps.length > 0 && (
-        <div className="mx-auto px-[16px] md:px-[36px] py-[64px] md:py-[96px] w-full max-w-[1440px]">
-          {acf.our_core_title && (
-            <h2 className="mb-[48px] font-mont font-semibold text-[40px] leading-[48px]">{acf.our_core_title}</h2>
-          )}
-          <div className="gap-[1px] grid grid-cols-1 md:grid-cols-3 bg-[#e5e5e5]">
-            {coreSteps.map((step) => (
-              <div key={step.key} className="flex flex-col gap-[16px] bg-white p-[32px]">
-                <span className="font-inter text-[#929296] text-[14px]">{step.key}</span>
-                <p className="font-mont font-semibold text-[20px] text-black leading-[28px]">{step.label}</p>
-                <p className="font-inter text-[#929296] text-[16px] leading-[24px]">{step.text}</p>
+        <div className="bg-[#111212] w-full">
+          <div className="mx-auto px-[16px] md:px-[36px] py-[80px] md:py-[112px] w-full max-w-[1440px]">
+            {acf.our_core_title && (
+              <div className="flex md:flex-row flex-col justify-between md:items-end gap-[32px] mb-[64px]">
+                <h2 className="max-w-[560px] font-mont font-bold text-white text-[40px] md:text-[48px] leading-[1.1]">
+                  {acf.our_core_title}
+                </h2>
+                <p className="max-w-[360px] font-inter text-white/40 text-[15px] leading-[26px]">
+                  The principles that guide every decision we make on your project.
+                </p>
               </div>
-            ))}
+            )}
+            <div className="gap-[16px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+              {coreSteps.map((step, i) => (
+                <div key={step.key}
+                  className="group flex flex-col gap-[24px] bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-[20px] p-[32px] transition-all duration-300">
+                  <span className="font-mont font-bold text-white/15 text-[56px] leading-none tabular-nums select-none">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <div className="flex flex-col gap-[10px]">
+                    <h3 className="font-mont font-semibold text-white text-[20px] leading-[28px]">{step.label}</h3>
+                    <p className="font-inter text-white/50 text-[15px] leading-[26px]">{step.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}
 
-      {/* Service Image */}
-      {acf.image?.url && (
-        <div className="mx-auto px-[16px] md:px-[36px] pb-[64px] w-full max-w-[1440px]">
-          <div className="relative rounded-[20px] w-full overflow-hidden">
-            <Image
-              src={acf.image.url}
-              alt={acf.image.alt || service.title.rendered}
-              width={acf.image.width || 1440}
-              height={acf.image.height || 800}
-              className="rounded-[20px] w-full h-auto object-cover"
-            />
-          </div>
-        </div>
-      )}
+      {/* Value Features */}
+      <ValueFeaturesSection />
+
+      {/* Process */}
+      <div className="bg-white">
+        <ProcessSection />
+      </div>
+
+      {/* Work */}
+      <Suspense fallback={null}>
+        <WorkSection show={3} />
+      </Suspense>
+
+      {/* Testimonials */}
+      <Suspense fallback={null}>
+        <TestimonialsSection show={8} />
+      </Suspense>
 
       {/* CTA */}
-      <section className="flex justify-center items-center p-[20px] w-full">
-        <div className="flex md:flex-row flex-col justify-between gap-[8px] md:gap-[96px] bg-white px-[16px] md:px-[48px] py-[20px] md:py-[40px] border border-[#e5e5e5] rounded-[24px] w-full max-w-[1400px]">
-          <h3 className="max-w-[642px] font-mont font-semibold text-[#111212] text-[30px] lg:text-[56px] lg:leading-[64px]">
-            Let&apos;s Build Your Next Big Thing
-          </h3>
-          <div className="flex flex-col items-start gap-[40px] md:gap-[20px] w-full max-w-[354px]">
+      <div className="bg-[#111212] w-full">
+        <div className="flex md:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[16px] md:px-[36px] py-[96px] w-full max-w-[1440px]">
+          <div className="flex flex-col gap-[16px] max-w-[600px]">
+            <h2 className="font-mont font-bold text-[40px] md:text-[48px] text-white leading-[1.1]">
+              Let&apos;s build your next big thing
+            </h2>
             <p className="font-inter text-[#929296] text-[16px] leading-[24px]">
-              Your idea, our brainswe&apos;ll send you a tailored game plan in 48h.
+              Your idea, our brains — we&apos;ll send you a tailored game plan in 48h.
             </p>
-            <Link
-              href="/contact"
-              className="flex justify-center items-center bg-black px-[24px] pt-[14px] pb-[12px] rounded-full font-mont font-semibold text-[14px] text-white hover:scale-105 transition-all duration-300"
-            >
+          </div>
+          <div className="flex sm:flex-row flex-col gap-[16px]">
+            <Link href="/contact"
+              className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">
               Book a call
+            </Link>
+            <Link href="/work"
+              className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">
+              See our work
             </Link>
           </div>
         </div>
-      </section>
+      </div>
 
     </div>
   )
@@ -209,7 +245,6 @@ function ProjectsMarquee({ projects }: { projects: Array<{ ID: number; post_titl
   const posRef = useRef(0)
   const rafRef = useRef<number>(0)
 
-  // Fetch full work items (with featured images) for the related project IDs
   const ids = projects.map(p => p.ID).join(',')
   const { data: workItems } = useQuery({
     queryKey: ['work-items-by-ids', ids],
@@ -223,7 +258,6 @@ function ProjectsMarquee({ projects }: { projects: Array<{ ID: number; post_titl
     enabled: !!ids,
   })
 
-  // Map ID → image URL for quick lookup
   const imageMap = useMemo(() => {
     const m: Record<number, string> = {}
     workItems?.forEach(w => {
@@ -251,28 +285,28 @@ function ProjectsMarquee({ projects }: { projects: Array<{ ID: number; post_titl
   const doubled = [...projects, ...projects]
 
   return (
-    <section className="bg-transparent py-0 w-full overflow-hidden">
-      <div ref={trackRef} className="flex items-center gap-[20px] will-change-transform">
+    <section className="w-full overflow-hidden">
+      <div ref={trackRef} className="flex items-center gap-[12px] will-change-transform">
         {doubled.map((p, i) => {
           const img = imageMap[p.ID]
           return (
             <div key={i} className="flex-shrink-0">
               <Link href={`/work/${p.post_name}`}>
-                <div className="relative bg-[#111212] rounded-[20px] w-[300px] sm:w-[400px] lg:w-[600px] h-[250px] md:h-[400px] overflow-hidden">
+                <div className="group relative bg-[#111212] rounded-[20px] w-[280px] sm:w-[380px] lg:w-[560px] h-[220px] md:h-[360px] overflow-hidden">
                   {img && (
-                    <Image
-                      src={img}
-                      alt={p.post_title}
-                      fill
-                      className="opacity-80 object-cover"
-                      sizes="(max-width: 640px) 300px, (max-width: 1024px) 400px, 600px"
-                    />
+                    <Image src={img} alt={p.post_title} fill
+                      className="opacity-80 group-hover:opacity-100 group-hover:scale-105 object-cover transition-all duration-700"
+                      sizes="(max-width: 640px) 280px, (max-width: 1024px) 380px, 560px" />
                   )}
-                  {/* gradient + title overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                  <span className="right-[20px] bottom-[20px] left-[20px] absolute font-mont font-semibold text-[18px] text-white leading-[24px]">
-                    {p.post_title}
-                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="right-[16px] bottom-[16px] left-[16px] absolute flex justify-between items-end">
+                    <span className="font-mont font-semibold text-[16px] text-white leading-[22px]">
+                      {p.post_title}
+                    </span>
+                    <span className="flex justify-center items-center bg-white/20 backdrop-blur-sm border border-white/30 rounded-full w-8 h-8 shrink-0">
+                      <ArrowUpRight size={14} className="text-white" />
+                    </span>
+                  </div>
                 </div>
               </Link>
             </div>
@@ -293,7 +327,6 @@ function MarqueeStrip() {
     const track = trackRef.current
     if (!track) return
     const speed = 0.4
-
     const animate = () => {
       posRef.current -= speed
       const half = track.scrollWidth / 2
@@ -305,18 +338,15 @@ function MarqueeStrip() {
     return () => cancelAnimationFrame(rafRef.current)
   }, [])
 
-  const text = 'it starts with an idea'
-  const items = Array(8).fill(text)
+  const items = Array(8).fill('it starts with an idea')
 
   return (
-    <section className="py-4 overflow-hidden whitespace-nowrap">
-      <div ref={trackRef} className="flex gap-[100px] w-max will-change-transform">
+    <section className="py-6 overflow-hidden whitespace-nowrap">
+      <div ref={trackRef} className="flex gap-[80px] w-max will-change-transform">
         {items.map((t, i) => (
-          <span
-            key={i}
-            className="font-mont font-semibold text-[100px] text-transparent lg:text-[180px] leading-normal"
-            style={{ WebkitTextStroke: '2px rgb(146, 146, 150)' }}
-          >
+          <span key={i}
+            className="font-mont font-semibold text-[80px] text-transparent lg:text-[160px] leading-normal select-none"
+            style={{ WebkitTextStroke: '1.5px rgb(180, 180, 184)' }}>
             {t}
           </span>
         ))}

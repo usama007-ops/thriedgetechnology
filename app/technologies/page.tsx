@@ -8,7 +8,7 @@ import BrandsMarquee from '@/components/sections/brands'
 
 export const metadata: Metadata = {
   title: 'Technologies | Thrill Edge Technologies',
-  description: 'The tech stack we use to build world-class software — AI, frontend, backend, mobile, databases, and more.',
+  description: 'The tech stack we use to build world-class software AI, frontend, backend, mobile, databases, and more.',
   alternates: { canonical: 'https://thrilledge.com/technologies' },
 }
 
@@ -95,7 +95,7 @@ export default function TechnologiesPage() {
               </h1>
             </div>
             <p className="lg:max-w-xs font-inter text-[15px] text-white/50 lg:text-[17px] lg:text-right leading-7">
-              We choose technologies for reliability, performance, and developer experience — not hype.
+              We choose technologies for reliability, performance, and developer experience not hype.
             </p>
           </div>
         </div>
@@ -160,7 +160,7 @@ export default function TechnologiesPage() {
               Tools we use every day
             </h2>
             <p className="max-w-[360px] font-inter text-[#929296] text-[15px]">
-              Chosen for reliability, performance, and developer experience — not hype.
+              Chosen for reliability, performance, and developer experience not hype.
             </p>
           </div>
           <div className="gap-4 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6">
@@ -194,7 +194,7 @@ export default function TechnologiesPage() {
           </h3>
           <div className="flex flex-col items-start gap-10 md:gap-5 w-full max-w-[354px]">
             <p className="font-inter text-[#929296] text-[16px] leading-6">
-              We'll recommend the best technologies for your project — no lock-in, no fluff.
+              We'll recommend the best technologies for your project no lock-in, no fluff.
             </p>
             <Link href="/contact"
               className="flex justify-center items-center bg-black px-6 pt-3.5 pb-3 rounded-full font-mont font-semibold text-[14px] text-white hover:scale-105 transition-all duration-300">

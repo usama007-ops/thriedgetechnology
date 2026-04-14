@@ -24,7 +24,7 @@ export default function ValuePropositionSection() {
     <section className="bg-[#111212] w-full overflow-hidden">
       <div className="mx-auto px-4 md:px-9 py-20 lg:py-28 max-w-[1440px]">
 
-        {/* Top row — label + big question */}
+        {/* Top row label + big question */}
         <div className="flex flex-col gap-6 pb-16 border-white/10 border-b">
           <span className="font-inter font-semibold text-[11px] text-white/30 uppercase tracking-[0.2em]">
             Every project starts with one question
@@ -34,16 +34,16 @@ export default function ValuePropositionSection() {
           </h2>
         </div>
 
-        {/* Middle row — statement + pillars */}
+        {/* Middle row statement + pillars */}
         <div className="flex md:flex-row flex-col gap-12 md:gap-20 pt-16 pb-16 border-white/10 border-b">
 
-          {/* Left — sticky statement */}
+          {/* Left sticky statement */}
           <div className="flex flex-col gap-6 md:w-[380px] shrink-0">
             <p className="font-mont font-semibold text-[24px] text-white md:text-[32px] leading-tight">
               We build software that builds your bottom line.
             </p>
             <p className="font-inter text-[15px] text-white/40 leading-7">
-              Our founders and product directors have shipped products that drive real revenue. We don&apos;t just build — we help you grow.
+              Our founders and product directors have shipped products that drive real revenue. We don&apos;t just build we help you grow.
             </p>
             <Link href="/about"
               className="group flex items-center self-start gap-2 hover:bg-white px-5 py-2.5 border border-white/20 hover:border-white rounded-full font-mont font-semibold text-[13px] text-white hover:text-[#111212] transition-all duration-300">
@@ -52,7 +52,7 @@ export default function ValuePropositionSection() {
             </Link>
           </div>
 
-          {/* Right — pillars */}
+          {/* Right pillars */}
           <div className="flex flex-col flex-1 divide-y divide-white/10">
             {PILLARS.map((p) => (
               <div key={p.number} className="group flex gap-6 py-7">
@@ -68,7 +68,7 @@ export default function ValuePropositionSection() {
           </div>
         </div>
 
-        {/* Bottom row — stats */}
+        {/* Bottom row stats */}
         <div className="gap-px grid grid-cols-2 md:grid-cols-4 bg-white/10 mt-0">
           {[
             { number: '50+', label: 'Products shipped' },

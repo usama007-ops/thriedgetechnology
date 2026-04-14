@@ -85,7 +85,7 @@ export default async function WorkPage() {
           </h3>
           <div className="flex flex-col items-start gap-10 md:gap-5 w-full max-w-[354px]">
             <p className="font-inter text-[#929296] text-[16px] leading-6">
-              Your idea, our brains — we&apos;ll send you a tailored game plan in 48h.
+              Your idea, our brains we&apos;ll send you a tailored game plan in 48h.
             </p>
             <Link href="/contact"
               className="flex justify-center items-center bg-black px-6 pt-3.5 pb-3 rounded-full font-mont font-semibold text-[14px] text-white hover:scale-105 transition-all duration-300">

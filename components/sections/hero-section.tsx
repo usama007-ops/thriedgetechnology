@@ -25,7 +25,7 @@ const FLOATING_ICONS = [
   { src: "/redis.svg",      size: 30, x: "47%",  y: "93%",  delay: "2.2s", duration: "7s",  drift: "float-a" },
 ];
 
-// Typewriter words — service-based hooks
+// Typewriter words service-based hooks
 const TYPE_WORDS = [
   "AI Development",
   "Web Applications",
@@ -207,17 +207,10 @@ export default function HeroSection() {
         {/* ── Heavy paragraph ── */}
         <p className={cn('mb-4', 'max-w-[680px]', 'font-inter', 'text-white/50', 'leading-[1.8]', 'animate-fade-in-up')}
           style={{ fontSize: "clamp(15px, 1.8vw, 19px)", animationDelay: "140ms" }}>
-          From a napkin sketch to a production-ready product — we architect, design, and engineer
+          From a napkin sketch to a production-ready product we architect, design, and engineer
           software that <span className={cn('font-medium', 'text-white/80')}>drives real revenue</span>. No bloated teams,
           no missed deadlines, no excuses. Just clean code, sharp UX, and products your users
           actually love.
-        </p>
-
-        <p className={cn('mb-10', 'max-w-[560px]', 'font-inter', 'text-[14px]', 'text-white/30', 'leading-6', 'animate-fade-in-up')}
-          style={{ animationDelay: "180ms" }}>
-          Whether you need an AI-powered SaaS, a cross-platform mobile app, a high-conversion web platform,
-          or a full-stack MVP — our senior engineers and product directors have shipped it before.
-          We&apos;ll do it again, for you, faster than you think possible.
         </p>
 
         {/* CTAs */}

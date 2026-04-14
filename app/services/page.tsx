@@ -6,6 +6,8 @@ import { getServices } from '@/lib/wordpress'
 import { TestimonialsSection } from '@/components/sections/testimonials-section'
 import { ProcessSection } from '@/components/sections/process-section'
 import BrandsMarquee from '@/components/sections/brands'
+import { WorkSection } from '@/components/sections/work-section'
+import { ValueFeaturesSection } from '@/components/sections/value-features-section'
 
 export const metadata: Metadata = {
   title: 'Services | Thrill Edge Technologies',
@@ -17,13 +19,15 @@ export default async function ServicesPage() {
   const services = await getServices(50).catch(() => [])
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-[#F3F3F3] min-h-screen">
 
       {/* Hero */}
       <section className="mx-auto p-2 w-full">
         <div className="relative bg-[#111212] rounded-[20px] w-full h-[480px] overflow-hidden">
           <div className="absolute inset-0 opacity-[0.04]"
             style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '80px 80px' }} />
+          <div className="absolute inset-0"
+            style={{ background: 'radial-gradient(ellipse at 70% 50%, rgba(99,102,241,0.10) 0%, transparent 60%)' }} />
           <div className="right-0 bottom-0 left-0 absolute flex lg:flex-row flex-col justify-between lg:items-end gap-4 mx-auto px-5 lg:px-9 py-8 lg:py-10 max-w-[1440px]">
             <div className="flex flex-col gap-3">
               <span className="font-inter font-semibold text-[11px] text-white/30 uppercase tracking-[0.2em]">What we do</span>
@@ -55,30 +59,30 @@ export default async function ServicesPage() {
 
               return (
                 <Link key={service.id} href={`/services/${service.slug}`}
-                  className="group flex flex-col bg-white border border-[#e5e5e5] hover:border-[#111212] rounded-[20px] overflow-hidden transition-colors duration-300">
+                  className="group flex flex-col bg-white border border-[#e5e5e5] hover:border-[#111212] rounded-[20px] overflow-hidden transition-all duration-300 hover:shadow-lg">
 
                   {/* Image */}
-                  <div className="relative bg-[#f3f3f3] w-full h-52 overflow-hidden">
+                  <div className="relative bg-[#f3f3f3] w-full h-56 overflow-hidden">
                     {img ? (
                       <Image src={img} alt={service.title.rendered} fill
                         sizes="(max-width: 768px) 100vw, 33vw"
                         priority={idx < 3}
                         className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
                     ) : (
-                      <div className="absolute inset-0 flex justify-center items-center">
-                        <span className="font-mont font-bold text-[#e5e5e5] text-[48px]">
+                      <div className="absolute inset-0 flex justify-center items-center bg-[#111212]">
+                        <span className="font-mont font-bold text-white/10 text-[80px]">
                           {service.title.rendered.charAt(0)}
                         </span>
                       </div>
                     )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                   </div>
 
                   {/* Content */}
                   <div className="flex flex-col flex-1 gap-4 p-6">
                     <div className="flex justify-between items-start gap-3">
-                      <h2 className="font-mont font-semibold text-[#111212] text-[20px] leading-tight">
-                        {service.title.rendered}
-                      </h2>
+                      <h2 className="font-mont font-semibold text-[#111212] text-[20px] leading-tight"
+                        dangerouslySetInnerHTML={{ __html: service.title.rendered }} />
                       <span className="flex justify-center items-center group-hover:bg-[#111212] mt-0.5 border border-[#e5e5e5] group-hover:border-[#111212] rounded-full w-8 h-8 transition-all duration-300 shrink-0">
                         <ArrowUpRight size={14} className="text-[#929296] group-hover:text-white transition-colors duration-300" />
                       </span>
@@ -112,29 +116,41 @@ export default async function ServicesPage() {
       {/* Brands */}
       <BrandsMarquee />
 
+      {/* Value Features */}
+      <ValueFeaturesSection />
+
       {/* Process */}
       <ProcessSection />
+
+      {/* Work */}
+      <WorkSection show={6} />
 
       {/* Testimonials */}
       <TestimonialsSection show={12} />
 
       {/* CTA */}
-      <section className="flex justify-center items-center p-5 w-full">
-        <div className="flex md:flex-row flex-col justify-between gap-2 md:gap-24 bg-white px-4 md:px-12 py-5 md:py-10 border border-[#e5e5e5] rounded-3xl w-full max-w-[1400px]">
-          <h3 className="max-w-[644px] font-mont font-semibold text-[#111212] text-[30px] lg:text-[56px] lg:leading-[64px]">
-            Not sure which service fits?
-          </h3>
-          <div className="flex flex-col items-start gap-10 md:gap-5 w-full max-w-[354px]">
-            <p className="font-inter text-[#929296] text-[16px] leading-6">
+      <div className="bg-[#111212] w-full">
+        <div className="flex md:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[16px] md:px-[36px] py-[96px] w-full max-w-[1440px]">
+          <div className="flex flex-col gap-[16px] max-w-[600px]">
+            <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">
+              Not sure which service fits?
+            </h2>
+            <p className="font-inter text-[#929296] text-[16px] leading-[24px]">
               Tell us about your project and we'll recommend the right approach in 48h.
             </p>
+          </div>
+          <div className="flex sm:flex-row flex-col gap-[16px]">
             <Link href="/contact"
-              className="flex justify-center items-center bg-black px-6 pt-3.5 pb-3 rounded-full font-mont font-semibold text-[14px] text-white hover:scale-105 transition-all duration-300">
+              className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">
               Book a call
+            </Link>
+            <Link href="/work"
+              className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">
+              See our work
             </Link>
           </div>
         </div>
-      </section>
+      </div>
 
     </div>
   )
