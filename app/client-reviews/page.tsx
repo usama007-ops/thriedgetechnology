@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/common/page-hero";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Client Reviews | Thrill Edge Technologies",
@@ -203,25 +204,28 @@ export default async function ClientReviewsPage() {
       )}
 
       {/* CTA */}
-      <section className="flex justify-center items-center p-[20px] w-full">
-        <div className="flex md:flex-row flex-col justify-between gap-[8px] md:gap-[96px] bg-white px-[16px] md:px-[48px] py-[20px] md:py-[40px] border border-[#e5e5e5] rounded-[24px] w-full max-w-[1400px]">
-          <h3 className="max-w-[642px] font-mont font-semibold text-[#111212] text-[30px] lg:text-[56px] lg:leading-[64px]">
-            Ready to become our next success story?
-          </h3>
-          <div className="flex flex-col items-start gap-[40px] md:gap-[20px] w-full max-w-[354px]">
-            <p className="font-inter text-[#929296] text-[16px] leading-[24px]">
-              Let&apos;s talk about your project, we&apos;ll send you a tailored
-              plan in 48h.
-            </p>
-            <a
-              href="/contact"
-              className="flex justify-center items-center bg-black px-[24px] pt-[14px] pb-[12px] rounded-full font-mont font-semibold text-[14px] text-white hover:scale-105 transition-all duration-300"
-            >
-              Book a call
-            </a>
-          </div>
-        </div>
-      </section>
+           <div className="bg-[#111212] max-w-[1440px] mx-auto mb-20 rounded-[30px]">
+             <div className="flex md:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[16px] md:px-[36px] py-[96px] w-full max-w-[1440px]">
+               <div className="flex flex-col gap-[16px] max-w-[500px]">
+                 <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">
+                   Not sure which service fits?
+                 </h2>
+                 <p className="font-inter text-[#929296] text-[16px] leading-[24px]">
+                   Tell us about your project and we'll recommend the right approach in 48h.
+                 </p>
+               </div>
+               <div className="flex sm:flex-row flex-col gap-[16px]">
+                 <Link href="/contact"
+                   className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">
+                   Book a call
+                 </Link>
+                 <Link href="/work"
+                   className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">
+                   See our work
+                 </Link>
+               </div>
+             </div>
+           </div>
     </div>
   );
 }

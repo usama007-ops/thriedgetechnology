@@ -1,11 +1,13 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { getTestimonials } from '@/lib/wordpress'
 import { WorkGrid } from './work-grid'
 import BrandsMarquee from '@/components/sections/brands'
 import { TestimonialsMarquee } from '@/components/sections/testimonials-marquee'
 import ValuePropositionSection from '@/components/sections/value-proposition'
 import { ProcessSection } from '@/components/sections/process-section'
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: 'Our Work | Thrill Edge Technologies',
@@ -17,31 +19,82 @@ export default async function WorkPage() {
 
   return (
     <div className="bg-white min-h-screen">
+      <section className={cn("w-full", "mx-auto", "p-2")}>
+        <div className={cn('relative', 'rounded-[20px]', 'w-full', 'h-[480px]', 'overflow-hidden')}>
+          <Image
+            src={"/our-work.png"}
+            alt={"Our Work"}
+            fill
+            className={cn('object-center', 'object-cover')}
+            sizes="100vw"
+            priority
+          />
+          <div
+            className={cn("absolute", "inset-0", "rounded-[20px]")}
+            style={{
+              background:
+                "linear-gradient(to top, rgba(0,0,0), rgba(0,0,0,0.6), rgba(0,0,0,0))",
+            }}
+          />
 
-      {/* ── Hero ── */}
-      <section className="mx-auto p-2 w-full">
-        <div className="relative bg-[#111212] rounded-[20px] w-full h-[480px] overflow-hidden">
-          <div className="absolute inset-0 opacity-[0.04]"
-            style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '80px 80px' }} />
-          <div className="right-0 bottom-0 left-0 absolute flex lg:flex-row flex-col justify-between lg:items-end gap-4 mx-auto px-5 lg:px-9 py-8 lg:py-10 max-w-[1440px]">
-            <div className="flex flex-col gap-3">
+          <div
+            className={cn(
+              "max-w-[1440px]",
+              "mx-auto",
+              "absolute",
+              "bottom-0",
+              "left-0",
+              "right-0",
+              "flex",
+              "lg:flex-row",
+              "flex-col",
+              "justify-between",
+              "lg:items-end",
+              "gap-4",
+              "lg:px-9",
+              "px-5",
+              "lg:py-8",
+              "py-6",
+            )}
+          >
+            <div>
               <span className="font-inter font-semibold text-[11px] text-white/30 uppercase tracking-[0.2em]">Portfolio</span>
-              <h1 className="max-w-2xl font-mont font-bold text-[40px] text-white lg:text-[72px] leading-none">
+
+              <h2
+                className={cn(
+                  "text-[32px]",
+                  "lg:text-[56px]",
+                  "lg:leading-[60px]",
+                  "leading-9",
+                  "font-mont",
+                  "font-semibold",
+                  "text-white",
+                  "max-w-2xl",
+                )}
+              >
                 We deliver.<br />Period.
-              </h1>
+              </h2>
             </div>
-            <p className="lg:max-w-xs font-inter text-[15px] text-white/50 lg:text-[17px] lg:text-right leading-7">
+            <p
+              className={cn(
+                "lg:text-[18px]",
+                "text-[15px]",
+                "font-inter",
+                "text-white/70",
+                "lg:max-w-xs",
+                "leading-7",
+              )}
+            >
               50+ products shipped across healthcare, fintech, eCommerce, and more.
             </p>
+
+
           </div>
         </div>
       </section>
 
-      {/* ── Interactive filter + cards (client) ── */}
-      <WorkGrid />
 
-      {/* ── Brands marquee ── */}
-      <BrandsMarquee />
+      <WorkGrid />
 
       {/* ── Testimonials ── */}
       {testimonials.length > 0 && (
@@ -71,29 +124,30 @@ export default async function WorkPage() {
         </section>
       )}
 
-      {/* ── Value proposition ── */}
-      <ValuePropositionSection />
-
-      {/* ── Process ── */}
-      <ProcessSection />
-
-      {/* ── CTA ── */}
-      <section className="flex justify-center items-center p-5 w-full">
-        <div className="flex md:flex-row flex-col justify-between gap-2 md:gap-24 bg-white px-4 md:px-12 py-5 md:py-10 border border-[#e5e5e5] rounded-3xl w-full max-w-[1400px]">
-          <h3 className="max-w-[644px] font-mont font-semibold text-[#111212] text-[30px] lg:text-[56px] lg:leading-[64px]">
-            Let&apos;s Build Your Next Big Thing
-          </h3>
-          <div className="flex flex-col items-start gap-10 md:gap-5 w-full max-w-[354px]">
-            <p className="font-inter text-[#929296] text-[16px] leading-6">
-              Your idea, our brains we&apos;ll send you a tailored game plan in 48h.
+           {/* CTA */}
+      <div className="bg-[#111212] max-w-[1440px] mx-auto my-20 rounded-[30px]">
+        <div className="flex md:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[16px] md:px-[36px] py-[96px] w-full max-w-[1440px]">
+          <div className="flex flex-col gap-[16px] max-w-[500px]">
+            <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">
+              Not sure which service fits?
+            </h2>
+            <p className="font-inter text-[#929296] text-[16px] leading-[24px]">
+              Tell us about your project and we'll recommend the right approach in 48h.
             </p>
+          </div>
+          <div className="flex sm:flex-row flex-col gap-[16px]">
             <Link href="/contact"
-              className="flex justify-center items-center bg-black px-6 pt-3.5 pb-3 rounded-full font-mont font-semibold text-[14px] text-white hover:scale-105 transition-all duration-300">
+              className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">
               Book a call
+              
+            </Link>
+            <Link href="/work"
+              className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">
+              See our work
             </Link>
           </div>
         </div>
-      </section>
+      </div>
 
     </div>
   )

@@ -8,10 +8,11 @@ import { ProcessSection } from '@/components/sections/process-section'
 import BrandsMarquee from '@/components/sections/brands'
 import { WorkSection } from '@/components/sections/work-section'
 import { ValueFeaturesSection } from '@/components/sections/value-features-section'
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: 'Services | Thrill Edge Technologies',
-  description: 'Comprehensive software development services — AI, web, mobile, backend, and more.',
+  description: 'Comprehensive software development services AI, web, mobile, backend, and more.',
   alternates: { canonical: 'https://thrilledge.com/services' },
 }
 
@@ -20,24 +21,78 @@ export default async function ServicesPage() {
 
   return (
     <div className="bg-[#F3F3F3] min-h-screen">
-
       {/* Hero */}
-      <section className="mx-auto p-2 w-full">
-        <div className="relative bg-[#111212] rounded-[20px] w-full h-[480px] overflow-hidden">
-          <div className="absolute inset-0 opacity-[0.04]"
-            style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '80px 80px' }} />
-          <div className="absolute inset-0"
-            style={{ background: 'radial-gradient(ellipse at 70% 50%, rgba(99,102,241,0.10) 0%, transparent 60%)' }} />
-          <div className="right-0 bottom-0 left-0 absolute flex lg:flex-row flex-col justify-between lg:items-end gap-4 mx-auto px-5 lg:px-9 py-8 lg:py-10 max-w-[1440px]">
-            <div className="flex flex-col gap-3">
-              <span className="font-inter font-semibold text-[11px] text-white/30 uppercase tracking-[0.2em]">What we do</span>
-              <h1 className="max-w-2xl font-mont font-bold text-[40px] text-white lg:text-[72px] leading-none">
-                Services built<br />to ship.
-              </h1>
+      <section className={cn("w-full", "mx-auto", "p-2")}>
+        <div className={cn('relative', 'rounded-[20px]', 'w-full', 'h-[480px]', 'overflow-hidden')}>
+          <Image
+            src={"/services.png"}
+            alt={"Our Work"}
+            fill
+            className={cn('object-center', 'object-cover')}
+            sizes="100vw"
+            priority
+          />
+          <div
+            className={cn("absolute", "inset-0", "rounded-[20px]")}
+            style={{
+              background:
+                "linear-gradient(to top, rgba(0,0,0), rgba(0,0,0,0.6), rgba(0,0,0,0))",
+            }}
+          />
+
+          <div
+            className={cn(
+              "max-w-[1440px]",
+              "mx-auto",
+              "absolute",
+              "bottom-0",
+              "left-0",
+              "right-0",
+              "flex",
+              "lg:flex-row",
+              "flex-col",
+              "justify-between",
+              "lg:items-end",
+              "gap-4",
+              "lg:px-9",
+              "px-5",
+              "lg:py-8",
+              "py-6",
+            )}
+          >
+            <div>
+              <span className="font-inter font-semibold text-[11px] text-white/30 uppercase tracking-[0.2em]">Portfolio</span>
+
+              <h2
+                className={cn(
+                  "text-[32px]",
+                  "lg:text-[56px]",
+                  "lg:leading-[60px]",
+                  "leading-9",
+                  "font-mont",
+                  "font-semibold",
+                  "text-white",
+                  "max-w-2xl",
+                )}
+              >
+                We deliver.<br />Period.
+              </h2>
             </div>
-            <p className="lg:max-w-xs font-inter text-[15px] text-white/50 lg:text-[17px] lg:text-right leading-7">
-              From idea to production — we cover every layer of the stack.
+            <p
+              className={cn(
+                "lg:text-[18px]",
+                "text-[15px]",
+                "font-inter",
+                "text-white/70",
+                "lg:max-w-xs",
+                "leading-7",
+              )}
+            >
+              From idea to production we cover every layer of the stack.
+
             </p>
+
+
           </div>
         </div>
       </section>
@@ -113,25 +168,10 @@ export default async function ServicesPage() {
         )}
       </div>
 
-      {/* Brands */}
-      <BrandsMarquee />
-
-      {/* Value Features */}
-      <ValueFeaturesSection />
-
-      {/* Process */}
-      <ProcessSection />
-
-      {/* Work */}
-      <WorkSection show={6} />
-
-      {/* Testimonials */}
-      <TestimonialsSection show={12} />
-
       {/* CTA */}
-      <div className="bg-[#111212] w-full">
+      <div className="bg-[#111212] max-w-[1440px] mx-auto mb-20 rounded-[30px]">
         <div className="flex md:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[16px] md:px-[36px] py-[96px] w-full max-w-[1440px]">
-          <div className="flex flex-col gap-[16px] max-w-[600px]">
+          <div className="flex flex-col gap-[16px] max-w-[500px]">
             <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">
               Not sure which service fits?
             </h2>

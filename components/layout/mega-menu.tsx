@@ -7,7 +7,6 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import {
   ChevronDown, Users, Star, HelpCircle, Briefcase, BookOpen, Mail,
   Brain, Globe, Palette, Smartphone, Rocket, Cloud,
@@ -174,7 +173,7 @@ export function MegaMenu() {
             {/* LEFT */}
             <div className={cn('px-[32px]', 'py-[40px]', 'w-full')}>
               <p className={cn('mb-4', 'font-normal', 'text-[#929296]', 'text-[16px]')}>{activeMenu.categoryLabel}</p>
-              <ul className={cn('gap-[24px]', 'grid', 'grid-cols-2')}>
+              <ul className={cn('gap-[24px]', 'grid', 'grid-cols-3')}>
                 {(activeMenu.items ?? []).map((item) => (
                   <li key={item.href} className="h-full">
                     <Link
@@ -193,30 +192,9 @@ export function MegaMenu() {
                   </li>
                 ))}
               </ul>
-              {/* badge bar */}
-              <div className={cn('flex', 'justify-between', 'items-center', 'gap-[12px]', 'bg-[#f7f7f7]', 'mt-[30px]', 'p-[20px]', 'border', 'border-[#e5e5e5]', 'rounded-[8px]')}>
-                {badgeLogos.map((b) => (
-                  <BadgeLogo key={b.alt} src={b.src} alt={b.alt} />
-                ))}
-              </div>
+             
             </div>
-            {/* RIGHTimage */}
-            <div className={cn('relative', 'flex', 'rounded-[16px]', 'w-full', 'max-w-[400px]', 'overflow-hidden', 'shrink-0')}>
-              <Image
-                src={activeMenu.image!}
-                alt={activeMenu.imageAlt!}
-                width={1000}
-                height={1000}
-                className={cn('w-full', 'h-full', 'object-cover')}
-              />
-              <Link
-                href={activeMenu.ctaHref!}
-                onClick={() => setActive(null)}
-                className={cn('bottom-[12px]', 'left-[12px]', 'absolute', 'flex', 'justify-center', 'items-center', 'gap-1', 'bg-white', 'backdrop-blur-[12px]', 'px-[24px]', 'pt-[14px]', 'pb-[12px]', 'rounded-full', 'font-semibold', 'text-[#111212]', 'text-[14px]', 'hover:scale-105', 'transition-all', 'duration-300', 'ease-in-out', 'cursor-pointer')}
-              >
-                <span>{activeMenu.ctaLabel}</span>
-              </Link>
-            </div>
+           
           </div>
         </div>
       )}

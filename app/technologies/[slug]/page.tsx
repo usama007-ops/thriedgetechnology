@@ -336,32 +336,28 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
       <IndustriesSection />
 
       {/* CTA */}
-      <div className={cn('bg-[#111212]', 'w-full')}>
-        <div className={cn('flex', 'md:flex-row', 'flex-col', 'justify-between', 'md:items-center', 'gap-[48px]', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[96px]', 'w-full', 'max-w-[1440px]')}>
-          <div className={cn('flex', 'flex-col', 'gap-[16px]', 'max-w-[600px]')}>
-            <h2 className={cn('font-mont', 'font-bold', 'text-[48px]', 'text-white', 'leading-[52px]')}>
-              Ready to build with {tech.title}?
-            </h2>
-            <p className={cn('font-inter', 'text-[#929296]', 'text-[16px]', 'leading-[24px]')}>
-              Let&apos;s talk about your project. We&apos;ll scope it, plan it, and ship it.
-            </p>
-          </div>
-          <div className={cn('flex', 'sm:flex-row', 'flex-col', 'gap-[16px]')}>
-            <Link
-              href="/contact"
-              className={cn('flex', 'justify-center', 'items-center', 'bg-white', 'px-[32px]', 'py-[16px]', 'rounded-full', 'font-mont', 'font-semibold', 'text-[#111212]', 'text-[16px]', 'hover:scale-105', 'transition-all', 'duration-300')}
-            >
-              Start a project
-            </Link>
-            <Link
-              href="/work"
-              className={cn('flex', 'justify-center', 'items-center', 'hover:bg-white', 'px-[32px]', 'py-[16px]', 'border', 'border-white', 'rounded-full', 'font-mont', 'font-semibold', 'text-[16px]', 'text-white', 'hover:text-[#111212]', 'transition-all', 'duration-300')}
-            >
-              See our work
-            </Link>
-          </div>
-        </div>
-      </div>
+           <div className="bg-[#111212] max-w-[1440px] mx-auto mb-20 rounded-[30px]">
+             <div className="flex md:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[16px] md:px-[36px] py-[96px] w-full max-w-[1440px]">
+               <div className="flex flex-col gap-[16px] max-w-[500px]">
+                 <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">
+                   Not sure which service fits?
+                 </h2>
+                 <p className="font-inter text-[#929296] text-[16px] leading-[24px]">
+                   Tell us about your project and we'll recommend the right approach in 48h.
+                 </p>
+               </div>
+               <div className="flex sm:flex-row flex-col gap-[16px]">
+                 <Link href="/contact"
+                   className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">
+                   Book a call
+                 </Link>
+                 <Link href="/work"
+                   className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">
+                   See our work
+                 </Link>
+               </div>
+             </div>
+           </div>
 
     </div>
   )

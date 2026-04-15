@@ -79,7 +79,7 @@ export default function RootLayout({
       <head>
         <meta charSet="utf-8" />
       </head>
-      <body className={`${inter.variable} antialiased bg-[#F3F3F3]`} suppressHydrationWarning>
+      <body className={`${inter.variable} antialiased`} suppressHydrationWarning>
         <Providers>
           <Header />
           {children}

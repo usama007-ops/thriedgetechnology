@@ -64,26 +64,26 @@ export default function WorkPage({ params }: WorkPageProps) {
           imageAlt={work.title.rendered}
         />
       )}
-        <section className={cn('max-w-360', 'w-full', 'mx-auto', 'p-4', 'rounded-[20px]', 'overflow-hidden')}>
-          <div className={cn('relative', 'w-full', 'h-full', 'flex', 'flex-col')}>
-            {/* Overlay text */}
-            <div className={cn('absolute', 'z-50', 'bottom-0', 'left-0', 'right-0', 'h-fit', 'w-full', 'flex', 'lg:flex-row', 'flex-col', 'justify-between', 'lg:items-center', 'lg:gap-6', 'gap-2', 'lg:px-9', 'px-5', 'lg:py-6', 'py-6')}>
-              <h1 className={cn('h-fit', 'text-[40px]', 'leading-10', 'lg:text-[64px]', 'lg:leading-16', 'font-mont', 'font-semibold', 'text-white')}
-                dangerouslySetInnerHTML={{ __html: work.title.rendered }}
-              />
-              {work.acf?.long_title && (
-                <p className={cn('lg:text-[32px]', 'text-[24px]', 'font-mont', 'font-semibold', 'text-white', 'lg:max-w-lg', 'lg:leading-10', 'leading-7.5')}>
-                  {work.acf.long_title}
-                </p>
-              )}
-            </div>
-            {/* Gradient overlay */}
-            <div
-              className={cn('absolute', 'inset-0', 'transition', 'duration-300', 'rounded-[20px]')}
-              style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.3), rgba(0,0,0,0), rgba(0,0,0,0))' }}
+      <section className={cn('max-w-360', 'w-full', 'mx-auto', 'p-4', 'rounded-[20px]', 'overflow-hidden')}>
+        <div className={cn('relative', 'w-full', 'h-full', 'flex', 'flex-col')}>
+          {/* Overlay text */}
+          <div className={cn('absolute', 'z-50', 'bottom-0', 'left-0', 'right-0', 'h-fit', 'w-full', 'flex', 'lg:flex-row', 'flex-col', 'justify-between', 'lg:items-center', 'lg:gap-6', 'gap-2', 'lg:px-9', 'px-5', 'lg:py-6', 'py-6')}>
+            <h1 className={cn('h-fit', 'text-[40px]', 'leading-10', 'lg:text-[64px]', 'lg:leading-16', 'font-mont', 'font-semibold', 'text-white')}
+              dangerouslySetInnerHTML={{ __html: work.title.rendered }}
             />
+            {work.acf?.long_title && (
+              <p className={cn('lg:text-[32px]', 'text-[24px]', 'font-mont', 'font-semibold', 'text-white', 'lg:max-w-lg', 'lg:leading-10', 'leading-7.5')}>
+                {work.acf.long_title}
+              </p>
+            )}
           </div>
-        </section>
+          {/* Gradient overlay */}
+          <div
+            className={cn('absolute', 'inset-0', 'transition', 'duration-300', 'rounded-[20px]')}
+            style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.3), rgba(0,0,0,0), rgba(0,0,0,0))' }}
+          />
+        </div>
+      </section>
       <div className={cn('relative', 'bg-[#F3F3F3]')}>
 
         {/* Meta row: Year / Services / Industry */}
@@ -190,24 +190,29 @@ export default function WorkPage({ params }: WorkPageProps) {
           )}
         </div>
 
-        <section className={cn('w-full', 'flex', 'items-center', 'justify-center', 'p-5')}>
-          <div className={cn('w-full', 'max-w-350', 'flex', 'md:flex-row', 'flex-col', 'justify-between', 'md:gap-24', 'gap-2', 'rounded-3xl', 'md:px-12', 'px-4', 'md:py-10', 'py-5', 'bg-white', 'border', 'border-[#e5e5e5]')}>
-            <h3 className={cn('lg:text-[56px]', 'text-[30px]', 'lg:leading-16', 'font-semibold', 'font-mont', 'text-[#111212]', 'max-w-160.5')}>
-              Let&apos;s Build Your Next Big Thing
-            </h3>
-            <div className={cn('max-w-88.5', 'w-full', 'flex', 'items-start', 'flex-col', 'md:gap-5', 'gap-10')}>
-              <p className={cn('text-[16px]', 'leading-6', 'text-[#929296]', 'font-inter')}>
-                Your idea, our brainswe&apos;ll send you a tailored game plan in 48h.
+        {/* CTA */}
+        <div className="bg-[#111212] max-w-[1440px] mx-auto mb-20 rounded-[30px]">
+          <div className="flex md:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[16px] md:px-[36px] py-[96px] w-full max-w-[1440px]">
+            <div className="flex flex-col gap-[16px] max-w-[500px]">
+              <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">
+                Not sure which service fits?
+              </h2>
+              <p className="font-inter text-[#929296] text-[16px] leading-[24px]">
+                Tell us about your project and we'll recommend the right approach in 48h.
               </p>
-              <Link
-                href="/contact"
-                className={cn('flex', 'flex-row', 'items-center', 'justify-center', 'gap-1', 'px-6', 'pt-3.5', 'pb-3', 'bg-black', 'text-white', 'font-mont', 'text-[14px]', 'font-semibold', 'rounded-full', 'hover:scale-105', 'transition-all', 'duration-300', 'ease-in-out')}
-              >
+            </div>
+            <div className="flex sm:flex-row flex-col gap-[16px]">
+              <Link href="/contact"
+                className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">
                 Book a call
+              </Link>
+              <Link href="/work"
+                className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">
+                See our work
               </Link>
             </div>
           </div>
-        </section>
+        </div>
 
       </div>
     </>

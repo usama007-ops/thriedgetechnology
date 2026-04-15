@@ -75,17 +75,6 @@ export async function LatestArticlesSection({ show = 3, categories }: LatestArti
                     <p className="text-[14px] font-inter text-[#71717A] leading-[22px] line-clamp-2 mt-auto">
                       {excerpt}
                     </p>
-
-                    {/* CTA */}
-                    <div className="flex items-center gap-[6px] mt-[4px]">
-                      <span className="text-[13px] font-mont font-semibold text-black group-hover:text-black/60 transition-colors duration-300">
-                        Read article
-                      </span>
-                      <ArrowRight
-                        size={16}
-                        className="transform group-hover:translate-x-1 transition-transform duration-300"
-                      />
-                    </div>
                   </div>
                 </article>
               </Link>
