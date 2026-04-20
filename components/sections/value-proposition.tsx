@@ -35,7 +35,7 @@ export default function ValuePropositionSection() {
         </div>
 
         {/* Middle row statement + pillars */}
-        <div className="flex md:flex-row flex-col gap-12 md:gap-20 pt-16 pb-16 border-white/10 border-b">
+        <div className="flex md:flex-row flex-col gap-12 md:gap-20 pt-16">
 
           {/* Left sticky statement */}
           <div className="flex flex-col gap-6 md:w-[380px] shrink-0">
