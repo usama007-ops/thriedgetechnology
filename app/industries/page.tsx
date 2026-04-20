@@ -143,7 +143,7 @@ export default function IndustriesPage() {
       <BrandsMarquee />
 
       {/* Work section */}
-      <WorkSection show={6} />
+      {/* <WorkSection show={6} /> */}
 
       {/* Testimonials */}
       <TestimonialsSection show={12} />

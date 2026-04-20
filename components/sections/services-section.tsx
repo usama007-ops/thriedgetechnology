@@ -54,9 +54,9 @@ export async function ServicesSection({ show = 12 }: { show?: number }) {
                         </div>
                       )}
                       <div className="p-4">
-                        <h3 className="text-xl font-semibold text-foreground">
-                          {service.title.rendered}
-                        </h3>
+                        <h3 className="text-xl font-semibold text-foreground"
+                          dangerouslySetInnerHTML={{ __html: service.title.rendered }}
+                        />
 
                         {service.acf?.service_solutions && (
                           <p className="text-muted-foreground text-sm leading-relaxed">

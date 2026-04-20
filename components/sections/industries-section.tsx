@@ -65,7 +65,7 @@ export function IndustriesSection() {
                     <Image src={`/${ind.icon}`} alt={ind.title} fill sizes="30px" className="object-contain invert" />
                   </div>
                   <div className="flex flex-col items-start gap-[8px]">
-                    <h3 className="xl:text-[32px] text-[24px] font-semibold font-mont text-[#111212]">
+                    <h3 className="xl:text-[24px] text-[20px] font-semibold font-mont text-[#111212]">
                       {ind.title}
                     </h3>
                     <p className="text-[16px] font-inter text-[#929296] leading-[24px]">

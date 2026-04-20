@@ -26,7 +26,7 @@ export default function ValuePropositionSection() {
 
         {/* Top row label + big question */}
         <div className="flex flex-col gap-6 pb-16 border-white/10 border-b">
-          <span className="font-inter font-semibold text-[11px] text-white/30 uppercase tracking-[0.2em]">
+          <span className="font-inter font-semibold text-[11px] text-white/50 uppercase tracking-[0.2em]">
             Every project starts with one question
           </span>
           <h2 className="max-w-[900px] font-mont font-bold text-[40px] text-white md:text-[64px] lg:text-[80px] leading-none">
@@ -42,7 +42,7 @@ export default function ValuePropositionSection() {
             <p className="font-mont font-semibold text-[24px] text-white md:text-[32px] leading-tight">
               We build software that builds your bottom line.
             </p>
-            <p className="font-inter text-[15px] text-white/40 leading-7">
+            <p className="font-inter text-[18px] text-white/50 leading-7">
               Our founders and product directors have shipped products that drive real revenue. We don&apos;t just build we help you grow.
             </p>
             <Link href="/about"
@@ -61,7 +61,7 @@ export default function ValuePropositionSection() {
                   <h3 className="font-mont font-semibold text-[18px] text-white group-hover:text-white/80 transition-colors duration-200">
                     {p.title}
                   </h3>
-                  <p className="font-inter text-[14px] text-white/40 leading-6">{p.body}</p>
+                  <p className="font-inter text-[16px] text-white/50 leading-6">{p.body}</p>
                 </div>
               </div>
             ))}
@@ -78,7 +78,7 @@ export default function ValuePropositionSection() {
           ].map((s) => (
             <div key={s.label} className="flex flex-col gap-1 bg-[#111212] px-6 py-8">
               <p className="font-mont font-bold text-[36px] text-white md:text-[48px] leading-none">{s.number}</p>
-              <p className="mt-1 font-inter text-[13px] text-white/40">{s.label}</p>
+              <p className="mt-1 font-inter text-[13px] text-white/50">{s.label}</p>
             </div>
           ))}
         </div>

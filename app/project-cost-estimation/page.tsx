@@ -1,7 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowRight, ArrowLeft, Zap, Clock, Shield, Check } from 'lucide-react'
+import {
+  ArrowRight, ArrowLeft, Zap, Clock, Shield, Check,
+  Globe, Smartphone, ShoppingCart, Cloud, Rocket, Bot,
+  PenLine, Settings2, Link2, HelpCircle,
+  type LucideIcon,
+} from 'lucide-react'
 
 type Step = 1 | 2 | 3
 
@@ -19,16 +24,16 @@ interface FormData {
 }
 
 const PROJECT_TYPES = [
-  { label: 'Web Application', icon: '🌐' },
-  { label: 'Mobile Application', icon: '📱' },
-  { label: 'E-commerce Store', icon: '🛒' },
-  { label: 'SaaS Platform', icon: '☁️' },
-  { label: 'MVP / Prototype', icon: '🚀' },
-  { label: 'AI / ML Integration', icon: '🤖' },
-  { label: 'Website Redesign', icon: '✏️' },
-  { label: 'Custom Software', icon: '⚙️' },
-  { label: 'API / Integration', icon: '🔗' },
-  { label: 'Not sure yet', icon: '💡' },
+  { label: 'Web Application',     icon: Globe },
+  { label: 'Mobile Application',  icon: Smartphone },
+  { label: 'E-commerce Store',    icon: ShoppingCart },
+  { label: 'SaaS Platform',       icon: Cloud },
+  { label: 'MVP / Prototype',     icon: Rocket },
+  { label: 'AI / ML Integration', icon: Bot },
+  { label: 'Website Redesign',    icon: PenLine },
+  { label: 'Custom Software',     icon: Settings2 },
+  { label: 'API / Integration',   icon: Link2 },
+  { label: 'Not sure yet',        icon: HelpCircle },
 ]
 
 const WORK_STYLES = [
@@ -66,8 +71,8 @@ const STEPS = [
 ]
 
 // ── Pill toggle (checkbox style) ──────────────────────────────────────────────
-function PillCheck({ label, icon, checked, onClick }: {
-  label: string; icon?: string; checked: boolean; onClick: () => void
+function PillCheck({ label, icon: Icon, checked, onClick }: {
+  label: string; icon?: LucideIcon; checked: boolean; onClick: () => void
 }) {
   return (
     <button
@@ -79,7 +84,7 @@ function PillCheck({ label, icon, checked, onClick }: {
           : 'border-[#ebebeb] bg-white text-[#111212] hover:border-[#111212]/40 hover:bg-[#fafafa]'
       }`}
     >
-      {icon && <span className="text-[18px] leading-none">{icon}</span>}
+      {Icon && <Icon size={16} className="shrink-0" />}
       <span className="font-inter font-medium text-[14px] leading-none">{label}</span>
       {checked && (
         <span className="ml-auto pl-2">
@@ -145,7 +150,7 @@ function SummaryPanel({ step, form }: { step: Step; form: FormData }) {
   return (
     <div className="flex flex-col gap-8">
       {/* Trust badges */}
-      <div className="flex flex-col gap-3">
+      {/* <div className="flex flex-col gap-3">
         {[
           { icon: <Zap size={15} />, text: '100% free estimate' },
           { icon: <Clock size={15} />, text: 'Response within 24 hrs' },
@@ -156,7 +161,7 @@ function SummaryPanel({ step, form }: { step: Step; form: FormData }) {
             {text}
           </div>
         ))}
-      </div>
+      </div> */}
 
       {/* Step progress */}
       <div className="flex flex-col gap-1">

@@ -10,6 +10,7 @@ import Image from 'next/image'
 import { format } from 'date-fns'
 import { notFound } from 'next/navigation'
 import { cn } from "../../../lib/utils";
+import { CTASection } from '@/components/sections/cta-section'
 
 interface PostPageProps {
   params: Promise<{ slug: string }>
@@ -172,7 +173,7 @@ export default function PostPage({ params }: PostPageProps) {
       {/* Content + Sidebar */}
       <section className={cn('max-w-[1440px]', 'mx-auto', 'md:px-[36px]', 'px-[16px]', 'md:py-[96px]', 'py-[64px]')}>
         <div className={cn('flex', 'gap-[48px]', 'items-start')}>
-          <div className={cn('flex-1', 'min-w-0', 'max-w-[80%]')}>
+          <div className={cn('flex-1', 'min-w-0', 'md:max-w-[80%]')}>
             {headings.length > 0 && (
               <details className={cn('lg:hidden', 'mb-[32px]', 'border', 'border-[#E5E4E0]', 'rounded-[8px]', 'p-[16px]')}>
                 <summary className={cn('text-[13px]', 'font-inter', 'font-semibold', 'text-black', 'cursor-pointer', 'list-none', 'flex', 'items-center', 'justify-between')}>
@@ -190,7 +191,7 @@ export default function PostPage({ params }: PostPageProps) {
                 </nav>
               </details>
             )}
-            <div className="blog-content" dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+            <div className="blog-content" dangerouslySetInnerHTML={{ __html: post.content.rendered.replace(/<h1[^>]*>.*?<\/h1>/, '') }} />
             <div className={cn('lg:hidden', 'mt-[32px]')}><ShareButtons title={post.title.rendered} /></div>
           </div>
 
@@ -289,8 +290,7 @@ export default function PostPage({ params }: PostPageProps) {
       </section>
 
       {/* Dark CTA banner */}
-      <section className={cn('relative', 'w-full', 'overflow-hidden')}
-        style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0f0f23 100%)' }}>
+       <section className={cn('relative', 'w-full', 'overflow-hidden', 'bg-black')}>
         <div className={cn('relative', 'max-w-[1440px]', 'mx-auto', 'md:px-[36px]', 'px-[16px]', 'py-[56px]', 'md:py-[72px]', 'flex', 'flex-col', 'md:flex-row', 'items-start', 'md:items-center', 'justify-between', 'gap-[32px]')}>
           <div className={cn('flex', 'flex-col', 'gap-[10px]')}>
             <p className={cn('text-[11px]', 'font-inter', 'font-semibold', 'text-white/40', 'uppercase', 'tracking-[0.15em]')}>Start your project</p>
@@ -302,7 +302,8 @@ export default function PostPage({ params }: PostPageProps) {
             Book a Call <ArrowRight size={14} />
           </Link>
         </div>
-      </section>
+      </section> 
+
 
       {/* Continue reading */}
       {others.length > 0 && (

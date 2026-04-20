@@ -57,7 +57,7 @@ export default function CareersPage() {
       </section>
 
       {/* Department tabs */}
-      <div className={cn('top-0', 'z-99', 'sticky', 'bg-white', 'border-[#e5e5e5]', 'border-b')}>
+      <div className={cn('top-0', 'sticky', 'bg-white', 'border-[#e5e5e5]', 'border-b')}>
         <div className={cn('mx-auto', 'px-4', 'md:px-9', 'max-w-360')}>
           <div className={cn('flex', 'gap-0', 'overflow-x-auto', 'no-scrollbar')}>
             {depts.map(dept => {

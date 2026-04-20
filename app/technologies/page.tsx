@@ -58,6 +58,15 @@ const TECHNOLOGIES = [
     icon: '/database.png',
     accent: '#ef4444',
   },
+  {
+    slug: 'ai-workflow-automation',
+    title: 'AI Workflow Automation',
+    tagline: 'Intelligent pipelines that eliminate manual work and scale operations.',
+    stat: { number: '80%', label: 'Reduction in manual processing time' },
+    tools: ['LangChain', 'OpenAI', 'Python', 'n8n'],
+    icon: '/ai.png',
+    accent: '#8b5cf6',
+  },
 ]
 
 const ALL_TOOLS = [

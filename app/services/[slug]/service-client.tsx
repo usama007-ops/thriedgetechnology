@@ -9,6 +9,7 @@ import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { ProcessSection } from '@/components/sections/process-section'
 import { ValueFeaturesSection } from '@/components/sections/value-features-section'
+import { cn } from '@/lib/utils'
 
 export function ServiceClient({ slug }: { slug: string }) {
   const { data: service, isLoading, error } = useService(slug)
@@ -74,24 +75,22 @@ export function ServiceClient({ slug }: { slug: string }) {
       </section>
 
       {/* Stats */}
+
       {counts.length > 0 && (
-        <div className="gap-[2px] grid grid-cols-1 md:grid-cols-3 bg-[#e5e5e5] mx-auto mt-2 px-2 max-w-[1440px] rounded-[20px] overflow-hidden">
+        <div className={cn('gap-[20px]', 'text-center', 'mt-20', 'grid', 'grid-cols-1', 'md:grid-cols-3', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
           {counts.map((c, i) => (
-            <div key={i} className="flex flex-col gap-[8px] bg-white px-[32px] py-[40px]">
-              <p className="font-mont font-semibold text-[48px] text-black xl:text-[80px] xl:leading-[80px]">
-                {c!.number}
-              </p>
-              <p className="font-inter text-[#929296] text-[14px]">{c!.label}</p>
+            <div key={i} className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[24px]', 'py-[32px]', 'border-[#CCCCCC]', 'border-l', 'first:border-l-0')}>
+              <p className={cn('font-mont', 'font-semibold', 'text-[40px]', 'text-black', 'xl:text-[80px]', 'xl:leading-[80px]')}>{c!.number}</p>
+              <p className={cn('font-inter', 'text-[#929296]', 'text-[14px]')}>{c!.label}</p>
             </div>
           ))}
         </div>
       )}
-
       {/* About / Description */}
       {(acf.about_us?.title || acf.about_us?.text) && (
-        <div className="flex md:flex-row flex-col gap-[64px] md:gap-[96px] mx-auto px-[16px] md:px-[36px] py-[80px] md:py-[112px] w-full max-w-[1440px]">
+        <div className="flex flex-col gap-[40px] mx-auto px-[16px] md:px-[36px] py-[80px] md:py-[112px] w-full max-w-[1440px]">
           {acf.about_us.title && (
-            <h2 className="w-full max-w-[480px] font-mont font-semibold text-[32px] md:text-[48px] leading-[1.1]">
+            <h2 className="w-full md:max-w-[70%] font-mont font-semibold text-[32px] md:text-[48px] leading-[1.1]">
               {acf.about_us.title}
             </h2>
           )}
@@ -123,6 +122,7 @@ export function ServiceClient({ slug }: { slug: string }) {
                 <p className="mt-[20px] font-inter text-[#929296] text-[16px] leading-[26px]">
                   A clear, repeatable process that keeps projects on track and clients informed at every step.
                 </p>
+                <Image src={"/how-we-work.jpg"} className='rounded-[20px] w-full mt-10' height={400} width={300} alt='How we work'></Image>
               </div>
               <div className="flex-1 flex flex-col">
                 {hwwSteps.map((step, i) => (
@@ -178,16 +178,6 @@ export function ServiceClient({ slug }: { slug: string }) {
         </div>
       )}
 
-      {/* Full-width service image */}
-      {acf.image?.url && (
-        <div className="mx-auto px-2 pb-2 w-full max-w-[1440px]">
-          <div className="relative rounded-[20px] w-full h-[300px] md:h-[500px] overflow-hidden">
-            <Image src={acf.image.url} alt={acf.image.alt || service.title.rendered}
-              fill className="object-cover object-center" sizes="100vw" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-          </div>
-        </div>
-      )}
 
       {/* Value Features */}
       <ValueFeaturesSection />
@@ -195,30 +185,6 @@ export function ServiceClient({ slug }: { slug: string }) {
       {/* Process */}
       <div className="bg-white">
         <ProcessSection />
-      </div>
-
-      {/* CTA */}
-            <div className="bg-[#111212] max-w-[1440px] mx-auto mb-20 rounded-[30px]">
-        <div className="flex md:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[16px] md:px-[36px] py-[96px] w-full max-w-[1440px]">
-          <div className="flex flex-col gap-[16px] max-w-[500px]">
-            <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">
-              Not sure which service fits?
-            </h2>
-            <p className="font-inter text-[#929296] text-[16px] leading-[24px]">
-              Tell us about your project and we'll recommend the right approach in 48h.
-            </p>
-          </div>
-          <div className="flex sm:flex-row flex-col gap-[16px]">
-            <Link href="/contact"
-              className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">
-              Book a call
-            </Link>
-            <Link href="/work"
-              className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">
-              See our work
-            </Link>
-          </div>
-        </div>
       </div>
 
     </div>

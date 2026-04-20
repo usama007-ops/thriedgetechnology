@@ -170,6 +170,36 @@ const TECHNOLOGIES: Record<string, TechData> = {
     ],
     image: '/database.png',
   },
+  'ai-workflow-automation': {
+    title: 'AI Workflow Automation',
+    headline: 'Intelligent pipelines that eliminate manual work and accelerate your operations.',
+    description: 'We design and build AI-powered workflow automation systems using agents, LLMs, and intelligent pipelines that reduce manual effort, cut operational costs, and scale your business without scaling headcount.',
+    stats: [
+      { number: '80%', label: 'Reduction in manual processing time' },
+      { number: '10x', label: 'Faster workflow execution' },
+      { number: '60%', label: 'Average operational cost savings' },
+    ],
+    tools: [
+      { name: 'LangChain', icon: '/langchain.svg' },
+      { name: 'OpenAI', icon: '/openai.svg' },
+      { name: 'Python', icon: '/python.svg' },
+      { name: 'n8n', icon: '/n8n.svg' },
+      { name: 'Zapier', icon: '/zapier.png' },
+      { name: 'AWS Lambda', icon: '/aws.svg' },
+      { name: 'Docker', icon: '/docker.svg' },
+      { name: 'Node.js', icon: '/nodejs.svg' },
+    ],
+    capabilities: [
+      { title: 'AI Agent Development', desc: 'We build autonomous AI agents that reason, plan, and execute multi-step tasks across your tools and data sources without human intervention.' },
+      { title: 'LLM-Powered Document Processing', desc: 'Automated extraction, classification, and routing of documents, contracts, invoices, and forms using large language models.' },
+      { title: 'Business Process Automation', desc: 'End-to-end automation of repetitive workflows across CRM, ERP, and internal tools, freeing your team for high-value work.' },
+      { title: 'Intelligent Data Pipelines', desc: 'AI-enhanced ETL pipelines that clean, enrich, and route data in real time, keeping your systems in sync automatically.' },
+      { title: 'Custom Workflow Orchestration', desc: 'Bespoke orchestration layers built on LangChain, Temporal, or custom engines that coordinate complex multi-step processes reliably.' },
+      { title: 'Monitoring & Observability', desc: 'Full visibility into your automated workflows with alerting, audit trails, and dashboards so you always know what your AI is doing.' },
+    ],
+    image: '/ai.png',
+    workIndustry: 'ai',
+  },
 
 }
 
@@ -216,7 +246,7 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
   }
 
   return (
-    <div className={cn('relative', 'bg-[#F3F3F3]')}>
+    <div className={cn('relative', 'bg-[#F3F3F3] pb-24')}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       {/* <PageHero
         label={tech.title}
@@ -239,7 +269,7 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
             className={cn('absolute', 'inset-0', 'rounded-[20px]')}
             style={{ background: 'linear-gradient(to top, rgba(0,0,0), rgba(0,0,0,0.6), rgba(0,0,0,0))' }}
           />
-          <div className={cn('absolute', 'bottom-0', 'left-0','max-w-360', 'right-0', 'flex', 'lg:flex-row', 'flex-col', 'justify-between', 'lg:items-end', 'gap-4', 'lg:px-9', 'px-5', 'lg:py-8', 'py-6')}>
+          <div className={cn('absolute', 'bottom-0', 'left-0','max-w-360', 'right-0', 'flex', 'lg:flex-row', 'flex-col', 'justify-between', 'lg:items-end', 'gap-4', 'lg:px-9', 'px-5', 'lg:py-8', 'py-6', 'mx-auto')}>
            <div className="flex flex-col gap-4">
             <span className={cn('text-sm', 'font-inter', 'text-white/70')}>{tech.title}</span>
             <h2 className={cn('text-[32px]', 'lg:text-[56px]', 'lg:leading-[60px]', 'leading-9', 'font-mont', 'font-semibold', 'text-white', 'max-w-2xl')}>
@@ -253,7 +283,7 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
         </div>
       </section>
 
-      <div className={cn('gap-[20px]','text-center', 'mt-11', 'grid', 'grid-cols-1', 'md:grid-cols-3', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
+      <div className={cn('gap-[20px]','text-center', 'mt-20', 'grid', 'grid-cols-1', 'md:grid-cols-3', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
         {tech.stats.map((s, i) => (
           <div key={i} className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[24px]', 'py-[32px]', 'border-[#CCCCCC]', 'border-l', 'first:border-l-0')}>
             <p className={cn('font-mont', 'font-semibold', 'text-[40px]', 'text-black', 'xl:text-[80px]', 'xl:leading-[80px]')}>{s.number}</p>
@@ -311,11 +341,11 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
       <ValuePropositionSection />
 
       {/* Work Section */}
-      <div className="bg-[#F3F3F3]">
+      {/* <div className="bg-[#F3F3F3]">
         <Suspense fallback={null}>
           <WorkSection show={3} industry={tech.workIndustry} />
         </Suspense>
-      </div>
+      </div> */}
 
       {/* Process Section */}
       <div className="bg-white">
@@ -336,7 +366,7 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
       <IndustriesSection />
 
       {/* CTA */}
-           <div className="bg-[#111212] max-w-[1440px] mx-auto mb-20 rounded-[30px]">
+           <div className="bg-[#111212] max-w-[1440px] mx-auto rounded-[30px]">
              <div className="flex md:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[16px] md:px-[36px] py-[96px] w-full max-w-[1440px]">
                <div className="flex flex-col gap-[16px] max-w-[500px]">
                  <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">

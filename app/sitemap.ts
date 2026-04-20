@@ -8,7 +8,7 @@ const SERVICE_SLUGS = [
   'custom-web-development',
   'ui-ux-design',
   'mobile-app-development',
-  'mvp-and-product-strategy',
+  'mvp-product-strategy',
   'saas-solutions',
   'shopify-plus-agency',
 ]
@@ -41,7 +41,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/contact`,                       lastModified: new Date(), changeFrequency: 'yearly',  priority: 0.7 },
     { url: `${BASE}/client-reviews`,                lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE}/faqs`,                          lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${BASE}/partners`,                      lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE}/categories`,                    lastModified: new Date(), changeFrequency: 'weekly',  priority: 0.6 },
     { url: `${BASE}/project-cost-estimation`,       lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
     { url: `${BASE}/privacy-policy`,                lastModified: new Date(), changeFrequency: 'yearly',  priority: 0.3 },

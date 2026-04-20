@@ -29,7 +29,7 @@ const STEPS = [
   },
   {
     num: '04', label: 'Growth, Scaling & Optimization',
-    description: 'Post-launch, we focus on continuous improvement—enhancing performance, scaling infrastructure, and optimizing user experience for long-term success.',
+    description: 'Post-launch, we focus on continuous improvement enhancing performance, scaling infrastructure, and optimizing user experience for long-term success.',
     points: ['Performance monitoring & optimization', 'Scalable infrastructure enhancements', 'Ongoing support and iteration'],
     image: '/growth.jpg',
   },

@@ -728,11 +728,11 @@ export default async function IndustryPage({
 
       <ValuePropositionSection />
 
-      <div className="bg-[#F3F3F3]">
+      {/* <div className="bg-[#F3F3F3]">
         <Suspense fallback={null}>
           <WorkSection show={3} />
         </Suspense>
-      </div>
+      </div> */}
 
       <div className="bg-white">
         <ProcessSection />

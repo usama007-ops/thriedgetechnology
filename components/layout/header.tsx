@@ -16,7 +16,7 @@ import { cn } from "../../lib/utils";
 
 // ─── mobile nav data ──────────────────────────────────────────────────────────
 const mobileNav = [
-  { label: 'Our work', href: '/work', children: null },
+  // { label: 'Our work', href: '/work', children: null },
   {
     label: 'Company', href: null,
     children: [
@@ -35,7 +35,7 @@ const mobileNav = [
       { label: 'Custom Web Development', href: '/services/custom-web-development' },
       { label: 'UI/UX Design',           href: '/services/ui-ux-design' },
       { label: 'Mobile App Development', href: '/services/mobile-app-development' },
-      { label: 'MVP & Product Strategy', href: '/services/mvp-and-product-strategy' },
+      { label: 'MVP & Product Strategy', href: '/services/mvp-product-strategy' },
       { label: 'SaaS Solutions',         href: '/services/saas-solutions' },
     ],
   },
@@ -213,7 +213,7 @@ export function Header() {
                 href="/contact"
                 className={cn('flex', 'justify-center', 'items-center', 'bg-black', 'px-[24px]', 'pt-[14px]', 'pb-[12px]', 'rounded-full', 'font-semibold', 'text-[14px]', 'text-white', 'hover:scale-105', 'transition-all', 'duration-300', 'ease-in-out', 'cursor-pointer')}
               >
-                Book a call
+                Book a Free Strategy Call
               </Link>
             </div>
 

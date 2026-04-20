@@ -33,19 +33,15 @@ export default function Footer() {
             </p>
 
             <div className="flex items-center gap-9 mt-2">
-              <Link href="#" className="p-2 rounded-full bg-[#1A1A1A] hover:bg-white/10 transition">
+              <Link href="https://www.facebook.com/ThrillEdge" className="p-2 rounded-full bg-[#1A1A1A] hover:bg-white/10 transition">
                 <Facebook size={18} />
               </Link>
 
-              <Link href="#" className="p-2 rounded-full bg-[#1A1A1A] hover:bg-white/10 transition">
-                <Twitter size={18} />
-              </Link>
-
-              <Link href="#" className="p-2 rounded-full bg-[#1A1A1A] hover:bg-white/10 transition">
+              <Link href="https://www.linkedin.com/company/thrill-edge-technologies/?viewAsMember=true" className="p-2 rounded-full bg-[#1A1A1A] hover:bg-white/10 transition">
                 <Linkedin size={18} />
               </Link>
 
-              <Link href="#" className="p-2 rounded-full bg-[#1A1A1A] hover:bg-white/10 transition">
+              <Link href="https://www.instagram.com/thrilledge_technologies/" className="p-2 rounded-full bg-[#1A1A1A] hover:bg-white/10 transition">
                 <Instagram size={18} />
               </Link>
             </div>
@@ -75,9 +71,7 @@ export default function Footer() {
                 <li>
                   <Link href="/contact">Contact</Link>
                 </li>
-                <li>
-                  <Link href="/partners">Partners</Link>
-                </li>
+               
                 <li>
                   <Link href="/project-cost-estimation">
                     Project Time Estimator
@@ -112,7 +106,7 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/services/mvp-and-product-strategy">
+                  <Link href="/services/mvp-product-strategy">
                     MVP & Product Strategy
                   </Link>
                 </li>
