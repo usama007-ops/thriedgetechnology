@@ -174,7 +174,7 @@ export async function POST(req: NextRequest) {
     await transporter.verify()
 
     await transporter.sendMail({
-      from:    `"Thrill Edge Careers" <${process.env.SMTP_FROM}>`,
+      from:    `"Thrill Edge Technologies Careers" <${process.env.SMTP_FROM}>`,
       to:      process.env.SMTP_TO,
       replyTo: email,
       subject: `[Careers] ${position || 'Application'}, ${name}`,

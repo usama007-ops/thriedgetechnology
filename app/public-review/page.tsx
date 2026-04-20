@@ -74,7 +74,7 @@ export default function PublicReviewPage() {
                             <div className="w-full flex flex-col gap-[32px]">
                                 <div className="flex flex-col gap-[16px]">
                                     <h1 className="text-black font-mont md:text-[64px] text-[32px] md:font-bold font-semibold md:leading-[64px] leading-[32px]">
-                                        A Public Review of Thrill Edge
+                                        A Public Review of Thrill Edge Technologies
                                     </h1>
                                     <p className="text-[#111212] font-inter text-[16px] leading-[24px]">
                                         We&apos;d love to hear about your experience. Please fill out the review form below:
@@ -126,7 +126,7 @@ export default function PublicReviewPage() {
                                                 <li>What were your goals for this project?</li>
                                                 <li>Can you share any information demonstrating the impact of partnering with us?</li>
                                                 <li>How was project management arranged, and how effective was it?</li>
-                                                <li>What did you find most impressive about Thrill Edge?</li>
+                                                <li>What did you find most impressive about Thrill Edge Technologies?</li>
                                             </ol>
                                             <textarea id="written_review" name="written_review" rows={6}
                                                 value={s2.written_review} onChange={e => setS2(p => ({ ...p, written_review: e.target.value }))}

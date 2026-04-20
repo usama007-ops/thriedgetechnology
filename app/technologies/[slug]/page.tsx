@@ -254,7 +254,7 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
         bgColor="#111212"
       /> */}
 
-      <section className={cn( 'w-full', 'mx-auto', 'p-2')}>
+      <section className={cn('w-full', 'mx-auto', 'p-2')}>
         <div className={cn('relative', 'rounded-[20px]', 'w-full', 'h-[480px]', 'overflow-hidden')}>
           <Image
             src={tech.image}
@@ -269,13 +269,13 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
             className={cn('absolute', 'inset-0', 'rounded-[20px]')}
             style={{ background: 'linear-gradient(to top, rgba(0,0,0), rgba(0,0,0,0.6), rgba(0,0,0,0))' }}
           />
-          <div className={cn('absolute', 'bottom-0', 'left-0','max-w-360', 'right-0', 'flex', 'lg:flex-row', 'flex-col', 'justify-between', 'lg:items-end', 'gap-4', 'lg:px-9', 'px-5', 'lg:py-8', 'py-6', 'mx-auto')}>
-           <div className="flex flex-col gap-4">
-            <span className={cn('text-sm', 'font-inter', 'text-white/70')}>{tech.title}</span>
-            <h2 className={cn('text-[32px]', 'lg:text-[56px]', 'lg:leading-[60px]', 'leading-9', 'font-mont', 'font-semibold', 'text-white', 'max-w-2xl')}>
-              {tech.headline}
-            </h2>
-           </div>
+          <div className={cn('absolute', 'bottom-0', 'left-0', 'max-w-360', 'right-0', 'flex', 'lg:flex-row', 'flex-col', 'justify-between', 'lg:items-end', 'gap-4', 'lg:px-9', 'px-5', 'lg:py-8', 'py-6', 'mx-auto')}>
+            <div className="flex flex-col gap-4">
+              <span className={cn('text-sm', 'font-inter', 'text-white/70')}>{tech.title}</span>
+              <h2 className={cn('text-[32px]', 'lg:text-[56px]', 'lg:leading-[60px]', 'leading-9', 'font-mont', 'font-semibold', 'text-white', 'max-w-2xl')}>
+                {tech.headline}
+              </h2>
+            </div>
             <p className={cn('lg:text-[18px]', 'text-[15px]', 'font-inter', 'text-white/70', 'lg:max-w-xs', 'leading-7')}>
               {tech.description.slice(0, 140)}...
             </p>
@@ -283,7 +283,7 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
         </div>
       </section>
 
-      <div className={cn('gap-[20px]','text-center', 'mt-20', 'grid', 'grid-cols-1', 'md:grid-cols-3', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
+      <div className={cn('gap-[20px]', 'text-center', 'mt-20', 'grid', 'grid-cols-1', 'md:grid-cols-3', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
         {tech.stats.map((s, i) => (
           <div key={i} className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[24px]', 'py-[32px]', 'border-[#CCCCCC]', 'border-l', 'first:border-l-0')}>
             <p className={cn('font-mont', 'font-semibold', 'text-[40px]', 'text-black', 'xl:text-[80px]', 'xl:leading-[80px]')}>{s.number}</p>
@@ -293,7 +293,7 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
       </div>
 
       {/* Description */}
-      <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[96px]', 'w-full','mt-10', 'max-w-[1440px]')}>
+      <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[96px]', 'w-full', 'mt-10', 'max-w-[1440px]')}>
         <p className={cn('max-w-[800px]', 'font-inter', 'text-[#555]', 'text-[20px]', 'leading-[32px]')}>{tech.description}</p>
       </div>
 
@@ -366,28 +366,28 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
       <IndustriesSection />
 
       {/* CTA */}
-           <div className="bg-[#111212] max-w-[1440px] mx-auto rounded-[30px]">
-             <div className="flex md:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[16px] md:px-[36px] py-[96px] w-full max-w-[1440px]">
-               <div className="flex flex-col gap-[16px] max-w-[500px]">
-                 <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">
-                   Not sure which service fits?
-                 </h2>
-                 <p className="font-inter text-[#929296] text-[16px] leading-[24px]">
-                   Tell us about your project and we'll recommend the right approach in 48h.
-                 </p>
-               </div>
-               <div className="flex sm:flex-row flex-col gap-[16px]">
-                 <Link href="/contact"
-                   className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">
-                   Book a call
-                 </Link>
-                 <Link href="/work"
-                   className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">
-                   See our work
-                 </Link>
-               </div>
-             </div>
-           </div>
+      <div className="bg-[#111212] max-w-[1440px] mx-auto rounded-[30px]">
+        <div className="flex md:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[16px] md:px-[36px] py-[96px] w-full max-w-[1440px]">
+          <div className="flex flex-col gap-[16px] max-w-[500px]">
+            <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">
+              Not sure which service fits?
+            </h2>
+            <p className="font-inter text-[#929296] text-[16px] leading-[24px]">
+              Tell us about your project and we'll recommend the right approach in 48h.
+            </p>
+          </div>
+          <div className="flex sm:flex-row flex-col gap-[16px]">
+            <Link href="/contact"
+              className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">
+              Book a call
+            </Link>
+             <Link href="/project-cost-estimation"
+              className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">
+              Get an Project Estimate
+            </Link>
+          </div>
+        </div>
+      </div>
 
     </div>
   )

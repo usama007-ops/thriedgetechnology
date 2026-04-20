@@ -45,7 +45,7 @@ function Typewriter() {
 
   useEffect(() => {
     if (paused) {
-      const t = setTimeout(() => setPaused(false), 1400);
+      const t = setTimeout(() => setPaused(false), 1440);
       return () => clearTimeout(t);
     }
 

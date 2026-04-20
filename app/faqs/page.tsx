@@ -8,7 +8,7 @@ import { cn } from "../../lib/utils";
 
 const FAQS = [
   // Partnership Basics (6)
-  { topic: 'Partnership Basics', q: 'How do we get started working with Thrill Edge?', a: 'Book a free strategy call. We\'ll scope your project, align on goals, and send you a tailored plan within 48 hours. No commitment required.' },
+  { topic: 'Partnership Basics', q: 'How do we get started working with Thrill Edge Technologies?', a: 'Book a free strategy call. We\'ll scope your project, align on goals, and send you a tailored plan within 48 hours. No commitment required.' },
   { topic: 'Partnership Basics', q: 'What types of clients do you work with?', a: 'We work with startups, scale-ups, and enterprise teams across healthcare, fintech, eCommerce, and SaaS. Most of our clients are US, UK, Canadian, and Australian companies.' },
   { topic: 'Partnership Basics', q: 'Do you work with early-stage startups?', a: 'Yes. We have a dedicated MVP & Product Strategy service for founders who need to validate ideas and get to market fast without burning runway on the wrong features.' },
   { topic: 'Partnership Basics', q: 'Who owns the code and IP at the end of a project?', a: 'You do. Full IP transfer is included in every engagement. We retain no rights to your codebase, designs, or data.' },
@@ -78,7 +78,7 @@ export default function FAQsPage() {
       </section>
 
       {/* Topics + FAQ */}
-      <div className={cn('flex', 'md:flex-row', 'flex-col', 'items-start', 'gap-[48px]', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[96px]', 'w-full', 'max-w-[1440px]')}>
+      <div className={cn('flex', 'md:flex-row', 'flex-col', 'items-start', 'gap-[48px]', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[96px]', 'w-full', 'max-w-[1440px]')}>
 
         {/* Sidebar topics */}
         <div className={cn('md:top-[100px]', 'md:sticky', 'w-full', 'md:w-[260px]', 'shrink-0')}>
@@ -146,9 +146,9 @@ export default function FAQsPage() {
               className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">
               Book a call
             </Link>
-            <Link href="/work"
+             <Link href="/project-cost-estimation"
               className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">
-              See our work
+              Get an Project Estimate
             </Link>
           </div>
         </div>

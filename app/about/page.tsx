@@ -40,9 +40,21 @@ const AWARDS = [
 ]
 
 const CARDS = [
-  { icon: '/search.svg', title: 'On-Time Delivery, Transparently Managed', desc: 'We operate across the United States, Canada, Australia, and Europe, delivering projects with precision and accountability.        Every engagement is structured around weekly sprint cycles, supported by detailed progress reports and stakeholder updates. Our communication is proactive any shift in scope or timeline is clearly communicated in advance, ensuring full transparency and zero surprises.' },
-  { icon: '/varified-user.svg', title: 'Compliance by Design, Not as an Afterthought', desc: 'Security and compliance are embedded into every layer of our development lifecycle, aligning with SOC 2, GDPR, and HIPAA standards from day one.Our engineering practices ensure that every release is accompanied by comprehensive, audit ready documentation eliminating the need for separate compliance cycles. This integrated approach reduces risk, accelerates delivery, and ensures your product is always prepared for regulatory scrutiny.' },
-  { icon: '/prototype.svg', title: 'AI & Cloud Solutions, Built for Production', desc: 'We design, deploy, and scale AI-powered systems across industries including healthcare and fintech, with a proven track record of delivering production grade solutions.Our approach focuses on modernization without disruption enhancing legacy systems without unnecessary rewrites. Every architectural decision is carefully evaluated against performance, scalability, and long term operational efficiency, ensuring measurable business impact. ' },
+  {
+    icon: '/search.svg',
+    title: 'On-Time Delivery, Full Transparency',
+    desc: 'We deliver across the US, Canada, Australia, and Europe using structured weekly sprints, clear reporting, and proactive communication—ensuring zero surprises.'
+  },
+  {
+    icon: '/varified-user.svg',
+    title: 'Built-In Compliance & Security',
+    desc: 'SOC 2, GDPR, and HIPAA aligned from day one. Every release includes audit-ready documentation, reducing risk and eliminating extra compliance cycles.'
+  },
+  {
+    icon: '/prototype.svg',
+    title: 'Production-Ready AI & Cloud',
+    desc: 'We build and scale AI systems with a focus on performance, scalability, and seamless modernization—delivering real business impact without disruption.'
+  },
 ]
 
 const features = [
@@ -111,11 +123,9 @@ function FAQ({ items }: { items: typeof FAQS }) {
 
 export default function AboutPage() {
   return (
-    <div className="relative bg-[#F3F3F3]">
-
-
+    <div className="relative bg-[#F3F3F3] pb-25">
       {/* Banner image */}
-      <section className="mx-auto px-[12px] md:px-[10px] w-full max-w-[1800px]">
+      <section className="px-[12px] md:px-[10px] w-full ">
         <div className="relative w-full h-[480px] md:h-[640px] rounded-[20px] overflow-hidden">
 
           {/* Background Image */}
@@ -138,7 +148,7 @@ export default function AboutPage() {
           />
 
           {/* Content Overlay */}
-          <div className="absolute bottom-0 left-0 right-0 flex flex-col max-w-[1440px] lg:flex-row justify-between lg:items-end gap-4 lg:px-9 px-5 lg:py-8 py-6">
+          <div className="absolute bottom-0 left-0 right-0 flex flex-col max-w-[1440px] lg:flex-row justify-between lg:items-end gap-4 lg:px-9 px-5 lg:py-8 py-6 max-w-[1440px] mx-auto">
 
             {/* Left Text */}
             <div className="flex flex-col gap-4 max-w-2xl">
@@ -184,10 +194,10 @@ export default function AboutPage() {
         {/* Image */}
         <div className="w-full md:w-1/2 flex justify-center items-center">
           <Image
-            src="/who-we-are.png"
+            src="/zeerak.jpeg"
             alt="team collaboration"
-            width={1024}
-            height={768}
+            width={500}
+            height={400}
             className="rounded-xl object-cover"
           />
         </div>
@@ -205,16 +215,15 @@ export default function AboutPage() {
 
           <p>
             <strong>
-              Thrill Edge is a full-stack software agency founded by Zeerak Jamshaid built on the belief that great software should be engineered, not assembled.
+              Thrill Edge Technologies is a full-stack software agency founded by Zeerak Jamshaid built on the belief that great software should be engineered, not assembled.
             </strong>
           </p>
 
           <p>
-            Zeerak Jamshaid started the agency with a simple premise: businesses deserve a technology partner that takes full ownership from architecture decisions to the final line of code. No hand-offs, no finger-pointing, just end-to-end accountability.
-          </p>
+Zeerak Jamshaid started the agency with a simple premise: businesses deserve a technology partner that takes full ownership from architecture decisions to the final line of code. No hand-offs, no finger-pointing, just end-to-end accountability.          </p>
 
           <p>
-            Today, Thrill Edge operates as a full-stack agency covering product strategy, UI/UX design, frontend, backend, mobile, cloud infrastructure, and AI  everything a modern digital product needs under one roof. We work with startups and scaling companies that need a team that moves fast without cutting corners.
+            Today, Thrill Edge Technologies operates as a full-stack agency covering product strategy, UI/UX design, frontend, backend, mobile, cloud infrastructure, and AI  everything a modern digital product needs under one roof. We work with startups and scaling companies that need a team that moves fast without cutting corners.
           </p>
 
           <p>
@@ -295,7 +304,7 @@ export default function AboutPage() {
           <h2 className="w-full font-mont font-semibold text-[40px] leading-[48px]">Our Culture</h2>
 
           <p className="font-inter text-[#555] text-[18px] leading-[30px]">
-            <strong className="text-[#111212]">We hire for ownership, not just skill.</strong> Every engineer at Thrill Edge has shipped production-grade code before joining us. We don&apos;t run training programmes we run projects. That means the person writing your code has done it before, in a real environment, under real pressure.
+            <strong className="text-[#111212]">We hire for ownership, not just skill.</strong> Every engineer at Thrill Edge Technologies has shipped production-grade code before joining us. We don&apos;t run training programmes we run projects. That means the person writing your code has done it before, in a real environment, under real pressure.
           </p>
 
           <p className="font-inter text-[#555] text-[18px] leading-[30px]">
@@ -318,7 +327,7 @@ export default function AboutPage() {
               { label: 'Speed with standards', desc: 'We move fast but never at the cost of quality.' },
               { label: 'Honest communication', desc: 'We tell you what you need to hear, not what sounds good.' },
             ].map((p) => (
-              <div key={p.label} className="flex flex-col gap-[6px] bg-[#F3F3F3] rounded-[14px] px-[20px] py-[18px]">
+              <div key={p.label} className="flex flex-col gap-[6px] bg-[#fff] rounded-[14px] px-[20px] py-[18px]">
                 <span className="font-mont font-semibold text-[#111212] text-[15px]">{p.label}</span>
                 <span className="font-inter text-[#929296] text-[14px] leading-[22px]">{p.desc}</span>
               </div>
@@ -337,7 +346,7 @@ export default function AboutPage() {
           muted
           loop
         >
-          <source src="/culture-video.mp4" type="video/mp4" />
+          <source src="/culture2.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </section>
@@ -427,7 +436,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <div className="bg-[#111212] max-w-[1440px] mx-auto mb-20 rounded-[30px]">
+      <div className="bg-[#111212] max-w-[1440px] mx-auto rounded-[30px]">
         <div className="flex md:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[16px] md:px-[36px] py-[96px] w-full max-w-[1440px]">
           <div className="flex flex-col gap-[16px] max-w-[500px]">
             <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">
@@ -442,9 +451,9 @@ export default function AboutPage() {
               className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">
               Book a call
             </Link>
-            <Link href="/work"
+             <Link href="/project-cost-estimation"
               className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">
-              See our work
+              Get an Project Estimate
             </Link>
           </div>
         </div>

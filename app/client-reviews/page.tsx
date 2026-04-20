@@ -81,6 +81,7 @@ export default async function ClientReviewsPage() {
               "px-5",
               "lg:py-8",
               "py-6",
+              "mx-auto",
             )}
           >
             <div className="flex flex-col gap-4">
@@ -108,7 +109,7 @@ export default async function ClientReviewsPage() {
                 "text-[15px]",
                 "font-inter",
                 "text-white/70",
-                "lg:max-w-xs",
+                "lg:max-w-[40%]",
                 "leading-7",
               )}
             >
@@ -219,10 +220,10 @@ export default async function ClientReviewsPage() {
                    className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">
                    Book a call
                  </Link>
-                 <Link href="/work"
-                   className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">
-                   See our work
-                 </Link>
+                <Link href="/project-cost-estimation"
+              className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">
+              Get an Project Estimate
+            </Link>
                </div>
              </div>
            </div>

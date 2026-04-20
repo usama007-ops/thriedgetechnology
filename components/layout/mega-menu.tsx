@@ -116,7 +116,7 @@ function BadgeLogo({ src, alt }: { src: string; alt: string }) {
       alt={alt}
       width={100}
       height={100}
-      className={cn('w-[67px]', 'xl:w-[100px] opacity-[60%]')}
+      className={cn('w-[67px]', 'xl:w-[100px] opacity-[60%] hover:opacity-[100%]')}
       onError={() => setErr(true)}
     />
   )
@@ -167,11 +167,11 @@ export function MegaMenu() {
       {activeMenu && (
         <div
           className={cn('right-0', 'left-0', 'z-[9999]', 'fixed', 'flex', 'justify-center', 'px-4')}
-          style={{ top: '50px' }}
+          style={{ top: '63px' }}
           onMouseEnter={() => setActive(activeMenu.label)}
           onMouseLeave={() => setActive(null)}
         >
-          <div className={cn('flex', 'flex-col', 'gap-[24px]', 'bg-white', 'p-[12px]', 'rounded-[20px]', 'w-full', 'max-w-[1440px]')}>
+          <div className={cn('flex', 'flex-col', 'gap-[24px]', 'bg-white', 'p-[12px]', 'rounded-[20px]', 'w-full', 'max-w-[1440px]', 'mega-shadow','border border-[#f0f0f0]')}>
             <div className={cn('px-[32px]', 'py-[40px]', 'w-full')}>
               <p className={cn('mb-4', 'font-normal', 'text-[#929296]', 'text-[16px]')}>{activeMenu.categoryLabel}</p>
               <ul className={cn('gap-[24px]', 'grid', 'grid-cols-3')}>

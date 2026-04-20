@@ -53,7 +53,7 @@ export default function ValuePropositionSection() {
           </div>
 
           {/* Right pillars */}
-          <div className="flex flex-col flex-1 divide-y divide-white/10">
+          <div className="flex flex-col flex-1 ">
             {PILLARS.map((p) => (
               <div key={p.number} className="group flex gap-6 py-7">
                 <span className="pt-1 w-6 font-inter tabular-nums text-[13px] text-white/20 shrink-0">{p.number}</span>
@@ -66,21 +66,6 @@ export default function ValuePropositionSection() {
               </div>
             ))}
           </div>
-        </div>
-
-        {/* Bottom row stats */}
-        <div className="gap-px grid grid-cols-2 md:grid-cols-4 bg-white/10 mt-0">
-          {[
-            { number: '50+', label: 'Products shipped' },
-            { number: '98%', label: 'Client satisfaction' },
-            { number: '8+', label: 'Years in market' },
-            { number: '2M+', label: 'Revenue generated' },
-          ].map((s) => (
-            <div key={s.label} className="flex flex-col gap-1 bg-[#111212] px-6 py-8">
-              <p className="font-mont font-bold text-[36px] text-white md:text-[48px] leading-none">{s.number}</p>
-              <p className="mt-1 font-inter text-[13px] text-white/50">{s.label}</p>
-            </div>
-          ))}
         </div>
 
       </div>

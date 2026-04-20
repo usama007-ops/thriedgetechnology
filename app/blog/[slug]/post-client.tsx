@@ -160,7 +160,7 @@ export default function PostPage({ params }: PostPageProps) {
                 </div>
               )}
               <div className={cn('flex', 'flex-col', 'gap-[2px]')}>
-                <span className={cn('text-[13px]', 'font-mont', 'font-semibold', 'text-white', 'leading-none')}>{author?.name ?? 'Thrill Edge'}</span>
+                <span className={cn('text-[13px]', 'font-mont', 'font-semibold', 'text-white', 'leading-none')}>{author?.name ?? 'Thrill Edge Technologies'}</span>
                 <span className={cn('text-[12px]', 'font-inter', 'text-white/55', 'leading-none')}>
                   {author?.designation ? `${author.designation} · ` : ''}{format(publishDate, 'MMMM d, yyyy')}
                 </span>
@@ -263,7 +263,7 @@ export default function PostPage({ params }: PostPageProps) {
                 </div>
               )}
               <div className={cn('flex', 'flex-col', 'gap-[4px]')}>
-                <p className={cn('text-[17px]', 'font-mont', 'font-bold', 'text-black')}>{author?.name ?? 'Thrill Edge'}</p>
+                <p className={cn('text-[17px]', 'font-mont', 'font-bold', 'text-black')}>{author?.name ?? 'Thrill Edge Technologies'}</p>
                 {author?.designation && (
                   <p className={cn('text-[12px]', 'font-inter', 'font-medium', 'text-[#929296]', 'uppercase', 'tracking-wider')}>
                     {author.designation}, Thrill Edge Technologies
@@ -273,7 +273,7 @@ export default function PostPage({ params }: PostPageProps) {
                   <p className={cn('text-[14px]', 'font-inter', 'text-[#555]', 'leading-[1.65]', 'mt-[10px]')}>{author.description}</p>
                 )}
                 {author?.link && (
-                  <a target="_blank" rel="noopener noreferrer" href={author.link}
+                  <Link target="_blank" rel="noopener noreferrer" href={"/about"}
                     className={cn('mt-[12px]', 'inline-flex', 'items-center', 'gap-[7px]', 'text-[13px]', 'font-inter', 'font-semibold', 'text-black', 'bg-white', 'border', 'border-[#E5E4E0]', 'px-[14px]', 'py-[7px]', 'rounded-full', 'hover:border-black', 'hover:shadow-sm', 'transition-all', 'duration-200', 'w-fit')}>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                       <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
@@ -281,7 +281,7 @@ export default function PostPage({ params }: PostPageProps) {
                       <circle cx="4" cy="4" r="2" />
                     </svg>
                     View Profile
-                  </a>
+                  </Link>
                 )}
               </div>
             </div>

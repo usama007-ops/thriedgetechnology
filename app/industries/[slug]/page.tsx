@@ -34,7 +34,7 @@ const INDUSTRIES: Record<string, IndustryData> = {
     description:
       "We build custom healthcare software including EHR integrations, patient portals, telemedicine platforms, and clinical workflow tools that meet the strictest compliance standards while delivering exceptional user experiences for clinicians and patients alike.",
     metaTitle:
-      "Healthcare Software Development Company | HIPAA-Compliant Solutions | Thrill Edge",
+      "Healthcare Software Development Company | HIPAA-Compliant Solutions | Thrill Edge Technologies",
     metaDescription:
       "Custom healthcare software development: EHR integrations, patient portals, telemedicine apps, and HIPAA-compliant platforms. Trusted by healthcare providers across the US, UK, and Australia.",
     keywords: [
@@ -113,7 +113,7 @@ const INDUSTRIES: Record<string, IndustryData> = {
     description:
       "We build custom education technology including LMS platforms, adaptive learning tools, student information systems, and virtual classrooms that help institutions deliver better learning experiences at scale.",
     metaTitle:
-      "EdTech Software Development Company | LMS & E-Learning Solutions | Thrill Edge",
+      "EdTech Software Development Company | LMS & E-Learning Solutions | Thrill Edge Technologies",
     metaDescription:
       "Custom education software development: LMS platforms, adaptive learning tools, virtual classrooms, and student portals. Built for K-12, higher education, and corporate training.",
     keywords: [
@@ -192,7 +192,7 @@ const INDUSTRIES: Record<string, IndustryData> = {
     description:
       "We build custom real estate software including property listing platforms, CRM systems, virtual tour tools, and property management applications that give agents, developers, and property managers a competitive edge.",
     metaTitle:
-      "Real Estate Software Development Company | PropTech Solutions | Thrill Edge",
+      "Real Estate Software Development Company | PropTech Solutions | Thrill Edge Technologies",
     metaDescription:
       "Custom real estate software development: property listing platforms, CRM systems, virtual tours, and property management apps. Built for agents, developers, and property managers.",
     keywords: [
@@ -271,7 +271,7 @@ const INDUSTRIES: Record<string, IndustryData> = {
     description:
       "We build custom blockchain solutions including smart contracts, DeFi platforms, NFT marketplaces, and enterprise blockchain applications that solve real business problems with decentralized technology.",
     metaTitle:
-      "Blockchain Development Company | Smart Contracts & DeFi Solutions | Thrill Edge",
+      "Blockchain Development Company | Smart Contracts & DeFi Solutions | Thrill Edge Technologies",
     metaDescription:
       "Custom blockchain development: smart contracts, DeFi platforms, NFT marketplaces, and enterprise blockchain apps. Ethereum, Solana, and Polygon specialists.",
     keywords: [
@@ -351,7 +351,7 @@ const INDUSTRIES: Record<string, IndustryData> = {
     description:
       "We build custom fintech solutions including payment platforms, lending software, wealth management tools, and banking infrastructure that meet the highest standards of security, compliance, and performance.",
     metaTitle:
-      "Fintech Software Development Company | Payment & Banking Solutions | Thrill Edge",
+      "Fintech Software Development Company | Payment & Banking Solutions | Thrill Edge Technologies",
     metaDescription:
       "Custom fintech software development: payment platforms, lending software, wealth management tools, and open banking APIs. PCI-DSS and SOC 2 compliant development.",
     keywords: [
@@ -431,7 +431,7 @@ const INDUSTRIES: Record<string, IndustryData> = {
     description:
       "We build custom logistics software including fleet management systems, warehouse management platforms, route optimization tools, and supply chain visibility dashboards that give logistics companies a measurable operational edge.",
     metaTitle:
-      "Logistics Software Development Company | Supply Chain & Fleet Management | Thrill Edge",
+      "Logistics Software Development Company | Supply Chain & Fleet Management | Thrill Edge Technologies",
     metaDescription:
       "Custom logistics software development: fleet management, warehouse management, route optimization, and supply chain visibility platforms. Built for 3PLs, carriers, and shippers.",
     keywords: [
@@ -770,11 +770,9 @@ export default async function IndustryPage({
             >
               Start a project
             </Link>
-            <Link
-              href="/work"
-              className={cn('flex', 'justify-center', 'items-center', 'hover:bg-white', 'px-[32px]', 'py-[16px]', 'border', 'border-white', 'rounded-full', 'font-mont', 'font-semibold', 'text-[16px]', 'text-white', 'hover:text-[#111212]', 'transition-all', 'duration-300')}
-            >
-              See our work
+           <Link href="/project-cost-estimation"
+              className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">
+              Get an Project Estimate
             </Link>
           </div>
         </div>

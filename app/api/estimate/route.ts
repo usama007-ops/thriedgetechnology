@@ -108,7 +108,7 @@ export async function POST(req: NextRequest) {
     const transporter = makeTransport()
     await transporter.verify()
     await transporter.sendMail({
-      from:    `"Thrill Edge Estimator" <${process.env.SMTP_FROM}>`,
+      from:    `"Thrill Edge Technologies Estimator" <${process.env.SMTP_FROM}>`,
       to:      process.env.SMTP_TO,
       replyTo: email,
       subject: `[Estimate] ${name}${company ? `, ${company}` : ''}`,

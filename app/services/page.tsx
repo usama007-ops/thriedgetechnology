@@ -184,9 +184,9 @@ export default async function ServicesPage() {
               className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">
               Book a call
             </Link>
-            <Link href="/work"
+             <Link href="/project-cost-estimation"
               className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">
-              See our work
+              Get an Project Estimate
             </Link>
           </div>
         </div>

@@ -76,7 +76,8 @@ export function ServiceClient({ slug }: { slug: string }) {
 
       {/* Stats */}
 
-      {counts.length > 0 && (
+      <section className='max-w-[1440px] mx-auto'>
+        {counts.length > 0 && (
         <div className={cn('gap-[20px]', 'text-center', 'mt-20', 'grid', 'grid-cols-1', 'md:grid-cols-3', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
           {counts.map((c, i) => (
             <div key={i} className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[24px]', 'py-[32px]', 'border-[#CCCCCC]', 'border-l', 'first:border-l-0')}>
@@ -88,9 +89,9 @@ export function ServiceClient({ slug }: { slug: string }) {
       )}
       {/* About / Description */}
       {(acf.about_us?.title || acf.about_us?.text) && (
-        <div className="flex flex-col gap-[40px] mx-auto px-[16px] md:px-[36px] py-[80px] md:py-[112px] w-full max-w-[1440px]">
+        <div className="md:max-w-[70%] flex flex-col gap-[40px] px-[16px] md:px-[36px] py-[80px] md:py-[112px] w-full max-w-[1440px]">
           {acf.about_us.title && (
-            <h2 className="w-full md:max-w-[70%] font-mont font-semibold text-[32px] md:text-[48px] leading-[1.1]">
+            <h2 className="w-full  font-mont font-semibold text-[32px] md:text-[48px] leading-[1.1]">
               {acf.about_us.title}
             </h2>
           )}
@@ -102,6 +103,7 @@ export function ServiceClient({ slug }: { slug: string }) {
           )}
         </div>
       )}
+      </section>
 
       {/* Projects Marquee */}
       {projects.length > 0 && (

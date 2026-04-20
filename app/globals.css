@@ -456,3 +456,7 @@ figure.wp-block-image.size-large {
 .hero-icon-float-c { animation: float-c var(--duration, 10s) ease-in-out infinite; }
 
 /* ─── Hero floating icon animations ─────────────────────────────────────────── */
+
+.mega-shadow {
+  box-shadow: 0 12px 48px rgba(0,0,0,0.08);
+}
