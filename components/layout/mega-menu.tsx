@@ -200,7 +200,7 @@ export function MegaMenu() {
                 Recognized By
               </p>
 
-              <div className="flex items-center gap-[24px] flex-wrap">
+              <div className="flex items-center gap-[60px] flex-wrap">
                 {badgeLogos.map((logo, index) => (
                   <BadgeLogo key={index} src={logo.src} alt={logo.alt} />
                 ))}
