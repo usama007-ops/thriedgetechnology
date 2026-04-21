@@ -189,8 +189,7 @@ export default function AboutPage() {
       </div>
 
       {/* Who We Are */}
-      <div className="flex md:flex-row flex-col items-center gap-[32px] md:gap-[96px] mx-auto px-[16px] md:px-[36px] py-[64px] md:py-[96px] w-full max-w-[1440px]">
-
+      <div className="flex md:flex-row flex-col items-center gap-[32px] mx-auto px-[16px] md:px-[36px] py-[64px] md:py-[96px] w-full max-w-[1440px]">
         {/* Image */}
         <div className="w-full md:w-1/2 flex justify-center items-center">
           <Image
@@ -198,7 +197,7 @@ export default function AboutPage() {
             alt="team collaboration"
             width={500}
             height={400}
-            className="rounded-xl object-cover"
+            className="rounded-xl object-cover w-full h-[500px]"
           />
         </div>
 
@@ -248,10 +247,10 @@ Zeerak Jamshaid started the agency with a simple premise: businesses deserve a t
       </div>
 
       {/* Stats ticker */}
-      <section className="w-full max-w-[1440px] mx-auto px-4 md:px-10 py-16">
+      <section className="w-full max-w-[1440px] mx-auto px-4 md:px-10 pt-8 md:pt-16">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="font-mont font-semibold text-[32px] md:text-[40px] leading-[40px] md:leading-[48px]">
+        <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
+          <h2 className="font-mont font-semibold text-[28px] md:text-[40px] leading-[36px] md:leading-[48px]">
             Why Choose Us
           </h2>
           <p>
@@ -260,17 +259,17 @@ Zeerak Jamshaid started the agency with a simple premise: businesses deserve a t
           </p>
         </div>
         {/* Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {features.map((item, index) => {
             const Icon = item.icon;
 
             return (
               <div
                 key={index}
-                className="group bg-[#111212] border border-[#1f1f1f] rounded-2xl p-6 transition-all duration-300"
+                className="group bg-[#111212] border border-[#1f1f1f] rounded-2xl p-5 md:p-6 transition-all duration-300"
               >
                 {/* Icon */}
-                <div className="mb-4 w-10 h-10 flex items-center justify-center rounded-lg bg-[#1a1a1a] group-hover:bg-[#eee]/10 transition">
+                <div className="mb-3 md:mb-4 w-10 h-10 flex items-center justify-center rounded-lg bg-[#1a1a1a] group-hover:bg-[#eee]/10 transition">
                   <Icon className="w-5 h-5 text-white" />
                 </div>
 
@@ -290,7 +289,7 @@ Zeerak Jamshaid started the agency with a simple premise: businesses deserve a t
 
       </section>
       {/* Culture */}
-      <div className="flex md:flex-row flex-col gap-[32px] md:gap-[96px] mx-auto px-[16px] md:px-[36px] py-[64px] md:py-[96px] w-full max-w-[1440px]">
+      <div className="flex md:flex-row flex-col gap-[32px] md:gap-[96px] mx-auto px-[16px] md:px-[36px] py-[40px] md:py-[96px] w-full max-w-[1440px]">
         <Image
           src="/culture.png"
           alt="team collaboration"

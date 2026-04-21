@@ -167,7 +167,7 @@ export function MegaMenu() {
       {activeMenu && (
         <div
           className={cn('right-0', 'left-0', 'z-[9999]', 'fixed', 'flex', 'justify-center', 'px-4')}
-          style={{ top: '63px' }}
+          style={{ top: '55px' }}
           onMouseEnter={() => setActive(activeMenu.label)}
           onMouseLeave={() => setActive(null)}
         >

@@ -27,7 +27,8 @@ export function ServiceClient({ slug }: { slug: string }) {
   if (!service) notFound()
 
   const acf = service.acf ?? {}
-  const heroImg = acf.image?.url || service._embedded?.['wp:featuredmedia']?.[0]?.source_url
+  const heroImg = service._embedded?.['wp:featuredmedia']?.[0]?.source_url
+  const aboutImage = acf.image?.url 
 
   const howWeWork = acf.how_we_work ?? {}
   const hwwSteps = Object.entries(howWeWork)
@@ -66,7 +67,7 @@ export function ServiceClient({ slug }: { slug: string }) {
                 dangerouslySetInnerHTML={{ __html: service.title.rendered }} />
             </div>
             {acf.service_solutions && (
-              <p className="lg:max-w-sm font-inter text-[15px] text-white/60 lg:text-[17px] lg:text-right leading-7">
+              <p className="lg:max-w-[40%] font-inter text-[24px] text-white/60 lg:text-[30px] lg:text-right lg:leading-[40px]">
                 {acf.service_solutions.slice(0, 160)}
               </p>
             )}
@@ -76,7 +77,7 @@ export function ServiceClient({ slug }: { slug: string }) {
 
       {/* Stats */}
 
-      <section className='max-w-[1440px] mx-auto'>
+      <section className='max-w-[1440px] mx-auto pb-20'>
         {counts.length > 0 && (
         <div className={cn('gap-[20px]', 'text-center', 'mt-20', 'grid', 'grid-cols-1', 'md:grid-cols-3', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
           {counts.map((c, i) => (
@@ -88,8 +89,9 @@ export function ServiceClient({ slug }: { slug: string }) {
         </div>
       )}
       {/* About / Description */}
-      {(acf.about_us?.title || acf.about_us?.text) && (
-        <div className="md:max-w-[70%] flex flex-col gap-[40px] px-[16px] md:px-[36px] py-[80px] md:py-[112px] w-full max-w-[1440px]">
+      <div className="grid md:grid-cols-[70%_30%] gap-10 mt-10 ">
+        {(acf.about_us?.title || acf.about_us?.text) && (
+        <div className="flex flex-col gap-[40px] px-[16px] md:px-[36px] w-full max-w-[1440px] ">
           {acf.about_us.title && (
             <h2 className="w-full  font-mont font-semibold text-[32px] md:text-[48px] leading-[1.1]">
               {acf.about_us.title}
@@ -103,6 +105,19 @@ export function ServiceClient({ slug }: { slug: string }) {
           )}
         </div>
       )}
+      {/* Service Image */}
+      {acf.image?.url && (
+       <div className="relative rounded-[20px] w-full overflow-hidden">
+            <Image
+              src={aboutImage || ''}
+              alt={acf.image.alt || service.title.rendered}
+              width={300}
+              height={450}
+              className="rounded-[20px] w-full h-full object-cover"
+            />
+          </div>
+      )}
+      </div>
       </section>
 
       {/* Projects Marquee */}

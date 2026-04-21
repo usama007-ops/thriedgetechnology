@@ -36,16 +36,13 @@ export default async function ClientReviewsPage() {
 
   return (
     <div className="relative bg-white">
-      <div className="relative w-full h-[400px] p-5">
-        {/* Overlay (optional dark layer for readability) */}
-        <div className="absolute inset-0 "></div>
+      <div className="relative w-full p-2">
         <div
           className={cn(
             "relative",
             "rounded-[20px]",
             "w-full",
             "h-[480px]",
-            "md:h-[640px]",
             "overflow-hidden",
           )}
         >
@@ -121,7 +118,7 @@ export default async function ClientReviewsPage() {
         </div>
       </div>
       {/* Stats bar */}
-      <div className="mx-auto px-[16px] md:px-[36px] pb-[64px] p-80 w-full max-w-[1440px]">
+      <div className="mx-auto px-[16px] md:px-[36px] py-[32px] md:py-[64px] w-full max-w-[1440px]">
         <div className="gap-[1px] grid grid-cols-2 md:grid-cols-4 bg-[#e5e5e5] rounded-[16px] overflow-hidden">
           {[
             { num: "4.9★", label: "Average Rating" },
@@ -143,7 +140,7 @@ export default async function ClientReviewsPage() {
       </div>
 
       {/* Submit Review button */}
-      <div className="flex justify-center mx-auto px-[16px] md:px-[36px] pb-[64px] w-full max-w-[1440px]">
+      <div className="flex justify-center mx-auto px-[16px] md:px-[36px] pb-[32px] md:pb-[64px] w-full max-w-[1440px]">
         <a
           href="/public-review"
           className="flex justify-center items-center gap-2 bg-black px-[32px] pt-[16px] pb-[14px] rounded-full font-mont font-semibold text-[15px] text-white hover:scale-105 transition-all duration-300"

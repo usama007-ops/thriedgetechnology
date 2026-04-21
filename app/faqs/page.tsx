@@ -78,17 +78,17 @@ export default function FAQsPage() {
       </section>
 
       {/* Topics + FAQ */}
-      <div className={cn('flex', 'md:flex-row', 'flex-col', 'items-start', 'gap-[48px]', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[96px]', 'w-full', 'max-w-[1440px]')}>
+      <div className={cn('flex', 'md:flex-row', 'flex-col', 'items-start', 'gap-[32px]', 'md:gap-[48px]', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[40px]', 'md:py-[96px]', 'w-full', 'max-w-[1440px]')}>
 
         {/* Sidebar topics */}
         <div className={cn('md:top-[100px]', 'md:sticky', 'w-full', 'md:w-[260px]', 'shrink-0')}>
-          <p className={cn('mb-[16px]', 'font-inter', 'font-semibold', 'text-[#929296]', 'text-[11px]', 'uppercase', 'tracking-[0.15em]')}>Topics</p>
-          <div className={cn('flex', 'flex-col', 'gap-[4px]')}>
+          <p className={cn('mb-[12px]', 'md:mb-[16px]', 'font-inter', 'font-semibold', 'text-[#929296]', 'text-[11px]', 'uppercase', 'tracking-[0.15em]')}>Topics</p>
+          <div className={cn('flex', 'md:flex-col', 'flex-row', 'flex-wrap', 'gap-[6px]', 'md:gap-[4px]')}>
             {TOPICS.map(t => (
               <button key={t} onClick={() => { setActiveTopic(t); setOpenIdx(null) }}
-                className={`flex items-center justify-between w-full text-left px-[14px] py-[10px] rounded-[10px] transition-all duration-200 ${activeTopic === t ? 'bg-[#111212] text-white' : 'text-[#111212] hover:bg-[#f3f3f3]'}`}>
-                <span className={cn('font-inter', 'font-medium', 'text-[14px]')}>{t}</span>
-                <span className={`text-[12px] font-inter tabular-nums ${activeTopic === t ? 'text-white/60' : 'text-[#929296]'}`}>
+                className={`flex items-center justify-between gap-2 text-left px-[12px] md:px-[14px] py-[8px] md:py-[10px] rounded-[10px] transition-all duration-200 ${activeTopic === t ? 'bg-[#111212] text-white' : 'text-[#111212] hover:bg-[#f3f3f3] bg-[#f3f3f3] md:bg-transparent'}`}>
+                <span className={cn('font-inter', 'font-medium', 'text-[13px]', 'md:text-[14px]', 'whitespace-nowrap')}>{t}</span>
+                <span className={`text-[11px] md:text-[12px] font-inter tabular-nums ${activeTopic === t ? 'text-white/60' : 'text-[#929296]'}`}>
                   {TOPIC_COUNTS[t]}
                 </span>
               </button>

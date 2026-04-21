@@ -49,7 +49,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
             </Link>
            <Link href="/project-cost-estimation"
               className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">
-              Get an Project Estimate
+              Calculate Development Cost
             </Link>
           </div>
         </div>

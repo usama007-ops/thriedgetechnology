@@ -18,7 +18,7 @@ const TECHNOLOGIES = [
     title: 'AI & Machine Learning',
     tagline: 'Intelligent systems that learn, adapt, and drive real outcomes.',
     stat: { number: '20+', label: 'AI models in production' },
-    tools: ['Python', 'TensorFlow', 'OpenAI', 'LangChain'],
+    tools: ['Python', 'TensorFlow', 'OpenAI', 'LangChain', 'PyTorch', 'Hugging Face', 'Scikit-learn', 'AWS SageMaker'],
     icon: '/ai.png',
     accent: '#6366f1',
   },
@@ -27,7 +27,7 @@ const TECHNOLOGIES = [
     title: 'Frontend Development',
     tagline: 'Interfaces that are fast, accessible, and built to convert.',
     stat: { number: '150+', label: 'Frontend projects delivered' },
-    tools: ['React', 'Next.js', 'TypeScript', 'Tailwind'],
+    tools: ['React', 'Next.js', 'TypeScript', 'Tailwind', 'Vue.js', 'Framer Motion', 'GraphQL', 'WordPress'],
     icon: '/frontenddevelopment.png',
     accent: '#0ea5e9',
   },
@@ -36,7 +36,7 @@ const TECHNOLOGIES = [
     title: 'Backend Development',
     tagline: 'Scalable, secure APIs and systems that power your product.',
     stat: { number: '99.9%', label: 'Uptime SLA' },
-    tools: ['Node.js', 'Python', 'Go', 'Docker'],
+    tools: ['Node.js', 'Python', 'Go', 'Docker', 'GraphQL', 'REST API', 'Kubernetes', 'AWS'],
     icon: '/backend.png',
     accent: '#10b981',
   },
@@ -45,7 +45,7 @@ const TECHNOLOGIES = [
     title: 'Mobile Development',
     tagline: 'Native and cross-platform apps users actually keep.',
     stat: { number: '4.8', label: 'Avg App Store rating' },
-    tools: ['React Native', 'Flutter', 'Swift', 'Kotlin'],
+    tools: ['React Native', 'Flutter', 'Swift', 'Kotlin', 'Expo', 'Firebase', 'App Store', 'Play Store'],
     icon: '/mobi.png',
     accent: '#f59e0b',
   },
@@ -54,7 +54,7 @@ const TECHNOLOGIES = [
     title: 'Databases',
     tagline: 'Data architectures designed for reliability and scale.',
     stat: { number: '100TB+', label: 'Data managed' },
-    tools: ['PostgreSQL', 'MongoDB', 'Redis', 'Elasticsearch'],
+    tools: ['PostgreSQL', 'MongoDB', 'Redis', 'Elasticsearch', 'MySQL', 'Supabase', 'PlanetScale', 'DynamoDB'],
     icon: '/database.png',
     accent: '#ef4444',
   },
@@ -63,25 +63,150 @@ const TECHNOLOGIES = [
     title: 'AI Workflow Automation',
     tagline: 'Intelligent pipelines that eliminate manual work and scale operations.',
     stat: { number: '80%', label: 'Reduction in manual processing time' },
-    tools: ['LangChain', 'OpenAI', 'Python', 'n8n'],
+    tools: ['LangChain', 'OpenAI', 'Python', 'n8n', 'Zapier', 'AWS Lambda', 'Docker', 'Node.js'],
     icon: '/ai.png',
     accent: '#8b5cf6',
   },
+
 ]
 
 const ALL_TOOLS = [
-  { name: 'React', icon: '/react.svg' },
-  { name: 'Next.js', icon: '/nextjs.svg' },
-  { name: 'TypeScript', icon: '/typescript.svg' },
-  { name: 'Node.js', icon: '/nodejs.svg' },
-  { name: 'Python', icon: '/python.svg' },
-  { name: 'AWS', icon: '/aws.svg' },
-  { name: 'Docker', icon: '/docker.svg' },
-  { name: 'PostgreSQL', icon: '/postgresql.svg' },
-  { name: 'MongoDB', icon: '/mongodb.svg' },
-  { name: 'GraphQL', icon: '/graphql.svg' },
-  { name: 'Tailwind', icon: '/tailwind.svg' },
-  { name: 'Flutter', icon: '/flutter.svg' },
+  {
+    category: 'Frontend',
+    tools: [
+      { name: 'React', icon: '/react.svg' },
+      { name: 'Next.js', icon: '/nextjs.svg' },
+      { name: 'TypeScript', icon: '/typescript.svg' },
+      { name: 'Tailwind CSS', icon: '/tailwind.svg' },
+      { name: 'Vue.js', icon: '/vuejs.svg' },
+      { name: 'Framer Motion', icon: '/framer.svg' },
+      { name: 'GraphQL', icon: '/graphql.svg' },
+      { name: 'WordPress', icon: '/wordpress.svg' },
+      { name: 'REST API', icon: '/api.svg' },
+      { name: 'Supabase', icon: '/supabase.svg' },
+      { name: 'Firebase', icon: '/firebase.svg' },
+      { name: 'Expo', icon: '/expo.svg' },
+    ],
+  },
+  {
+    category: 'Backend',
+    tools: [
+      { name: 'Node.js', icon: '/nodejs.svg' },
+      { name: 'Python', icon: '/python.svg' },
+      { name: 'Go', icon: '/go.svg' },
+      { name: 'GraphQL', icon: '/graphql.svg' },
+      { name: 'REST API', icon: '/api.svg' },
+      { name: 'Docker', icon: '/docker.svg' },
+      { name: 'Kubernetes', icon: '/kubernetes.svg' },
+      { name: 'AWS', icon: '/aws.svg' },
+      { name: 'Redis', icon: '/redis.svg' },
+      { name: 'PostgreSQL', icon: '/postgresql.svg' },
+      { name: 'MongoDB', icon: '/mongodb.svg' },
+      { name: 'Firebase', icon: '/firebase.svg' },
+    ],
+  },
+  {
+    category: 'Mobile',
+    tools: [
+      { name: 'React Native', icon: '/react.svg' },
+      { name: 'Flutter', icon: '/flutter.svg' },
+      { name: 'Swift', icon: '/swift.svg' },
+      { name: 'Kotlin', icon: '/kotlin.svg' },
+      { name: 'Expo', icon: '/expo.svg' },
+      { name: 'Firebase', icon: '/firebase.svg' },
+      { name: 'App Store', icon: '/appstore.svg' },
+      { name: 'Play Store', icon: '/playstore.svg' },
+      { name: 'TypeScript', icon: '/typescript.svg' },
+      { name: 'GraphQL', icon: '/graphql.svg' },
+      { name: 'Supabase', icon: '/supabase.svg' },
+      { name: 'Node.js', icon: '/nodejs.svg' },
+    ],
+  },
+  {
+    category: 'Cloud & DevOps',
+    tools: [
+      { name: 'AWS', icon: '/aws.svg' },
+      { name: 'Docker', icon: '/docker.svg' },
+      { name: 'Kubernetes', icon: '/kubernetes.svg' },
+      { name: 'Redis', icon: '/redis.svg' },
+      { name: 'PostgreSQL', icon: '/postgresql.svg' },
+      { name: 'Python', icon: '/python.svg' },
+      { name: 'Node.js', icon: '/nodejs.svg' },
+      { name: 'MongoDB', icon: '/mongodb.svg' },
+      { name: 'Elasticsearch', icon: '/elasticsearch.svg' },
+      { name: 'MySQL', icon: '/mysql.svg' },
+      { name: 'GraphQL', icon: '/graphql.svg' },
+      { name: 'Go', icon: '/go.svg' },
+    ],
+  },
+  {
+    category: 'Databases',
+    tools: [
+      { name: 'PostgreSQL', icon: '/postgresql.svg' },
+      { name: 'MongoDB', icon: '/mongodb.svg' },
+      { name: 'Redis', icon: '/redis.svg' },
+      { name: 'MySQL', icon: '/mysql.svg' },
+      { name: 'Supabase', icon: '/supabase.svg' },
+      { name: 'Elasticsearch', icon: '/elasticsearch.svg' },
+      { name: 'PlanetScale', icon: '/planetscale.svg' },
+      { name: 'DynamoDB', icon: '/dynamodb.svg' },
+      { name: 'Firebase', icon: '/firebase.svg' },
+      { name: 'GraphQL', icon: '/graphql.svg' },
+      { name: 'Node.js', icon: '/nodejs.svg' },
+      { name: 'Python', icon: '/python.svg' },
+    ],
+  },
+  {
+    category: 'AI & Automation',
+    tools: [
+      { name: 'OpenAI', icon: '/openai.svg' },
+      { name: 'LangChain', icon: '/langchain.svg' },
+      { name: 'TensorFlow', icon: '/tensorflow.svg' },
+      { name: 'PyTorch', icon: '/pytorch.svg' },
+      { name: 'Hugging Face', icon: '/huggingface.svg' },
+      { name: 'Scikit-learn', icon: '/scikitlearn.svg' },
+      { name: 'Python', icon: '/python.svg' },
+      { name: 'n8n', icon: '/n8n.svg' },
+      { name: 'Zapier', icon: '/zapier.png' },
+      { name: 'AWS', icon: '/aws.svg' },
+      { name: 'Docker', icon: '/docker.svg' },
+      { name: 'Node.js', icon: '/nodejs.svg' },
+    ],
+  },
+  {
+    category: 'Blockchain & Web3',
+    tools: [
+      { name: 'Blockchain', icon: '/blockchain.svg' },
+      { name: 'React', icon: '/react.svg' },
+      { name: 'Next.js', icon: '/nextjs.svg' },
+      { name: 'TypeScript', icon: '/typescript.svg' },
+      { name: 'Node.js', icon: '/nodejs.svg' },
+      { name: 'Python', icon: '/python.svg' },
+      { name: 'PostgreSQL', icon: '/postgresql.svg' },
+      { name: 'MongoDB', icon: '/mongodb.svg' },
+      { name: 'AWS', icon: '/aws.svg' },
+      { name: 'Docker', icon: '/docker.svg' },
+      { name: 'GraphQL', icon: '/graphql.svg' },
+      { name: 'Redis', icon: '/redis.svg' },
+    ],
+  },
+  {
+    category: 'E-commerce & CMS',
+    tools: [
+      { name: 'WordPress', icon: '/wordpress.svg' },
+      { name: 'Next.js', icon: '/nextjs.svg' },
+      { name: 'React', icon: '/react.svg' },
+      { name: 'TypeScript', icon: '/typescript.svg' },
+      { name: 'Tailwind CSS', icon: '/tailwind.svg' },
+      { name: 'GraphQL', icon: '/graphql.svg' },
+      { name: 'Supabase', icon: '/supabase.svg' },
+      { name: 'Node.js', icon: '/nodejs.svg' },
+      { name: 'PostgreSQL', icon: '/postgresql.svg' },
+      { name: 'MongoDB', icon: '/mongodb.svg' },
+      { name: 'REST API', icon: '/api.svg' },
+      { name: 'Firebase', icon: '/firebase.svg' },
+    ],
+  },
 ]
 
 export default function TechnologiesPage() {
@@ -164,7 +289,7 @@ export default function TechnologiesPage() {
       {/* Full stack strip */}
       <div className="bg-[#f3f3f3] w-full">
         <div className="mx-auto px-4 md:px-9 py-16 max-w-[1440px]">
-          <div className="flex md:flex-row flex-col justify-between md:items-end gap-6 mb-10">
+          <div className="flex md:flex-row flex-col justify-between md:items-end gap-6 mb-14">
             <h2 className="max-w-[500px] font-mont font-bold text-[#111212] text-[32px] md:text-[48px] leading-tight">
               Tools we use every day
             </h2>
@@ -172,14 +297,23 @@ export default function TechnologiesPage() {
               Chosen for reliability, performance, and developer experience not hype.
             </p>
           </div>
-          <div className="gap-4 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6">
-            {ALL_TOOLS.map(tool => (
-              <div key={tool.name}
-                className="flex flex-col items-center gap-3 bg-white p-4 border border-[#e5e5e5] hover:border-[#111212] rounded-[16px] transition-colors duration-300">
-                <div className="relative w-8 h-8">
-                  <Image src={tool.icon} alt={tool.name} fill sizes="32px" className="object-contain" />
+          <div className="flex flex-col gap-12">
+            {ALL_TOOLS.map(group => (
+              <div key={group.category}>
+                <p className="font-inter font-semibold text-[11px] text-[#929296] uppercase tracking-[0.2em] mb-5">
+                  {group.category}
+                </p>
+                <div className="gap-3 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12">
+                  {group.tools.map(tool => (
+                    <div key={tool.name}
+                      className="flex flex-col items-center gap-3 bg-white p-4 border border-[#e5e5e5] hover:border-[#111212] rounded-[16px] transition-colors duration-300">
+                      <div className="relative w-8 h-8 shrink-0">
+                        <Image src={tool.icon} alt={tool.name} fill sizes="32px" className="object-contain" />
+                      </div>
+                      <p className="font-inter font-medium text-[#111212] text-[11px] text-center leading-tight">{tool.name}</p>
+                    </div>
+                  ))}
                 </div>
-                <p className="font-inter font-medium text-[#111212] text-[12px] text-center">{tool.name}</p>
               </div>
             ))}
           </div>
