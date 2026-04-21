@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef, useEffect, useMemo } from 'react'
+import { useRef, useEffect, useMemo } from 'react'
 import { useService } from '@/hooks/use-services'
 import { useQuery } from '@tanstack/react-query'
 import { Loader, ArrowUpRight } from 'lucide-react'
@@ -45,10 +45,9 @@ export function ServiceClient({ slug }: { slug: string }) {
 
   return (
     <div className="relative bg-[#F3F3F3]">
-
       {/* Hero */}
-      <section className="mx-auto p-2 w-full">
-        <div className="relative rounded-[20px] w-full h-[480px] md:h-[600px] overflow-hidden">
+      <section className="px-[12px] md:px-[10px] w-full">
+        <div className="relative rounded-[20px] w-full h-[480px] overflow-hidden ">
           {heroImg ? (
             <Image src={heroImg} alt={service.title.rendered} fill
               className="object-center object-cover" sizes="100vw" priority />
@@ -58,100 +57,148 @@ export function ServiceClient({ slug }: { slug: string }) {
                 style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '80px 80px' }} />
             </div>
           )}
-          <div className="absolute inset-0 rounded-[20px]"
+          <div className="absolute inset-0 rounded-[20px] "
             style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.5), rgba(0,0,0,0))' }} />
           <div className="right-0 bottom-0 left-0 absolute flex lg:flex-row flex-col justify-between lg:items-end gap-4 mx-auto px-5 lg:px-9 py-6 lg:py-10 max-w-[1440px]">
             <div className="flex flex-col gap-3">
-              <span className="font-inter font-semibold text-[11px] text-white/40 uppercase tracking-[0.2em]">Service</span>
-              <h1 className="max-w-2xl font-mont font-semibold text-[32px] text-white lg:text-[60px] leading-none"
+              <span className="font-inter font-semibold text-[14px] text-white/60 uppercase tracking-[0.2em]">Service</span>
+              <h1 className="max-w-2xl font-mont font-semibold text-[36px] text-white lg:text-[60px] leading-none"
                 dangerouslySetInnerHTML={{ __html: service.title.rendered }} />
             </div>
             {acf.service_solutions && (
-              <p className="lg:max-w-[40%] font-inter text-[24px] text-white/60 lg:text-[30px] lg:text-right lg:leading-[40px]">
+              <p className="lg:max-w-[40%] font-inter text-[20px] text-white/60 lg:text-[24px] lg:text-right lg:leading-[40px]">
                 {acf.service_solutions.slice(0, 160)}
               </p>
             )}
           </div>
         </div>
       </section>
-
+      
       {/* Stats */}
-
-      <section className='max-w-[1440px] mx-auto pb-20'>
-        {counts.length > 0 && (
-        <div className={cn('gap-[20px]', 'text-center', 'mt-20', 'grid', 'grid-cols-1', 'md:grid-cols-3', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
-          {counts.map((c, i) => (
-            <div key={i} className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[24px]', 'py-[32px]', 'border-[#CCCCCC]', 'border-l', 'first:border-l-0')}>
-              <p className={cn('font-mont', 'font-semibold', 'text-[40px]', 'text-black', 'xl:text-[80px]', 'xl:leading-[80px]')}>{c!.number}</p>
-              <p className={cn('font-inter', 'text-[#929296]', 'text-[14px]')}>{c!.label}</p>
+      <section className='px-[16px] py-[64px] md:py-[96px]'>
+        <div className='max-w-[1440px] mx-auto'>
+          {counts.length > 0 && (
+            <div className={cn('gap-[20px]', 'text-center', 'grid', 'grid-cols-3', 'mx-auto', 'md:pb-[64px]', 'w-full')}>
+              {counts.map((c, i) => (
+                <div key={i} className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[10px]', 'md:py-[32px]', 'border-[#CCCCCC]', 'border-l', 'first:border-l-0')}>
+                  <p className={cn('font-mont', 'font-semibold', 'text-[34px]', 'text-black', 'xl:text-[80px]', 'xl:leading-[80px]')}>{c!.number}</p>
+                  <p className={cn('font-inter', 'text-[#929296]', 'text-[12px]')}>{c!.label}</p>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      )}
-      {/* About / Description */}
-      <div className="grid md:grid-cols-[70%_30%] gap-10 mt-10 ">
-        {(acf.about_us?.title || acf.about_us?.text) && (
-        <div className="flex flex-col gap-[40px] px-[16px] md:px-[36px] w-full max-w-[1440px] ">
-          {acf.about_us.title && (
-            <h2 className="w-full  font-mont font-semibold text-[32px] md:text-[48px] leading-[1.1]">
-              {acf.about_us.title}
-            </h2>
           )}
-          {acf.about_us.text && (
-            <div
-              className="flex flex-col gap-[16px] w-full font-inter text-[#555] text-[18px] [&_p]:text-[18px] leading-[30px] [&_p]:leading-[30px] [&_strong]:font-semibold [&_strong]:text-[#111212]"
-              dangerouslySetInnerHTML={{ __html: acf.about_us.text }}
-            />
-          )}
-        </div>
-      )}
-      {/* Service Image */}
-      {acf.image?.url && (
-       <div className="relative rounded-[20px] w-full overflow-hidden">
-            <Image
-              src={aboutImage || ''}
-              alt={acf.image.alt || service.title.rendered}
-              width={300}
-              height={450}
-              className="rounded-[20px] w-full h-full object-cover"
-            />
+          
+          {/* About / Description */}
+          <div className="grid md:grid-cols-[70%_30%] gap-10 mt-16">
+            {(acf.about_us?.title || acf.about_us?.text) && (
+              <div className="flex flex-col gap-[40px] w-full">
+                {acf.about_us.title && (
+                  <h2 className="w-full font-mont font-semibold text-[32px] md:text-[48px] leading-[1.1]">
+                    {acf.about_us.title}
+                  </h2>
+                )}
+                {acf.about_us.text && (
+                  <div
+                    className="flex flex-col gap-[16px] w-full font-inter text-[#555] text-[18px] [&_p]:text-[18px] leading-[30px] [&_p]:leading-[30px] [&_strong]:font-semibold [&_strong]:text-[#111212]"
+                    dangerouslySetInnerHTML={{ __html: acf.about_us.text }}
+                  />
+                )}
+              </div>
+            )}
+            
+            {/* Service Image */}
+            {acf.image?.url && (
+              <div className="relative rounded-[20px] w-full overflow-hidden">
+                <Image
+                  src={aboutImage || ''}
+                  alt={acf.image.alt || service.title.rendered}
+                  width={300}
+                  height={450}
+                  className="rounded-[20px] w-full h-full object-cover"
+                />
+              </div>
+            )}
           </div>
-      )}
-      </div>
+        </div>
       </section>
 
       {/* Projects Marquee */}
       {projects.length > 0 && (
-        <div className="py-4">
-          <ProjectsMarquee projects={projects} />
+        <div className="px-[16px] py-4">
+          <div className="max-w-[1440px] mx-auto">
+            <ProjectsMarquee projects={projects} />
+          </div>
         </div>
       )}
 
       {/* How We Work */}
       {hwwSteps.length > 0 && (
         <div className="bg-white w-full">
-          <div className="mx-auto px-[16px] md:px-[36px] py-[80px] md:py-[112px] w-full max-w-[1440px]">
-            <div className="flex md:flex-row flex-col md:gap-[64px] gap-[48px] items-start">
-              <div className="md:w-[420px] w-full shrink-0 md:sticky md:top-[100px]">
-                <h2 className="font-mont font-bold text-[#111212] text-[32px] md:text-[48px] leading-[1.15]">
-                  How we work
-                </h2>
-                <p className="mt-[20px] font-inter text-[#929296] text-[16px] leading-[26px]">
-                  A clear, repeatable process that keeps projects on track and clients informed at every step.
-                </p>
-                <Image src={"/how-we-work.jpg"} className='rounded-[20px] w-full mt-10' height={400} width={300} alt='How we work'></Image>
-              </div>
-              <div className="flex-1 flex flex-col">
-                {hwwSteps.map((step, i) => (
-                  <div key={step.key}
-                    className="group flex flex-col gap-[16px] items-start px-[20px] py-[32px] border-t border-[#D9D9D9] hover:border-[#111212] transition-all duration-300">
-                    <div className="flex justify-center items-center bg-[#f7f7f7] group-hover:bg-[#111212] rounded-[12px] w-[48px] h-[48px] transition-colors duration-300">
-                      <span className="font-mont font-bold text-[#929296] group-hover:text-white text-[14px] tabular-nums transition-colors duration-300">
-                        {String(i + 1).padStart(2, '0')}
-                      </span>
+          <div className="px-[16px] py-[64px] md:py-[96px] w-full">
+            <div className="max-w-[1440px] mx-auto">
+              <div className="flex md:flex-row flex-col md:gap-[64px] gap-[48px] items-start">
+                <div className="md:w-[420px] w-full shrink-0 md:sticky md:top-[100px]">
+                  <h2 className="font-mont font-bold text-[#111212] text-[32px] md:text-[48px] leading-[1.15]">
+                    How we work
+                  </h2>
+                  <p className="mt-[20px] font-inter text-[#929296] text-[16px] leading-[26px]">
+                    A clear, repeatable process that keeps projects on track and clients informed at every step.
+                  </p>
+                  <Image src={"/how-we-work.jpg"} className='rounded-[20px] w-full mt-10' height={400} width={300} alt='How we work'></Image>
+                </div>
+                <div className="flex-1 flex flex-col">
+                  {hwwSteps.map((step, i) => (
+                    <div key={step.key}
+                      className="group flex flex-col gap-[16px] items-start px-[20px] py-[32px] border-t border-[#D9D9D9] hover:border-[#111212] transition-all duration-300">
+                      <div className="flex justify-center items-center bg-[#f7f7f7] group-hover:bg-[#111212] rounded-[12px] w-[48px] h-[48px] transition-colors duration-300">
+                        <span className="font-mont font-bold text-[#929296] group-hover:text-white text-[14px] tabular-nums transition-colors duration-300">
+                          {String(i + 1).padStart(2, '0')}
+                        </span>
+                      </div>
+                      <h3 className="font-mont font-semibold text-black text-[20px] md:text-[24px]">{step.label}</h3>
+                      <p className="font-inter text-[#111212] text-[16px] leading-[26px]">{step.text}</p>
                     </div>
-                    <h3 className="font-mont font-semibold text-black text-[20px] md:text-[24px]">{step.label}</h3>
-                    <p className="font-inter text-[#111212] text-[16px] leading-[26px]">{step.text}</p>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Marquee text strip */}
+      <div className="px-[16px]">
+        <div className="max-w-[1440px] mx-auto">
+          <MarqueeStrip />
+        </div>
+      </div>
+
+      {/* Core Points */}
+      {coreSteps.length > 0 && (
+        <div className="bg-[#111212] w-full">
+          <div className="px-[16px] py-[64px] md:py-[96px] w-full">
+            <div className="max-w-[1440px] mx-auto">
+              {acf.our_core_title && (
+                <div className="flex md:flex-row flex-col justify-between md:items-end gap-[32px] mb-[64px]">
+                  <h2 className="max-w-[560px] font-mont font-bold text-white text-[40px] md:text-[48px] leading-[1.1]">
+                    {acf.our_core_title}
+                  </h2>
+                  <p className="max-w-[360px] font-inter text-white/40 text-[15px] leading-[26px]">
+                    The principles that guide every decision we make on your project.
+                  </p>
+                </div>
+              )}
+              <div className="gap-[16px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                {coreSteps.map((step, i) => (
+                  <div key={step.key}
+                    className="group flex flex-col gap-[24px] bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-[20px] p-[32px] transition-all duration-300">
+                    <span className="font-mont font-bold text-white/15 text-[56px] leading-none tabular-nums select-none">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <div className="flex flex-col gap-[10px]">
+                      <h3 className="font-mont font-semibold text-white text-[20px] leading-[28px]">{step.label}</h3>
+                      <p className="font-inter text-white/50 text-[15px] leading-[26px]">{step.text}</p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -160,48 +207,21 @@ export function ServiceClient({ slug }: { slug: string }) {
         </div>
       )}
 
-      {/* Marquee text strip */}
-      <MarqueeStrip />
-
-      {/* Core Points */}
-      {coreSteps.length > 0 && (
-        <div className="bg-[#111212] w-full">
-          <div className="mx-auto px-[16px] md:px-[36px] py-[80px] md:py-[112px] w-full max-w-[1440px]">
-            {acf.our_core_title && (
-              <div className="flex md:flex-row flex-col justify-between md:items-end gap-[32px] mb-[64px]">
-                <h2 className="max-w-[560px] font-mont font-bold text-white text-[40px] md:text-[48px] leading-[1.1]">
-                  {acf.our_core_title}
-                </h2>
-                <p className="max-w-[360px] font-inter text-white/40 text-[15px] leading-[26px]">
-                  The principles that guide every decision we make on your project.
-                </p>
-              </div>
-            )}
-            <div className="gap-[16px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-              {coreSteps.map((step, i) => (
-                <div key={step.key}
-                  className="group flex flex-col gap-[24px] bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-[20px] p-[32px] transition-all duration-300">
-                  <span className="font-mont font-bold text-white/15 text-[56px] leading-none tabular-nums select-none">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <div className="flex flex-col gap-[10px]">
-                    <h3 className="font-mont font-semibold text-white text-[20px] leading-[28px]">{step.label}</h3>
-                    <p className="font-inter text-white/50 text-[15px] leading-[26px]">{step.text}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-
 
       {/* Value Features */}
-      <ValueFeaturesSection />
+      <div className="px-[16px]">
+        <div className="max-w-[1440px] mx-auto">
+          <ValueFeaturesSection />
+        </div>
+      </div>
 
       {/* Process */}
       <div className="bg-white">
-        <ProcessSection />
+        <div className="px-[16px]">
+          <div className="max-w-[1440px] mx-auto">
+            <ProcessSection />
+          </div>
+        </div>
       </div>
 
     </div>

@@ -37,9 +37,9 @@ export async function LatestArticlesSection({ show = 3, categories }: LatestArti
 
             return (
               <Link key={post.id} href={`/blog/${post.slug}`}>
-                <article className="flex flex-col h-full group cursor-pointer">
+                <article className="flex flex-col h-full group cursor-pointer bg-[#fff] rounded-[16px] ">
                   {/* Image */}
-                  <div className="relative w-full aspect-[2/1] rounded-[16px] overflow-hidden bg-[#f2f2f2]">
+                  <div className="relative w-full aspect-[2/1] rounded-[16px] overflow-hidden ">
                     {img ? (
                       <Image
                         src={img}
@@ -54,7 +54,7 @@ export async function LatestArticlesSection({ show = 3, categories }: LatestArti
                   </div>
 
                   {/* Content */}
-                  <div className="flex flex-col gap-[10px] pt-[16px] flex-1">
+                  <div className="flex flex-col gap-[10px] pt-[16px] flex-1 p-5">
                     {/* Meta */}
                     <div className="flex items-center gap-[8px] flex-wrap">
                       <span className="text-[12px] font-inter font-medium text-[#555] bg-[#F0EFED] px-[10px] py-[4px] rounded-full tracking-wide uppercase">

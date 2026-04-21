@@ -405,11 +405,11 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
         </div>
       </section>
 
-      <div className={cn('gap-[20px]', 'text-center', 'mt-20', 'grid', 'grid-cols-1', 'md:grid-cols-3', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
+      <div className={cn('gap-[20px]', 'text-center', 'mt-20', 'grid', 'grid-cols-3', 'mx-auto',  'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
         {tech.stats.map((s, i) => (
-          <div key={i} className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[24px]', 'py-[32px]', 'border-[#CCCCCC]', 'border-l', 'first:border-l-0')}>
-            <p className={cn('font-mont', 'font-semibold', 'text-[40px]', 'text-black', 'xl:text-[80px]', 'xl:leading-[80px]')}>{s.number}</p>
-            <p className={cn('font-inter', 'text-[#929296]', 'text-[14px]')}>{s.label}</p>
+          <div key={i} className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[10px]', 'md:py-[32px]', 'border-[#CCCCCC]', 'border-l', 'first:border-l-0')}>
+            <p className={cn('font-mont', 'font-semibold', 'text-[34px]', 'text-black', 'xl:text-[80px]', 'xl:leading-[80px]')}>{s.number}</p>
+            <p className={cn('font-inter', 'text-[#929296]', 'text-[12px]')}>{s.label}</p>
           </div>
         ))}
       </div>

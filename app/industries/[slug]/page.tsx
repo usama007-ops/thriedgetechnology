@@ -644,19 +644,16 @@ export default async function IndustryPage({
          </div>
       </section>
 
-      <div className={cn('gap-[20px]', 'grid', 'grid-cols-1', 'md:grid-cols-3', 'mx-auto', 'mt-12', 'px-[16px]', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
-        {industry.stats.map((s, i) => (
-          <div
-            key={i}
-            className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[24px]', 'py-[32px]', 'border-[#CCCCCC]', 'border-l', 'first:border-l-0', 'text-center')}
-          >
-            <p className={cn('font-mont', 'font-semibold', 'text-[40px]', 'text-black', 'xl:text-[80px]', 'xl:leading-[80px]')}>
-              {s.number}
-            </p>
-            <p className={cn('font-inter', 'text-[#929296]', 'text-[14px]')}>{s.label}</p>
-          </div>
-        ))}
-      </div>
+
+      
+            <div className={cn('gap-[20px]', 'text-center', 'mt-20', 'grid', 'grid-cols-3', 'mx-auto',  'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
+              {industry.stats.map((s, i) => (
+                <div key={i} className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[10px]', 'md:py-[32px]', 'border-[#CCCCCC]', 'border-l', 'first:border-l-0')}>
+                  <p className={cn('font-mont', 'font-semibold', 'text-[34px]', 'text-black', 'xl:text-[80px]', 'xl:leading-[80px]')}>{s.number}</p>
+                  <p className={cn('font-inter', 'text-[#929296]', 'text-[12px]')}>{s.label}</p>
+                </div>
+              ))}
+            </div>
 
       <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[96px]', 'w-full', 'max-w-[1440px]')}>
         <p className={cn('max-w-[800px]', 'font-inter', 'text-[#555]', 'text-[20px]', 'leading-[32px]')}>
@@ -752,27 +749,25 @@ export default async function IndustryPage({
         <LatestArticlesSection show={3} />
       </Suspense>
 
-      <div className={cn('bg-[#111212]', 'w-full')}>
-        <div className={cn('flex', 'md:flex-row', 'flex-col', 'justify-between', 'md:items-center', 'gap-[48px]', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[96px]', 'w-full', 'max-w-[1440px]')}>
-          <div className={cn('flex', 'flex-col', 'gap-[16px]', 'max-w-[600px]')}>
-            <h2 className={cn('font-mont', 'font-bold', 'text-[48px]', 'text-white', 'leading-[52px]')}>
-              Building something in {industry.title}?
+    {/* CTA */}
+      <div className="bg-[#111212] max-w-[1440px] mx-auto my-20 rounded-[30px]">
+        <div className="flex md:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[16px] md:px-[36px] py-[96px] w-full max-w-[1440px]">
+          <div className="flex flex-col gap-[16px] max-w-[500px]">
+            <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">
+              Not sure which service fits?
             </h2>
-            <p className={cn('font-inter', 'text-[#929296]', 'text-[16px]', 'leading-[24px]')}>
-              We have shipped production software in your industry. Lets talk
-              about your project.
+            <p className="font-inter text-[#929296] text-[16px] leading-[24px]">
+              Tell us about your project and we'll recommend the right approach in 48h.
             </p>
           </div>
-          <div className={cn('flex', 'sm:flex-row', 'flex-col', 'gap-[16px]')}>
-            <Link
-              href="/contact"
-              className={cn('flex', 'justify-center', 'items-center', 'bg-white', 'px-[32px]', 'py-[16px]', 'rounded-full', 'font-mont', 'font-semibold', 'text-[#111212]', 'text-[16px]', 'hover:scale-105', 'transition-all', 'duration-300')}
-            >
-              Start a project
+          <div className="flex sm:flex-row flex-col gap-[16px]">
+            <Link href="/contact"
+              className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">
+              Book a call
             </Link>
            <Link href="/project-cost-estimation"
               className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">
-              Get an Project Estimate
+              Calculate Development Cost
             </Link>
           </div>
         </div>

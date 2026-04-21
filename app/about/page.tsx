@@ -288,13 +288,13 @@ export default function AboutPage() {
       {/* Culture */}
       <section className="px-[16px] py-[64px] md:py-[96px] bg-white">
         <div className="max-w-[1440px] mx-auto">
-          <div className="flex flex-col md:flex-row gap-[20px]">
+          <div className="grid md:grid-cols-2 gap-[40px] items-center">
             <Image
               src="/culture.png"
               alt="team collaboration"
               width={500}
               height={400}
-              className="rounded-xl object-cover"
+              className="rounded-xl object-cover w-full"
             />
 
             <div className="flex flex-col gap-[20px] w-full font-inter font-normal text-[#111212] text-[16px] leading-[24px]">
@@ -302,19 +302,19 @@ export default function AboutPage() {
               <h2 className="w-full font-mont font-semibold text-[40px] leading-[48px]">Our Culture</h2>
 
               <p className="font-inter text-[#555] text-[18px] leading-[30px]">
-                <strong className="text-[#111212]">We hire for ownership, not just skill.</strong> Every engineer at Thrill Edge Technologies has shipped production-grade code before joining us. We don&apos;t run training programmes we run projects. That means the person writing your code has done it before, in a real environment, under real pressure.
+                <strong className="text-[#111212]">We hire for ownership, not just skill.</strong> Every engineer has shipped production-grade code in real environments—no training, only real project experience.
               </p>
 
               <p className="font-inter text-[#555] text-[18px] leading-[30px]">
-                Code quality is non-negotiable. Every pull request goes through peer review before it merges no exceptions. We maintain a sub-1% deployment error rate not because we track it as a vanity metric, but because our review culture makes anything higher unacceptable.
+                Code quality is non-negotiable. Every pull request is peer-reviewed, maintaining a sub-1% deployment error rate through strict standards.
               </p>
 
               <p className="font-inter text-[#555] text-[18px] leading-[30px]">
-                <strong className="text-[#111212]">We communicate like adults.</strong> No status theatre, no bloated standups. You get written sprint updates, async-first communication, and a direct line to the engineer working on your product not a project manager reading from a spreadsheet.
+                <strong className="text-[#111212]">We communicate clearly.</strong> No unnecessary meetings—just async updates and direct access to the engineer working on your product.
               </p>
 
               <p className="font-inter text-[#555] text-[18px] leading-[30px]">
-                We push back when it matters. If a feature will create technical debt, slow down the product, or cost more to fix later we say so. Our job is to ship the right thing, not just the requested thing.
+                We challenge decisions when needed, ensuring you build the right product—not just the requested one.
               </p>
 
               {/* Culture pillars */}
@@ -348,57 +348,68 @@ export default function AboutPage() {
               Over a decade of shipping production-grade software for companies that needed more than templates.
             </p>
           </div>
-          <div className="flex-1 flex flex-col gap-10 ">
-            {TIMELINE.map((t, i) => (
-              <div
-                key={t.year}
-                className="md:sticky "
-                style={{ top: `${80 + i * 24}px`, zIndex: i + 1 }}
-              >
+          <div className="grid md:grid-cols-2 gap-10">
+            <div className="flex-1 flex flex-col gap-10 ">
+              {TIMELINE.map((t, i) => (
                 <div
-                  className="rounded-[20px] p-[36px] md:p-[48px] mb-[12px] transition-shadow duration-300 lg:max-w-[100%] mx-auto h-[600px] flex flex-col justify-center items-between"
-                  style={{
-                    backgroundColor: i % 2 === 0 ? '#111212' : '#ffffff',
-                    boxShadow: '0 8px 40px rgba(0,0,0,0.12)',
-                  }}
+                  key={t.year}
+                  className="md:sticky "
+                  style={{ top: `${80 + i * 24}px`, zIndex: i + 1 }}
                 >
-                  {/* Year badge */}
-                  <span
-                    className="inline-flex items-center px-[14px] py-[6px] rounded-full font-inter font-semibold text-[12px] uppercase tracking-[0.15em] mb-[24px] w-[65px]"
+                  <div
+                    className="rounded-[20px] p-[36px] md:p-[48px] mb-[12px] transition-shadow duration-300 lg:max-w-[100%] mx-auto h-[400px] flex flex-col justify-center items-between"
                     style={{
-                      backgroundColor: i % 2 === 0 ? 'rgba(255,255,255,0.08)' : '#F3F3F3',
-                      color: i % 2 === 0 ? 'rgba(255,255,255,0.5)' : '#929296',
+                      backgroundColor: i % 2 === 0 ? '#111212' : '#ffffff',
+                      boxShadow: '0 8px 40px rgba(0,0,0,0.12)',
                     }}
                   >
-                    {t.year}
-                  </span>
-
-                  <p
-                    className="font-mont font-semibold text-[18px] md:text-[22px] leading-[1.5]"
-                    style={{ color: i % 2 === 0 ? '#ffffff' : '#111212' }}
-                  >
-                    {t.text}
-                  </p>
-
-                  {/* Bottom index */}
-                  <div className="flex justify-between items-center mt-[32px] pt-[24px]"
-                    style={{ borderTop: `1px solid ${i % 2 === 0 ? 'rgba(255,255,255,0.08)' : '#f0f0f0'}` }}>
+                    {/* Year badge */}
                     <span
-                      className="font-inter tabular-nums text-[13px]"
-                      style={{ color: i % 2 === 0 ? 'rgba(255,255,255,0.2)' : '#ccc' }}
-                    >
-                      {String(i + 1).padStart(2, '0')} / {String(TIMELINE.length).padStart(2, '0')}
-                    </span>
-                    <span
-                      className="font-mont font-bold text-[48px] leading-none tabular-nums select-none"
-                      style={{ color: i % 2 === 0 ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)' }}
+                      className="inline-flex items-center px-[14px] py-[6px] rounded-full font-inter font-semibold text-[12px] uppercase tracking-[0.15em] mb-[24px] w-[65px]"
+                      style={{
+                        backgroundColor: i % 2 === 0 ? 'rgba(255,255,255,0.08)' : '#F3F3F3',
+                        color: i % 2 === 0 ? 'rgba(255,255,255,0.5)' : '#929296',
+                      }}
                     >
                       {t.year}
                     </span>
+
+                    <p
+                      className="font-mont font-semibold text-[18px] md:text-[22px] leading-[1.5]"
+                      style={{ color: i % 2 === 0 ? '#ffffff' : '#111212' }}
+                    >
+                      {t.text}
+                    </p>
+
+                    {/* Bottom index */}
+                    <div className="flex justify-between items-center mt-[32px] pt-[24px]"
+                      style={{ borderTop: `1px solid ${i % 2 === 0 ? 'rgba(255,255,255,0.08)' : '#f0f0f0'}` }}>
+                      <span
+                        className="font-inter tabular-nums text-[13px]"
+                        style={{ color: i % 2 === 0 ? 'rgba(255,255,255,0.2)' : '#ccc' }}
+                      >
+                        {String(i + 1).padStart(2, '0')} / {String(TIMELINE.length).padStart(2, '0')}
+                      </span>
+                      <span
+                        className="font-mont font-bold text-[48px] leading-none tabular-nums select-none"
+                        style={{ color: i % 2 === 0 ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)' }}
+                      >
+                        {t.year}
+                      </span>
+                    </div>
                   </div>
                 </div>
+              ))}
+            </div>
+              <div className="releative">
+                <Image
+              src="/culture.png"
+              alt="team collaboration"
+              width={500}
+              height={400}
+              className="rounded-xl object-cover w-full sticky top-[100px]"
+            />
               </div>
-            ))}
           </div>
         </div>
       </section>

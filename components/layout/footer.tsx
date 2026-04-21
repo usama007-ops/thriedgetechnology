@@ -33,15 +33,15 @@ export default function Footer() {
             </p>
 
             <div className="flex items-center gap-9 mt-2">
-              <Link href="https://www.facebook.com/ThrillEdge" className="p-2 rounded-full bg-[#1A1A1A] hover:bg-white/10 transition">
+              <Link target="_blank" href="https://www.facebook.com/ThrillEdge" className="p-2 rounded-full bg-[#1A1A1A] hover:bg-white/10 transition">
                 <Facebook size={18} />
               </Link>
 
-              <Link href="https://www.linkedin.com/company/thrill-edge-technologies/?viewAsMember=true" className="p-2 rounded-full bg-[#1A1A1A] hover:bg-white/10 transition">
+              <Link target="_blank" href="https://www.linkedin.com/company/thrill-edge-technologies/?viewAsMember=true" className="p-2 rounded-full bg-[#1A1A1A] hover:bg-white/10 transition">
                 <Linkedin size={18} />
               </Link>
 
-              <Link href="https://www.instagram.com/thrilledge_technologies/" className="p-2 rounded-full bg-[#1A1A1A] hover:bg-white/10 transition">
+              <Link target="_blank" href="https://www.instagram.com/thrilledge_technologies/" className="p-2 rounded-full bg-[#1A1A1A] hover:bg-white/10 transition">
                 <Instagram size={18} />
               </Link>
             </div>
@@ -54,7 +54,7 @@ export default function Footer() {
               <p className="text-sm text-[#929296]">Company</p>
               <ul className="flex flex-col gap-2 text-white">
                 <li>
-                  <Link href="/about-us">About</Link>
+                  <Link href="/about">About</Link>
                 </li>
                 <li>
                   <Link href="/client-reviews">Reviews</Link>
@@ -77,9 +77,7 @@ export default function Footer() {
                     Project Time Estimator
                   </Link>
                 </li>
-                <li>
-                  <Link href="/for-ai">For AI Crawlers</Link>
-                </li>
+               
               </ul>
             </div>
 
@@ -88,7 +86,7 @@ export default function Footer() {
               <p className="text-sm text-[#929296]">Services</p>
               <ul className="flex flex-col gap-2 text-white">
                 <li>
-                  <Link href="/services/ai-and-ml-solutions">
+                  <Link href="/services/ai-ml-solutions">
                     AI & ML Solutions
                   </Link>
                 </li>

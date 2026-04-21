@@ -20,10 +20,10 @@ export default async function ServicesPage() {
   const services = await getServices(50).catch(() => [])
 
   return (
-    <div className="bg-[#F3F3F3] min-h-screen">
+    <div className="bg-[#F3F3F3] min-h-screen pb-20 ">
       {/* Hero */}
-      <section className={cn("w-full", "mx-auto", "p-2")}>
-        <div className={cn('relative', 'rounded-[20px]', 'w-full', 'h-[480px]', 'overflow-hidden')}>
+      <section className="px-[12px] md:px-[10px] w-full">
+        <div className="relative rounded-[20px] w-full h-[480px] overflow-hidden ">
           <Image
             src={"/services.png"}
             alt={"Our Work"}
@@ -98,7 +98,8 @@ export default async function ServicesPage() {
       </section>
 
       {/* Services grid */}
-      <div className="mx-auto px-4 md:px-9 py-20 max-w-[1440px]">
+      <div className="px-[16px] py-[64px] md:py-[96px]">
+        <div className="max-w-[1440px] mx-auto">
         {services.length === 0 ? (
           <div className="py-24 border border-[#e5e5e5] border-dashed rounded-[20px] text-center">
             <p className="font-mont font-semibold text-[#111212] text-[20px]">Services coming soon.</p>
@@ -166,11 +167,12 @@ export default async function ServicesPage() {
             })}
           </div>
         )}
+        </div>
       </div>
 
       {/* CTA */}
-      <div className="bg-[#111212] max-w-[1440px] mx-auto mb-20 rounded-[30px]">
-        <div className="flex md:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[16px] md:px-[36px] py-[96px] w-full max-w-[1440px]">
+      <div className="bg-[#111212] max-w-[1440px] mx-auto rounded-[30px]">
+        <div className="flex md:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[30px] py-[96px] w-full max-w-[1440px]">
           <div className="flex flex-col gap-[16px] max-w-[500px]">
             <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">
               Not sure which service fits?
