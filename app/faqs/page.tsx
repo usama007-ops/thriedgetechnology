@@ -63,7 +63,7 @@ export default function FAQsPage() {
 
       {/* Hero */}
       <section className={cn('mx-auto', 'p-2', 'w-full')}>
-        <div className={cn('relative', 'rounded-[20px]', 'w-full', 'h-[480px]', 'overflow-hidden')}>
+        <div className={cn('relative', 'rounded-[20px]', 'w-full', 'h-[300px]', 'lg:h-[480px]', 'overflow-hidden')}>
           <Image src="/faqs-hero.jpg" alt="FAQs" fill className={cn('object-center', 'object-cover')} sizes="100vw" priority />
           <div className={cn('absolute', 'inset-0', 'rounded-[20px]')} style={{ background: 'linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0.6), rgba(0,0,0,0))' }} />
           <div className={cn('right-0', 'bottom-0', 'left-0', 'absolute', 'flex', 'lg:flex-row', 'flex-col', 'justify-between', 'lg:items-end', 'gap-4', 'mx-auto', 'px-5', 'lg:px-9', 'py-6', 'lg:py-8', 'max-w-[1440px]')}>
@@ -131,9 +131,9 @@ export default function FAQsPage() {
       </div>
 
       {/* CTA */}
-          <div className="bg-[#111212] max-w-[1440px] mx-auto mb-20 rounded-[30px]">
-        <div className="flex md:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[16px] md:px-[36px] py-[96px] w-full max-w-[1440px]">
-          <div className="flex flex-col gap-[16px] max-w-[500px]">
+      <div className="bg-[#111212] max-w-[1440px] mx-auto rounded-[30px] mb-20">
+        <div className="flex lg:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[30px] py-[96px] w-full max-w-[1440px]">
+          <div className="flex flex-col items-center md:items-items-start gap-[16px] lg:max-w-[500px]">
             <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">
               Not sure which service fits?
             </h2>
@@ -141,12 +141,12 @@ export default function FAQsPage() {
               Tell us about your project and we'll recommend the right approach in 48h.
             </p>
           </div>
-          <div className="flex sm:flex-row flex-col gap-[16px]">
+          <div className="flex md:flex-row flex-col gap-[16px]">
             <Link href="/contact"
               className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">
               Book a call
             </Link>
-             <Link href="/project-cost-estimation"
+            <Link href="/project-cost-estimation"
               className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">
               Get an Project Estimate
             </Link>

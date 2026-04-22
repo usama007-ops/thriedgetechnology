@@ -575,7 +575,7 @@ export default async function IndustryPage({
       /> */}
 
       <section className={cn("w-full", "mx-auto", "p-2")}>
-        <div className={cn('relative', 'rounded-[20px]', 'w-full', 'h-[480px]', 'overflow-hidden')}>
+        <div className={cn('relative', 'rounded-[20px]', 'w-full', 'h-[300px]', 'lg:h-[480px]', 'overflow-hidden')}>
           <Image
             src={industry.image}
             alt={industry.title}
@@ -591,69 +591,69 @@ export default async function IndustryPage({
                 "linear-gradient(to top, rgba(0,0,0), rgba(0,0,0,0.6), rgba(0,0,0,0))",
             }}
           />
-        
-            <div
+
+          <div
+            className={cn(
+              "max-w-[1440px]",
+              "mx-auto",
+              "absolute",
+              "bottom-0",
+              "left-0",
+              "right-0",
+              "flex",
+              "lg:flex-row",
+              "flex-col",
+              "justify-between",
+              "lg:items-end",
+              "gap-4",
+              "lg:px-9",
+              "px-5",
+              "lg:py-8",
+              "py-6",
+            )}
+          >
+            <h2
               className={cn(
-                "max-w-[1440px]",
-                "mx-auto",
-                "absolute",
-                "bottom-0",
-                "left-0",
-                "right-0",
-                "flex",
-                "lg:flex-row",
-                "flex-col",
-                "justify-between",
-                "lg:items-end",
-                "gap-4",
-                "lg:px-9",
-                "px-5",
-                "lg:py-8",
-                "py-6",
+                "text-[32px]",
+                "lg:text-[56px]",
+                "lg:leading-[60px]",
+                "leading-9",
+                "font-mont",
+                "font-semibold",
+                "text-white",
+                "max-w-2xl",
               )}
             >
-              <h2
-                className={cn(
-                  "text-[32px]",
-                  "lg:text-[56px]",
-                  "lg:leading-[60px]",
-                  "leading-9",
-                  "font-mont",
-                  "font-semibold",
-                  "text-white",
-                  "max-w-2xl",
-                )}
-              >
-                {industry.title} Software Development
-              </h2>
-              <p
-                className={cn(
-                  "lg:text-[18px]",
-                  "text-[15px]",
-                  "font-inter",
-                  "text-white/70",
-                  "lg:max-w-xs",
-                  "leading-7",
-                )}
-              >
-                {industry.description.slice(0, 140)}...
-              </p>
-           
-      
+              {industry.title} Software Development
+            </h2>
+            <p
+              className={cn(
+                "lg:text-[18px]",
+                "text-[15px]",
+                "font-inter",
+                "text-white/70",
+                "lg:max-w-xs",
+                "leading-7",
+              )}
+            >
+              {industry.description.slice(0, 140)}...
+            </p>
+
+
+          </div>
         </div>
-         </div>
       </section>
 
 
-      
-            <div className={cn('gap-[20px]', 'text-center', 'mt-20', 'grid', 'grid-cols-3', 'mx-auto',  'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
-              {industry.stats.map((s, i) => (
-                <div key={i} className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[10px]', 'md:py-[32px]', 'border-[#CCCCCC]', 'border-l', 'first:border-l-0')}>
-                  <p className={cn('font-mont', 'font-semibold', 'text-[34px]', 'text-black', 'xl:text-[80px]', 'xl:leading-[80px]')}>{s.number}</p>
-                  <p className={cn('font-inter', 'text-[#929296]', 'text-[12px]')}>{s.label}</p>
-                </div>
-              ))}
-            </div>
+
+      <div className={cn('gap-[20px]', 'text-center', 'mt-20', 'grid', 'grid-cols-3', 'mx-auto', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
+        {industry.stats.map((s, i) => (
+          <div key={i} className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[10px]', 'md:py-[32px]', 'border-[#CCCCCC]', 'border-l', 'first:border-l-0')}>
+            <p className={cn('font-mont', 'font-semibold', 'text-[34px]', 'text-black', 'xl:text-[80px]', 'xl:leading-[80px]')}>{s.number}</p>
+            <p className={cn('font-inter', 'text-[#929296]', 'text-[12px]')}>{s.label}</p>
+          </div>
+        ))}
+      </div>
 
       <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[96px]', 'w-full', 'max-w-[1440px]')}>
         <p className={cn('max-w-[800px]', 'font-inter', 'text-[#555]', 'text-[20px]', 'leading-[32px]')}>
@@ -749,10 +749,10 @@ export default async function IndustryPage({
         <LatestArticlesSection show={3} />
       </Suspense>
 
-    {/* CTA */}
-      <div className="bg-[#111212] max-w-[1440px] mx-auto my-20 rounded-[30px]">
-        <div className="flex md:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[16px] md:px-[36px] py-[96px] w-full max-w-[1440px]">
-          <div className="flex flex-col gap-[16px] max-w-[500px]">
+      {/* CTA */}
+      <div className="bg-[#111212] max-w-[1440px] mx-auto rounded-[30px]">
+        <div className="flex lg:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[30px] py-[96px] w-full max-w-[1440px]">
+          <div className="flex flex-col items-center md:items-items-start gap-[16px] lg:max-w-[500px]">
             <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">
               Not sure which service fits?
             </h2>
@@ -760,14 +760,14 @@ export default async function IndustryPage({
               Tell us about your project and we'll recommend the right approach in 48h.
             </p>
           </div>
-          <div className="flex sm:flex-row flex-col gap-[16px]">
+          <div className="flex md:flex-row flex-col gap-[16px]">
             <Link href="/contact"
               className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">
               Book a call
             </Link>
-           <Link href="/project-cost-estimation"
+            <Link href="/project-cost-estimation"
               className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">
-              Calculate Development Cost
+              Get an Project Estimate
             </Link>
           </div>
         </div>

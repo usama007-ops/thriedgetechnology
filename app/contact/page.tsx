@@ -4,11 +4,11 @@ import { cn } from "../../lib/utils";
 
 export default function Contact() {
   return (
-    <div className="bg-[#F3F3F3] min-h-screen">
+    <div className="bg-[#F3F3F3] min-h-screen pb-20">
 
       {/* ── Hero Banner (unchanged) ─────────────────────────────────────────── */}
       <section className={cn("mx-auto", "p-2", "w-full")}>
-        <div className={cn("relative", "rounded-[20px]", "w-full", "h-[480px]", "overflow-hidden")}>
+        <div className={cn("relative", "rounded-[20px]", "w-full", 'h-[300px]', 'lg:h-[480px]', "overflow-hidden")}>
           <Image
             src="/contact-hero.jpg"
             alt="Contact"
@@ -130,12 +130,15 @@ export default function Contact() {
       </div>
 
       {/* ── Dark CTA Banner ────────────────────────────────────────────────── */}
-      <div className="bg-[#111212] max-w-[1440px] mx-5 lg:mx-9 xl:mx-auto mb-20 rounded-[30px]">
+      <div className="bg-[#111212] max-w-[1440px] mx-5 lg:mx-9 xl:mx-auto rounded-[30px]">
         <div className="flex md:flex-row flex-col justify-between md:items-center gap-12 px-8 md:px-14 py-16 w-full">
           <div className="flex flex-col gap-3 max-w-[420px]">
             <h2 className="font-mont font-bold text-[36px] lg:text-[48px] text-white leading-[1.1]">
               Let&apos;s Build Your Next Big Thing
             </h2>
+             <p className="font-inter text-[#929296] text-[16px] leading-[24px]">
+              Tell us about your project and we'll recommend the right approach in 48h.
+            </p>
           </div>
           <div className="flex flex-col gap-3 md:max-w-[340px]">
             <p className="font-inter text-[14px] text-[#929296] leading-[1.7]">
@@ -145,7 +148,7 @@ export default function Contact() {
               href="/project-cost-estimation"
               className="inline-flex items-center justify-center bg-white px-6 py-3.5 rounded-full font-mont font-semibold text-[14px] text-[#111212] hover:scale-105 transition-all duration-300 w-fit"
             >
-              Calculate product development costs
+              Get an Project Estimate
             </Link>
           </div>
         </div>

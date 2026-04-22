@@ -169,26 +169,26 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
+{/* 
       <section>
         {/* Awards, desktop static */}
-        <div className="hidden md:flex flex-wrap justify-around  items-center gap-[48px] mx-auto py-[24px] border-[#ebebeb] border-t border-b w-full max-w-[1440px]">
+        {/* <div className="hidden md:flex flex-wrap justify-around  items-center gap-[48px] mx-auto py-[24px] border-[#ebebeb] border-t border-b w-full max-w-[1440px]">
           {AWARDS.map(a => (
             <Image key={a.alt} src={a.src} alt={a.alt} width={100} height={20}
               className="opacity-50 hover:opacity-100 w-fit transition-opacity duration-200" />
           ))}
-        </div>
+        </div> */}
 
         {/* Awards, mobile marquee */}
-        <div className="md:hidden relative py-[20px] w-full overflow-hidden">
-          <div className="flex gap-[40px] w-max animate-marquee">
+      {/*  <div className="relative py-[20px] w-full overflow-hidden">
+          <div className="flex gap-[80px] w-max animate-marquee">
             {[...AWARDS, ...AWARDS].map((a, i) => (
               <Image key={i} src={a.src} alt={a.alt} width={124} height={26}
                 className="w-fit h-[24px]" style={{ width: 'auto', height: '24px' }} />
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Who We Are */}
       <section className="bg-white px-[16px] py-[64px] md:py-[96px]">
@@ -288,7 +288,7 @@ export default function AboutPage() {
       {/* Culture */}
       <section className="px-[16px] py-[64px] md:py-[96px] bg-white">
         <div className="max-w-[1440px] mx-auto">
-          <div className="grid md:grid-cols-2 gap-[40px] items-center">
+          <div className="grid lg:grid-cols-2 gap-[40px] items-center">
             <Image
               src="/culture.png"
               alt="team collaboration"
@@ -348,7 +348,7 @@ export default function AboutPage() {
               Over a decade of shipping production-grade software for companies that needed more than templates.
             </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-10">
+          <div className="grid lg:grid-cols-2 gap-10">
             <div className="flex-1 flex flex-col gap-10 ">
               {TIMELINE.map((t, i) => (
                 <div
@@ -429,8 +429,8 @@ export default function AboutPage() {
       {/* CTA */}
       <section className="bg-white">
         <div className="bg-[#111212] max-w-[1440px] mx-auto rounded-[30px]">
-          <div className="flex md:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[30px] py-[96px] w-full max-w-[1440px]">
-            <div className="flex flex-col gap-[16px] max-w-[500px]">
+          <div className="flex lg:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[30px] py-[96px] w-full max-w-[1440px]">
+            <div className="flex flex-col items-center md:items-items-start gap-[16px] lg:max-w-[500px]">
               <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">
                 Not sure which service fits?
               </h2>
@@ -438,7 +438,7 @@ export default function AboutPage() {
                 Tell us about your project and we'll recommend the right approach in 48h.
               </p>
             </div>
-            <div className="flex sm:flex-row flex-col gap-[16px]">
+            <div className="flex md:flex-row flex-col gap-[16px]">
               <Link href="/contact"
                 className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">
                 Book a call
@@ -450,7 +450,6 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-
       </section>
     </div>
   )

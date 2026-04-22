@@ -3,7 +3,7 @@
  */
 
 import { getServices } from '@/lib/wordpress'
-import { ShadowCard, ShadowCardGrid } from '@/components/common/shadow-card'
+import { ShadowCardGrid } from '@/components/common/shadow-card'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'

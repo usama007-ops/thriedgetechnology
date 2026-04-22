@@ -22,7 +22,7 @@ export default function Footer() {
         )}
       >
         {/* GRID */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-[40%_60%] gap-8">
+        <div className="w-full lg:grid grid-cols-1 grid-cols-[40%_60%] gap-8">
           {/* LOGO + DESC */}
           <div className="flex flex-col gap-4 text-white md:pr-20">
             <Image src="/Thrill Edge.png" width={180} height={60} alt="logo" />
@@ -48,7 +48,7 @@ export default function Footer() {
 
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-10 lg:mt-0">
             {/* COMPANY */}
             <div className="flex flex-col gap-4">
               <p className="text-sm text-[#929296]">Company</p>
@@ -151,7 +151,7 @@ export default function Footer() {
         <div className="w-full border-t border-[#313131]" />
 
         {/* Bottom */}
-        <div className="w-full flex sm:flex-row flex-col-reverse gap-4 items-center justify-between text-sm">
+        <div className="w-full flex lg:flex-row flex-col-reverse gap-4 items-center justify-between text-sm">
           <span className="text-[#929296]">
             © {currentYear} Thrill Edge Technologies. All rights reserved.
           </span>

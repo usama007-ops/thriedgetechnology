@@ -208,7 +208,7 @@ export function Header() {
             <MegaMenu />
 
             {/* Desktop CTA */}
-            <div className={cn('hidden', 'md:block')}>
+            <div className={cn('hidden', 'lg:block')}>
               <Link
                 href="/contact"
                 className={cn('flex', 'justify-center', 'items-center', 'bg-black', 'px-[24px]', 'pt-[14px]', 'pb-[12px]', 'rounded-full', 'font-semibold', 'text-[14px]', 'text-white', 'hover:scale-105', 'transition-all', 'duration-300', 'ease-in-out', 'cursor-pointer')}
