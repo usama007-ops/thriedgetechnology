@@ -3,11 +3,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
 import { getServices } from '@/lib/wordpress'
-import { TestimonialsSection } from '@/components/sections/testimonials-section'
-import { ProcessSection } from '@/components/sections/process-section'
-import BrandsMarquee from '@/components/sections/brands'
-import { WorkSection } from '@/components/sections/work-section'
-import { ValueFeaturesSection } from '@/components/sections/value-features-section'
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -193,7 +188,6 @@ export default async function ServicesPage() {
           </div>
         </div>
       </div>
-
     </div>
   )
 }

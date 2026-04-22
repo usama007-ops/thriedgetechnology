@@ -59,15 +59,15 @@ export async function ServicesSection({ show = 12 }: { show?: number }) {
                         />
 
                         {service.acf?.service_solutions && (
-                          <p className="text-muted-foreground text-sm leading-relaxed">
+                          <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
                             {service.acf.service_solutions}
                           </p>
                         )}
 
                         {countItems.length > 0 && (
-                          <div className="flex gap-4 mt-4 pt-4 border-t border-border/50">
+                          <div className="flex gap-4 mt-4 pt-4 ">
                             {countItems.map((count, idx) => (
-                              <div key={idx} className="text-center">
+                              <div key={idx} className="text-center border-l px-3 border-border-[#eee] first:border-l-0">
                                 <p className="text-lg font-bold text-accent">{count!.number}</p>
                                 <p className="text-xs text-muted-foreground">{count!.label}</p>
                               </div>
