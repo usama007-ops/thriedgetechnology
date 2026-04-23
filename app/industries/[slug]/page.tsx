@@ -563,7 +563,7 @@ export default async function IndustryPage({
   };
 
   return (
-    <div className={cn('relative', 'bg-[#F3F3F3]')}>
+    <div className={cn('relative', 'bg-[#F3F3F3]', 'pb-20')}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
@@ -741,13 +741,9 @@ export default async function IndustryPage({
 
       <div className="bg-[#F3F3F3]">
         <Suspense fallback={null}>
-          <ServicesSection show={6} />
+          <ServicesSection show={4} />
         </Suspense>
       </div>
-
-      <Suspense fallback={null}>
-        <LatestArticlesSection show={3} />
-      </Suspense>
 
       {/* CTA */}
       <div className="bg-[#111212] max-w-[1440px] mx-auto rounded-[30px]">

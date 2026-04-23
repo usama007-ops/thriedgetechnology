@@ -56,10 +56,10 @@ export function IndustriesSection() {
         </div>
 
         {/* Grid */}
-        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px]">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-[20px]">
           {INDUSTRIES.map((ind) => (
             <Link key={ind.slug} href={`/industries/${ind.slug}`}>
-              <div className="rounded-[24px] border border-[#e5e5e5] group flex flex-col justify-end p-0 hover:border-[#111212] transition-colors duration-300">
+              <div className="rounded-[24px] bg-white border border-[#e5e5e5] group flex flex-col justify-end p-0 hover:border-[#111212] transition-colors duration-300">
                 <div className="flex flex-col gap-[24px] px-[20px] py-[24px]">
                   <div className="relative w-[30px] h-[30px]">
                     <Image src={`/${ind.icon}`} alt={ind.title} fill sizes="30px" className="object-contain invert" />

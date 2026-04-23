@@ -217,7 +217,7 @@ export default function AboutPage() {
               </h2>
 
               <p> Thrill Edge Technologies is a full-stack software agency founded by Zeerak Jamshaid, built on the principle that exceptional software must be engineered with precision not pieced together.
-                Zeerak Jamshaid built the agency around a core idea: eliminate fragmentation and deliver software through a single, accountable team that drives every stage with precision and intent.</p>
+                He built the agency around a core idea: eliminate fragmentation and deliver software through a single, accountable team that drives every stage with precision and intent.</p>
 
               <p> Today, Thrill Edge Technologies operates as a fully integrated software partner, delivering product strategy, UI/UX design, frontend, backend, mobile development, cloud infrastructure, and AI solutions everything required to build and scale modern digital products. We collaborate with startups and high-growth companies that demand speed, quality, and technical excellence without compromise.</p>
 
@@ -403,7 +403,7 @@ export default function AboutPage() {
             </div>
               <div className="releative">
                 <Image
-              src="/culture.png"
+              src="/our-history-2.png"
               alt="team collaboration"
               width={500}
               height={400}

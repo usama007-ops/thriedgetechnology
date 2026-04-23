@@ -155,10 +155,8 @@ export default async function ClientReviewsPage() {
               const quote = t.content.rendered.replace(/<[^>]*>/g, "").trim();
               const rating = t.acf?.rating ?? 5;
               const name = t.acf?.author_name || t.title.rendered;
-              const role = [t.acf?.author_title, t.acf?.author_company]
-                .filter(Boolean)
-                .join(" at ");
-              // d
+              const role = [t.acf?.author_title]
+              
               return (
                 <div
                   key={t.id}

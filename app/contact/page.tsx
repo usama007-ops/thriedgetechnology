@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "../../lib/utils";
+import MeetingBooker from "../../components/sections/meeting-booker";
 
 export default function Contact() {
   return (
@@ -37,7 +38,7 @@ export default function Contact() {
                 "leading-9", "lg:leading-[60px]"
               )}
             >
-              Tell us what you&apos;re building.
+             How can we help you today?
             </h1>
             <p className={cn("lg:max-w-xs", "font-inter", "text-[15px]", "text-white/70", "lg:text-[18px]", "leading-7")}>
               We respond to every submission within one business day.
@@ -48,10 +49,10 @@ export default function Contact() {
 
       {/* ── Main Content: Left copy + Right Calendly ───────────────────────── */}
       <section className="mx-auto px-5 lg:px-9 py-20 max-w-[1440px]">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
 
           {/* Left Column */}
-          <div className="flex flex-col gap-8 lg:max-w-[420px] w-full">
+          <div className="flex flex-col gap-8 w-full">
             <div className="flex flex-col gap-4">
               <h2 className="font-mont font-semibold text-[36px] lg:text-[48px] text-[#111212] leading-[1.1]">
                 Tell us what you&apos;re building.
@@ -97,18 +98,9 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right Column — Calendly */}
-          <div className="flex-1 w-full min-w-0">
-            <div className="bg-white border border-[#e5e5e5] rounded-[20px] overflow-hidden shadow-sm">
-              <iframe
-                src="https://calendly.com/thrilledge-technologies/30min"
-                width="100%"
-                height="660"
-                frameBorder="0"
-                title="Schedule a meeting with Thrill Edge Technologies"
-                className="block"
-              />
-            </div>
+          {/* Right Column — Meeting Booker */}
+          <div className="w-full min-w-0">
+            <MeetingBooker />
           </div>
 
         </div>

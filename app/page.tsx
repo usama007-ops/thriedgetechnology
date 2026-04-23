@@ -80,11 +80,13 @@ export default function Home() {
       <HeroSection />
       <BrandsMarquee />
       <ValuePropositionSection />
-      <ServicesSection show={6} />
+      <ServicesSection show={4}  />
       {/* <WorkSection show={3} /> */}
       <TestimonialsSection show={12} />
       <ProcessSection />
+      <div className="py-[100px] bg-[#eee]">
       <IndustriesSection />
+      </div>
       <ValueFeaturesSection />
       <LatestArticlesSection show={3} />
     </main>

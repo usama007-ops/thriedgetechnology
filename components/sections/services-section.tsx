@@ -13,7 +13,7 @@ export async function ServicesSection({ show = 12 }: { show?: number }) {
 
   return (
     <section id="services" className="py-24 px-4 sm:px-6 lg:px-8 bg-[#F3F3F3]">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-[1440px] mx-auto">
         <div className="text-center mb-16 space-y-4">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground">Our Services</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -22,7 +22,7 @@ export async function ServicesSection({ show = 12 }: { show?: number }) {
         </div>
 
         {services.length > 0 ? (
-          <ShadowCardGrid columns={3} className="mb-12">
+          <ShadowCardGrid columns={4} className="mb-12">
             {services.map((service) => {
               const featuredImage =
                 service.acf?.image?.url ||

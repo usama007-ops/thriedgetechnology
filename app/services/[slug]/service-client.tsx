@@ -89,7 +89,7 @@ export function ServiceClient({ slug }: { slug: string }) {
           )}
           
           {/* About / Description */}
-          <div className="grid md:grid-cols-[70%_30%] gap-10 mt-16">
+          <div className="grid lg:grid-cols-[70%_30%] gap-10 mt-16">
             {(acf.about_us?.title || acf.about_us?.text) && (
               <div className="flex flex-col gap-[40px] w-full">
                 {acf.about_us.title && (
@@ -136,7 +136,7 @@ export function ServiceClient({ slug }: { slug: string }) {
         <div className="bg-white w-full">
           <div className="px-[16px] py-[64px] md:py-[96px] w-full">
             <div className="max-w-[1440px] mx-auto">
-              <div className="flex md:flex-row flex-col md:gap-[64px] gap-[48px] items-start">
+              <div className="flex lg:flex-row flex-col md:gap-[64px] gap-[48px] items-start">
                 <div className="md:w-[420px] w-full shrink-0 md:sticky md:top-[100px]">
                   <h2 className="font-mont font-bold text-[#111212] text-[32px] md:text-[48px] leading-[1.15]">
                     How we work
