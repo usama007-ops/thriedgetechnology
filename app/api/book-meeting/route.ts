@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
               <tr>
                 <td style="padding:14px 0;border-bottom:1px solid #f0f0f0;">
                   <p style="margin:0 0 2px;font-size:11px;color:#929296;text-transform:uppercase;letter-spacing:1px;">Meeting Type</p>
-                  <p style="margin:0;font-size:18px;font-weight:700;color:#111212;">Zeerak Jamshaid — 30 Minute Meeting</p>
+                  <p style="margin:0;font-size:18px;font-weight:700;color:#111212;">Zeerak Jamshaid | 30 Minute Meeting</p>
                   <p style="margin:4px 0 0;font-size:13px;color:#929296;">Web conferencing details provided upon confirmation.</p>
                 </td>
               </tr>
@@ -132,7 +132,7 @@ export async function POST(req: NextRequest) {
               <tr>
                 <td style="padding-bottom:16px;border-bottom:1px solid #e5e5e5;">
                   <p style="margin:0 0 2px;font-size:11px;color:#929296;text-transform:uppercase;letter-spacing:1px;">Meeting</p>
-                  <p style="margin:0;font-size:16px;font-weight:700;color:#111212;">Zeerak Jamshaid — 30 Minute Meeting</p>
+                  <p style="margin:0;font-size:16px;font-weight:700;color:#111212;">Zeerak Jamshaid | 30 Minute Meeting</p>
                 </td>
               </tr>
               <tr>

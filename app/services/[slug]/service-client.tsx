@@ -89,7 +89,7 @@ export function ServiceClient({ slug }: { slug: string }) {
           )}
           
           {/* About / Description */}
-          <div className="grid lg:grid-cols-[70%_30%] gap-10 mt-16">
+          <div className="grid lg:grid-cols-[60%_40%] gap-10 mt-16 items-center">
             {(acf.about_us?.title || acf.about_us?.text) && (
               <div className="flex flex-col gap-[40px] w-full">
                 {acf.about_us.title && (
@@ -114,7 +114,7 @@ export function ServiceClient({ slug }: { slug: string }) {
                   alt={acf.image.alt || service.title.rendered}
                   width={300}
                   height={450}
-                  className="rounded-[20px] w-full h-full object-cover"
+                  className="rounded-[20px] w-full h-[700px] object-cover center"
                 />
               </div>
             )}
@@ -137,7 +137,7 @@ export function ServiceClient({ slug }: { slug: string }) {
           <div className="px-[16px] py-[64px] md:py-[96px] w-full">
             <div className="max-w-[1440px] mx-auto">
               <div className="flex lg:flex-row flex-col md:gap-[64px] gap-[48px] items-start">
-                <div className="md:w-[420px] w-full shrink-0 md:sticky md:top-[100px]">
+                <div className="lg:w-[420px] w-full shrink-0 lg:sticky lg:top-[100px]">
                   <h2 className="font-mont font-bold text-[#111212] text-[32px] md:text-[48px] leading-[1.15]">
                     How we work
                   </h2>
@@ -146,7 +146,7 @@ export function ServiceClient({ slug }: { slug: string }) {
                   </p>
                   <Image src={"/how-we-work.jpg"} className='rounded-[20px] w-full mt-10' height={400} width={300} alt='How we work'></Image>
                 </div>
-                <div className="flex-1 flex flex-col">
+                <div className="grid sm:grid-cols-2 lg:flex lg:flex-col lg:flex-1 ">
                   {hwwSteps.map((step, i) => (
                     <div key={step.key}
                       className="group flex flex-col gap-[16px] items-start px-[20px] py-[32px] border-t border-[#D9D9D9] hover:border-[#111212] transition-all duration-300">

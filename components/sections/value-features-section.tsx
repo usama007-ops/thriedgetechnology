@@ -77,10 +77,10 @@ export function ValueFeaturesSection() {
   return (
     <section className="w-full flex items-center justify-center">
       <div className="w-full max-w-[1440px] lg:py-[96px] py-[64px] lg:px-[36px] px-[16px]">
-        <div className="flex md:flex-row flex-col md:gap-[64px] gap-[48px] items-start">
+        <div className="flex lg:flex-row flex-col lg:gap-[64px] gap-[48px] items-start">
 
           {/* Leftsticky title */}
-          <div className="md:w-[420px] w-full shrink-0 md:sticky md:top-[100px]">
+          <div className="lg:w-[420px] w-full shrink-0 lg:sticky lg:top-[100px]">
             <h2 className="text-black font-mont md:text-[48px] text-[32px] font-semibold md:leading-[56px] leading-[38px]">
               Validate your product idea, impress investors, and get to market faster.
             </h2>
@@ -90,7 +90,7 @@ export function ValueFeaturesSection() {
           </div>
 
           {/* Rightscrolling cards */}
-          <div className="flex-1 flex flex-col">
+          <div className="grid sm:grid-cols-2 lg:flex lg:flex-col lg:flex-1 ">
             {FEATURES.map((f, i) => (
               <FeatureCard key={f.title} feature={f} index={i} />
             ))}
