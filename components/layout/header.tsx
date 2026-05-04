@@ -37,6 +37,7 @@ const mobileNav = [
       { label: 'Mobile App Development', href: '/services/mobile-app-development' },
       { label: 'MVP & Product Strategy', href: '/services/mvp-product-strategy' },
       { label: 'SaaS Solutions',         href: '/services/saas-solutions' },
+      { label: 'Shopify Plus Agency',    href: '/services/shopify-plus-agency' },
     ],
   },
   {

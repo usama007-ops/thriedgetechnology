@@ -11,7 +11,7 @@ import {
   ChevronDown, Users, Star, HelpCircle, Briefcase, BookOpen, Mail,
   Brain, Globe, Palette, Smartphone, Rocket, Cloud,
   Cpu, PanelsTopLeft, Server, Database, GitBranch,
-  Heart, GraduationCap, Building2, Blocks, Landmark, Truck,
+  Heart, GraduationCap, Building2, Blocks, Landmark, Truck,ShoppingCart,
   type LucideIcon,
 } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
@@ -62,6 +62,7 @@ const menus: MenuGroup[] = [
       { label: 'SaaS Solutions', href: '/services/saas-solutions', icon: Cloud, description: 'We build scalable, cloud-native software and multi-tenant platforms designed for high retention and recurring growth' },
       { label: 'AI Workflow Automation', href: '/services/ai-workflow-automation', icon: GitBranch, description: 'We automate complex business workflows using AI agents, LLMs, and intelligent pipelines that reduce manual effort and accelerate operations.' },
       { label: 'Digital Marketing Solutions', href: '/services/digital-marketing-solutions', icon: Rocket, description: 'We craft data-driven digital marketing strategies that grow your brand, drive qualified traffic, and convert visitors into loyal customers.' },
+      { label: 'Shopify Plus Agency', href: '/services/shopify-plus-agency', icon: ShoppingCart,  description: 'We build high-converting Shopify Plus stores optimized for performance, scalability, and revenue growth.' },
     ],
   },
   {

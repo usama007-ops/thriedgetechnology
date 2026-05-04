@@ -62,7 +62,10 @@ export default function Contact() {
               </p>
               <p className="font-inter text-[14px] text-[#929296] leading-[1.7]">
                 Describe your product, timeline, and key requirements. A senior member of
-                our team will review your submission and reply with a clear next step.
+                our team will review your submission and reply with a clear next step. <br />
+                <br />
+                <h4 className="font-inter font-semibold text-[16px] text-[#111212] leading-[1.6]">Email: info@thrilledge.com</h4>
+                <h4 className="font-inter font-semibold text-[16px] text-[#111212] leading-[1.6]">Phone: +92 309 4701831</h4>
               </p>
             </div>
 
