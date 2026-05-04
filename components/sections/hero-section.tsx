@@ -207,10 +207,7 @@ export default function HeroSection() {
         {/* ── Heavy paragraph ── */}
         <p className={cn('mb-4', 'max-w-[680px]', 'font-inter', 'text-white/50', 'leading-[1.8]', 'animate-fade-in-up')}
           style={{ fontSize: "clamp(15px, 1.8vw, 19px)", animationDelay: "140ms" }}>
-          From a napkin sketch to a production-ready product we architect, design, and engineer
-          software that <span className={cn('font-medium', 'text-white/80')}>drives real revenue</span>. No bloated teams,
-          no missed deadlines, no excuses. Just clean code, sharp UX, and products your users
-          actually love.
+          From initial idea to production ready product, we architect, design, and develop software that <span className={cn('font-medium', 'text-white/80')}>drives real revenue</span>.We deliver clean code, exceptional user experiences, and high performing products your customers will love on time and without compromise.
         </p>
 
         {/* CTAs */}
@@ -223,7 +220,7 @@ export default function HeroSection() {
           </Link>
           <Link href="/project-cost-estimation"
             className={cn('flex', 'items-center', 'gap-2', 'bg-white/5', 'hover:bg-white/10', 'backdrop-blur-md', 'px-8', 'py-4', 'border', 'border-white/10', 'hover:border-white/20', 'rounded-full', 'font-mont', 'font-semibold', 'text-[14px]', 'text-white', 'transition-all', 'duration-300')}>
-            Get a free estimate →
+            Get a Free Estimate →
           </Link>
         </div>
 

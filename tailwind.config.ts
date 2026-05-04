@@ -63,7 +63,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [require('tailwindcss/plugin'), require('@tailwindcss/line-clamp')],
+  plugins: [require('tailwindcss/plugin'), require('@tailwindcss/line-clamp'), require("taos/plugin")],
 
 }
 

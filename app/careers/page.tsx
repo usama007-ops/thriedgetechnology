@@ -143,7 +143,7 @@ export default function CareersPage() {
       </div>
 
       {/* Bottom CTA */}
-      <div className={cn('bg-[#111212]', 'w-full')}>
+      <div className={cn('bg-[#111212]', 'w-full', 'my-21')}>
         <div className={cn('flex', 'md:flex-row', 'flex-col', 'justify-between', 'md:items-center', 'gap-8', 'mx-auto', 'px-4', 'md:px-9', 'py-16', 'max-w-360')}>
           <div className={cn('flex', 'flex-col', 'gap-3')}>
             <p className={cn('font-inter', 'font-semibold', 'text-[11px]', 'text-white/30', 'uppercase', 'tracking-[0.15em]')}>Don&apos;t see your role?</p>

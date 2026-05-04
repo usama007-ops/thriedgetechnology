@@ -16,9 +16,9 @@ function makeTransport() {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
-    const { name, email, date, time } = body
+    const { name, email, phone, date, time } = body
 
-    if (!name || !email || !date || !time) {
+    if (!name || !email || !phone ||  !date || !time) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
 
@@ -84,6 +84,13 @@ export async function POST(req: NextRequest) {
                 <td style="padding:14px 0;">
                   <p style="margin:0 0 2px;font-size:11px;color:#929296;text-transform:uppercase;letter-spacing:1px;">Guest Email</p>
                   <p style="margin:0;font-size:15px;color:#111212;">${email}</p>
+                </td>
+              </tr>
+
+              <tr>
+                <td style="padding:14px 0;">
+                  <p style="margin:0 0 2px;font-size:11px;color:#929296;text-transform:uppercase;letter-spacing:1px;">Guest Phone</p>
+                  <p style="margin:0;font-size:15px;color:#111212;">${phone}</p>
                 </td>
               </tr>
 

@@ -488,7 +488,7 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
       <IndustriesSection />
 
       {/* CTA */}
-      <div className="bg-[#111212] max-w-[1440px] mx-auto rounded-[30px]">
+      <div className="bg-[#111212] max-w-[1440px] mx-auto rounded-[30px] my-14">
         <div className="flex lg:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[30px] py-[96px] w-full max-w-[1440px]">
           <div className="flex flex-col items-center md:items-items-start gap-[16px] lg:max-w-[500px]">
             <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">

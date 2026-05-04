@@ -40,6 +40,7 @@ export default function MeetingBooker() {
   const [selectedTime, setSelectedTime] = useState<string | null>(null)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -298,6 +299,20 @@ export default function MeetingBooker() {
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 placeholder="you@example.com"
+                className="border border-[#e5e5e5] rounded-[10px] px-4 py-2.5 font-inter text-[14px] text-[#111212] placeholder:text-[#c8c8c8] focus:outline-none focus:border-[#111212] transition-colors"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label className="font-inter text-[12px] text-[#929296] uppercase tracking-wide">
+                Phone <span className="text-red-400">*</span>
+              </label>
+              <input
+                type="tel"
+                required
+                value={phone}
+                onChange={e => setPhone(e.target.value)}
+                placeholder="+1 (616) 232 2332"
                 className="border border-[#e5e5e5] rounded-[10px] px-4 py-2.5 font-inter text-[14px] text-[#111212] placeholder:text-[#c8c8c8] focus:outline-none focus:border-[#111212] transition-colors"
               />
             </div>

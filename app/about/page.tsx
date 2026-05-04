@@ -42,8 +42,8 @@ const AWARDS = [
 const CARDS = [
   {
     icon: '/search.svg',
-    title: 'On-Time Delivery, Full Transparency',
-    desc: 'We deliver across the US, Canada, Australia, and Europe using structured weekly sprints, clear reporting, and proactive communication—ensuring zero surprises.'
+    title: 'On-Time & Transparent',
+    desc: 'We deliver across the US, Canada, Australia, and Europe using structured weekly sprints, clear reporting, and proactive communication ensuring zero surprises.'
   },
   {
     icon: '/varified-user.svg',
@@ -306,7 +306,7 @@ export default function AboutPage() {
               </p>
 
               <p className="font-inter text-[#555] text-[18px] leading-[30px]">
-                Code quality is non-negotiable. Every pull request is peer-reviewed, maintaining a sub-1% deployment error rate through strict standards.
+                Code quality is non-negotiable.Whenever a developer submits code changes, another engineer reviews them before they are merged., maintaining a sub-1% deployment error rate through strict standards.
               </p>
 
               <p className="font-inter text-[#555] text-[18px] leading-[30px]">

@@ -25,7 +25,7 @@ const STEPS = [
     num: '03', label: 'Engineering & Security',
     description: 'We build robust, scalable applications using modern technologies, ensuring performance, security, and reliability at every stage of development.',
     points: ['Clean, scalable, and maintainable codebase', 'Secure architecture & best practices implementation', 'Thorough testing and quality assurance'],
-    image: '/security.jpg',
+    image: '/security224.jpg',
   },
   {
     num: '04', label: 'Growth, Scaling & Optimization',
