@@ -88,14 +88,14 @@ export default function MeetingBooker() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (!selectedDate || !selectedTime || !name || !email) return
+    if (!selectedDate || !selectedTime || !name || !email || !phone) return
     setLoading(true)
     setError(null)
     try {
       const res = await fetch('/api/book-meeting', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, date: selectedDate, time: selectedTime }),
+        body: JSON.stringify({ name, email, phone, date: selectedDate, time: selectedTime }),
       })
       if (!res.ok) throw new Error('Failed')
       setStep('done')
