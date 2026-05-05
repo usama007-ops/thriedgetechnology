@@ -7,6 +7,7 @@ import {
   PenLine, Settings2, Link2, HelpCircle,
   type LucideIcon,
 } from 'lucide-react'
+import { Animate } from '@/components/common/animate'
 
 type Step = 1 | 2 | 3
 
@@ -328,7 +329,8 @@ export default function ProjectCostEstimation() {
 
       {/* ── Body ─────────────────────────────────────────────────────────── */}
       <section className="mx-auto px-4 md:px-9 py-16 w-full max-w-360">
-        <div className="flex lg:flex-row flex-col items-start gap-12 lg:gap-16">
+        <Animate variant="fade-up">
+          <div className="flex lg:flex-row flex-col items-start gap-12 lg:gap-16">
 
           {/* Left, sticky summary */}
           <div className="lg:top-24 lg:sticky w-full lg:w-72 shrink-0">
@@ -557,6 +559,7 @@ export default function ProjectCostEstimation() {
             </form>
           </div>
         </div>
+        </Animate>
       </section>
     </div>
   )

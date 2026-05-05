@@ -10,6 +10,7 @@ import { notFound } from 'next/navigation'
 import { ProcessSection } from '@/components/sections/process-section'
 import { ValueFeaturesSection } from '@/components/sections/value-features-section'
 import { cn } from '@/lib/utils'
+import { Animate } from '@/components/common/animate'
 
 export function ServiceClient({ slug }: { slug: string }) {
   const { data: service, isLoading, error } = useService(slug)
@@ -80,16 +81,19 @@ export function ServiceClient({ slug }: { slug: string }) {
           {counts.length > 0 && (
             <div className={cn('gap-[20px]', 'text-center', 'grid', 'grid-cols-3', 'mx-auto', 'md:pb-[64px]', 'w-full')}>
               {counts.map((c, i) => (
-                <div key={i} className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[10px]', 'md:py-[32px]', 'border-[#CCCCCC]', 'border-l', 'first:border-l-0')}>
-                  <p className={cn('font-mont', 'font-semibold', 'text-[34px]', 'text-black', 'xl:text-[80px]', 'xl:leading-[80px]')}>{c!.number}</p>
-                  <p className={cn('font-inter', 'text-[#929296]', 'text-[12px]')}>{c!.label}</p>
-                </div>
+                <Animate key={i} variant="fade-up" delay={i * 100}>
+                  <div className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[10px]', 'md:py-[32px]', 'border-[#CCCCCC]', 'border-l', 'first:border-l-0')}>
+                    <p className={cn('font-mont', 'font-semibold', 'text-[34px]', 'text-black', 'xl:text-[80px]', 'xl:leading-[80px]')}>{c!.number}</p>
+                    <p className={cn('font-inter', 'text-[#929296]', 'text-[12px]')}>{c!.label}</p>
+                  </div>
+                </Animate>
               ))}
             </div>
           )}
           
           {/* About / Description */}
-          <div className="grid lg:grid-cols-[60%_40%] gap-10 mt-16 items-center">
+          <Animate variant="fade-up" delay={80}>
+            <div className="grid lg:grid-cols-[60%_40%] gap-10 mt-16 items-center">
             {(acf.about_us?.title || acf.about_us?.text) && (
               <div className="flex flex-col gap-[40px] w-full">
                 {acf.about_us.title && (
@@ -119,6 +123,7 @@ export function ServiceClient({ slug }: { slug: string }) {
               </div>
             )}
           </div>
+          </Animate>
         </div>
       </section>
 
@@ -148,16 +153,17 @@ export function ServiceClient({ slug }: { slug: string }) {
                 </div>
                 <div className="grid sm:grid-cols-2 lg:flex lg:flex-col lg:flex-1 ">
                   {hwwSteps.map((step, i) => (
-                    <div key={step.key}
-                      className="group flex flex-col gap-[16px] items-start px-[20px] py-[32px] border-t border-[#D9D9D9] hover:border-[#111212] transition-all duration-300">
-                      <div className="flex justify-center items-center bg-[#f7f7f7] group-hover:bg-[#111212] rounded-[12px] w-[48px] h-[48px] transition-colors duration-300">
-                        <span className="font-mont font-bold text-[#929296] group-hover:text-white text-[14px] tabular-nums transition-colors duration-300">
-                          {String(i + 1).padStart(2, '0')}
-                        </span>
+                    <Animate key={step.key} variant="fade-up" delay={i * 80}>
+                      <div className="group flex flex-col gap-[16px] items-start px-[20px] py-[32px] border-t border-[#D9D9D9] hover:border-[#111212] transition-all duration-300">
+                        <div className="flex justify-center items-center bg-[#f7f7f7] group-hover:bg-[#111212] rounded-[12px] w-[48px] h-[48px] transition-colors duration-300">
+                          <span className="font-mont font-bold text-[#929296] group-hover:text-white text-[14px] tabular-nums transition-colors duration-300">
+                            {String(i + 1).padStart(2, '0')}
+                          </span>
+                        </div>
+                        <h3 className="font-mont font-semibold text-black text-[20px] md:text-[24px]">{step.label}</h3>
+                        <p className="font-inter text-[#111212] text-[16px] leading-[26px]">{step.text}</p>
                       </div>
-                      <h3 className="font-mont font-semibold text-black text-[20px] md:text-[24px]">{step.label}</h3>
-                      <p className="font-inter text-[#111212] text-[16px] leading-[26px]">{step.text}</p>
-                    </div>
+                    </Animate>
                   ))}
                 </div>
               </div>
@@ -190,16 +196,17 @@ export function ServiceClient({ slug }: { slug: string }) {
               )}
               <div className="gap-[16px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {coreSteps.map((step, i) => (
-                  <div key={step.key}
-                    className="group flex flex-col gap-[24px] bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-[20px] p-[32px] transition-all duration-300">
-                    <span className="font-mont font-bold text-white/15 text-[56px] leading-none tabular-nums select-none">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <div className="flex flex-col gap-[10px]">
-                      <h3 className="font-mont font-semibold text-white text-[20px] leading-[28px]">{step.label}</h3>
-                      <p className="font-inter text-white/50 text-[15px] leading-[26px]">{step.text}</p>
+                  <Animate key={step.key} variant="scale-in" delay={i * 70}>
+                    <div className="group flex flex-col gap-[24px] bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-[20px] p-[32px] transition-all duration-300">
+                      <span className="font-mont font-bold text-white/15 text-[56px] leading-none tabular-nums select-none">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <div className="flex flex-col gap-[10px]">
+                        <h3 className="font-mont font-semibold text-white text-[20px] leading-[28px]">{step.label}</h3>
+                        <p className="font-inter text-white/50 text-[15px] leading-[26px]">{step.text}</p>
+                      </div>
                     </div>
-                  </div>
+                  </Animate>
                 ))}
               </div>
             </div>

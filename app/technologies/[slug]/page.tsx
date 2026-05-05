@@ -11,6 +11,7 @@ import { IndustriesSection } from '@/components/sections/industries-section'
 import ValuePropositionSection from '@/components/sections/value-proposition'
 import { PageHero } from '@/components/common/page-hero'
 import { cn } from '@/lib/utils'
+import { Animate } from '@/components/common/animate'
 
 interface TechData {
   title: string
@@ -407,10 +408,12 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
 
       <div className={cn('gap-[20px]', 'text-center', 'mt-20', 'grid', 'grid-cols-3', 'mx-auto', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
         {tech.stats.map((s, i) => (
-          <div key={i} className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[10px]', 'md:py-[32px]', 'border-[#CCCCCC]', 'border-l', 'first:border-l-0')}>
-            <p className={cn('font-mont', 'font-semibold', 'text-[34px]', 'text-black', 'xl:text-[80px]', 'xl:leading-[80px]')}>{s.number}</p>
-            <p className={cn('font-inter', 'text-[#929296]', 'text-[12px]')}>{s.label}</p>
-          </div>
+          <Animate key={i} variant="fade-up" delay={i * 100}>
+            <div className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[10px]', 'md:py-[32px]', 'border-[#CCCCCC]', 'border-l', 'first:border-l-0')}>
+              <p className={cn('font-mont', 'font-semibold', 'text-[34px]', 'text-black', 'xl:text-[80px]', 'xl:leading-[80px]')}>{s.number}</p>
+              <p className={cn('font-inter', 'text-[#929296]', 'text-[12px]')}>{s.label}</p>
+            </div>
+          </Animate>
         ))}
       </div>
 
@@ -427,11 +430,13 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
           </h2>
           <div className={cn('gap-[2px]', 'grid', 'grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3', 'bg-[#e5e5e5]')}>
             {tech.capabilities.map((cap, i) => (
-              <div key={i} className={cn('flex', 'flex-col', 'gap-[16px]', 'bg-white', 'hover:bg-[#F3F3F3]', 'p-[32px]', 'transition-colors', 'duration-300')}>
-                <span className={cn('font-inter', 'tabular-nums', 'text-[#929296]', 'text-[13px]')}>{String(i + 1).padStart(2, '0')}</span>
-                <h3 className={cn('font-mont', 'font-semibold', 'text-[#111212]', 'text-[20px]')}>{cap.title}</h3>
-                <p className={cn('font-inter', 'text-[#555]', 'text-[15px]', 'leading-[24px]')}>{cap.desc}</p>
-              </div>
+              <Animate key={i} variant="fade-up" delay={i * 60}>
+                <div className={cn('flex', 'flex-col', 'gap-[16px]', 'bg-white', 'hover:bg-[#F3F3F3]', 'p-[32px]', 'transition-colors', 'duration-300', 'min-h-[250px]')}>
+                  <span className={cn('font-inter', 'tabular-nums', 'text-[#929296]', 'text-[13px]')}>{String(i + 1).padStart(2, '0')}</span>
+                  <h3 className={cn('font-mont', 'font-semibold', 'text-[#111212]', 'text-[20px]')}>{cap.title}</h3>
+                  <p className={cn('font-inter', 'text-[#555]', 'text-[15px]', 'leading-[24px]')}>{cap.desc}</p>
+                </div>
+              </Animate>
             ))}
           </div>
         </div>
@@ -448,13 +453,15 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
           </p>
         </div>
         <div className={cn('gap-[16px]', 'grid', 'grid-cols-2', 'sm:grid-cols-4')}>
-          {tech.tools.map((tool) => (
-            <div key={tool.name} className={cn('flex', 'flex-col', 'items-center', 'gap-[12px]', 'bg-white', 'p-[24px]', 'border', 'border-[#e5e5e5]', 'hover:border-[#111212]', 'rounded-[16px]', 'transition-colors', 'duration-300')}>
-              <div className={cn('relative', 'w-[40px]', 'h-[40px]')}>
-                <Image src={tool.icon} alt={tool.name} fill sizes="40px" className="object-contain" />
+          {tech.tools.map((tool, i) => (
+            <Animate key={tool.name} variant="scale-in" delay={i * 50}>
+              <div className={cn('flex', 'flex-col', 'items-center', 'gap-[12px]', 'bg-white', 'p-[24px]', 'border', 'border-[#e5e5e5]', 'hover:border-[#111212]', 'rounded-[16px]', 'transition-colors', 'duration-300')}>
+                <div className={cn('relative', 'w-[40px]', 'h-[40px]')}>
+                  <Image src={tool.icon} alt={tool.name} fill sizes="40px" className="object-contain" />
+                </div>
+                <p className={cn('font-mont', 'font-semibold', 'text-[#111212]', 'text-[14px]', 'text-center')}>{tool.name}</p>
               </div>
-              <p className={cn('font-mont', 'font-semibold', 'text-[#111212]', 'text-[14px]', 'text-center')}>{tool.name}</p>
-            </div>
+            </Animate>
           ))}
         </div>
       </div>

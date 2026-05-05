@@ -2,6 +2,7 @@ import { PageHero } from "@/components/common/page-hero";
 import { Metadata } from "next";
 import { Mail, Phone, MapPin, Shield, Eye, Share2, Cookie, Clock, UserCheck, Link2, Lock, RefreshCw } from "lucide-react";
 import { cn } from "../../lib/utils";
+import { Animate } from "@/components/common/animate";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Thrill Edge Technologies",
@@ -61,7 +62,8 @@ export default function PrivacyPolicy() {
         </aside>
 
         {/* Content */}
-        <main className={cn('flex-1', 'min-w-0')}>
+        <Animate variant="fade-up" className="flex-1 min-w-0">
+          <main className={cn('flex-1', 'min-w-0')}>
 
           <PolicySection id="information-we-collect" icon={<Eye size={18} />} title="1. Information We Collect">
             <p className={cn('mb-6', 'font-inter', 'text-[#555]', 'text-[15px]', 'leading-[1.8]')}>
@@ -201,6 +203,7 @@ export default function PrivacyPolicy() {
           </div>
 
         </main>
+        </Animate>
       </div>
     </>
   );

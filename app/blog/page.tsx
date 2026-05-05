@@ -2,8 +2,8 @@ import { Metadata } from 'next'
 import { getPosts, getCategories } from '@/lib/wordpress'
 import { BlogList } from './blog-list'
 import Image from 'next/image'
-import { PageHero } from '@/components/common/page-hero'
-import { cn } from "../../lib/utils";
+import { cn } from "../../lib/utils"
+import { Animate } from '@/components/common/animate'
 
 export const metadata: Metadata = {
   title: 'Blog | Thrill Edge Technologies',
@@ -45,7 +45,9 @@ export default async function BlogPage() {
 
       <section className={cn('px-4', 'sm:px-6', 'lg:px-8', 'py-16')}>
         <div className={cn('mx-auto', 'max-w-6xl')}>
-          <BlogList initialPosts={initialPosts} categories={categories} />
+          <Animate variant="fade-up">
+            <BlogList initialPosts={initialPosts} categories={categories} />
+          </Animate>
         </div>
       </section>
     </main>

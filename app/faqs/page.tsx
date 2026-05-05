@@ -4,7 +4,8 @@ import { useState } from 'react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { cn } from "../../lib/utils";
+import { cn } from "../../lib/utils"
+import { Animate } from '@/components/common/animate'
 
 const FAQS = [
   // Partnership Basics (6)
@@ -99,60 +100,56 @@ export default function FAQsPage() {
         {/* FAQ list */}
         <div className={cn('flex-1', 'min-w-0')}>
           {activeTopic !== 'All' && (
-            <p className={cn('mb-[24px]', 'font-inter', 'font-semibold', 'text-[#929296]', 'text-[12px]', 'uppercase', 'tracking-[0.15em]')}>
-              {activeTopic} · {filtered.length} questions
-            </p>
+            <Animate variant="fade-in">
+              <p className={cn('mb-[24px]', 'font-inter', 'font-semibold', 'text-[#929296]', 'text-[12px]', 'uppercase', 'tracking-[0.15em]')}>
+                {activeTopic} · {filtered.length} questions
+              </p>
+            </Animate>
           )}
           <div className={cn('border-[#e5e5e5]', 'border-t')}>
             {filtered.map((item, i) => (
-              <div key={i} className={cn('border-[#e5e5e5]', 'border-b')}>
-                <button onClick={() => setOpenIdx(openIdx === i ? null : i)}
-                  className={cn('flex', 'justify-between', 'items-start', 'gap-[24px]', 'py-[24px]', 'w-full', 'text-left', 'cursor-pointer')}>
-                  <span className={cn('pr-[8px]', 'font-mont', 'font-semibold', 'text-[#111212]', 'text-[17px]', 'leading-[1.4]')}>
-                    <span className={cn('mr-[12px]', 'font-inter', 'font-normal', 'tabular-nums', 'text-[#999]', 'text-[12px]')}>
-                      {String(i + 1).padStart(2, '0')}
+              <Animate key={i} variant="fade-up" delay={i * 40}>
+                <div className={cn('border-[#e5e5e5]', 'border-b')}>
+                  <button onClick={() => setOpenIdx(openIdx === i ? null : i)}
+                    className={cn('flex', 'justify-between', 'items-start', 'gap-[24px]', 'py-[24px]', 'w-full', 'text-left', 'cursor-pointer')}>
+                    <span className={cn('pr-[8px]', 'font-mont', 'font-semibold', 'text-[#111212]', 'text-[17px]', 'leading-[1.4]')}>
+                      <span className={cn('mr-[12px]', 'font-inter', 'font-normal', 'tabular-nums', 'text-[#999]', 'text-[12px]')}>
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      {item.q}
                     </span>
-                    {item.q}
-                  </span>
-                  <span className={cn('flex', 'flex-shrink-0', 'justify-center', 'items-center', 'mt-[3px]', 'w-[22px]', 'h-[22px]', 'transition-transform', 'duration-300')}
-                    style={{ transform: openIdx === i ? 'rotate(45deg)' : 'none' }}>
-                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                      <path d="M8 1V15M1 8H15" stroke="#111212" strokeWidth="1.5" strokeLinecap="round" />
-                    </svg>
-                  </span>
-                </button>
-                {openIdx === i && (
-                  <p className={cn('pb-[24px]', 'max-w-[680px]', 'font-inter', 'text-[#555]', 'text-[16px]', 'leading-[1.75]')}>{item.a}</p>
-                )}
-              </div>
+                    <span className={cn('flex', 'flex-shrink-0', 'justify-center', 'items-center', 'mt-[3px]', 'w-[22px]', 'h-[22px]', 'transition-transform', 'duration-300')}
+                      style={{ transform: openIdx === i ? 'rotate(45deg)' : 'none' }}>
+                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                        <path d="M8 1V15M1 8H15" stroke="#111212" strokeWidth="1.5" strokeLinecap="round" />
+                      </svg>
+                    </span>
+                  </button>
+                  {openIdx === i && (
+                    <p className={cn('pb-[24px]', 'max-w-[680px]', 'font-inter', 'text-[#555]', 'text-[16px]', 'leading-[1.75]')}>{item.a}</p>
+                  )}
+                </div>
+              </Animate>
             ))}
           </div>
         </div>
       </div>
 
       {/* CTA */}
-      <div className="bg-[#111212] max-w-[1440px] mx-auto rounded-[30px] mb-20">
-        <div className="flex lg:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[30px] py-[96px] w-full max-w-[1440px]">
-          <div className="flex flex-col items-center md:items-items-start gap-[16px] lg:max-w-[500px]">
-            <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">
-              Not sure which service fits?
-            </h2>
-            <p className="font-inter text-[#929296] text-[16px] leading-[24px]">
-              Tell us about your project and we'll recommend the right approach in 48h.
-            </p>
-          </div>
-          <div className="flex md:flex-row flex-col gap-[16px]">
-            <Link href="/contact"
-              className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">
-              Book a call
-            </Link>
-            <Link href="/project-cost-estimation"
-              className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">
-              Get an Project Estimate
-            </Link>
+      <Animate variant="scale-in">
+        <div className="bg-[#111212] max-w-[1440px] mx-auto rounded-[30px] mb-20">
+          <div className="flex lg:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[30px] py-[96px] w-full max-w-[1440px]">
+            <div className="flex flex-col items-center md:items-items-start gap-[16px] lg:max-w-[500px]">
+              <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">Not sure which service fits?</h2>
+              <p className="font-inter text-[#929296] text-[16px] leading-[24px]">Tell us about your project and we'll recommend the right approach in 48h.</p>
+            </div>
+            <div className="flex md:flex-row flex-col gap-[16px]">
+              <Link href="/contact" className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">Book a call</Link>
+              <Link href="/project-cost-estimation" className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">Get an Project Estimate</Link>
+            </div>
           </div>
         </div>
-      </div>
+      </Animate>
 
     </div>
   )

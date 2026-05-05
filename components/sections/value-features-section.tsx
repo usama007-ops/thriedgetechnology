@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { useRef, useEffect, useState } from 'react'
+import { Animate } from '@/components/common/animate'
 
 const FEATURES = [
   {
@@ -43,7 +44,7 @@ function FeatureCard({ feature, index }: { feature: typeof FEATURES[0]; index: n
     if (!el) return
     const obs = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setVisible(true) },
-      { threshold: 0.15 }
+      { threshold: 0, rootMargin: '-10% 0px -8% 0px' }
     )
     obs.observe(el)
     return () => obs.disconnect()
@@ -55,9 +56,9 @@ function FeatureCard({ feature, index }: { feature: typeof FEATURES[0]; index: n
       className="flex flex-col gap-[20px] items-start px-[20px] py-[32px] border-t border-[#D9D9D9] group hover:border-[#111212] transition-all duration-700"
       style={{
         opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : 'translateY(40px)',
-        transitionDelay: `${index * 80}ms`,
-        transition: `opacity 0.6s ease ${index * 80}ms, transform 0.6s ease ${index * 80}ms, border-color 0.3s`,
+        transform: visible ? 'translateY(0) scale(1)' : 'translateY(40px) scale(0.98)',
+        transitionDelay: `${index * 120}ms`,
+        transition: `opacity 0.9s cubic-bezier(0.16,1,0.3,1) ${index * 120}ms, transform 0.9s cubic-bezier(0.16,1,0.3,1) ${index * 120}ms, border-color 0.3s`,
       }}
     >
       <div className="w-[48px] h-[48px] flex items-center justify-center rounded-[12px] bg-[#f7f7f7] group-hover:bg-[#111212] transition-colors duration-300">
@@ -79,18 +80,18 @@ export function ValueFeaturesSection() {
       <div className="w-full max-w-[1440px] lg:py-[96px] py-[64px] lg:px-[36px] px-[16px]">
         <div className="flex lg:flex-row flex-col lg:gap-[64px] gap-[48px] items-start">
 
-          {/* Leftsticky title */}
-          <div className="lg:w-[420px] w-full shrink-0 lg:sticky lg:top-[100px]">
+          {/* Left sticky title */}
+          <Animate variant="slide-left" className="lg:w-[420px] w-full shrink-0 lg:sticky lg:top-[100px]">
             <h2 className="text-black font-mont md:text-[48px] text-[32px] font-semibold md:leading-[56px] leading-[38px]">
               Validate your product idea, impress investors, and get to market faster.
             </h2>
             <p className="mt-[20px] text-[#929296] font-inter text-[16px] leading-[24px]">
               Without wasting time or money on the wrong features.
             </p>
-          </div>
+          </Animate>
 
-          {/* Rightscrolling cards */}
-          <div className="grid sm:grid-cols-2 lg:flex lg:flex-col lg:flex-1 ">
+          {/* Right scrolling cards */}
+          <div className="grid sm:grid-cols-2 lg:flex lg:flex-col lg:flex-1">
             {FEATURES.map((f, i) => (
               <FeatureCard key={f.title} feature={f} index={i} />
             ))}

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRef, useEffect } from "react";
+import { useInView } from "@/hooks/use-in-view";
 
 const brands = [
   "connected-railway","rsvlts","stand","hws","rodeo",
@@ -32,9 +33,17 @@ export default function BrandsMarquee() {
 
   const doubled = [...brands, ...brands];
 
+  const { ref: sectionRef, inView } = useInView({ threshold: 0.1 })
+
   return (
     <div
+      ref={sectionRef}
       className="w-full sm:py-[32px] py-[16px] bg-white overflow-hidden"
+      style={{
+        opacity: inView ? 1 : 0,
+        transform: inView ? 'translateY(0)' : 'translateY(32px)',
+        transition: 'opacity 0.7s ease, transform 0.7s cubic-bezier(0.22,1,0.36,1)',
+      }}
       onMouseEnter={() => { pausedRef.current = true }}
       onMouseLeave={() => { pausedRef.current = false }}
     >

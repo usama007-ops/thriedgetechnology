@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
+import { Animate } from '@/components/common/animate'
 
 const PILLARS = [
   {
@@ -24,21 +25,25 @@ export default function ValuePropositionSection() {
     <section className="bg-[#111212] w-full overflow-hidden">
       <div className="mx-auto px-4 md:px-9 py-20 lg:py-28 max-w-[1440px]">
 
-        {/* Top row label + big question */}
+        {/* Top row */}
         <div className="flex flex-col gap-6 pb-16 border-white/10 border-b">
-          <span className="font-inter font-semibold text-[11px] text-white/50 uppercase tracking-[0.2em]">
-            Every project starts with one question
-          </span>
-          <h2 className="max-w-[900px] font-mont font-bold text-[40px] text-white md:text-[64px] lg:text-[80px] leading-none">
-            What&apos;s the maximum value we can contribute?
-          </h2>
+          <Animate variant="fade-up">
+            <span className="font-inter font-semibold text-[11px] text-white/50 uppercase tracking-[0.2em]">
+              Every project starts with one question
+            </span>
+          </Animate>
+          <Animate variant="blur-in" delay={100}>
+            <h2 className="max-w-[900px] font-mont font-bold text-[40px] text-white md:text-[64px] lg:text-[80px] leading-none">
+              What&apos;s the maximum value we can contribute?
+            </h2>
+          </Animate>
         </div>
 
-        {/* Middle row statement + pillars */}
+        {/* Middle row */}
         <div className="flex md:flex-row flex-col gap-12 md:gap-20 pt-16">
 
-          {/* Left sticky statement */}
-          <div className="flex flex-col gap-6 md:w-[380px] shrink-0">
+          {/* Left */}
+          <Animate variant="slide-left" delay={80} className="flex flex-col gap-6 md:w-[380px] shrink-0">
             <p className="font-mont font-semibold text-[24px] text-white md:text-[32px] leading-tight">
               We build software that builds your bottom line.
             </p>
@@ -50,20 +55,22 @@ export default function ValuePropositionSection() {
               Get to know us
               <ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 duration-300" />
             </Link>
-          </div>
+          </Animate>
 
           {/* Right pillars */}
-          <div className="flex flex-col flex-1 ">
-            {PILLARS.map((p) => (
-              <div key={p.number} className="group flex gap-6 py-7">
-                <span className="pt-1 w-6 font-inter tabular-nums text-[13px] text-white/20 shrink-0">{p.number}</span>
-                <div className="flex flex-col gap-2">
-                  <h3 className="font-mont font-semibold text-[18px] text-white group-hover:text-white/80 transition-colors duration-200">
-                    {p.title}
-                  </h3>
-                  <p className="font-inter text-[16px] text-white/50 leading-6">{p.body}</p>
+          <div className="flex flex-col flex-1">
+            {PILLARS.map((p, i) => (
+              <Animate key={p.number} variant="fade-up" delay={i * 120 + 160}>
+                <div className="group flex gap-6 py-7 border-b border-white/5 last:border-0">
+                  <span className="pt-1 w-6 font-inter tabular-nums text-[13px] text-white/20 shrink-0">{p.number}</span>
+                  <div className="flex flex-col gap-2">
+                    <h3 className="font-mont font-semibold text-[18px] text-white group-hover:text-white/80 transition-colors duration-200">
+                      {p.title}
+                    </h3>
+                    <p className="font-inter text-[16px] text-white/50 leading-6">{p.body}</p>
+                  </div>
                 </div>
-              </div>
+              </Animate>
             ))}
           </div>
         </div>

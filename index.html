@@ -1,0 +1,1566 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>YallaSwim — Swimming Gear & Classes · Rabat, Morocco</title>
+<meta name="description" content="Morocco's premier swimming gear store and coaching academy. Club Wifaq Rabat, Wi Pool.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════
+   TOKENS
+════════════════════════════════════ */
+:root{
+  --black:#0a0a0a;
+  --ink:#111111;
+  --ink2:#2a2a2a;
+  --mid:#6b6b6b;
+  --muted:#9a9a9a;
+  --border:#e2e2e2;
+  --border2:#cacaca;
+  --off:#f6f6f6;
+  --white:#ffffff;
+  --r:14px;
+  --rm:8px;
+  --ff:'Barlow Condensed',sans-serif;
+  --fb:'Barlow',sans-serif;
+  --ease:cubic-bezier(.4,0,.2,1);
+  --t:.32s;
+  --shadow:0 2px 16px rgba(0,0,0,0.07);
+  --shadow-lg:0 12px 48px rgba(0,0,0,0.13);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--fb);color:var(--ink);background:var(--white);overflow-x:hidden;line-height:1.6}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--fb);cursor:pointer}
+input,select,textarea{font-family:var(--fb)}
+
+/* ════════════════════════════════════
+   UTILITY
+════════════════════════════════════ */
+.container{max-width:1140px;margin:0 auto;padding:0 24px}
+
+/* Reveal animations */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.rl{opacity:0;transform:translateX(-24px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.rr{opacity:0;transform:translateX(24px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.rv.in,.rl.in,.rr.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+
+/* ════════════════════════════════════
+   LOGO SVG — defined once as a <defs> symbol, reused everywhere
+   Swimmer viewed from side: diagonal body ramp rising left-to-right,
+   arches over, sharp blade tail sweeps right. Head circle right of arch.
+   White teardrop cutout = water/negative space inside the arch.
+════════════════════════════════════ */
+
+/* ════════════════════════════════════
+   NAV
+════════════════════════════════════ */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  padding:18px 0;transition:all var(--t) var(--ease);
+}
+#nav.solid{
+  background:rgba(255,255,255,0.96);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  box-shadow:var(--shadow);padding:12px 0;
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-logo{display:block;line-height:0}
+.nav-logo svg{height:44px;width:auto;display:block}
+
+/* Logo color switching — nav starts transparent (white logo) → scrolled (black logo) */
+.logo-body,.logo-text-path{fill:white;transition:fill var(--t) var(--ease)}
+.logo-cutout{fill:var(--black);transition:fill var(--t) var(--ease)}
+#nav.solid .logo-body,#nav.solid .logo-text-path{fill:var(--black)}
+#nav.solid .logo-cutout{fill:white}
+
+/* Footer always white-on-dark */
+.logo-white .logo-body,.logo-white .logo-text-path{fill:white}
+.logo-white .logo-cutout{fill:var(--black)}
+
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+.nav-links a{
+  font-size:13px;font-weight:500;letter-spacing:.4px;
+  color:rgba(255,255,255,0.82);transition:color var(--t);position:relative;
+}
+#nav.solid .nav-links a{color:var(--ink2)}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-3px;left:0;right:0;
+  height:1.5px;background:currentColor;
+  transform:scaleX(0);transform-origin:right;
+  transition:transform .28s var(--ease);
+}
+.nav-links a:hover{color:var(--white)}
+#nav.solid .nav-links a:hover{color:var(--black)}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+
+.nav-right{display:flex;align-items:center;gap:10px}
+.lang-btn{
+  padding:6px 14px;border-radius:100px;border:1.5px solid rgba(255,255,255,0.3);
+  background:transparent;color:rgba(255,255,255,.8);
+  font-size:11px;font-weight:700;letter-spacing:1.5px;
+  transition:all var(--t);white-space:nowrap;
+}
+#nav.solid .lang-btn{border-color:var(--border2);color:var(--ink2)}
+.lang-btn:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.6);color:white}
+#nav.solid .lang-btn:hover{background:var(--ink);color:white;border-color:var(--ink)}
+
+.nav-cta{
+  padding:9px 22px;border-radius:100px;border:none;
+  background:white;color:var(--ink);
+  font-size:13px;font-weight:700;letter-spacing:.3px;
+  transition:all var(--t);white-space:nowrap;
+}
+#nav.solid .nav-cta{background:var(--ink);color:white}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(255,255,255,.2)}
+#nav.solid .nav-cta:hover{box-shadow:0 4px 16px rgba(0,0,0,.15)}
+
+.ham{
+  display:none;flex-direction:column;gap:5px;
+  background:none;border:none;padding:4px;
+}
+.ham span{
+  display:block;width:24px;height:2px;background:white;
+  border-radius:2px;transition:all var(--t) var(--ease);
+}
+#nav.solid .ham span{background:var(--ink)}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* Mobile drawer */
+#mob{
+  position:fixed;inset:0;z-index:800;
+  background:var(--white);
+  transform:translateX(100%);transition:transform .4s var(--ease);
+  display:flex;flex-direction:column;
+  padding:90px 32px 48px;gap:0;
+}
+#mob.open{transform:none}
+.mob-a{
+  font-family:var(--ff);font-size:40px;font-weight:800;
+  color:var(--ink);padding:14px 0;
+  border-bottom:1px solid var(--border);
+  transition:color var(--t);display:block;
+  letter-spacing:.5px;
+}
+.mob-a:hover{color:var(--muted)}
+.mob-foot{margin-top:auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+
+/* ════════════════════════════════════
+   HERO
+════════════════════════════════════ */
+#hero{
+  min-height:100vh;background:var(--black);
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 65% 45%,rgba(255,255,255,.025) 0%,transparent 65%);
+}
+/* Animated pool lane lines */
+.lanes{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:28px;padding-bottom:0;pointer-events:none}
+.lane{height:1px;background:rgba(255,255,255,.06);transform-origin:left center;animation:lp 5s ease-in-out infinite}
+.lane:nth-child(2){animation-delay:.5s;opacity:.7}
+.lane:nth-child(3){animation-delay:1s;opacity:.5}
+.lane:nth-child(4){animation-delay:1.5s;opacity:.35}
+.lane:nth-child(5){animation-delay:2s;opacity:.2}
+@keyframes lp{0%,100%{transform:scaleX(1)}50%{transform:scaleX(1.04)}}
+
+.hero-inner{
+  position:relative;z-index:2;
+  padding:130px 24px 90px;
+  max-width:1140px;margin:0 auto;width:100%;
+}
+.hero-eyebrow{
+  display:flex;align-items:center;gap:12px;
+  font-size:11px;font-weight:600;letter-spacing:3px;
+  text-transform:uppercase;color:rgba(255,255,255,.4);
+  margin-bottom:22px;
+}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:rgba(255,255,255,.25)}
+
+.h1{
+  font-family:var(--ff);
+  font-size:clamp(68px,12vw,148px);
+  font-weight:900;line-height:.89;
+  color:white;letter-spacing:-1px;
+  margin-bottom:28px;
+}
+.h1 s{text-decoration:none;color:rgba(255,255,255,.15)}
+
+.hero-sub{
+  font-size:clamp(15px,1.8vw,18px);font-weight:300;
+  color:rgba(255,255,255,.55);max-width:500px;
+  line-height:1.75;margin-bottom:44px;
+}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:68px}
+
+.btn-w{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 30px;border-radius:100px;border:none;
+  background:white;color:var(--ink);
+  font-size:14px;font-weight:700;letter-spacing:.2px;
+  transition:all var(--t);cursor:pointer;
+}
+.btn-w:hover{background:var(--off);transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,255,255,.12)}
+.btn-outline-w{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 26px;border-radius:100px;
+  border:1.5px solid rgba(255,255,255,.22);
+  background:transparent;color:rgba(255,255,255,.7);
+  font-size:14px;font-weight:500;
+  transition:all var(--t);cursor:pointer;
+}
+.btn-outline-w:hover{border-color:rgba(255,255,255,.6);color:white}
+
+.hero-stats{display:flex;gap:0;flex-wrap:wrap}
+.hs{padding:18px 32px 18px 0;margin-right:32px;border-right:1px solid rgba(255,255,255,.08)}
+.hs:last-child{border:none;margin:0}
+.hs-n{font-family:var(--ff);font-size:42px;font-weight:800;color:white;line-height:1;letter-spacing:-1px}
+.hs-l{font-size:11px;color:rgba(255,255,255,.35);letter-spacing:.5px;margin-top:4px}
+
+.scroll-cue{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  opacity:.35;animation:scf 2.5s ease-in-out infinite;
+}
+.scroll-cue span{font-size:10px;color:white;letter-spacing:2px;text-transform:uppercase}
+.sm{width:20px;height:32px;border:1.5px solid rgba(255,255,255,.4);border-radius:10px;display:flex;justify-content:center;padding-top:5px}
+.sd{width:3px;height:5px;background:white;border-radius:2px;animation:sdb 2s ease-in-out infinite}
+@keyframes sdb{0%,100%{transform:translateY(0);opacity:1}75%{transform:translateY(9px);opacity:0}}
+@keyframes scf{0%,100%{opacity:.3;transform:translateX(-50%) translateY(0)}50%{opacity:.5;transform:translateX(-50%) translateY(-5px)}}
+
+/* ════════════════════════════════════
+   MARQUEE
+════════════════════════════════════ */
+.marq{
+  background:#f6f6f6;border-top:1px solid #e2e2e2;
+  border-bottom:1px solid #e2e2e2;
+  padding:13px 0;overflow:hidden;
+}
+.marq-track{display:flex;white-space:nowrap;animation:mq 30s linear infinite}
+.marq-track:hover{animation-play-state:paused}
+.mi{
+  font-family:'Barlow Condensed';font-size:12px;font-weight:700;
+  letter-spacing:2.5px;text-transform:uppercase;
+  color:"#9a9a9a";padding:0 24px;
+  display:inline-flex;align-items:center;
+}
+.mi::after{content:'·';margin-left:24px;opacity:.4}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ════════════════════════════════════
+   SHARED SECTION STYLES
+════════════════════════════════════ */
+section{padding:92px 0}
+.eyebrow{
+  font-size:11px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:var(--muted);
+  display:flex;align-items:center;gap:12px;margin-bottom:14px;
+}
+.eyebrow::before{content:'';width:24px;height:1.5px;background:var(--border2);flex-shrink:0}
+.eyebrow-light{color:rgba(255,255,255,.3)}
+.eyebrow-light::before{background:rgba(255,255,255,.15)}
+.sh{
+  font-family:var(--ff);
+  font-size:clamp(42px,5.5vw,68px);
+  font-weight:800;line-height:.92;
+  letter-spacing:-.3px;color:var(--ink);
+  margin-bottom:18px;
+}
+.sh-w{color:white}
+.sp{font-size:16px;font-weight:300;color:var(--mid);line-height:1.75;max-width:520px}
+
+/* ════════════════════════════════════
+   ABOUT
+════════════════════════════════════ */
+#about{background:white}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.about-card{
+  background:var(--ink);border-radius:var(--r);
+  padding:44px 40px;overflow:hidden;
+  position:relative;min-height:340px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+}
+/* Watermark swimmer icon in card background */
+.card-wm{position:absolute;top:-16px;right:-24px;opacity:.05;pointer-events:none}
+.card-wm svg{width:260px;height:auto}
+.card-tag{
+  display:inline-block;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);border-radius:100px;
+  padding:5px 14px;font-size:11px;font-weight:700;
+  letter-spacing:2px;color:rgba(255,255,255,.5);
+  margin-bottom:18px;
+}
+.card-h{font-family:var(--ff);font-size:38px;font-weight:800;color:white;line-height:1.02;letter-spacing:-.2px;margin-bottom:10px}
+.card-p{font-size:13px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.7}
+.about-float{
+  position:absolute;bottom:-18px;right:-18px;
+  background:white;border:1px solid var(--border);
+  border-radius:var(--r);padding:18px 22px;
+  box-shadow:var(--shadow-lg);text-align:center;min-width:130px;
+}
+.afl-n{font-family:var(--ff);font-size:18px;font-weight:800;color:var(--ink);line-height:1}
+.afl-l{font-size:11px;color:var(--mid);font-weight:500;margin-top:4px;letter-spacing:.3px}
+
+.afs{margin-top:36px;display:flex;flex-direction:column;gap:22px}
+.af{display:flex;gap:14px;align-items:flex-start}
+.af-ic{
+  width:38px;height:38px;border-radius:var(--rm);
+  background:var(--off);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;flex-shrink:0;
+}
+.af h4{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px}
+.af p{font-size:13px;color:var(--mid);line-height:1.6}
+
+/* ════════════════════════════════════
+   SHOP
+════════════════════════════════════ */
+#shop{background:var(--off)}
+.shop-top{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:20px}
+.ftabs{display:flex;gap:6px;flex-wrap:wrap}
+.ft{
+  padding:7px 16px;border-radius:100px;
+  border:1.5px solid var(--border);background:white;
+  font-size:12px;font-weight:700;letter-spacing:.5px;
+  color:var(--mid);transition:all var(--t);
+}
+.ft.on,.ft:hover{background:var(--ink);color:white;border-color:var(--ink)}
+
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
+.pc{
+  background:white;border-radius:var(--r);
+  border:1px solid var(--border);overflow:hidden;
+  transition:all var(--t) var(--ease);
+}
+.pc:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--border2)}
+.pc-img{
+  height:210px;display:flex;align-items:center;
+  justify-content:center;font-size:52px;
+  position:relative;overflow:hidden;
+}
+.pc-bdg{
+  position:absolute;top:10px;left:10px;
+  background:var(--ink);color:white;
+  font-size:10px;font-weight:700;letter-spacing:1px;
+  padding:3px 9px;border-radius:4px;text-transform:uppercase;
+}
+.pc-info{padding:16px}
+.pc-cat{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:4px}
+.pc-name{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:5px;line-height:1.3}
+.pc-desc{font-size:12px;color:var(--mid);line-height:1.55;margin-bottom:12px}
+.pc-szs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:12px}
+.sz{
+  width:26px;height:26px;border-radius:5px;
+  border:1.5px solid var(--border);
+  font-size:9px;font-weight:700;color:var(--mid);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all var(--t);
+}
+.sz:hover,.sz.on{background:var(--ink);color:white;border-color:var(--ink)}
+.pc-foot{display:flex;align-items:center;justify-content:space-between}
+.pc-price{font-family:var(--ff);font-size:24px;font-weight:700;color:var(--ink);letter-spacing:-.3px}
+.pc-price small{font-family:var(--fb);font-size:11px;color:var(--muted);font-weight:400;margin-left:1px}
+.pc-add{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--ink);color:white;border:none;
+  font-size:18px;display:flex;align-items:center;justify-content:center;
+  transition:all var(--t);
+}
+.pc-add:hover{background:var(--ink2);transform:scale(1.1)}
+.pc-add.done{background:#1a7a1a;font-size:13px}
+
+/* ════════════════════════════════════
+   CLASSES
+════════════════════════════════════ */
+#classes{background:var(--ink)}
+.cg{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+.cc{
+  border:1px solid rgba(255,255,255,.07);border-radius:var(--r);
+  padding:32px 26px;transition:all var(--t) var(--ease);
+  position:relative;overflow:hidden;
+}
+.cc::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:white;transform:scaleX(0);transform-origin:left;
+  transition:transform var(--t) var(--ease);
+}
+.cc:hover::before{transform:scaleX(1)}
+.cc:hover{background:rgba(255,255,255,.04);transform:translateY(-3px)}
+.cc-em{font-size:32px;margin-bottom:18px;display:block}
+.cc-n{font-family:var(--ff);font-size:24px;font-weight:700;color:white;margin-bottom:9px;letter-spacing:.3px;line-height:1.1}
+.cc-d{font-size:13px;color:rgba(255,255,255,.4);line-height:1.7;font-weight:300;margin-bottom:20px}
+.cc-tags{display:flex;gap:5px;flex-wrap:wrap}
+.cc-t{
+  font-size:10px;font-weight:700;letter-spacing:.5px;
+  padding:4px 11px;border-radius:100px;
+  background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+/* ════════════════════════════════════
+   PRICING
+════════════════════════════════════ */
+#pricing{background:white}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px;align-items:start}
+.prc{border-radius:var(--r);border:1.5px solid var(--border);padding:34px 28px;transition:all var(--t)}
+.prc:hover:not(.prf){transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.prf{background:var(--ink);border-color:var(--ink);transform:scale(1.03)}
+.prf:hover{transform:scale(1.04);box-shadow:0 20px 56px rgba(0,0,0,.22)}
+.pr-badge{display:inline-block;background:white;color:var(--ink);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 11px;border-radius:4px;margin-bottom:22px}
+.prf .pr-badge{background:rgba(255,255,255,.12);color:rgba(255,255,255,.7)}
+.pr-n{font-family:var(--ff);font-size:26px;font-weight:700;color:var(--ink);letter-spacing:.3px;margin-bottom:4px}
+.prf .pr-n{color:white}
+.pr-p{font-family:var(--ff);font-size:50px;font-weight:800;color:var(--ink);line-height:1;letter-spacing:-1px;margin-bottom:3px}
+.prf .pr-p{color:white}
+.pr-per{font-size:12px;color:var(--muted);margin-bottom:22px}
+.prf .pr-per{color:rgba(255,255,255,.45)}
+.pr-d{font-size:13px;color:var(--mid);margin-bottom:24px;line-height:1.6}
+.prf .pr-d{color:rgba(255,255,255,.45)}
+.pr-ul{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:28px}
+.pr-ul li{font-size:13px;color:var(--ink2);display:flex;align-items:center;gap:9px}
+.prf .pr-ul li{color:rgba(255,255,255,.7)}
+.pr-ul li::before{
+  content:'';width:17px;height:17px;border-radius:50%;flex-shrink:0;
+  background-color:var(--off);border:1.5px solid var(--border2);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M2.5 7l3 3 6-6' fill='none' stroke='%230a0a0a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size:10px;background-repeat:no-repeat;background-position:center;
+}
+.prf .pr-ul li::before{
+  background-color:rgba(255,255,255,.1);border-color:rgba(255,255,255,.18);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M2.5 7l3 3 6-6' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+.pr-ul li.na{opacity:.35}
+.pr-ul li.na::before{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M3.5 3.5l7 7M10.5 3.5l-7 7' fill='none' stroke='%236b6b6b' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+.pr-btn{
+  display:block;width:100%;text-align:center;
+  padding:12px;border-radius:100px;font-size:13px;font-weight:700;
+  letter-spacing:.2px;border:1.5px solid var(--border2);
+  background:transparent;color:var(--ink);cursor:pointer;
+  transition:all var(--t);
+}
+.pr-btn:hover{background:var(--ink);color:white;border-color:var(--ink)}
+.pr-btn-inv{background:white;color:var(--ink);border-color:white}
+.pr-btn-inv:hover{background:var(--off);border-color:var(--off)}
+
+/* ════════════════════════════════════
+   BOOKING
+════════════════════════════════════ */
+#booking{background:var(--off);border-top:1px solid var(--border)}
+.bk-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:68px;align-items:start}
+.bk-info .sp{margin-bottom:36px}
+.bk-items{display:flex;flex-direction:column;gap:18px}
+.bki{display:flex;gap:14px;align-items:flex-start}
+.bki-ic{
+  width:40px;height:40px;border-radius:var(--rm);
+  background:var(--ink);color:white;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;flex-shrink:0;
+}
+.bki-t{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px}
+.bki-s{font-size:13px;color:var(--mid);line-height:1.5}
+.bki-s a{color:var(--ink2);font-weight:500}
+.bki-s a:hover{text-decoration:underline}
+
+/* Form card */
+.bform{background:white;border-radius:var(--r);border:1px solid var(--border);box-shadow:var(--shadow-lg);overflow:hidden}
+.bfh{background:var(--ink);padding:24px 28px;display:flex;align-items:center;justify-content:space-between}
+.bfh-t{font-family:var(--ff);font-size:20px;font-weight:700;color:white;letter-spacing:.3px}
+.step-dots{display:flex;gap:5px}
+.sdot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.18);transition:background var(--t)}
+.sdot.on{background:white}
+
+.bfb{padding:28px}
+.fstep{display:none;flex-direction:column;gap:16px}
+.fstep.active{display:flex}
+.fs-t{font-family:var(--ff);font-size:17px;font-weight:700;color:var(--ink);letter-spacing:.2px}
+.fs-s{font-size:13px;color:var(--mid);margin-top:-8px;line-height:1.55}
+
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.fg input,.fg select,.fg textarea{
+  width:100%;padding:11px 14px;
+  border:1.5px solid var(--border);border-radius:var(--rm);
+  font-size:14px;color:var(--ink);background:white;
+  outline:none;transition:border-color var(--t);
+  -webkit-appearance:none;appearance:none;
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--ink)}
+.fg textarea{height:82px;resize:none;line-height:1.6}
+.fg input[readonly]{background:var(--off);color:var(--muted);cursor:default}
+.fg-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fg select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='%236b6b6b' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 11px center;background-size:15px;
+  padding-right:34px;cursor:pointer;
+}
+
+/* Class selector options */
+.copts{display:flex;flex-direction:column;gap:8px}
+.copt{
+  border:1.5px solid var(--border);border-radius:var(--rm);
+  padding:12px 14px;cursor:pointer;
+  display:flex;align-items:center;gap:12px;
+  transition:all var(--t);
+}
+.copt:hover{border-color:var(--border2);background:var(--off)}
+.copt.sel{border-color:var(--ink);background:var(--ink)}
+.copt.sel .co-n{color:white}
+.copt.sel .co-s{color:rgba(255,255,255,.45)}
+.copt.sel .co-p{color:rgba(255,255,255,.65)}
+.co-radio{
+  width:16px;height:16px;border-radius:50%;
+  border:2px solid var(--border2);background:white;
+  flex-shrink:0;transition:all var(--t);
+  display:flex;align-items:center;justify-content:center;
+}
+.copt.sel .co-radio{border-color:white;background:white}
+.co-radio::after{content:'';width:7px;height:7px;border-radius:50%;background:var(--ink);opacity:0;transition:opacity var(--t)}
+.copt.sel .co-radio::after{opacity:1}
+.co-info{flex:1}
+.co-n{font-size:13px;font-weight:600;color:var(--ink);transition:color var(--t)}
+.co-s{font-size:11px;color:var(--mid);margin-top:1px;transition:color var(--t)}
+.co-p{font-family:var(--ff);font-size:16px;font-weight:700;color:var(--ink);transition:color var(--t);white-space:nowrap}
+
+/* Nav buttons */
+.bfnav{display:flex;gap:10px;justify-content:space-between;margin-top:4px}
+.btn-back{
+  padding:11px 22px;border:1.5px solid var(--border);
+  border-radius:100px;background:transparent;color:var(--mid);
+  font-size:13px;font-weight:600;transition:all var(--t);
+}
+.btn-back:hover{border-color:var(--ink);color:var(--ink)}
+.btn-next{
+  flex:1;padding:12px;border:none;border-radius:100px;
+  background:var(--ink);color:white;
+  font-size:13px;font-weight:700;letter-spacing:.2px;
+  transition:all var(--t);
+}
+.btn-next:hover{background:var(--ink2);transform:translateY(-1px)}
+
+/* Summary */
+.sum-table{border:1.5px solid var(--border);border-radius:var(--rm);overflow:hidden}
+.sum-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:11px 14px;font-size:13px;border-bottom:1px solid var(--border);
+}
+.sum-row:last-child{border:none;background:var(--off);font-size:14px}
+.sum-k{color:var(--mid);font-weight:500}
+.sum-v{color:var(--ink);font-weight:600;text-align:right;max-width:60%}
+
+/* Success */
+.success{
+  display:none;flex-direction:column;align-items:center;
+  gap:14px;text-align:center;padding:16px 0 8px;
+}
+.success.show{display:flex}
+.s-ic{
+  width:60px;height:60px;border-radius:50%;
+  background:var(--off);border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;font-size:26px;
+}
+.s-h{font-family:var(--ff);font-size:26px;font-weight:700;color:var(--ink);letter-spacing:.3px}
+.s-p{font-size:13px;color:var(--mid);line-height:1.65;max-width:320px}
+
+/* ════════════════════════════════════
+   TESTIMONIALS
+════════════════════════════════════ */
+#testimonials{background:white}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+.tc{
+  background:var(--off);border:1px solid var(--border);
+  border-radius:var(--r);padding:26px 22px;transition:all var(--t);
+}
+.tc:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--border2)}
+.tc-st{font-size:11px;letter-spacing:2px;color:var(--ink);margin-bottom:12px}
+.tc-txt{font-size:14px;font-style:italic;color:var(--ink2);line-height:1.75;margin-bottom:18px}
+.tc-auth{display:flex;align-items:center;gap:10px}
+.tc-av{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--ink);display:flex;align-items:center;justify-content:center;
+  font-family:var(--ff);font-size:14px;font-weight:700;
+  color:white;letter-spacing:.5px;flex-shrink:0;
+}
+.tc-n{font-size:13px;font-weight:600;color:var(--ink)}
+.tc-h{font-size:11px;color:var(--muted);margin-top:1px}
+
+/* ════════════════════════════════════
+   BLOG
+════════════════════════════════════ */
+#blog{background:var(--ink)}
+.bl-head{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:48px}
+.bl-more{font-size:13px;font-weight:600;color:rgba(255,255,255,.35);transition:color var(--t)}
+.bl-more:hover{color:white}
+.bl-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:18px}
+.bc{border-radius:var(--r);overflow:hidden;cursor:pointer;transition:transform var(--t)}
+.bc:hover{transform:translateY(-3px)}
+.bc-img{
+  height:170px;display:flex;align-items:center;
+  justify-content:center;font-size:42px;
+}
+.bc.feat .bc-img{height:250px}
+.bi1{background:linear-gradient(145deg,#1a1a1a,#2e2e2e)}
+.bi2{background:linear-gradient(145deg,#222,#333)}
+.bi3{background:linear-gradient(145deg,#141414,#242424)}
+.bc-body{
+  padding:20px 18px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
+  border-top:none;border-radius:0 0 var(--r) var(--r);
+}
+.bc-tag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:7px}
+.bc-t{font-size:14px;font-weight:600;color:white;line-height:1.4}
+.bc.feat .bc-t{font-size:17px}
+.bc-date{font-size:11px;color:rgba(255,255,255,.22);margin-top:9px}
+
+/* ════════════════════════════════════
+   FOOTER
+════════════════════════════════════ */
+footer{background:#070707;padding:68px 0 36px}
+.fg-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.06)}
+.fl-logo{margin-bottom:14px}
+.fl-logo svg{height:30px;width:auto}
+.fl-p{font-size:13px;color:rgba(255,255,255,.3);line-height:1.7;max-width:240px;font-weight:300;margin-bottom:22px}
+.socials{display:flex;gap:8px}
+.soc{
+  width:32px;height:32px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;color:rgba(255,255,255,.4);
+  transition:all var(--t);
+}
+.soc:hover{background:rgba(255,255,255,.08);color:white;border-color:rgba(255,255,255,.25)}
+.fc h5{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:16px}
+.fc ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.fc ul a{font-size:13px;color:rgba(255,255,255,.28);font-weight:300;transition:color var(--t)}
+.fc ul a:hover{color:rgba(255,255,255,.65)}
+.fbot{padding-top:26px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:12px;color:rgba(255,255,255,.18)}
+.fbot a{color:rgba(255,255,255,.28);transition:color var(--t)}
+.fbot a:hover{color:rgba(255,255,255,.55)}
+
+/* WA */
+.wa{
+  position:fixed;bottom:22px;right:22px;z-index:800;
+  width:50px;height:50px;border-radius:50%;
+  background:#25D366;color:white;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;box-shadow:0 4px 18px rgba(37,211,102,.35);
+  transition:all var(--t);
+}
+.wa:hover{transform:scale(1.1);box-shadow:0 6px 24px rgba(37,211,102,.45)}
+
+/* ════════════════════════════════════
+   LANGUAGE SYSTEM
+════════════════════════════════════ */
+[data-fr]{display:none!important}
+body.fr [data-en]{display:none!important}
+body.fr [data-fr]{display:block!important}
+body.fr span[data-en]{display:none!important}
+body.fr span[data-fr]{display:inline!important}
+body.fr div[data-en]{display:none!important}
+body.fr div[data-fr]{display:flex!important}
+body.fr li[data-en]{display:none!important}
+body.fr li[data-fr]{display:flex!important}
+body.fr .mi[data-en]{display:none!important}
+body.fr .mi[data-fr]{display:inline-flex!important}
+
+/* ════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════ */
+@media(max-width:960px){
+  .nav-links,.nav-cta{display:none}
+  .ham{display:flex}
+  .about-grid,.bk-grid{grid-template-columns:1fr;gap:36px}
+  .cg,.pg,.tgrid{grid-template-columns:1fr}
+  .prf{transform:none}
+  .fg-grid{grid-template-columns:1fr 1fr;gap:28px}
+  .bl-grid{grid-template-columns:1fr}
+  .about-float{position:relative;bottom:auto;right:auto;display:inline-block;margin-top:14px}
+}
+@media(max-width:600px){
+  section{padding:64px 0}
+  .hero-inner{padding:108px 20px 72px}
+  .h1{font-size:60px}
+  .hs{padding:14px 20px 14px 0;margin-right:20px}
+  .hs-n{font-size:34px}
+  .fg-grid{grid-template-columns:1fr}
+  .fbot{flex-direction:column;text-align:center}
+  .fg-2{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════ REUSABLE LOGO SVG SYMBOL ════════
+     Accurate swimmer: diagonal body ramp left→right, smooth arch,
+     sharp swept tail right, white teardrop cutout inside arch, 
+     head circle at right of arch peak.
+     Black fill = logo-body + logo-text | White = logo-cutout
+-->
+<svg width="0" height="0" style="position:absolute" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="logo-dark" viewBox="0 0 340 140">
+      <!--
+        Outer swimmer silhouette (black):
+        - Starts bottom-left corner as a steep wedge/ramp
+        - Curves smoothly to arch peak at ~center-right
+        - Extends as sharp blade tail sweeping far right, tapering to point
+        - Bottom closes across to start
+      -->
+      <path class="logo-body" d="M 10 120 L 148 16 C 162 6, 192 2, 218 8 C 248 15, 262 38, 256 62 C 252 78, 240 92, 228 98 L 318 58 C 332 52, 340 56, 340 64 C 340 70, 334 78, 318 84 L 220 118 C 208 124, 190 128, 170 124 C 140 118, 118 96, 110 76 Z" fill="white"/>
+      <path d="M 118 112 C 122 88, 138 62, 162 48 C 178 38, 200 36, 216 46 C 232 56, 236 76, 228 94 C 222 108, 208 116, 190 118 C 168 121, 136 116, 118 112 Z" fill="#070707"/>
+      <circle cx="152" cy="65" r="22" fill="white"/>
+      <text x="160" y="115"
+        font-family="'Barlow Condensed', 'Arial Narrow', sans-serif"
+        font-weight="900" font-size="30"
+        letter-spacing="1.5" text-anchor="middle"
+        fill="white">YALLAHSWIM</text>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ════════ NAV ════════ -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="YallaSwim">
+        <svg viewBox="0 0 340 140" height="42" width="auto" xmlns="http://www.w3.org/2000/svg">
+          <path class="logo-body" d="M 10 120 L 148 16 C 162 6, 192 2, 218 8 C 248 15, 262 38, 256 62 C 252 78, 240 92, 228 98 L 318 58 C 332 52, 340 56, 340 64 C 340 70, 334 78, 318 84 L 220 118 C 208 124, 190 128, 170 124 C 140 118, 118 96, 110 76 Z" fill="white"/>
+          <path class="logo-cutout" d="M 118 112 C 122 88, 138 62, 162 48 C 178 38, 200 36, 216 46 C 232 56, 236 76, 228 94 C 222 108, 208 116, 190 118 C 168 121, 136 116, 118 112 Z" fill="#0a0a0a"/>
+          <circle class="logo-body" cx="226" cy="82" r="30" fill="white"/>
+          <text class="logo-text-path" x="170" y="135"
+            font-family="'Barlow Condensed','Arial Narrow',sans-serif"
+            font-weight="900" font-size="32"
+            letter-spacing="2" text-anchor="middle"
+            fill="white">YALLAHSWIM</text>
+        </svg>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about"><span data-en>About</span><span data-fr>À propos</span></a></li>
+        <li><a href="#shop"><span data-en>Shop</span><span data-fr>Boutique</span></a></li>
+        <li><a href="#classes"><span data-en>Classes</span><span data-fr>Cours</span></a></li>
+        <li><a href="#pricing"><span data-en>Pricing</span><span data-fr>Tarifs</span></a></li>
+        <li><a href="#booking"><span data-en>Book</span><span data-fr>Réserver</span></a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="lang-btn" onclick="toggleLang()" id="langBtn">FR</button>
+        <button class="nav-cta" onclick="scrollTo('booking')">
+          <span data-en>Book a Class</span><span data-fr>Réserver</span>
+        </button>
+        <button class="ham" id="ham" onclick="toggleMob()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Drawer -->
+<div id="mob">
+  <a class="mob-a" href="#about" onclick="closeMob()"><span data-en>About</span><span data-fr>À propos</span></a>
+  <a class="mob-a" href="#shop" onclick="closeMob()"><span data-en>Shop</span><span data-fr>Boutique</span></a>
+  <a class="mob-a" href="#classes" onclick="closeMob()"><span data-en>Classes</span><span data-fr>Cours</span></a>
+  <a class="mob-a" href="#pricing" onclick="closeMob()"><span data-en>Pricing</span><span data-fr>Tarifs</span></a>
+  <a class="mob-a" href="#booking" onclick="closeMob()"><span data-en>Book Now</span><span data-fr>Réserver</span></a>
+  <div class="mob-foot">
+    <button class="lang-btn" style="border-color:var(--border2);color:var(--ink2)" onclick="toggleLang();closeMob()">
+      <span id="mobLangLabel">FR</span>
+    </button>
+    <span style="font-size:13px;color:var(--muted)">+212 6 60 42 89 96</span>
+  </div>
+</div>
+
+<!-- ════════ HERO ════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="lanes">
+    <div class="lane"></div><div class="lane"></div><div class="lane"></div>
+    <div class="lane"></div><div class="lane"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow rv">
+      <span data-en>Morocco's Premier Swim Academy</span>
+      <span data-fr>Première Académie de Natation du Maroc</span>
+    </div>
+    <h1 class="h1 rv d1">
+      <span data-en>DIVE INTO<br><s>YOUR</s><br>BEST SELF</span>
+      <span data-fr>PLONGEZ<br><s>VERS</s><br>LE SOMMET</span>
+    </h1>
+    <p class="hero-sub rv d2">
+      <span data-en>Premium swimming gear, expert coaching & heated indoor pools — Club Wifaq Rabat, Wi Pool.</span>
+      <span data-fr>Équipement premium, coaching expert & piscines chauffées — Club Wifaq Rabat, Wi Pool.</span>
+    </p>
+    <div class="hero-btns rv d3">
+      <button class="btn-w" onclick="scrollTo('booking')">
+        <span data-en>Book a Class →</span><span data-fr>Réserver un Cours →</span>
+      </button>
+      <button class="btn-outline-w" onclick="scrollTo('shop')">
+        <span data-en>Shop Gear</span><span data-fr>Boutique</span>
+      </button>
+    </div>
+    <div class="hero-stats rv d4">
+      <div class="hs">
+        <div class="hs-n">5+</div>
+        <div class="hs-l"><span data-en>Years Experience</span><span data-fr>Ans d'Expérience</span></div>
+      </div>
+      <div class="hs">
+        <div class="hs-n">200+</div>
+        <div class="hs-l"><span data-en>Swimmers Coached</span><span data-fr>Nageurs Formés</span></div>
+      </div>
+      <div class="hs">
+        <div class="hs-n">3</div>
+        <div class="hs-l"><span data-en>Expert Coaches</span><span data-fr>Coaches Experts</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue">
+    <div class="sm"><div class="sd"></div></div>
+    <span data-en>scroll</span>
+  </div>
+</section>
+
+<!-- ════════ MARQUEE ════════ -->
+<div class="marq" aria-hidden="true">
+  <div class="marq-track">
+    <span class="mi" data-en>Free Delivery Across Morocco</span>
+    <span class="mi" data-en>Club Wifaq Rabat · Wi Pool</span>
+    <span class="mi" data-en>Competition Gear</span>
+    <span class="mi" data-en>Beginner to Advanced</span>
+    <span class="mi" data-en>Kids & Adults Welcome</span>
+    <span class="mi" data-en>Heated Indoor Pool</span>
+    <span class="mi" data-en>Free Delivery Across Morocco</span>
+    <span class="mi" data-en>Club Wifaq Rabat · Wi Pool</span>
+    <span class="mi" data-en>Competition Gear</span>
+    <span class="mi" data-en>Beginner to Advanced</span>
+    <span class="mi" data-en>Kids & Adults Welcome</span>
+    <span class="mi" data-en>Heated Indoor Pool</span>
+  </div>
+</div>
+
+<!-- ════════ ABOUT ════════ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="rl">
+        <div class="about-card">
+          <div class="card-wm">
+            <svg viewBox="0 0 340 140" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 10 120 L 148 16 C 162 6, 192 2, 218 8 C 248 15, 262 38, 256 62 C 252 78, 240 92, 228 98 L 318 58 C 332 52, 340 56, 340 64 C 340 70, 334 78, 318 84 L 220 118 C 208 124, 190 128, 170 124 C 140 118, 118 96, 110 76 Z" fill="white"/>
+              <circle cx="226" cy="82" r="30" fill="white"/>
+            </svg>
+          </div>
+          <div class="card-tag" data-en>Est. Rabat, Morocco</div>
+          <div class="card-tag" data-fr>Fondé à Rabat, Maroc</div>
+          <div class="card-h" data-en>BUILT FOR MOROCCAN SWIMMERS</div>
+          <div class="card-h" data-fr>POUR LES NAGEURS MAROCAINS</div>
+          <p class="card-p" data-en>Founded in Rabat with one mission: make professional swimming gear and coaching accessible to every Moroccan athlete — beginner to elite.</p>
+          <p class="card-p" data-fr>Fondé à Rabat avec une seule mission : rendre l'équipement et le coaching professionnels accessibles à chaque athlète marocain.</p>
+        </div>
+        <div class="about-float">
+          <div class="afl-n">Wi Pool</div>
+          <div class="afl-l">Club Wifaq, Rabat</div>
+        </div>
+      </div>
+      <div class="rr">
+        <div class="eyebrow" data-en>Our Story</div>
+        <div class="eyebrow" data-fr>Notre Histoire</div>
+        <h2 class="sh" data-en>MORE THAN<br>JUST GEAR</h2>
+        <h2 class="sh" data-fr>BIEN PLUS<br>QU'UN ÉQUIPEMENT</h2>
+        <p class="sp" data-en>We provide a complete swimming ecosystem — professional equipment, expert-led classes, and a community that supports you from your first stroke to the podium.</p>
+        <p class="sp" data-fr>Nous offrons un écosystème complet : équipement professionnel, cours experts et une communauté qui vous accompagne du premier mouvement jusqu'au podium.</p>
+        <div class="afs">
+          <div class="af">
+            <div class="af-ic">🏊</div>
+            <div>
+              <h4 data-en>Heated indoor pool</h4><h4 data-fr>Piscine couverte chauffée</h4>
+              <p data-en>Year-round at Club Wifaq Rabat, Wi Pool — regardless of weather.</p>
+              <p data-fr>Toute l'année au Club Wifaq Rabat, Wi Pool — quelle que soit la météo.</p>
+            </div>
+          </div>
+          <div class="af">
+            <div class="af-ic">🏅</div>
+            <div>
+              <h4 data-en>Certified instructors</h4><h4 data-fr>Instructeurs certifiés</h4>
+              <p data-en>Nationally certified coaches with years of competitive and teaching experience.</p>
+              <p data-fr>Coaches certifiés avec des années d'expérience en compétition et enseignement.</p>
+            </div>
+          </div>
+          <div class="af">
+            <div class="af-ic">📦</div>
+            <div>
+              <h4 data-en>Delivery across Morocco</h4><h4 data-fr>Livraison au Maroc</h4>
+              <p data-en>Order online, receive at your door within 2–5 days anywhere in Morocco.</p>
+              <p data-fr>Commandez en ligne, livré chez vous en 2–5 jours partout au Maroc.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ SHOP ════════ -->
+<section id="shop">
+  <div class="container">
+    <div class="shop-top rv">
+      <div>
+        <div class="eyebrow" data-en>Our Collection</div>
+        <div class="eyebrow" data-fr>Notre Collection</div>
+        <h2 class="sh" data-en>SHOP THE GEAR</h2>
+        <h2 class="sh" data-fr>LA BOUTIQUE</h2>
+      </div>
+      <div class="ftabs">
+        <button class="ft on" onclick="filt('all',this)"><span data-en>All</span><span data-fr>Tout</span></button>
+        <button class="ft" onclick="filt('men',this)"><span data-en>Men</span><span data-fr>Hommes</span></button>
+        <button class="ft" onclick="filt('women',this)"><span data-en>Women</span><span data-fr>Femmes</span></button>
+        <button class="ft" onclick="filt('acc',this)"><span data-en>Accessories</span><span data-fr>Accessoires</span></button>
+      </div>
+    </div>
+    <div class="pgrid" id="pg">
+      <div class="pc rv" data-cat="women">
+        <div class="pc-img" style="background:linear-gradient(145deg,#1e1e1e,#303030)">🩱<div class="pc-bdg" data-en>New</div><div class="pc-bdg" data-fr>Nouveau</div></div>
+        <div class="pc-info">
+          <div class="pc-cat" data-en>Women</div><div class="pc-cat" data-fr>Femmes</div>
+          <div class="pc-name" data-en>Competition Kneesuit</div><div class="pc-name" data-fr>Combinaison Genoux</div>
+          <div class="pc-desc" data-en>Chlorine-resistant, hydrodynamic fit for competition.</div><div class="pc-desc" data-fr>Résistant au chlore, coupe hydrodynamique compétition.</div>
+          <div class="pc-szs"><span class="sz" onclick="sz(this)">XS</span><span class="sz on" onclick="sz(this)">S</span><span class="sz" onclick="sz(this)">M</span><span class="sz" onclick="sz(this)">L</span></div>
+          <div class="pc-foot"><div class="pc-price">450<small>MAD</small></div><button class="pc-add" onclick="addC(this)">+</button></div>
+        </div>
+      </div>
+      <div class="pc rv d1" data-cat="men">
+        <div class="pc-img" style="background:linear-gradient(145deg,#111,#222)">🩲<div class="pc-bdg" data-en>Best Seller</div><div class="pc-bdg" data-fr>Top Vente</div></div>
+        <div class="pc-info">
+          <div class="pc-cat" data-en>Men</div><div class="pc-cat" data-fr>Hommes</div>
+          <div class="pc-name" data-en>Pro Jammer</div><div class="pc-name" data-fr>Jammer Pro</div>
+          <div class="pc-desc" data-en>Mid-thigh compression for training & competition.</div><div class="pc-desc" data-fr>Compression mi-cuisse entraînement & compétition.</div>
+          <div class="pc-szs"><span class="sz" onclick="sz(this)">S</span><span class="sz on" onclick="sz(this)">M</span><span class="sz" onclick="sz(this)">L</span><span class="sz" onclick="sz(this)">XL</span></div>
+          <div class="pc-foot"><div class="pc-price">320<small>MAD</small></div><button class="pc-add" onclick="addC(this)">+</button></div>
+        </div>
+      </div>
+      <div class="pc rv d2" data-cat="men">
+        <div class="pc-img" style="background:linear-gradient(145deg,#1a1a1a,#2e2e2e)">🩳</div>
+        <div class="pc-info">
+          <div class="pc-cat" data-en>Men</div><div class="pc-cat" data-fr>Hommes</div>
+          <div class="pc-name" data-en>Training Boxer</div><div class="pc-name" data-fr>Boxer Entraînement</div>
+          <div class="pc-desc" data-en>Durable elastic waistband. 6 colors available.</div><div class="pc-desc" data-fr>Ceinture élastique durable. 6 couleurs disponibles.</div>
+          <div class="pc-szs"><span class="sz" onclick="sz(this)">S</span><span class="sz" onclick="sz(this)">M</span><span class="sz on" onclick="sz(this)">L</span><span class="sz" onclick="sz(this)">XL</span></div>
+          <div class="pc-foot"><div class="pc-price">180<small>MAD</small></div><button class="pc-add" onclick="addC(this)">+</button></div>
+        </div>
+      </div>
+      <div class="pc rv" data-cat="acc">
+        <div class="pc-img" style="background:linear-gradient(145deg,#0d0d0d,#232323)">🧢<div class="pc-bdg" data-en>New</div><div class="pc-bdg" data-fr>Nouveau</div></div>
+        <div class="pc-info">
+          <div class="pc-cat" data-en>Accessories</div><div class="pc-cat" data-fr>Accessoires</div>
+          <div class="pc-name" data-en>Silicone Swim Cap</div><div class="pc-name" data-fr>Bonnet Silicone</div>
+          <div class="pc-desc" data-en>Anti-slip, wrinkle-free, chlorine protection.</div><div class="pc-desc" data-fr>Anti-glisse, sans plis, protection chlore.</div>
+          <div class="pc-szs"><span class="sz on" style="width:auto;padding:0 9px;font-size:9px" data-en>One Size</span><span class="sz on" style="width:auto;padding:0 9px;font-size:9px" data-fr>Taille Unique</span></div>
+          <div class="pc-foot"><div class="pc-price">85<small>MAD</small></div><button class="pc-add" onclick="addC(this)">+</button></div>
+        </div>
+      </div>
+      <div class="pc rv d1" data-cat="acc">
+        <div class="pc-img" style="background:linear-gradient(145deg,#161616,#2a2a2a)">🎒</div>
+        <div class="pc-info">
+          <div class="pc-cat" data-en>Accessories</div><div class="pc-cat" data-fr>Accessoires</div>
+          <div class="pc-name" data-en>Swim Backpack + Towel</div><div class="pc-name" data-fr>Sac + Serviette</div>
+          <div class="pc-desc" data-en>Waterproof mesh bag with microfiber towel.</div><div class="pc-desc" data-fr>Sac imperméable avec serviette microfibre.</div>
+          <div class="pc-szs"><span class="sz on" style="width:auto;padding:0 9px;font-size:9px" data-en>Bundle</span><span class="sz on" style="width:auto;padding:0 9px;font-size:9px" data-fr>Pack</span></div>
+          <div class="pc-foot"><div class="pc-price">270<small>MAD</small></div><button class="pc-add" onclick="addC(this)">+</button></div>
+        </div>
+      </div>
+      <div class="pc rv d2" data-cat="women">
+        <div class="pc-img" style="background:linear-gradient(145deg,#1c1c1c,#303030)">👙</div>
+        <div class="pc-info">
+          <div class="pc-cat" data-en>Women</div><div class="pc-cat" data-fr>Femmes</div>
+          <div class="pc-name" data-en>Training One-Piece</div><div class="pc-name" data-fr>Maillot Une Pièce</div>
+          <div class="pc-desc" data-en>Long-lasting, fade-resistant training swimsuit.</div><div class="pc-desc" data-fr>Maillot durable, résistant à la décoloration.</div>
+          <div class="pc-szs"><span class="sz" onclick="sz(this)">XS</span><span class="sz" onclick="sz(this)">S</span><span class="sz on" onclick="sz(this)">M</span><span class="sz" onclick="sz(this)">L</span></div>
+          <div class="pc-foot"><div class="pc-price">380<small>MAD</small></div><button class="pc-add" onclick="addC(this)">+</button></div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px" class="rv">
+      <button class="btn-w" style="background:var(--ink);color:white;display:inline-flex" onclick="window.open('https://wa.link/yt0ax6','_blank')">
+        <span data-en>Full Catalogue on WhatsApp →</span><span data-fr>Catalogue Complet sur WhatsApp →</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ CLASSES ════════ -->
+<section id="classes">
+  <div class="container">
+    <div class="rv">
+      <div class="eyebrow eyebrow-light" data-en>What We Offer</div>
+      <div class="eyebrow eyebrow-light" data-fr>Ce Que Nous Offrons</div>
+      <h2 class="sh sh-w" data-en>OUR CLASSES</h2>
+      <h2 class="sh sh-w" data-fr>NOS COURS</h2>
+      <p style="font-size:15px;color:rgba(255,255,255,.38);max-width:480px;line-height:1.75;font-weight:300;margin-top:10px" data-en>Expert-led programs for all ages at Club Wifaq Rabat, Wi Pool.</p>
+      <p style="font-size:15px;color:rgba(255,255,255,.38);max-width:480px;line-height:1.75;font-weight:300;margin-top:10px" data-fr>Programmes experts pour tous les âges au Club Wifaq Rabat, Wi Pool.</p>
+    </div>
+    <div class="cg">
+      <div class="cc rv"><span class="cc-em">🌊</span>
+        <div class="cc-n" data-en>BEGINNER PROGRAM</div><div class="cc-n" data-fr>PROGRAMME DÉBUTANT</div>
+        <div class="cc-d" data-en>From zero to confident swimmer. Safe, encouraging environment with certified coaches. For all ages, no prior experience needed.</div>
+        <div class="cc-d" data-fr>De zéro à nageur confiant. Environnement sûr avec coaches certifiés. Tous âges, aucune expérience nécessaire.</div>
+        <div class="cc-tags"><span class="cc-t" data-en>All Ages</span><span class="cc-t" data-fr>Tous Âges</span><span class="cc-t" data-en>8 Sessions</span><span class="cc-t" data-fr>8 Séances</span><span class="cc-t" data-en>Small Groups</span><span class="cc-t" data-fr>Petits Groupes</span></div>
+      </div>
+      <div class="cc rv d1"><span class="cc-em">🏆</span>
+        <div class="cc-n" data-en>COMPETITIVE TRAINING</div><div class="cc-n" data-fr>ENTRAÎNEMENT COMPÉTITION</div>
+        <div class="cc-d" data-en>Race starts, turns, stroke refinement and endurance conditioning. Train to reach your personal best.</div>
+        <div class="cc-d" data-fr>Départs, virages, technique et endurance. Entraînez-vous pour atteindre vos meilleures performances.</div>
+        <div class="cc-tags"><span class="cc-t" data-en>Advanced</span><span class="cc-t" data-fr>Avancé</span><span class="cc-t" data-en>12 Sessions</span><span class="cc-t" data-fr>12 Séances</span><span class="cc-t" data-en>Performance</span><span class="cc-t" data-fr>Performance</span></div>
+      </div>
+      <div class="cc rv d2"><span class="cc-em">🧒</span>
+        <div class="cc-n" data-en>KIDS & TODDLERS</div><div class="cc-n" data-fr>ENFANTS & TOUT-PETITS</div>
+        <div class="cc-d" data-en>Fun water introduction from age 2. Build confidence and a lifelong love for swimming in a playful, safe setting.</div>
+        <div class="cc-d" data-fr>Introduction ludique à l'eau dès 2 ans. Confiance et amour de la natation dans un cadre sûr et amusant.</div>
+        <div class="cc-tags"><span class="cc-t" data-en>Ages 2–12</span><span class="cc-t" data-fr>2–12 Ans</span><span class="cc-t" data-en>Parent &amp; Child</span><span class="cc-t" data-fr>Parent &amp; Enfant</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ PRICING ════════ -->
+<section id="pricing">
+  <div class="container">
+    <div class="rv" style="text-align:center">
+      <div class="eyebrow" style="justify-content:center" data-en>Membership Plans</div>
+      <div class="eyebrow" style="justify-content:center" data-fr>Plans d'Abonnement</div>
+      <h2 class="sh" style="text-align:center" data-en>CHOOSE YOUR PLAN</h2>
+      <h2 class="sh" style="text-align:center" data-fr>CHOISISSEZ VOTRE PLAN</h2>
+      <p class="sp" style="margin:0 auto;text-align:center" data-en>All plans include heated pool access at Club Wifaq Rabat, Wi Pool.</p>
+      <p class="sp" style="margin:0 auto;text-align:center" data-fr>Tous les plans incluent l'accès à la piscine chauffée du Club Wifaq Rabat, Wi Pool.</p>
+    </div>
+    <div class="pg rv">
+      <div class="prc">
+        <div class="pr-n" data-en>STARTER</div><div class="pr-n" data-fr>STARTER</div>
+        <div class="pr-p">350</div>
+        <div class="pr-per" data-en>MAD / month</div><div class="pr-per" data-fr>MAD / mois</div>
+        <p class="pr-d" data-en>Perfect for beginners exploring swimming for the first time.</p>
+        <p class="pr-d" data-fr>Idéal pour les débutants qui découvrent la natation.</p>
+        <ul class="pr-ul">
+          <li data-en>4 sessions per month</li><li data-fr>4 séances par mois</li>
+          <li data-en>Group classes</li><li data-fr>Cours collectifs</li>
+          <li data-en>Pool access included</li><li data-fr>Accès piscine inclus</li>
+          <li class="na" data-en>Personal coach</li><li class="na" data-fr>Coach personnel</li>
+          <li class="na" data-en>Video analysis</li><li class="na" data-fr>Analyse vidéo</li>
+        </ul>
+        <button class="pr-btn" onclick="scrollTo('booking')"><span data-en>Get started</span><span data-fr>Commencer</span></button>
+      </div>
+      <div class="prc prf">
+        <span class="pr-badge" data-en>Most Popular</span><span class="pr-badge" data-fr>Plus Populaire</span>
+        <div class="pr-n" data-en>PRO</div><div class="pr-n" data-fr>PRO</div>
+        <div class="pr-p">650</div>
+        <div class="pr-per" data-en>MAD / month</div><div class="pr-per" data-fr>MAD / mois</div>
+        <p class="pr-d" data-en>The complete experience for dedicated swimmers.</p>
+        <p class="pr-d" data-fr>L'expérience complète pour les nageurs sérieux.</p>
+        <ul class="pr-ul">
+          <li data-en>8 sessions per month</li><li data-fr>8 séances par mois</li>
+          <li data-en>Group & private classes</li><li data-fr>Cours collectifs & privés</li>
+          <li data-en>All pools access</li><li data-fr>Accès toutes piscines</li>
+          <li data-en>Personal coach assigned</li><li data-fr>Coach personnel assigné</li>
+          <li class="na" data-en>Video analysis</li><li class="na" data-fr>Analyse vidéo</li>
+        </ul>
+        <button class="pr-btn pr-btn-inv" onclick="scrollTo('booking')"><span data-en>Book now</span><span data-fr>Réserver</span></button>
+      </div>
+      <div class="prc">
+        <div class="pr-n" data-en>ELITE</div><div class="pr-n" data-fr>ÉLITE</div>
+        <div class="pr-p">1100</div>
+        <div class="pr-per" data-en>MAD / month</div><div class="pr-per" data-fr>MAD / mois</div>
+        <p class="pr-d" data-en>For competitive athletes demanding the best coaching.</p>
+        <p class="pr-d" data-fr>Pour les athlètes compétitifs exigeant le meilleur coaching.</p>
+        <ul class="pr-ul">
+          <li data-en>Unlimited sessions</li><li data-fr>Séances illimitées</li>
+          <li data-en>Private lessons only</li><li data-fr>Cours privés uniquement</li>
+          <li data-en>All pools priority</li><li data-fr>Priorité toutes piscines</li>
+          <li data-en>Dedicated coach</li><li data-fr>Coach dédié</li>
+          <li data-en>Video stroke analysis</li><li data-fr>Analyse vidéo technique</li>
+        </ul>
+        <button class="pr-btn" onclick="scrollTo('booking')"><span data-en>Get started</span><span data-fr>Commencer</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ BOOKING ════════ -->
+<section id="booking">
+  <div class="container">
+    <div class="bk-grid">
+      <!-- Info side -->
+      <div class="rl">
+        <div class="eyebrow" data-en>Get In Touch</div>
+        <div class="eyebrow" data-fr>Contactez-Nous</div>
+        <h2 class="sh" data-en>BOOK A CLASS<br>OR ORDER GEAR</h2>
+        <h2 class="sh" data-fr>RÉSERVEZ UN COURS<br>OU COMMANDEZ</h2>
+        <p class="sp" data-en>Ready to dive in? Book your first session or ask us anything about our gear and programs.</p>
+        <p class="sp" data-fr>Prêt à plonger ? Réservez votre première séance ou posez vos questions sur nos équipements.</p>
+        <div class="bk-items" style="margin-top:32px">
+          <div class="bki">
+            <div class="bki-ic">📍</div>
+            <div><div class="bki-t" data-en>Location</div><div class="bki-t" data-fr>Lieu</div>
+            <div class="bki-s">Club Wifaq Rabat, Wi Pool<br>Rabat, Morocco</div></div>
+          </div>
+          <div class="bki">
+            <div class="bki-ic">📱</div>
+            <div><div class="bki-t">WhatsApp</div>
+            <div class="bki-s"><a href="https://wa.link/yt0ax6" target="_blank">+212 6 60 42 89 96</a></div></div>
+          </div>
+          <div class="bki">
+            <div class="bki-ic">📧</div>
+            <div><div class="bki-t">Email</div>
+            <div class="bki-s"><a href="mailto:yallahswim.company1@gmail.com">yallahswim.company1@gmail.com</a></div></div>
+          </div>
+          <div class="bki">
+            <div class="bki-ic">🕐</div>
+            <div>
+              <div class="bki-t" data-en>Pool Hours</div><div class="bki-t" data-fr>Horaires</div>
+              <div class="bki-s" data-en>Mon–Sat: 07:00–21:00 · Sun: 08:00–18:00</div>
+              <div class="bki-s" data-fr>Lun–Sam: 07:00–21:00 · Dim: 08:00–18:00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Booking form -->
+      <div class="rr">
+        <div class="bform">
+          <div class="bfh">
+            <div class="bfh-t" data-en>Reserve Your Spot</div>
+            <div class="bfh-t" data-fr>Réservez Votre Place</div>
+            <div class="step-dots">
+              <div class="sdot on" id="sd1"></div>
+              <div class="sdot" id="sd2"></div>
+              <div class="sdot" id="sd3"></div>
+            </div>
+          </div>
+          <div class="bfb">
+
+            <!-- Step 1 -->
+            <div class="fstep active" id="s1">
+              <div class="fs-t" data-en>Choose your class</div>
+              <div class="fs-t" data-fr>Choisissez votre cours</div>
+              <div class="fs-s" data-en>Select a program and your preferred start date.</div>
+              <div class="fs-s" data-fr>Sélectionnez un programme et votre date de début.</div>
+              <div class="copts">
+                <div class="copt sel" onclick="selC(this)" data-en-name="Beginner Program" data-fr-name="Programme Débutant" data-price="350">
+                  <div class="co-radio"></div>
+                  <div class="co-info"><div class="co-n" data-en>Beginner Program</div><div class="co-n" data-fr>Programme Débutant</div><div class="co-s" data-en>8 sessions · All ages</div><div class="co-s" data-fr>8 séances · Tous âges</div></div>
+                  <div class="co-p">350 MAD</div>
+                </div>
+                <div class="copt" onclick="selC(this)" data-en-name="Competitive Training" data-fr-name="Entraînement Compétition" data-price="650">
+                  <div class="co-radio"></div>
+                  <div class="co-info"><div class="co-n" data-en>Competitive Training</div><div class="co-n" data-fr>Entraînement Compétition</div><div class="co-s" data-en>12 sessions · Advanced</div><div class="co-s" data-fr>12 séances · Avancé</div></div>
+                  <div class="co-p">650 MAD</div>
+                </div>
+                <div class="copt" onclick="selC(this)" data-en-name="Kids & Toddlers" data-fr-name="Enfants & Tout-Petits" data-price="350">
+                  <div class="co-radio"></div>
+                  <div class="co-info"><div class="co-n" data-en>Kids & Toddlers</div><div class="co-n" data-fr>Enfants & Tout-Petits</div><div class="co-s" data-en>8 sessions · Ages 2–12</div><div class="co-s" data-fr>8 séances · 2–12 ans</div></div>
+                  <div class="co-p">350 MAD</div>
+                </div>
+                <div class="copt" onclick="selC(this)" data-en-name="Private Lesson" data-fr-name="Cours Particulier" data-price="200">
+                  <div class="co-radio"></div>
+                  <div class="co-info"><div class="co-n" data-en>Private Lesson</div><div class="co-n" data-fr>Cours Particulier</div><div class="co-s" data-en>1-on-1 · Certified coach</div><div class="co-s" data-fr>1-à-1 · Coach certifié</div></div>
+                  <div class="co-p">200 MAD</div>
+                </div>
+              </div>
+              <div class="fg">
+                <label data-en>Check-in Date</label><label data-fr>Date de Début</label>
+                <input type="date" id="bDate" min="">
+              </div>
+              <div class="fg">
+                <label data-en>Location</label><label data-fr>Lieu</label>
+                <input type="text" value="Club Wifaq Rabat, Wi Pool" readonly>
+              </div>
+              <div class="bfnav"><div></div>
+                <button class="btn-next" onclick="goStep(2)"><span data-en>Continue →</span><span data-fr>Continuer →</span></button>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="fstep" id="s2">
+              <div class="fs-t" data-en>Your Details</div>
+              <div class="fs-t" data-fr>Vos Coordonnées</div>
+              <div class="fs-s" data-en>We'll send your confirmation to the email below.</div>
+              <div class="fs-s" data-fr>Nous enverrons la confirmation à l'email ci-dessous.</div>
+              <div class="fg-2">
+                <div class="fg"><label data-en>First Name</label><label data-fr>Prénom</label><input type="text" id="fn" placeholder="Ahmed"></div>
+                <div class="fg"><label data-en>Last Name</label><label data-fr>Nom</label><input type="text" id="ln" placeholder="El Mansouri"></div>
+              </div>
+              <div class="fg"><label>Email</label><input type="email" id="em" placeholder="ahmed@example.com"></div>
+              <div class="fg"><label data-en>Phone / WhatsApp</label><label data-fr>Téléphone / WhatsApp</label><input type="tel" id="ph" placeholder="+212 6XX XXX XXX"></div>
+              <div class="fg">
+                <label data-en>Swimming Level</label><label data-fr>Niveau de Natation</label>
+                <select id="lv">
+                  <option value="" data-en>Select your level</option><option value="" data-fr>Votre niveau</option>
+                  <option data-en>Complete beginner</option><option data-fr>Débutant complet</option>
+                  <option data-en>Can swim a little</option><option data-fr>Nage un peu</option>
+                  <option data-en>Intermediate</option><option data-fr>Intermédiaire</option>
+                  <option data-en>Advanced / Competitive</option><option data-fr>Avancé / Compétitif</option>
+                </select>
+              </div>
+              <div class="fg">
+                <label data-en>Message (optional)</label><label data-fr>Message (optionnel)</label>
+                <textarea id="mg" data-en-ph="Any questions or special requirements?" data-fr-ph="Des questions ou besoins particuliers ?"></textarea>
+              </div>
+              <div class="bfnav">
+                <button class="btn-back" onclick="goStep(1)"><span data-en>← Back</span><span data-fr>← Retour</span></button>
+                <button class="btn-next" onclick="goStep(3)"><span data-en>Review →</span><span data-fr>Vérifier →</span></button>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="fstep" id="s3">
+              <div class="fs-t" data-en>Confirm Booking</div>
+              <div class="fs-t" data-fr>Confirmer la Réservation</div>
+              <div class="fs-s" data-en>Review your details before confirming.</div>
+              <div class="fs-s" data-fr>Vérifiez vos informations avant de confirmer.</div>
+              <div class="sum-table" id="sumTable"></div>
+              <p style="font-size:11px;color:var(--muted);line-height:1.65;margin-top:6px" data-en>By confirming, you agree to receive a WhatsApp and email confirmation from YallaSwim.</p>
+              <p style="font-size:11px;color:var(--muted);line-height:1.65;margin-top:6px" data-fr>En confirmant, vous acceptez de recevoir une confirmation WhatsApp et email de YallaSwim.</p>
+              <div class="bfnav">
+                <button class="btn-back" onclick="goStep(2)"><span data-en>← Edit</span><span data-fr>← Modifier</span></button>
+                <button class="btn-next" onclick="submitForm()"><span data-en>Confirm ✓</span><span data-fr>Confirmer ✓</span></button>
+              </div>
+            </div>
+
+            <!-- Success -->
+            <div class="success" id="succ">
+              <div class="s-ic">✓</div>
+              <div class="s-h" data-en>Booking Confirmed!</div>
+              <div class="s-h" data-fr>Réservation Confirmée !</div>
+              <p class="s-p" data-en>Thank you! A confirmation has been sent via WhatsApp. See you at Club Wifaq Rabat, Wi Pool!</p>
+              <p class="s-p" data-fr>Merci ! Une confirmation a été envoyée par WhatsApp. À bientôt au Club Wifaq Rabat, Wi Pool !</p>
+              <button class="btn-next" style="max-width:260px;margin-top:6px" onclick="resetForm()">
+                <span data-en>Book Another Class</span><span data-fr>Réserver un Autre Cours</span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ TESTIMONIALS ════════ -->
+<section id="testimonials">
+  <div class="container">
+    <div class="rv" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:18px;margin-bottom:48px">
+      <div>
+        <div class="eyebrow" data-en>What Our Swimmers Say</div>
+        <div class="eyebrow" data-fr>Ce Que Disent Nos Nageurs</div>
+        <h2 class="sh" data-en>REAL RESULTS</h2>
+        <h2 class="sh" data-fr>VRAIS RÉSULTATS</h2>
+      </div>
+      <div style="background:var(--off);border:1px solid var(--border);border-radius:var(--r);padding:18px 24px;text-align:center">
+        <div style="font-family:var(--ff);font-size:40px;font-weight:800;color:var(--ink);line-height:1">4.9</div>
+        <div style="font-size:12px;letter-spacing:2px;color:var(--ink);margin:5px 0 3px">★★★★★</div>
+        <div style="font-size:11px;color:var(--muted)" data-en>200+ reviews</div>
+        <div style="font-size:11px;color:var(--muted)" data-fr>200+ avis</div>
+      </div>
+    </div>
+    <div class="tgrid">
+      <div class="tc rv">
+        <div class="tc-st">★★★★★</div>
+        <p class="tc-txt" data-en>"Very privileged to have you as coach for my little girl and myself. Talented, professional — I wish you all the best!"</p>
+        <p class="tc-txt" data-fr>« Très privilégiée de vous avoir comme coach pour ma petite fille et moi-même. Talentueux et professionnel — je vous souhaite le meilleur ! »</p>
+        <div class="tc-auth"><div class="tc-av">BE</div><div><div class="tc-n">Bebaty</div><div class="tc-h">@bebaty22</div></div></div>
+      </div>
+      <div class="tc rv d1">
+        <div class="tc-st">★★★★★</div>
+        <p class="tc-txt" data-en>"So lucky to have a coach who inspires me every day. Truly awesome — the best I have ever worked with!"</p>
+        <p class="tc-txt" data-fr>« Tellement chanceux d'avoir un coach qui m'inspire chaque jour. Vraiment incroyable — le meilleur avec qui j'ai jamais travaillé ! »</p>
+        <div class="tc-auth"><div class="tc-av">ME</div><div><div class="tc-n">Mehdi</div><div class="tc-h">@mehdi.austr</div></div></div>
+      </div>
+      <div class="tc rv d2">
+        <div class="tc-st">★★★★★</div>
+        <p class="tc-txt" data-en>"I learned so much and now I can swim! Best coach ever — I feel so confident in the water now."</p>
+        <p class="tc-txt" data-fr>« J'ai tellement appris et maintenant je sais nager ! Meilleur coach — je me sens tellement confiant dans l'eau. »</p>
+        <div class="tc-auth"><div class="tc-av">CH</div><div><div class="tc-n">Chaima</div><div class="tc-h">@chai_maeatm</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ BLOG ════════ -->
+<section id="blog">
+  <div class="container">
+    <div class="bl-head rv">
+      <div>
+        <div class="eyebrow eyebrow-light" data-en>Swimming Knowledge</div>
+        <div class="eyebrow eyebrow-light" data-fr>Conseils Natation</div>
+        <h2 class="sh sh-w" data-en>TIPS & GUIDES</h2>
+        <h2 class="sh sh-w" data-fr>CONSEILS & GUIDES</h2>
+      </div>
+      <a href="#" class="bl-more" data-en>All articles →</a>
+      <a href="#" class="bl-more" data-fr>Tous les articles →</a>
+    </div>
+    <div class="bl-grid rv">
+      <div class="bc feat">
+        <div class="bc-img bi1" style="height:250px">🏊</div>
+        <div class="bc-body">
+          <div class="bc-tag" data-en>Training Guide</div><div class="bc-tag" data-fr>Guide Entraînement</div>
+          <div class="bc-t" data-en>How to choose the right swimsuit for competition vs. training</div>
+          <div class="bc-t" data-fr>Quel maillot choisir pour la compétition ou l'entraînement ?</div>
+          <div class="bc-date" data-en>March 2026 · 6 min</div><div class="bc-date" data-fr>Mars 2026 · 6 min</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div class="bc">
+          <div class="bc-img bi2">🥽</div>
+          <div class="bc-body">
+            <div class="bc-tag" data-en>Gear Review</div><div class="bc-tag" data-fr>Équipement</div>
+            <div class="bc-t" data-en>Best swim goggles for Morocco's pools</div>
+            <div class="bc-t" data-fr>Meilleurs lunettes pour les piscines marocaines</div>
+            <div class="bc-date" data-en>Feb 2026 · 4 min</div><div class="bc-date" data-fr>Fév 2026 · 4 min</div>
+          </div>
+        </div>
+        <div class="bc">
+          <div class="bc-img bi3">💪</div>
+          <div class="bc-body">
+            <div class="bc-tag" data-en>Technique</div><div class="bc-tag" data-fr>Technique</div>
+            <div class="bc-t" data-en>5 drills to improve your freestyle today</div>
+            <div class="bc-t" data-fr>5 exercices pour améliorer votre crawl</div>
+            <div class="bc-date" data-en>Jan 2026 · 5 min</div><div class="bc-date" data-fr>Jan 2026 · 5 min</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FOOTER ════════ -->
+<footer>
+  <div class="container">
+    <div class="fg-grid">
+      <div>
+        <div class="fl-logo">
+          <svg viewBox="0 0 340 140" height="32" width="auto" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 10 120 L 148 16 C 162 6, 192 2, 218 8 C 248 15, 262 38, 256 62 C 252 78, 240 92, 228 98 L 318 58 C 332 52, 340 56, 340 64 C 340 70, 334 78, 318 84 L 220 118 C 208 124, 190 128, 170 124 C 140 118, 118 96, 110 76 Z" fill="white"/>
+            <path d="M 118 112 C 122 88, 138 62, 162 48 C 178 38, 200 36, 216 46 C 232 56, 236 76, 228 94 C 222 108, 208 116, 190 118 C 168 121, 136 116, 118 112 Z" fill="#070707"/>
+            <circle cx="226" cy="82" r="30" fill="white"/>
+            <text x="170" y="135" font-family="'Barlow Condensed','Arial Narrow',sans-serif" font-weight="900" font-size="32" letter-spacing="2" text-anchor="middle" fill="white">YALLAHSWIM</text>
+          </svg>
+        </div>
+        <p class="fl-p" data-en>Morocco's premier swimming gear store and coaching academy. Club Wifaq Rabat, Wi Pool.</p>
+        <p class="fl-p" data-fr>La première boutique d'équipement de natation du Maroc. Club Wifaq Rabat, Wi Pool.</p>
+        <div class="socials">
+          <a href="https://www.instagram.com/yalla_swim/" target="_blank" class="soc" aria-label="Instagram">📸</a>
+          <a href="https://wa.link/yt0ax6" target="_blank" class="soc" aria-label="WhatsApp">💬</a>
+          <a href="mailto:yallahswim.company1@gmail.com" class="soc" aria-label="Email">✉️</a>
+        </div>
+      </div>
+      <div class="fc">
+        <h5 data-en>Shop</h5><h5 data-fr>Boutique</h5>
+        <ul>
+          <li><a href="#shop" data-en>Women's Swimwear</a><a href="#shop" data-fr>Maillots Femmes</a></li>
+          <li><a href="#shop" data-en>Men's Swimwear</a><a href="#shop" data-fr>Maillots Hommes</a></li>
+          <li><a href="#shop" data-en>Swim Caps</a><a href="#shop" data-fr>Bonnets</a></li>
+          <li><a href="#shop" data-en>Bags & Towels</a><a href="#shop" data-fr>Sacs & Serviettes</a></li>
+          <li><a href="#" data-en>Size Guide</a><a href="#" data-fr>Guide des Tailles</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h5 data-en>Classes</h5><h5 data-fr>Cours</h5>
+        <ul>
+          <li><a href="#classes" data-en>Beginner Program</a><a href="#classes" data-fr>Programme Débutant</a></li>
+          <li><a href="#classes" data-en>Competitive Training</a><a href="#classes" data-fr>Entraînement Compétition</a></li>
+          <li><a href="#classes" data-en>Kids & Toddlers</a><a href="#classes" data-fr>Enfants & Tout-Petits</a></li>
+          <li><a href="#classes" data-en>Private Lessons</a><a href="#classes" data-fr>Cours Particuliers</a></li>
+          <li><a href="#pricing" data-en>Pricing</a><a href="#pricing" data-fr>Tarifs</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h5 data-en>Help</h5><h5 data-fr>Aide</h5>
+        <ul>
+          <li><a href="#booking" data-en>Book a Class</a><a href="#booking" data-fr>Réserver</a></li>
+          <li><a href="tel:+212660428996" data-en>Call Us</a><a href="tel:+212660428996" data-fr>Nous Appeler</a></li>
+          <li><a href="mailto:yallahswim.company1@gmail.com">Email</a></li>
+          <li><a href="#" data-en>Delivery Info</a><a href="#" data-fr>Livraison</a></li>
+          <li><a href="#" data-en>Returns Policy</a><a href="#" data-fr>Retours</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fbot">
+      <span data-en>© 2026 YallaSwim · Club Wifaq Rabat, Wi Pool · All rights reserved</span>
+      <span data-fr>© 2026 YallaSwim · Club Wifaq Rabat, Wi Pool · Tous droits réservés</span>
+      <span><a href="#" data-en>Privacy</a><a href="#" data-fr>Confidentialité</a> · <a href="#" data-en>Terms</a><a href="#" data-fr>CGU</a></span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.link/yt0ax6" target="_blank" class="wa" aria-label="WhatsApp">💬</a>
+
+<script>
+'use strict';
+
+/* ── Language ── */
+let lang = 'en';
+function toggleLang(){
+  lang = lang==='en'?'fr':'en';
+  document.body.classList.toggle('fr', lang==='fr');
+  document.getElementById('langBtn').textContent = lang==='en'?'FR':'EN';
+  document.getElementById('mobLangLabel').textContent = lang==='en'?'FR':'EN';
+  // Update textarea placeholder
+  const mg = document.getElementById('mg');
+  if(mg) mg.placeholder = mg.getAttribute(lang==='fr'?'data-fr-ph':'data-en-ph') || '';
+}
+
+/* ── Nav scroll ── */
+const navEl = document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  navEl.classList.toggle('solid', window.scrollY>50);
+},{passive:true});
+
+/* ── Mobile nav ── */
+let mobOpen=false;
+function toggleMob(){mobOpen=!mobOpen;_applyMob()}
+function closeMob(){mobOpen=false;_applyMob()}
+function _applyMob(){
+  document.getElementById('ham').classList.toggle('open',mobOpen);
+  document.getElementById('mob').classList.toggle('open',mobOpen);
+  document.body.style.overflow=mobOpen?'hidden':'';
+}
+
+/* ── Scroll to section ── */
+function scrollTo(id){
+  const el=document.getElementById(id);
+  if(el)el.scrollIntoView({behavior:'smooth'});
+  closeMob();
+}
+
+/* ── Reveal on scroll ── */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')});
+},{threshold:0.08,rootMargin:'0px 0px -32px 0px'});
+document.querySelectorAll('.rv,.rl,.rr').forEach(el=>io.observe(el));
+
+/* ── Product filter ── */
+function filt(cat,btn){
+  document.querySelectorAll('.ft').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.pc').forEach(c=>{
+    c.style.display=(cat==='all'||c.dataset.cat===cat)?'':'none';
+  });
+}
+
+/* ── Size select ── */
+function sz(el){
+  el.closest('.pc-szs').querySelectorAll('.sz').forEach(s=>s.classList.remove('on'));
+  el.classList.add('on');
+}
+
+/* ── Add to cart ── */
+function addC(btn){
+  btn.classList.add('done');btn.textContent='✓';
+  setTimeout(()=>{btn.classList.remove('done');btn.textContent='+'},2000);
+}
+
+/* ── Booking form ── */
+let step=1;
+let selClass={enName:'Beginner Program',frName:'Programme Débutant',price:350};
+
+// Set min date
+const now=new Date();
+const pad=n=>String(n).padStart(2,'0');
+const minD=`${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}`;
+const bDateEl=document.getElementById('bDate');
+if(bDateEl){bDateEl.min=minD;bDateEl.value=minD;}
+
+// Set textarea placeholder
+const mgEl=document.getElementById('mg');
+if(mgEl)mgEl.placeholder=mgEl.getAttribute('data-en-ph')||'';
+
+function selC(el){
+  document.querySelectorAll('.copt').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  selClass={enName:el.dataset.enName,frName:el.dataset.frName,price:parseInt(el.dataset.price)};
+}
+
+function goStep(n){
+  if(n===2){
+    const d=document.getElementById('bDate').value;
+    if(!d){alert(lang==='fr'?'Veuillez sélectionner une date.':'Please select a date.');return;}
+  }
+  if(n===3){
+    const fn=document.getElementById('fn').value.trim();
+    const ln=document.getElementById('ln').value.trim();
+    const em=document.getElementById('em').value.trim();
+    const ph=document.getElementById('ph').value.trim();
+    if(!fn||!ln){alert(lang==='fr'?'Veuillez entrer votre nom.':'Please enter your name.');return;}
+    if(!em||!em.includes('@')){alert(lang==='fr'?'Veuillez entrer un email valide.':'Please enter a valid email.');return;}
+    if(!ph){alert(lang==='fr'?'Veuillez entrer votre téléphone.':'Please enter your phone number.');return;}
+    buildSummary();
+  }
+  step=n;
+  document.querySelectorAll('.fstep').forEach((s,i)=>s.classList.toggle('active',i+1===n));
+  document.querySelectorAll('.sdot').forEach((d,i)=>d.classList.toggle('on',i<n));
+}
+
+function buildSummary(){
+  const fn=document.getElementById('fn').value.trim();
+  const ln=document.getElementById('ln').value.trim();
+  const em=document.getElementById('em').value.trim();
+  const ph=document.getElementById('ph').value.trim();
+  const d=document.getElementById('bDate').value;
+  const cName=lang==='fr'?selClass.frName:selClass.enName;
+  let dLabel=d;
+  try{dLabel=new Date(d+'T00:00:00').toLocaleDateString(lang==='fr'?'fr-FR':'en-GB',{weekday:'short',day:'numeric',month:'long',year:'numeric'});}catch(e){}
+  const rows=[
+    [lang==='fr'?'Nom':'Name',`${fn} ${ln}`],
+    ['Email',em],
+    [lang==='fr'?'Téléphone':'Phone',ph],
+    [lang==='fr'?'Cours':'Class',cName],
+    [lang==='fr'?'Date de début':'Check-in Date',dLabel],
+    [lang==='fr'?'Lieu':'Location','Club Wifaq Rabat, Wi Pool'],
+    [lang==='fr'?'Total':'Total',`${selClass.price} MAD`],
+  ];
+  document.getElementById('sumTable').innerHTML=rows.map((r,i)=>
+    `<div class="sum-row${i===rows.length-1?' sum-row-total':''}">
+      <span class="sum-k">${r[0]}</span>
+      <span class="sum-v">${r[1]}</span>
+    </div>`
+  ).join('');
+}
+
+function submitForm(){
+  const fn=document.getElementById('fn').value.trim();
+  const em=document.getElementById('em').value.trim();
+  const ph=document.getElementById('ph').value.trim();
+  const d=document.getElementById('bDate').value;
+  const cName=lang==='fr'?selClass.frName:selClass.enName;
+  const msg=encodeURIComponent(
+    `Hi YallaSwim!\n\nI'd like to book a class:\n\nClass: ${cName}\nName: ${fn}\nEmail: ${em}\nPhone: ${ph}\nStart Date: ${d}\nLocation: Club Wifaq Rabat, Wi Pool\nTotal: ${selClass.price} MAD`
+  );
+  window.open(`https://wa.me/212660428996?text=${msg}`,'_blank');
+  document.querySelectorAll('.fstep').forEach(s=>s.classList.remove('active'));
+  document.getElementById('succ').classList.add('show');
+  document.querySelectorAll('.sdot').forEach(d=>d.classList.add('on'));
+}
+
+function resetForm(){
+  document.getElementById('succ').classList.remove('show');
+  step=1;
+  document.querySelectorAll('.fstep').forEach((s,i)=>s.classList.toggle('active',i===0));
+  document.querySelectorAll('.sdot').forEach((d,i)=>d.classList.toggle('on',i===0));
+  ['fn','ln','em','ph'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  if(bDateEl)bDateEl.value=minD;
+  document.querySelectorAll('.copt').forEach((c,i)=>c.classList.toggle('sel',i===0));
+  selClass={enName:'Beginner Program',frName:'Programme Débutant',price:350};
+}
+</script>
+</body>
+</html>

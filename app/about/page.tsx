@@ -3,14 +3,10 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Animate } from '@/components/common/animate'
 import {
-  Rocket,
-  Globe,
-  Star,
-  Clock,
-  Zap,
-  Lightbulb,
-} from "lucide-react";
+  Rocket, Globe, Star, Clock, Zap, Lightbulb,
+} from 'lucide-react'
 
 const TIMELINE = [
   { year: '2022', text: 'Founded to build custom software for startups that needed production-ready code, not templates. First clients were early-stage product companies in the US and UK.' },
@@ -30,66 +26,20 @@ const FAQS = [
   { q: 'Do you have experience with regulated industries?', a: 'Yes. Our codebase and workflows meet SOC 2, GDPR, and HIPAA requirements by default. We deliver audit-ready documentation alongside every release.' },
 ]
 
-const AWARDS = [
-  { src: '/clutch.svg', alt: 'Clutch' },
-  { src: '/awwwards-black.svg', alt: 'Awwwards' },
-  { src: '/designrush-black.svg', alt: 'Design Rush' },
-  { src: '/csswinner-black.svg', alt: 'CssWinner' },
-  { src: '/google.svg', alt: 'Google' },
-  { src: '/trustpilot.svg', alt: 'Trustpilot' },
-]
-
 const CARDS = [
-  {
-    icon: '/search.svg',
-    title: 'On-Time & Transparent',
-    desc: 'We deliver across the US, Canada, Australia, and Europe using structured weekly sprints, clear reporting, and proactive communication ensuring zero surprises.'
-  },
-  {
-    icon: '/varified-user.svg',
-    title: 'Built-In Compliance & Security',
-    desc: 'SOC 2, GDPR, and HIPAA aligned from day one. Every release includes audit-ready documentation, reducing risk and eliminating extra compliance cycles.'
-  },
-  {
-    icon: '/prototype.svg',
-    title: 'Production-Ready AI & Cloud',
-    desc: 'We build and scale AI systems with a focus on performance, scalability, and seamless modernization—delivering real business impact without disruption.'
-  },
+  { icon: '/search.svg', title: 'On-Time & Transparent', desc: 'We deliver across the US, Canada, Australia, and Europe using structured weekly sprints, clear reporting, and proactive communication ensuring zero surprises.' },
+  { icon: '/varified-user.svg', title: 'Built-In Compliance & Security', desc: 'SOC 2, GDPR, and HIPAA aligned from day one. Every release includes audit-ready documentation, reducing risk and eliminating extra compliance cycles.' },
+  { icon: '/prototype.svg', title: 'Production-Ready AI & Cloud', desc: 'We build and scale AI systems with a focus on performance, scalability, and seamless modernization—delivering real business impact without disruption.' },
 ]
 
 const features = [
-  {
-    title: "Proven Track Record",
-    desc: "Delivered 50+ high-quality products across multiple industries.",
-    icon: Rocket,
-  },
-  {
-    title: "Global Clients",
-    desc: "Trusted by startups and enterprises worldwide.",
-    icon: Globe,
-  },
-  {
-    title: "Top Rated",
-    desc: "Consistently rated 4.9★ by satisfied clients.",
-    icon: Star,
-  },
-  {
-    title: "On-Time Delivery",
-    desc: "Weekly tracking ensures deadlines are always met.",
-    icon: Clock,
-  },
-  {
-    title: "High Performance",
-    desc: "Optimized for speed, scalability, and reliability.",
-    icon: Zap,
-  },
-  {
-    title: "Smart Solutions",
-    desc: "Built with modern architecture and best practices.",
-    icon: Lightbulb,
-  },
-];
-
+  { title: 'Proven Track Record', desc: 'Delivered 50+ high-quality products across multiple industries.', icon: Rocket },
+  { title: 'Global Clients', desc: 'Trusted by startups and enterprises worldwide.', icon: Globe },
+  { title: 'Top Rated', desc: 'Consistently rated 4.9★ by satisfied clients.', icon: Star },
+  { title: 'On-Time Delivery', desc: 'Weekly tracking ensures deadlines are always met.', icon: Clock },
+  { title: 'High Performance', desc: 'Optimized for speed, scalability, and reliability.', icon: Zap },
+  { title: 'Smart Solutions', desc: 'Built with modern architecture and best practices.', icon: Lightbulb },
+]
 
 function FAQ({ items }: { items: typeof FAQS }) {
   const [open, setOpen] = useState<number | null>(0)
@@ -124,162 +74,80 @@ function FAQ({ items }: { items: typeof FAQS }) {
 export default function AboutPage() {
   return (
     <div className="relative bg-[#F3F3F3] mb-25">
-      {/* Banner image */}
+      {/* Banner */}
       <section className="px-[12px] md:px-[10px]">
         <div className="relative w-full h-[480px] rounded-[20px] overflow-hidden">
-
-          {/* Background Image */}
-          <Image
-            src="/aboutus.jpg"
-            alt="About us"
-            fill
-            priority
-            className="object-cover object-center"
-            sizes="100vw "
-          />
-
-          {/* Gradient Overlay */}
-          <div
-            className="absolute inset-0 rounded-[20px]"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(0,0,0), rgba(0,0,0,0.6), rgba(0,0,0,0))",
-            }}
-          />
-
-          {/* Content Overlay */}
+          <Image src="/aboutus.jpg" alt="About us" fill priority className="object-cover object-center" sizes="100vw" />
+          <div className="absolute inset-0 rounded-[20px]" style={{ background: 'linear-gradient(to top, rgba(0,0,0), rgba(0,0,0,0.6), rgba(0,0,0,0))' }} />
           <div className="absolute bottom-0 left-0 right-0 flex flex-col max-w-[1440px] lg:flex-row justify-between lg:items-end gap-4 lg:px-9 px-5 lg:py-8 py-6 max-w-[1440px] mx-auto">
-
-            {/* Left Text */}
             <div className="flex flex-col gap-4 max-w-2xl">
-              <span className="text-sm font-inter text-white/70">
-                About Us
-              </span>
-
+              <span className="text-sm font-inter text-white/70">About Us</span>
               <h2 className="text-[32px] lg:text-[56px] lg:leading-[60px] leading-9 font-mont font-semibold text-white">
                 We Build Modern Digital Experiences
               </h2>
             </div>
-
-            {/* Right Description */}
             <p className="lg:text-[18px] text-[15px] font-inter text-white/70 lg:max-w-xs leading-7">
-              We are a team of developers and designers focused on building scalable,
-              high-performance digital products that help businesses grow online.
+              We are a team of developers and designers focused on building scalable, high-performance digital products.
             </p>
           </div>
         </div>
       </section>
-{/* 
-      <section>
-        {/* Awards, desktop static */}
-        {/* <div className="hidden md:flex flex-wrap justify-around  items-center gap-[48px] mx-auto py-[24px] border-[#ebebeb] border-t border-b w-full max-w-[1440px]">
-          {AWARDS.map(a => (
-            <Image key={a.alt} src={a.src} alt={a.alt} width={100} height={20}
-              className="opacity-50 hover:opacity-100 w-fit transition-opacity duration-200" />
-          ))}
-        </div> */}
-
-        {/* Awards, mobile marquee */}
-      {/*  <div className="relative py-[20px] w-full overflow-hidden">
-          <div className="flex gap-[80px] w-max animate-marquee">
-            {[...AWARDS, ...AWARDS].map((a, i) => (
-              <Image key={i} src={a.src} alt={a.alt} width={124} height={26}
-                className="w-fit h-[24px]" style={{ width: 'auto', height: '24px' }} />
-            ))}
-          </div>
-        </div>
-      </section> */}
 
       {/* Who We Are */}
       <section className="bg-white px-[16px] py-[64px] md:py-[96px]">
-        <div className="max-w-[1440px] mx-auto ">
+        <div className="max-w-[1440px] mx-auto">
           <div className="flex md:flex-row flex-col items-center gap-[32px]">
-            {/* Image */}
-            <div className="w-full md:w-1/2 flex justify-center items-center">
-              <Image
-                src="/zeerak.jpeg"
-                alt="team collaboration"
-                width={500}
-                height={400}
-                className="rounded-xl object-cover w-full h-[500px]"
-              />
-            </div>
-
-            {/* Content */}
-            <div className="flex flex-col gap-[16px] w-full md:w-1/2 font-inter font-normal text-[#111212] text-[16px] leading-[24px]">
-
-              <p className="font-medium text-[20px] leading-[28px] text-gray-500">
-                About Us
-              </p>
-
-              <h2 className="font-mont font-semibold text-[32px] md:text-[40px] leading-[40px] md:leading-[48px]">
-                Who We Are
-              </h2>
-
-              <p> Thrill Edge Technologies is a full-stack software agency founded by Zeerak Jamshaid, built on the principle that exceptional software must be engineered with precision not pieced together.
-                He built the agency around a core idea: eliminate fragmentation and deliver software through a single, accountable team that drives every stage with precision and intent.</p>
-
-              <p> Today, Thrill Edge Technologies operates as a fully integrated software partner, delivering product strategy, UI/UX design, frontend, backend, mobile development, cloud infrastructure, and AI solutions everything required to build and scale modern digital products. We collaborate with startups and high-growth companies that demand speed, quality, and technical excellence without compromise.</p>
-
-              <p> With a 4.9-star client rating and more than a decade of experience delivering production-grade systems, we apply senior-level expertise to every project whether it’s a new product launch or a complex platform transformation.
-              </p>
-
-            </div>
+            <Animate variant="slide-left" className="w-full md:w-1/2 flex justify-center items-center">
+              <Image src="/zeerak.jpeg" alt="team collaboration" width={500} height={400}
+                className="rounded-xl object-cover w-full h-[500px]" />
+            </Animate>
+            <Animate variant="slide-right" delay={120} className="flex flex-col gap-[16px] w-full md:w-1/2 font-inter font-normal text-[#111212] text-[16px] leading-[24px]">
+              <p className="font-medium text-[20px] leading-[28px] text-gray-500">About Us</p>
+              <h2 className="font-mont font-semibold text-[32px] md:text-[40px] leading-[40px] md:leading-[48px]">Who We Are</h2>
+              <p>Thrill Edge Technologies is a full-stack software agency founded by Zeerak Jamshaid, built on the principle that exceptional software must be engineered with precision not pieced together.</p>
+              <p>Today, Thrill Edge Technologies operates as a fully integrated software partner, delivering product strategy, UI/UX design, frontend, backend, mobile development, cloud infrastructure, and AI solutions.</p>
+              <p>With a 4.9-star client rating and more than a decade of experience delivering production-grade systems, we apply senior-level expertise to every project.</p>
+            </Animate>
           </div>
-          <div className='mt-20 flex md:flex-row flex-col items-center gap-[32px]'>
-            {/* Value cards */}
-            {CARDS.map(c => (
-              <div key={c.title} className="group flex flex-col items-start gap-[20px] bg-[#eee] hover:bg-[#f9f9ff] px-[24px] py-[24px] border border-transparent hover:border-[#e8eeff] rounded-[16px] transition-all duration-200 min-h-[300px]">
-                <Image src={c.icon} alt={c.title} width={40} height={40}
-                  className="group-hover:scale-105 transition-transform duration-200" style={{ width: '40px', height: 'auto' }} />
-                <div className="flex flex-col gap-[14px]">
-                  <h3 className="font-mont font-semibold text-[24px] text-black leading-normal">{c.title}</h3>
-                  <p className="font-inter font-normal text-[#929296] text-[16px] leading-[24px]">{c.desc}</p>
+
+          <div className="mt-20 flex md:flex-row flex-col items-center gap-[32px]">
+            {CARDS.map((c, i) => (
+              <Animate key={c.title} variant="fade-up" delay={i * 120}>
+                <div className="group flex flex-col items-start gap-[20px] bg-[#eee] hover:bg-[#f9f9ff] px-[24px] py-[24px] border border-transparent hover:border-[#e8eeff] rounded-[16px] transition-all duration-200 min-h-[300px]">
+                  <Image src={c.icon} alt={c.title} width={40} height={40}
+                    className="group-hover:scale-105 transition-transform duration-200" style={{ width: '40px', height: 'auto' }} />
+                  <div className="flex flex-col gap-[14px]">
+                    <h3 className="font-mont font-semibold text-[24px] text-black leading-normal">{c.title}</h3>
+                    <p className="font-inter font-normal text-[#929296] text-[16px] leading-[24px]">{c.desc}</p>
+                  </div>
                 </div>
-              </div>
+              </Animate>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Stats ticker */}
+      {/* Why Choose Us */}
       <section className="px-[16px] py-[64px] md:py-[96px]">
         <div className="max-w-[1440px] mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
-            <h2 className="font-mont font-semibold text-[28px] md:text-[40px] leading-[36px] md:leading-[48px]">
-              Why Choose Us
-            </h2>
-            <p>
-              We build scalable, high-performance products with a strong focus on
-              quality and long-term growth.
-            </p>
-          </div>
-          {/* Grid */}
+          <Animate variant="blur-in" className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
+            <h2 className="font-mont font-semibold text-[28px] md:text-[40px] leading-[36px] md:leading-[48px]">Why Choose Us</h2>
+            <p className="mt-3 font-inter text-[#929296] text-[16px]">We build scalable, high-performance products with a strong focus on quality and long-term growth.</p>
+          </Animate>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {features.map((item, index) => {
-              const Icon = item.icon;
-
+            {features.map((item, i) => {
+              const Icon = item.icon
               return (
-                <div
-                  key={index}
-                  className="group bg-[#111212] border border-[#1f1f1f] rounded-2xl p-5 md:p-6 transition-all duration-300"
-                >
-                  {/* Icon */}
-                  <div className="mb-3 md:mb-4 w-10 h-10 flex items-center justify-center rounded-lg bg-[#1a1a1a] group-hover:bg-[#eee]/10 transition">
-                    <Icon className="w-5 h-5 text-white" />
+                <Animate key={item.title} variant="scale-in" delay={i * 80}>
+                  <div className="group bg-[#111212] border border-[#1f1f1f] rounded-2xl p-5 md:p-6 transition-all duration-300">
+                    <div className="mb-3 md:mb-4 w-10 h-10 flex items-center justify-center rounded-lg bg-[#1a1a1a] group-hover:bg-[#eee]/10 transition">
+                      <Icon className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="text-white font-semibold text-lg mb-2">{item.title}</h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
                   </div>
-
-                  {/* Title */}
-                  <h3 className="text-white font-semibold text-lg mb-2">
-                    {item.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-              );
+                </Animate>
+              )
             })}
           </div>
         </div>
@@ -289,35 +157,19 @@ export default function AboutPage() {
       <section className="px-[16px] py-[64px] md:py-[96px] bg-white">
         <div className="max-w-[1440px] mx-auto">
           <div className="grid lg:grid-cols-2 gap-[40px] items-center">
-            <Image
-              src="/culture.png"
-              alt="team collaboration"
-              width={500}
-              height={400}
-              className="rounded-xl object-cover w-full"
-            />
-
-            <div className="flex flex-col gap-[20px] w-full font-inter font-normal text-[#111212] text-[16px] leading-[24px]">
+            <Animate variant="slide-left">
+              <Image src="/culture.png" alt="team collaboration" width={500} height={400} className="rounded-xl object-cover w-full" />
+            </Animate>
+            <Animate variant="slide-right" delay={120} className="flex flex-col gap-[20px] w-full font-inter font-normal text-[#111212] text-[16px] leading-[24px]">
               <span className="font-inter font-semibold text-[11px] text-[#929296] uppercase tracking-[0.2em]">How we operate</span>
               <h2 className="w-full font-mont font-semibold text-[40px] leading-[48px]">Our Culture</h2>
-
               <p className="font-inter text-[#555] text-[18px] leading-[30px]">
-                <strong className="text-[#111212]">We hire for ownership, not just skill.</strong> Every engineer has shipped production-grade code in real environments—no training, only real project experience.
+                <strong className="text-[#111212]">We hire for ownership, not just skill.</strong> Every engineer has shipped production-grade code in real environments.
               </p>
-
-              <p className="font-inter text-[#555] text-[18px] leading-[30px]">
-                Code quality is non-negotiable.Whenever a developer submits code changes, another engineer reviews them before they are merged., maintaining a sub-1% deployment error rate through strict standards.
-              </p>
-
+              <p className="font-inter text-[#555] text-[18px] leading-[30px]">Code quality is non-negotiable. Every pull request is reviewed before merging, maintaining a sub-1% deployment error rate.</p>
               <p className="font-inter text-[#555] text-[18px] leading-[30px]">
                 <strong className="text-[#111212]">We communicate clearly.</strong> No unnecessary meetings—just async updates and direct access to the engineer working on your product.
               </p>
-
-              <p className="font-inter text-[#555] text-[18px] leading-[30px]">
-                We challenge decisions when needed, ensuring you build the right product—not just the requested one.
-              </p>
-
-              {/* Culture pillars */}
               <div className="gap-[12px] grid grid-cols-1 sm:grid-cols-2 mt-[8px]">
                 {[
                   { label: 'Ownership over excuses', desc: 'Every engineer owns their work end to end.' },
@@ -331,85 +183,51 @@ export default function AboutPage() {
                   </div>
                 ))}
               </div>
-            </div>
+            </Animate>
           </div>
         </div>
       </section>
 
-      {/* Timeline overlapping sticky cards */}
+      {/* Timeline */}
       <section className="px-[16px] py-[64px] md:py-[96px]">
         <div className="max-w-[1440px] mx-auto">
-          <div className="text-center lg:max-w-[40%] mx-auto mb-16">
+          <Animate variant="blur-in" className="text-center lg:max-w-[40%] mx-auto mb-16">
             <span className="font-inter font-semibold text-[11px] text-[#929296] uppercase tracking-[0.2em]">Since 2022</span>
-            <h3 className="mt-[12px] font-mont font-bold text-[#111212] text-[32px] md:text-[48px] leading-[1.1]">
-              Our history
-            </h3>
+            <h3 className="mt-[12px] font-mont font-bold text-[#111212] text-[32px] md:text-[48px] leading-[1.1]">Our history</h3>
             <p className="mt-[20px] font-inter text-[#929296] text-[16px] leading-[26px]">
               Over a decade of shipping production-grade software for companies that needed more than templates.
             </p>
-          </div>
+          </Animate>
           <div className="grid lg:grid-cols-2 gap-10">
-            <div className="flex-1 flex flex-col gap-10 ">
+            <div className="flex-1 flex flex-col gap-10">
               {TIMELINE.map((t, i) => (
-                <div
-                  key={t.year}
-                  className="md:sticky "
-                  style={{ top: `${80 + i * 24}px`, zIndex: i + 1 }}
-                >
-                  <div
-                    className="rounded-[20px] p-[36px] md:p-[48px] mb-[12px] transition-shadow duration-300 lg:max-w-[100%] mx-auto h-[400px] flex flex-col justify-center items-between"
-                    style={{
-                      backgroundColor: i % 2 === 0 ? '#111212' : '#ffffff',
-                      boxShadow: '0 8px 40px rgba(0,0,0,0.12)',
-                    }}
-                  >
-                    {/* Year badge */}
-                    <span
-                      className="inline-flex items-center px-[14px] py-[6px] rounded-full font-inter font-semibold text-[12px] uppercase tracking-[0.15em] mb-[24px] w-[65px]"
-                      style={{
-                        backgroundColor: i % 2 === 0 ? 'rgba(255,255,255,0.08)' : '#F3F3F3',
-                        color: i % 2 === 0 ? 'rgba(255,255,255,0.5)' : '#929296',
-                      }}
-                    >
-                      {t.year}
-                    </span>
-
-                    <p
-                      className="font-mont font-semibold text-[18px] md:text-[22px] leading-[1.5]"
-                      style={{ color: i % 2 === 0 ? '#ffffff' : '#111212' }}
-                    >
-                      {t.text}
-                    </p>
-
-                    {/* Bottom index */}
-                    <div className="flex justify-between items-center mt-[32px] pt-[24px]"
-                      style={{ borderTop: `1px solid ${i % 2 === 0 ? 'rgba(255,255,255,0.08)' : '#f0f0f0'}` }}>
-                      <span
-                        className="font-inter tabular-nums text-[13px]"
-                        style={{ color: i % 2 === 0 ? 'rgba(255,255,255,0.2)' : '#ccc' }}
-                      >
-                        {String(i + 1).padStart(2, '0')} / {String(TIMELINE.length).padStart(2, '0')}
-                      </span>
-                      <span
-                        className="font-mont font-bold text-[48px] leading-none tabular-nums select-none"
-                        style={{ color: i % 2 === 0 ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)' }}
-                      >
+                <Animate key={t.year} variant="slide-left" delay={i * 60}>
+                  <div className="md:sticky" style={{ top: `${80 + i * 24}px`, zIndex: i + 1 }}>
+                    <div className="rounded-[20px] p-[36px] md:p-[48px] mb-[12px] transition-shadow duration-300 lg:max-w-[100%] mx-auto h-[400px] flex flex-col justify-center"
+                      style={{ backgroundColor: i % 2 === 0 ? '#111212' : '#ffffff', boxShadow: '0 8px 40px rgba(0,0,0,0.12)' }}>
+                      <span className="inline-flex items-center px-[14px] py-[6px] rounded-full font-inter font-semibold text-[12px] uppercase tracking-[0.15em] mb-[24px] w-[65px]"
+                        style={{ backgroundColor: i % 2 === 0 ? 'rgba(255,255,255,0.08)' : '#F3F3F3', color: i % 2 === 0 ? 'rgba(255,255,255,0.5)' : '#929296' }}>
                         {t.year}
                       </span>
+                      <p className="font-mont font-semibold text-[18px] md:text-[22px] leading-[1.5]"
+                        style={{ color: i % 2 === 0 ? '#ffffff' : '#111212' }}>{t.text}</p>
+                      <div className="flex justify-between items-center mt-[32px] pt-[24px]"
+                        style={{ borderTop: `1px solid ${i % 2 === 0 ? 'rgba(255,255,255,0.08)' : '#f0f0f0'}` }}>
+                        <span className="font-inter tabular-nums text-[13px]" style={{ color: i % 2 === 0 ? 'rgba(255,255,255,0.2)' : '#ccc' }}>
+                          {String(i + 1).padStart(2, '0')} / {String(TIMELINE.length).padStart(2, '0')}
+                        </span>
+                        <span className="font-mont font-bold text-[48px] leading-none tabular-nums select-none"
+                          style={{ color: i % 2 === 0 ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)' }}>{t.year}</span>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Animate>
               ))}
             </div>
-              <div className="releative">
-                <Image
-              src="/our-history-2.png"
-              alt="team collaboration"
-              width={500}
-              height={400}
-              className="rounded-xl object-cover w-full sticky top-[100px]"
-            />
-              </div>
+            <Animate variant="fade-in" className="relative">
+              <Image src="/our-history-2.png" alt="team collaboration" width={500} height={400}
+                className="rounded-xl object-cover w-full sticky top-[100px]" />
+            </Animate>
           </div>
         </div>
       </section>
@@ -418,9 +236,11 @@ export default function AboutPage() {
       <section className="px-[16px] py-[64px] md:py-[96px] w-full bg-white">
         <div className="max-w-[1440px] mx-auto">
           <div className="flex flex-col items-center gap-[20px]">
-            <h2 className="w-full font-mont font-semibold lg:font-bold text-[32px] text-black lg:text-[64px] text-start leading-[38px] lg:leading-[64px]">
-              Frequently asked <br /> questions
-            </h2>
+            <Animate variant="slide-left" className="w-full">
+              <h2 className="w-full font-mont font-semibold lg:font-bold text-[32px] text-black lg:text-[64px] text-start leading-[38px] lg:leading-[64px]">
+                Frequently asked <br /> questions
+              </h2>
+            </Animate>
             <FAQ items={FAQS} />
           </div>
         </div>
@@ -428,28 +248,20 @@ export default function AboutPage() {
 
       {/* CTA */}
       <section className="bg-white">
-        <div className="bg-[#111212] max-w-[1440px] mx-auto rounded-[30px]">
-          <div className="flex lg:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[30px] py-[96px] w-full max-w-[1440px]">
-            <div className="flex flex-col items-center md:items-items-start gap-[16px] lg:max-w-[500px]">
-              <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">
-                Not sure which service fits?
-              </h2>
-              <p className="font-inter text-[#929296] text-[16px] leading-[24px]">
-                Tell us about your project and we'll recommend the right approach in 48h.
-              </p>
-            </div>
-            <div className="flex md:flex-row flex-col gap-[16px]">
-              <Link href="/contact"
-                className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">
-                Book a call
-              </Link>
-              <Link href="/project-cost-estimation"
-                className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">
-                Get an Project Estimate
-              </Link>
+        <Animate variant="scale-in">
+          <div className="bg-[#111212] max-w-[1440px] mx-auto rounded-[30px]">
+            <div className="flex lg:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[30px] py-[96px] w-full max-w-[1440px]">
+              <div className="flex flex-col items-center md:items-items-start gap-[16px] lg:max-w-[500px]">
+                <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">Not sure which service fits?</h2>
+                <p className="font-inter text-[#929296] text-[16px] leading-[24px]">Tell us about your project and we'll recommend the right approach in 48h.</p>
+              </div>
+              <div className="flex md:flex-row flex-col gap-[16px]">
+                <Link href="/contact" className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">Book a call</Link>
+                <Link href="/project-cost-estimation" className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">Get an Project Estimate</Link>
+              </div>
             </div>
           </div>
-        </div>
+        </Animate>
       </section>
     </div>
   )

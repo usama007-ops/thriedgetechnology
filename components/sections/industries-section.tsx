@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { Animate } from '@/components/common/animate'
 
 const INDUSTRIES = [
   {
@@ -47,34 +48,40 @@ export function IndustriesSection() {
 
         {/* Header */}
         <div className="flex md:flex-row flex-col md:items-end justify-between gap-[16px]">
-          <h2 className="text-black font-mont md:text-[56px] text-[32px] font-bold md:leading-[64px] leading-[36px] max-w-[600px]">
-            Industries we serve
-          </h2>
-          <p className="text-[#929296] font-inter text-[16px] leading-[24px] max-w-[400px]">
-            Deep domain expertise across the sectors that matter most.
-          </p>
+          <Animate variant="slide-left">
+            <h2 className="text-black font-mont md:text-[56px] text-[32px] font-bold md:leading-[64px] leading-[36px] max-w-[600px]">
+              Industries we serve
+            </h2>
+          </Animate>
+          <Animate variant="slide-right" delay={100}>
+            <p className="text-[#929296] font-inter text-[16px] leading-[24px] max-w-[400px]">
+              Deep domain expertise across the sectors that matter most.
+            </p>
+          </Animate>
         </div>
 
         {/* Grid */}
-        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-[20px]">
-          {INDUSTRIES.map((ind) => (
-            <Link key={ind.slug} href={`/industries/${ind.slug}`}>
-              <div className="rounded-[24px] bg-white border border-[#e5e5e5] group flex flex-col justify-end p-0 hover:border-[#111212] transition-colors duration-300">
-                <div className="flex flex-col gap-[24px] px-[20px] py-[24px]">
-                  <div className="relative w-[30px] h-[30px]">
-                    <Image src={`/${ind.icon}`} alt={ind.title} fill sizes="30px" className="object-contain invert" />
-                  </div>
-                  <div className="flex flex-col items-start gap-[8px]">
-                    <h3 className="xl:text-[24px] text-[20px] font-semibold font-mont text-[#111212]">
-                      {ind.title}
-                    </h3>
-                    <p className="text-[16px] font-inter text-[#929296] leading-[24px]">
-                      {ind.description}
-                    </p>
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px]">
+          {INDUSTRIES.map((ind, i) => (
+            <Animate key={ind.slug} variant="scale-in" delay={i * 90}>
+              <Link href={`/industries/${ind.slug}`} className="block h-full">
+                <div className="h-full rounded-[24px] bg-white border border-[#e5e5e5] group flex flex-col justify-end p-0 hover:border-[#111212] transition-colors duration-300">
+                  <div className="flex flex-col gap-[24px] px-[20px] py-[24px]">
+                    <div className="relative w-[30px] h-[30px]">
+                      <Image src={`/${ind.icon}`} alt={ind.title} fill sizes="30px" className="object-contain invert" />
+                    </div>
+                    <div className="flex flex-col items-start gap-[8px]">
+                      <h3 className="xl:text-[24px] text-[20px] font-semibold font-mont text-[#111212]">
+                        {ind.title}
+                      </h3>
+                      <p className="text-[16px] font-inter text-[#929296] leading-[24px]">
+                        {ind.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </Animate>
           ))}
         </div>
 

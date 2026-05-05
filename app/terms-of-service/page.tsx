@@ -1,6 +1,7 @@
 import { PageHero } from "@/components/common/page-hero";
 import { Metadata } from "next";
 import { Mail, Phone, MapPin, CheckCircle2, UserCheck, KeyRound, Ban, Wifi, CreditCard, FileText, Shield, HandshakeIcon, XCircle, Scale, RefreshCw } from "lucide-react";
+import { Animate } from "@/components/common/animate";
 
 export const metadata: Metadata = {
   title: "Terms of Service | Thrill Edge Technologies",
@@ -51,11 +52,8 @@ export default function TermsOfService() {
             <p className="mb-4 font-inter font-semibold text-[#999] text-[11px] uppercase tracking-[0.2em]">On this page</p>
             <nav className="flex flex-col gap-1">
               {sections.map((s) => (
-                <a
-                  key={s.id}
-                  href={`#${s.id}`}
-                  className="py-1 pl-3 border-transparent hover:border-foreground border-l-2 font-inter text-[#666] text-[13px] hover:text-foreground transition-colors"
-                >
+                <a key={s.id} href={`#${s.id}`}
+                  className="py-1 pl-3 border-transparent hover:border-foreground border-l-2 font-inter text-[#666] text-[13px] hover:text-foreground transition-colors">
                   {s.title}
                 </a>
               ))}
@@ -64,7 +62,8 @@ export default function TermsOfService() {
         </aside>
 
         {/* Content */}
-        <main className="flex-1 min-w-0">
+        <Animate variant="fade-up" className="flex-1 min-w-0">
+          <main className="flex-1 min-w-0">
 
           <TosSection id="agreement" icon={<CheckCircle2 size={18} />} title="1. Agreement to Terms">
             <p className="font-inter text-[#555] text-[15px] leading-[1.8]">
@@ -213,6 +212,7 @@ export default function TermsOfService() {
           </div>
 
         </main>
+        </Animate>
       </div>
     </>
   );

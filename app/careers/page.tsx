@@ -7,7 +7,8 @@ import { getJobs } from '@/lib/wordpress'
 import type { Job } from '@/lib/wordpress'
 import { useQuery } from '@tanstack/react-query'
 import { ArrowRight, MapPin } from 'lucide-react'
-import { cn } from "../../lib/utils";
+import { cn } from "../../lib/utils"
+import { Animate } from '@/components/common/animate'
 
 const PAGE_SIZE = 9
 
@@ -87,79 +88,83 @@ export default function CareersPage() {
               const type = job.acf?.type
               const excerpt = job.content?.rendered?.replace(/<[^>]*>/g, '').slice(0, 120) ?? ''
               return (
-                <div key={job.id}
-                  className={cn('group', 'flex', 'md:flex-row', 'flex-col', 'justify-between', 'md:items-center', 'gap-6', 'hover:bg-[#f9f9f9]', '-mx-5', 'px-5', 'py-7', 'border-[#e5e5e5]', 'border-b', 'rounded-[12px]', 'transition-all', 'duration-200')}>
-                  <div className={cn('flex', 'md:flex-row', 'flex-col', 'flex-1', 'md:items-center', 'gap-5', 'min-w-0')}>
-                    {/* Index */}
-                    <span className={cn('hidden', 'md:block', 'font-inter', 'tabular-nums', 'text-[#CCCCCC]', 'text-[13px]', 'shrink-0')}>
-                      {String(idx + 1).padStart(2, '0')}
-                    </span>
-                    <div className={cn('flex', 'flex-col', 'flex-1', 'gap-1.5', 'min-w-0')}>
-                      <h2 className={cn('font-mont', 'font-semibold', 'text-[#111212]', 'text-[20px]', 'leading-[1.3]')}>
-                        {job.title.rendered}
-                      </h2>
-                      {excerpt && (
-                        <p className={cn('font-inter', 'text-[#929296]', 'text-[14px]', 'line-clamp-1', 'leading-[1.6]')}>{excerpt}</p>
-                      )}
+                <Animate key={job.id} variant="fade-up" delay={idx * 50}>
+                  <div className={cn('group', 'flex', 'md:flex-row', 'flex-col', 'justify-between', 'md:items-center', 'gap-6', 'hover:bg-[#f9f9f9]', '-mx-5', 'px-5', 'py-7', 'border-[#e5e5e5]', 'border-b', 'rounded-[12px]', 'transition-all', 'duration-200')}>
+                    <div className={cn('flex', 'md:flex-row', 'flex-col', 'flex-1', 'md:items-center', 'gap-5', 'min-w-0')}>
+                      <span className={cn('hidden', 'md:block', 'font-inter', 'tabular-nums', 'text-[#CCCCCC]', 'text-[13px]', 'shrink-0')}>
+                        {String(idx + 1).padStart(2, '0')}
+                      </span>
+                      <div className={cn('flex', 'flex-col', 'flex-1', 'gap-1.5', 'min-w-0')}>
+                        <h2 className={cn('font-mont', 'font-semibold', 'text-[#111212]', 'text-[20px]', 'leading-[1.3]')}>
+                          {job.title.rendered}
+                        </h2>
+                        {excerpt && (
+                          <p className={cn('font-inter', 'text-[#929296]', 'text-[14px]', 'line-clamp-1', 'leading-[1.6]')}>{excerpt}</p>
+                        )}
+                      </div>
+                      <div className={cn('flex', 'flex-wrap', 'items-center', 'gap-2', 'shrink-0')}>
+                        {type && (
+                          <span className={cn('flex', 'items-center', 'gap-1.25', 'bg-[#f3f3f3]', 'px-3', 'py-1.25', 'rounded-full', 'font-inter', 'text-[#929296]', 'text-[12px]')}>
+                            <MapPin size={11} />{TYPE_LABEL[type] ?? type}
+                          </span>
+                        )}
+                        {dept && (
+                          <span className={cn('bg-[#f3f3f3]', 'px-3', 'py-1.25', 'rounded-full', 'font-inter', 'text-[#929296]', 'text-[12px]')}>
+                            {dept}
+                          </span>
+                        )}
+                      </div>
                     </div>
-                    {/* Tags */}
-                    <div className={cn('flex', 'flex-wrap', 'items-center', 'gap-2', 'shrink-0')}>
-                      {type && (
-                        <span className={cn('flex', 'items-center', 'gap-1.25', 'bg-[#f3f3f3]', 'px-3', 'py-1.25', 'rounded-full', 'font-inter', 'text-[#929296]', 'text-[12px]')}>
-                          <MapPin size={11} />{TYPE_LABEL[type] ?? type}
-                        </span>
-                      )}
-                      {dept && (
-                        <span className={cn('bg-[#f3f3f3]', 'px-3', 'py-1.25', 'rounded-full', 'font-inter', 'text-[#929296]', 'text-[12px]')}>
-                          {dept}
-                        </span>
-                      )}
-                    </div>
+                    <Link href={`/careers/${job.slug}`}
+                      className={cn('flex', 'items-center', 'gap-2', 'group-hover:bg-[#111212]', 'px-5', 'py-2.5', 'border', 'border-[#111212]', 'rounded-full', 'font-mont', 'font-semibold', 'text-[#111212]', 'text-[13px]', 'group-hover:text-white', 'transition-all', 'duration-300', 'shrink-0')}>
+                      View role <ArrowRight size={14} className={cn('transition-transform', 'group-hover:translate-x-0.5', 'duration-300')} />
+                    </Link>
                   </div>
-                  <Link href={`/careers/${job.slug}`}
-                    className={cn('flex', 'items-center', 'gap-2', 'group-hover:bg-[#111212]', 'px-5', 'py-2.5', 'border', 'border-[#111212]', 'rounded-full', 'font-mont', 'font-semibold', 'text-[#111212]', 'text-[13px]', 'group-hover:text-white', 'transition-all', 'duration-300', 'shrink-0')}>
-                    View role <ArrowRight size={14} className={cn('transition-transform', 'group-hover:translate-x-0.5', 'duration-300')} />
-                  </Link>
-                </div>
+                </Animate>
               )
             })}
           </div>
         ) : (
-          <div className={cn('py-20', 'border', 'border-[#e5e5e5]', 'border-dashed', 'rounded-[20px]', 'text-center')}>
-            <p className={cn('mb-2', 'font-mont', 'font-semibold', 'text-[#111212]', 'text-[20px]')}>No open positions in this department</p>
-            <p className={cn('font-inter', 'text-[#929296]', 'text-[14px]')}>Check back soon or send us your CV.</p>
-          </div>
+          <Animate variant="fade-in">
+            <div className={cn('py-20', 'border', 'border-[#e5e5e5]', 'border-dashed', 'rounded-[20px]', 'text-center')}>
+              <p className={cn('mb-2', 'font-mont', 'font-semibold', 'text-[#111212]', 'text-[20px]')}>No open positions in this department</p>
+              <p className={cn('font-inter', 'text-[#929296]', 'text-[14px]')}>Check back soon or send us your CV.</p>
+            </div>
+          </Animate>
         )}
 
-        {/* Load more */}
         {visible < filtered.length && (
-          <div className={cn('flex', 'justify-center', 'mt-12')}>
-            <button onClick={() => setVisible(v => v + PAGE_SIZE)}
-              className={cn('flex', 'items-center', 'gap-2', 'px-7', 'py-3', 'border', 'border-[#e5e5e5]', 'hover:border-[#111212]', 'rounded-full', 'font-mont', 'font-semibold', 'text-[#111212]', 'text-[14px]', 'transition-all', 'duration-300')}>
-              Load more <ArrowRight size={14} />
-            </button>
-          </div>
+          <Animate variant="fade-up" delay={200}>
+            <div className={cn('flex', 'justify-center', 'mt-12')}>
+              <button onClick={() => setVisible(v => v + PAGE_SIZE)}
+                className={cn('flex', 'items-center', 'gap-2', 'px-7', 'py-3', 'border', 'border-[#e5e5e5]', 'hover:border-[#111212]', 'rounded-full', 'font-mont', 'font-semibold', 'text-[#111212]', 'text-[14px]', 'transition-all', 'duration-300')}>
+                Load more <ArrowRight size={14} />
+              </button>
+            </div>
+          </Animate>
         )}
       </div>
 
       {/* Bottom CTA */}
-      <div className={cn('bg-[#111212]', 'w-full', 'my-21')}>
-        <div className={cn('flex', 'md:flex-row', 'flex-col', 'justify-between', 'md:items-center', 'gap-8', 'mx-auto', 'px-4', 'md:px-9', 'py-16', 'max-w-360')}>
-          <div className={cn('flex', 'flex-col', 'gap-3')}>
-            <p className={cn('font-inter', 'font-semibold', 'text-[11px]', 'text-white/30', 'uppercase', 'tracking-[0.15em]')}>Don&apos;t see your role?</p>
-            <h3 className={cn('max-w-120', 'font-mont', 'font-bold', 'text-[32px]', 'text-white', 'md:text-[40px]', 'leading-[1.15]')}>
-              Send us your CV anyway.
-            </h3>
-            <p className={cn('max-w-100', 'font-inter', 'text-[15px]', 'text-white/50', 'leading-[1.65]')}>
-              We&apos;re always looking for great engineers, designers, and product thinkers.
-            </p>
+      <Animate variant="scale-in">
+        <div className={cn('bg-[#111212]', 'w-full', 'my-21')}>
+          <div className={cn('flex', 'md:flex-row', 'flex-col', 'justify-between', 'md:items-center', 'gap-8', 'mx-auto', 'px-4', 'md:px-9', 'py-16', 'max-w-360')}>
+            <div className={cn('flex', 'flex-col', 'gap-3')}>
+              <p className={cn('font-inter', 'font-semibold', 'text-[11px]', 'text-white/30', 'uppercase', 'tracking-[0.15em]')}>Don&apos;t see your role?</p>
+              <h3 className={cn('max-w-120', 'font-mont', 'font-bold', 'text-[32px]', 'text-white', 'md:text-[40px]', 'leading-[1.15]')}>
+                Send us your CV anyway.
+              </h3>
+              <p className={cn('max-w-100', 'font-inter', 'text-[15px]', 'text-white/50', 'leading-[1.65]')}>
+                We&apos;re always looking for great engineers, designers, and product thinkers.
+              </p>
+            </div>
+            <Link href="/careers/apply?position=General+Application"
+              className={cn('flex', 'items-center', 'gap-2.5', 'bg-white', 'hover:bg-white/90', 'px-7', 'py-3.5', 'rounded-[10px]', 'font-mont', 'font-semibold', 'text-[14px]', 'text-black', 'whitespace-nowrap', 'transition-all', 'duration-200', 'shrink-0')}>
+              Send your CV <ArrowRight size={14} />
+            </Link>
           </div>
-          <Link href="/careers/apply?position=General+Application"
-            className={cn('flex', 'items-center', 'gap-2.5', 'bg-white', 'hover:bg-white/90', 'px-7', 'py-3.5', 'rounded-[10px]', 'font-mont', 'font-semibold', 'text-[14px]', 'text-black', 'whitespace-nowrap', 'transition-all', 'duration-200', 'shrink-0')}>
-            Send your CV <ArrowRight size={14} />
-          </Link>
         </div>
-      </div>
+      </Animate>
 
     </div>
   )

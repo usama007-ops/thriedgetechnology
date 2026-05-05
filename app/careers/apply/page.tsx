@@ -4,6 +4,7 @@ import { useState, useRef } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
+import { Animate } from '@/components/common/animate'
 
 function ApplyForm() {
   const params = useSearchParams()
@@ -128,11 +129,13 @@ export default function ApplyPage() {
   return (
     <div className="relative bg-white">
       <div className="mx-auto px-[16px] md:px-[36px] py-[64px] md:py-[80px] w-full max-w-[1440px]">
-        <div className="mx-auto max-w-180">
-          <Suspense>
-            <ApplyForm />
-          </Suspense>
-        </div>
+        <Animate variant="fade-up">
+          <div className="mx-auto max-w-180">
+            <Suspense>
+              <ApplyForm />
+            </Suspense>
+          </div>
+        </Animate>
       </div>
     </div>
   )

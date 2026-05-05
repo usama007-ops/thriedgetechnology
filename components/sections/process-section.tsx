@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Image from 'next/image'
 import { cn } from "../../lib/utils";
+import { Animate } from '@/components/common/animate'
 
 const STEP_DURATION = 5000
 
@@ -74,9 +75,11 @@ export function ProcessSection() {
     <section className={cn('flex', 'justify-center', 'items-center', 'w-full')}>
       <div className={cn('flex', 'flex-col', 'items-start', 'gap-[32px]', 'px-[16px]', 'lg:px-[36px]', 'py-[64px]', 'lg:py-[96px]', 'w-full', 'max-w-[1440px]')}>
 
-        <h2 className={cn('font-mont', 'font-semibold', 'md:font-bold', 'text-[32px]', 'text-black', 'md:text-[64px]', 'leading-[32px]', 'md:leading-[64px]')}>
-        Built with Strategy. Designed to Scale. Delivered with Precision.
-        </h2>
+        <Animate variant="blur-in">
+          <h2 className={cn('font-mont', 'font-semibold', 'md:font-bold', 'text-[32px]', 'text-black', 'md:text-[64px]', 'leading-[32px]', 'md:leading-[64px]')}>
+            Built with Strategy. Designed to Scale. Delivered with Precision.
+          </h2>
+        </Animate>
 
         {/* Tabs */}
         <div className={cn('flex', 'justify-start', 'gap-[32px]', 'md:gap-[48px]', 'w-full', 'overflow-x-auto', 'no-scrollbar')}>

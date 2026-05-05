@@ -460,3 +460,83 @@ figure.wp-block-image.size-large {
 .mega-shadow {
   box-shadow: 0 12px 48px rgba(0,0,0,0.08);
 }
+
+/* ─── Scroll-triggered animation base states ────────────────────────────────── */
+/*
+  All transitions use a gentle ease-out curve and longer durations
+  so they feel smooth and deliberate, not snappy.
+  The observer fires only when the element is well inside the viewport
+  (controlled by rootMargin in use-in-view.ts), so animations only play
+  when the user has actually scrolled to that section.
+*/
+
+.anim-fade-up {
+  opacity: 0;
+  transform: translateY(52px);
+  transition:
+    opacity   0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.anim-fade-up.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.anim-fade-in {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.anim-fade-in.in-view {
+  opacity: 1;
+}
+
+.anim-slide-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition:
+    opacity   0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.anim-slide-left.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.anim-slide-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition:
+    opacity   0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.anim-slide-right.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.anim-scale-in {
+  opacity: 0;
+  transform: scale(0.93) translateY(20px);
+  transition:
+    opacity   0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.anim-scale-in.in-view {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.anim-blur-in {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(28px);
+  transition:
+    opacity   1s   cubic-bezier(0.16, 1, 0.3, 1),
+    filter    1s   ease,
+    transform 1s   cubic-bezier(0.16, 1, 0.3, 1);
+}
+.anim-blur-in.in-view {
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateY(0);
+}
