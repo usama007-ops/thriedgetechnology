@@ -48,14 +48,14 @@ function FAQ({ items }: { items: typeof FAQS }) {
       {items.map((item, i) => (
         <div key={i} className="border-[#d0d0ce] border-b">
           <button onClick={() => setOpen(open === i ? null : i)}
-            className="flex justify-between items-start gap-[24px] py-[28px] w-full text-left cursor-pointer">
-            <span className="pr-[8px] font-mont font-semibold text-[#111212] text-[18px] leading-[1.35]">
-              <span className="mr-[14px] font-inter font-normal tabular-nums text-[#999] text-[13px]">
+            className="flex justify-between items-start gap-6 py-7 w-full text-left cursor-pointer">
+            <span className="pr-2 font-mont font-semibold text-[#111212] text-[18px] leading-[1.35]">
+              <span className="mr-3.5 font-inter font-normal tabular-nums text-[#999] text-[13px]">
                 {String(i + 1).padStart(2, '0')}
               </span>
               {item.q}
             </span>
-            <span className="flex flex-shrink-0 justify-center items-center mt-[4px] w-[24px] h-[24px] transition-transform duration-300"
+            <span className="flex shrink-0 justify-center items-center mt-1 w-6 h-6 transition-transform duration-300"
               style={{ transform: open === i ? 'rotate(45deg)' : 'none' }}>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M8 1V15M1 8H15" stroke="#111212" strokeWidth="1.5" strokeLinecap="round" />
@@ -63,7 +63,7 @@ function FAQ({ items }: { items: typeof FAQS }) {
             </span>
           </button>
           {open === i && (
-            <p className="pb-[28px] max-w-[680px] font-inter text-[#555] text-[16px] leading-[1.75]">{item.a}</p>
+            <p className="pb-7 max-w-170 font-inter text-[#555] text-[16px] leading-[1.75]">{item.a}</p>
           )}
         </div>
       ))}
@@ -75,18 +75,18 @@ export default function AboutPage() {
   return (
     <div className="relative bg-[#F3F3F3] mb-25">
       {/* Banner */}
-      <section className="px-[12px] md:px-[10px]">
-        <div className="relative w-full h-[480px] rounded-[20px] overflow-hidden">
+      <section className="px-3 md:px-2.5">
+        <div className="relative w-full h-120 rounded-[20px] overflow-hidden">
           <Image src="/aboutus.jpg" alt="About us" fill priority className="object-cover object-center" sizes="100vw" />
           <div className="absolute inset-0 rounded-[20px]" style={{ background: 'linear-gradient(to top, rgba(0,0,0), rgba(0,0,0,0.6), rgba(0,0,0,0))' }} />
-          <div className="absolute bottom-0 left-0 right-0 flex flex-col max-w-[1440px] lg:flex-row justify-between lg:items-end gap-4 lg:px-9 px-5 lg:py-8 py-6 max-w-[1440px] mx-auto">
+          <div className="absolute bottom-0 left-0 right-0 flex flex-col max-w-360 lg:flex-row justify-between lg:items-end gap-4 lg:px-9 px-5 lg:py-8 py-6 mx-auto">
             <div className="flex flex-col gap-4 max-w-2xl">
               <span className="text-sm font-inter text-white/70">About Us</span>
-              <h2 className="text-[32px] lg:text-[56px] lg:leading-[60px] leading-9 font-mont font-semibold text-white">
+              <h2 className="text-[32px] lg:text-[56px] lg:leading-15 leading-9 font-mont font-semibold text-white">
                 We Build Modern Digital Experiences
               </h2>
             </div>
-            <p className="lg:text-[18px] text-[15px] font-inter text-white/70 lg:max-w-xs leading-7">
+            <p className="lg:text-[18px] text-[15px] font-inter text-white/70 lg:max-w-1/2 leading-7">
               We are a team of developers and designers focused on building scalable, high-performance digital products.
             </p>
           </div>

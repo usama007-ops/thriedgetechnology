@@ -45,7 +45,7 @@ export default function TechnologiesPage() {
                 Built with the<br />best tools.
               </h1>
             </div>
-            <p className="lg:max-w-xs font-inter text-[15px] text-white/50 lg:text-[17px] lg:text-right leading-7">
+            <p className="lg:text-[18px] text-[15px] font-inter text-white/70 lg:max-w-1/2 leading-7">
               We choose technologies for reliability, performance, and developer experience not hype.
             </p>
           </div>

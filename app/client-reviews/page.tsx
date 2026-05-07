@@ -40,7 +40,7 @@ export default async function ClientReviewsPage() {
                 Where Client Satisfaction Meets Excellence
               </h2>
             </div>
-            <p className={cn("lg:text-[18px]", "text-[15px]", "font-inter", "text-white/70", "lg:max-w-[40%]", "leading-7")}>
+            <p className="lg:text-[18px] text-[15px] font-inter text-white/70 lg:max-w-1/2 leading-7">
               Our work speaks through the success of our clients.
             </p>
           </div>

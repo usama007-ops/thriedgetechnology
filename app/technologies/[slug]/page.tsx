@@ -395,13 +395,16 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
           <div className={cn('absolute', 'bottom-0', 'left-0', 'max-w-360', 'right-0', 'flex', 'lg:flex-row', 'flex-col', 'justify-between', 'lg:items-end', 'gap-4', 'lg:px-9', 'px-5', 'lg:py-8', 'py-6', 'mx-auto')}>
             <div className="flex flex-col gap-4">
               <span className={cn('text-sm', 'font-inter', 'text-white/70')}>{tech.title}</span>
-              <h2 className={cn('text-[32px]', 'lg:text-[56px]', 'lg:leading-[60px]', 'leading-9', 'font-mont', 'font-semibold', 'text-white', 'max-w-2xl')}>
+              <h2 className={cn('text-[32px]', 'lg:text-[56px]', 'lg:leading-15', 'leading-9', 'font-mont', 'font-semibold', 'text-white', 'max-w-2xl')}>
                 {tech.headline}
               </h2>
             </div>
-            <p className={cn('lg:text-[18px]', 'text-[15px]', 'font-inter', 'text-white/70', 'lg:max-w-xs', 'leading-7')}>
-              {tech.description.slice(0, 140)}...
+             <p
+              className="lg:text-[18px] text-[15px] font-inter text-white/70 lg:max-w-1/2 leading-7"
+            >
+              {tech.description}
             </p>
+
           </div>
         </div>
       </section>

@@ -37,7 +37,7 @@ export default function IndustriesPage() {
                 Industries<br />we serve.
               </h1>
             </div>
-            <p className="lg:max-w-xs font-inter text-[15px] text-white/50 lg:text-[17px] lg:text-right leading-7">
+            <p className="lg:text-[18px] text-[15px] font-inter text-white/70 lg:max-w-1/2 leading-7">
               Deep domain knowledge across the sectors that matter most.
             </p>
           </div>

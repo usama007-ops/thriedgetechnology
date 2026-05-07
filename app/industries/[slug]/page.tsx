@@ -3,13 +3,10 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { WorkSection } from "@/components/sections/work-section";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { ProcessSection } from "@/components/sections/process-section";
 import { ServicesSection } from "@/components/sections/services-section";
 import ValuePropositionSection from "@/components/sections/value-proposition";
-import { LatestArticlesSection } from "@/components/sections/latest-articles-section";
-import { PageHero } from "@/components/common/page-hero";
 import { cn } from "@/lib/utils";
 import { Animate } from "@/components/common/animate";
 
@@ -569,12 +566,6 @@ export default async function IndustryPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
-      {/* <PageHero
-        label={industry.title + ' Software Development'}
-        title={industry.headline}
-        bgColor="#111212"
-      /> */}
-
       <section className={cn("w-full", "mx-auto", "p-2")}>
         <div className={cn('relative', 'rounded-[20px]', 'w-full', 'h-[300px]', 'lg:h-[480px]', 'overflow-hidden')}>
           <Image
@@ -595,7 +586,7 @@ export default async function IndustryPage({
 
           <div
             className={cn(
-              "max-w-[1440px]",
+              "max-w-360",
               "mx-auto",
               "absolute",
               "bottom-0",
@@ -617,7 +608,7 @@ export default async function IndustryPage({
               className={cn(
                 "text-[32px]",
                 "lg:text-[56px]",
-                "lg:leading-[60px]",
+                "lg:leading-15",
                 "leading-9",
                 "font-mont",
                 "font-semibold",
@@ -628,16 +619,9 @@ export default async function IndustryPage({
               {industry.title} Software Development
             </h2>
             <p
-              className={cn(
-                "lg:text-[18px]",
-                "text-[15px]",
-                "font-inter",
-                "text-white/70",
-                "lg:max-w-xs",
-                "leading-7",
-              )}
+              className="lg:text-[18px] text-[15px] font-inter text-white/70 lg:max-w-1/2 leading-7"
             >
-              {industry.description.slice(0, 140)}...
+              {industry.description}
             </p>
 
 

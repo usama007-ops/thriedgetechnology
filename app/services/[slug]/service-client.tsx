@@ -67,7 +67,7 @@ export function ServiceClient({ slug }: { slug: string }) {
                 dangerouslySetInnerHTML={{ __html: service.title.rendered }} />
             </div>
             {acf.service_solutions && (
-              <p className="lg:max-w-[40%] font-inter text-[20px] text-white/60 lg:text-[16px] lg:text-right lg:leading-7">
+              <p className="lg:text-[18px] text-[15px] font-inter text-white/70 lg:max-w-1/2 leading-7">
                 {acf.service_solutions.slice(0, 160)}
               </p>
             )}

@@ -29,7 +29,7 @@ export default async function ServicesPage() {
                 We deliver.<br />Period.
               </h2>
             </div>
-            <p className={cn("lg:text-[18px]", "text-[15px]", "font-inter", "text-white/70", "lg:max-w-xs", "leading-7")}>
+            <p className="lg:text-[18px] text-[15px] font-inter text-white/70 lg:max-w-1/2 leading-7">
               From idea to production we cover every layer of the stack.
             </p>
           </div>
