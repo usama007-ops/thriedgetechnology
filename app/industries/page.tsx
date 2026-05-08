@@ -93,8 +93,8 @@ export default function IndustriesPage() {
               <p className="font-inter text-[#929296] text-[16px] leading-6">Tell us about your project and we'll recommend the right approach in 48h.</p>
             </div>
             <div className="flex md:flex-row flex-col gap-4">
-              <Link href="/contact" className="flex justify-center items-center bg-white px-8 py-4 rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">Book a call</Link>
-              <Link href="/project-cost-estimation" className="flex justify-center items-center hover:bg-white px-816px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">Get an Project Estimate</Link>
+              <Link href="/contact" className="flex justify-center items-center bg-white px-8 py-4 rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300 capitalize">Book a call</Link>
+              <Link href="/project-cost-estimation" className="flex justify-center items-center hover:bg-white px-816px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300 capitalize">Get an Project Estimate</Link>
             </div>
           </div>
         </div>

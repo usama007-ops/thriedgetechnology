@@ -117,7 +117,7 @@ export default function CareersPage() {
                     </div>
                     <Link href={`/careers/${job.slug}`}
                       className={cn('flex', 'items-center', 'gap-2', 'group-hover:bg-[#111212]', 'px-5', 'py-2.5', 'border', 'border-[#111212]', 'rounded-full', 'font-mont', 'font-semibold', 'text-[#111212]', 'text-[13px]', 'group-hover:text-white', 'transition-all', 'duration-300', 'shrink-0')}>
-                      View role <ArrowRight size={14} className={cn('transition-transform', 'group-hover:translate-x-0.5', 'duration-300')} />
+                      View Role <ArrowRight size={14} className={cn('transition-transform', 'group-hover:translate-x-0.5', 'duration-300')} />
                     </Link>
                   </div>
                 </Animate>
@@ -160,7 +160,7 @@ export default function CareersPage() {
             </div>
             <Link href="/careers/apply?position=General+Application"
               className={cn('flex', 'items-center', 'gap-2.5', 'bg-white', 'hover:bg-white/90', 'px-7', 'py-3.5', 'rounded-[10px]', 'font-mont', 'font-semibold', 'text-[14px]', 'text-black', 'whitespace-nowrap', 'transition-all', 'duration-200', 'shrink-0')}>
-              Send your CV <ArrowRight size={14} />
+              Send Your CV <ArrowRight size={14} />
             </Link>
           </div>
         </div>

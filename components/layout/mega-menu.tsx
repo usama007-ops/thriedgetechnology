@@ -152,7 +152,7 @@ export function MegaMenu() {
       {menus.map((menu) => (
         menu.href ? (
           <Link key={menu.label} href={menu.href}
-            className={cn('flex', 'items-center', 'gap-1.5', 'px-3', 'py-2', 'font-semibold', 'text-[#111212]', 'hover:text-accent', 'text-sm', 'transition-colors', 'cursor-pointer')}>
+            className={cn('flex', 'items-center', 'gap-1.5', 'px-3', 'py-2', 'font-semibold', 'text-[#111212]', 'hover:text-accent', 'text-sm', 'transition-colors', 'cursor-pointer', 'capitalize')}>
             {menu.label}
           </Link>
         ) : (

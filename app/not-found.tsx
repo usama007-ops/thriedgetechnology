@@ -48,14 +48,14 @@ export default function NotFound() {
               <div className="flex flex-col sm:flex-row items-center gap-3 mt-2">
                 <Link
                   href="/"
-                  className="flex items-center gap-2 bg-white px-7 pt-3.5 pb-3 rounded-full font-mont font-semibold text-[#111212] text-[14px] hover:scale-105 transition-all duration-300"
+                  className="flex items-center gap-2 bg-white px-7 pt-3.5 pb-3 rounded-full font-mont font-semibold text-[#111212] text-[14px] hover:scale-105 transition-all duration-300 capitalize"
                 >
                   <ArrowLeft size={15} />
                   Back to home
                 </Link>
                 <Link
                   href="/contact"
-                  className="flex items-center gap-2 border border-white/20 hover:border-white/60 px-7 pt-3.5 pb-3 rounded-full font-mont font-semibold text-white text-[14px] transition-all duration-300"
+                  className="flex items-center gap-2 border border-white/20 hover:border-white/60 px-7 pt-3.5 pb-3 rounded-full font-mont font-semibold text-white text-[14px] transition-all duration-300 capitalize"
                 >
                   Contact us
                   <ArrowRight size={15} />

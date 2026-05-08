@@ -203,11 +203,11 @@ export default function WorkPage({ params }: WorkPageProps) {
             </div>
             <div className="flex md:flex-row flex-col gap-[16px]">
               <Link href="/contact"
-                className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">
+                className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300 capitalize">
                 Book a call
               </Link>
               <Link href="/project-cost-estimation"
-                className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">
+                className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300 capitalize">
                 Get an Project Estimate
               </Link>
             </div>

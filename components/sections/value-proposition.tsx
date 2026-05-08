@@ -51,7 +51,7 @@ export default function ValuePropositionSection() {
               Our founders and product directors have shipped products that drive real revenue. We don&apos;t just build we help you grow.
             </p>
             <Link href="/about"
-              className="group flex items-center self-start gap-2 hover:bg-white px-5 py-2.5 border border-white/20 hover:border-white rounded-full font-mont font-semibold text-[13px] text-white hover:text-[#111212] transition-all duration-300">
+              className="capitalize group flex items-center self-start gap-2 hover:bg-white px-5 py-2.5 border border-white/20 hover:border-white rounded-full font-mont font-semibold text-[13px] text-white hover:text-[#111212] transition-all duration-300">
               Get to know us
               <ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 duration-300" />
             </Link>

@@ -85,7 +85,7 @@ export async function LatestArticlesSection({ show = 3, categories }: LatestArti
         <Animate variant="fade-up" delay={400}>
           <Link
             href="/blog"
-            className="flex items-center justify-center gap-1 px-[24px] pt-[14px] pb-[12px] rounded-full border border-black text-black font-mont text-[14px] font-semibold hover:scale-105 transition-all duration-300 ease-in-out"
+            className="capitalize flex items-center justify-center gap-1 px-[24px] pt-[14px] pb-[12px] rounded-full border border-black text-black font-mont text-[14px] font-semibold hover:scale-105 transition-all duration-300 ease-in-out"
           >
             View all articles
           </Link>

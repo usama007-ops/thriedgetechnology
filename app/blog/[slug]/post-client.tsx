@@ -217,7 +217,7 @@ export default function PostPage({ params }: PostPageProps) {
                 style={{ background: 'linear-gradient(135deg, #111 0%, #1a1a2e 100%)' }}>
                 <p className={cn('text-[11px]', 'font-inter', 'font-semibold', 'text-white/40', 'uppercase', 'tracking-[0.12em]')}>Work with us</p>
                 <p className={cn('text-[15px]', 'font-mont', 'font-semibold', 'text-white', 'leading-[1.35]')}>Ready to scope your next project?</p>
-                <Link href="/contact" className={cn('inline-flex', 'items-center', 'gap-[7px]', 'text-[12px]', 'font-mont', 'font-semibold', 'text-black', 'bg-white', 'px-[14px]', 'py-[8px]', 'rounded-[8px]', 'hover:bg-white/90', 'transition-colors', 'duration-200', 'w-fit')}>
+                <Link href="/contact" className={cn('inline-flex', 'items-center', 'gap-[7px]', 'text-[12px]', 'font-mont', 'font-semibold', 'text-black', 'bg-white', 'px-[14px]', 'py-[8px]', 'rounded-[8px]', 'hover:bg-white/90', 'transition-colors', 'duration-200', 'w-fit', 'capitalize')}>
                   Book a Call <ArrowRight size={12} />
                 </Link>
               </section>
@@ -297,7 +297,7 @@ export default function PostPage({ params }: PostPageProps) {
             <p className={cn('text-[15px]', 'font-inter', 'text-white/50', 'leading-[1.65]', 'max-w-[400px]')}>Get a tailored breakdown in 48 hours, no fluff, no commitment.</p>
           </div>
           <Link href="/contact"
-            className={cn('shrink-0', 'inline-flex', 'items-center', 'gap-[10px]', 'bg-white', 'text-black', 'text-[14px]', 'font-mont', 'font-semibold', 'px-[28px]', 'py-[14px]', 'rounded-[10px]', 'hover:bg-white/90', 'transition-all', 'duration-200', 'whitespace-nowrap')}>
+            className={cn('shrink-0', 'inline-flex', 'items-center', 'gap-[10px]', 'bg-white', 'text-black', 'text-[14px]', 'font-mont', 'font-semibold', 'px-[28px]', 'py-[14px]', 'rounded-[10px]', 'hover:bg-white/90', 'transition-all', 'duration-200', 'whitespace-nowrap', 'capitalize')}>
             Book a Call <ArrowRight size={14} />
           </Link>
         </div>

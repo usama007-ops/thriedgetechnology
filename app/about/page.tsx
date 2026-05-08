@@ -103,18 +103,18 @@ export default function AboutPage() {
             </Animate>
             <div className='w-full'>
               <Animate variant="slide-right" delay={120} className="flex flex-col gap-4 w-full font-inter font-normal text-[#111212] text-[16px] leading-[24px]">
-              <p className="font-medium text-[20px] leading-7 text-gray-500">About Us</p>
-              <h2 className="font-mont font-semibold text-[32px] md:text-[40px] leading-10 md:leading-12">Who We Are</h2>
-              <p>Thrill Edge Technologies is a full-stack software agency founded by Zeerak Jamshaid, built on the principle that exceptional software must be engineered with precision not pieced together.</p>
-              <p>Today, Thrill Edge Technologies operates as a fully integrated software partner, delivering product strategy, UI/UX design, frontend, backend, mobile development, cloud infrastructure, and AI solutions.</p>
-              <p>With a 4.9-star client rating and more than a decade of experience delivering production-grade systems, we apply senior-level expertise to every project.</p>
-            </Animate>
-            {/* book a free call */}
-            <div className='mt-10'>
-              <Link href="/contact" className="w-fit bg-black text-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[16px] hover:scale-105 transition-all duration-300">
-              Book a free call
-            </Link>
-            </div>
+                <p className="font-medium text-[20px] leading-7 text-gray-500">About Us</p>
+                <h2 className="font-mont font-semibold text-[32px] md:text-[40px] leading-10 md:leading-12">Who We Are</h2>
+                <p>Thrill Edge Technologies is a full-stack software agency founded by Zeerak Jamshaid, built on the principle that exceptional software must be engineered with precision not pieced together.</p>
+                <p>Today, Thrill Edge Technologies operates as a fully integrated software partner, delivering product strategy, UI/UX design, frontend, backend, mobile development, cloud infrastructure, and AI solutions.</p>
+                <p>With a 4.9-star client rating and more than a decade of experience delivering production-grade systems, we apply senior-level expertise to every project.</p>
+              </Animate>
+              {/* book a free call */}
+              <div className='mt-10'>
+                <Link href="/contact" className="w-fit bg-black text-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[16px] hover:scale-105 transition-all duration-300 capitalize">
+                  Book a free call
+                </Link>
+              </div>
             </div>
           </div>
 
@@ -209,15 +209,16 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-10">
             <div className="flex-1 flex flex-col gap-10">
               {TIMELINE.map((t, i) => (
-                <Animate key={t.year} variant="slide-left" delay={i * 60}>
-                  <div className="md:sticky" style={{ top: `${80 + i * 24}px`, zIndex: i + 1 }}>
-                    <div className="rounded-[20px] p-[36px] md:p-[48px] mb-[12px] transition-shadow duration-300 lg:max-w-[100%] mx-auto h-[400px] flex flex-col justify-center"
+
+                <div className="md:sticky" key={t.year} style={{ top: `${80 + i * 24}px`, zIndex: i + 1 }}>
+                  <Animate variant="slide-left" delay={i * 60}>
+                    <div className="rounded-[20px] p-9 md:p-12 mb-3 transition-shadow duration-300 lg:max-w-full mx-auto h-100 flex flex-col justify-center"
                       style={{ backgroundColor: i % 2 === 0 ? '#111212' : '#ffffff', boxShadow: '0 8px 40px rgba(0,0,0,0.12)' }}>
-                      <span className="inline-flex items-center px-[14px] py-[6px] rounded-full font-inter font-semibold text-[12px] uppercase tracking-[0.15em] mb-[24px] w-[65px]"
+                      <span className="inline-flex items-center px-3.5 py-1.5 rounded-full font-inter font-semibold text-[12px] uppercase tracking-[0.15em] mb-[24px] w-[65px]"
                         style={{ backgroundColor: i % 2 === 0 ? 'rgba(255,255,255,0.08)' : '#F3F3F3', color: i % 2 === 0 ? 'rgba(255,255,255,0.5)' : '#929296' }}>
                         {t.year}
                       </span>
-                      <p className="font-mont font-semibold text-[18px] md:text-[22px] leading-[1.5]"
+                      <p className="font-mont font-semibold text-[18px] md:text-[22px] leading-normal"
                         style={{ color: i % 2 === 0 ? '#ffffff' : '#111212' }}>{t.text}</p>
                       <div className="flex justify-between items-center mt-[32px] pt-[24px]"
                         style={{ borderTop: `1px solid ${i % 2 === 0 ? 'rgba(255,255,255,0.08)' : '#f0f0f0'}` }}>
@@ -228,8 +229,8 @@ export default function AboutPage() {
                           style={{ color: i % 2 === 0 ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)' }}>{t.year}</span>
                       </div>
                     </div>
-                  </div>
-                </Animate>
+                  </Animate>
+                </div>
               ))}
             </div>
             <Animate variant="fade-in" className="relative">
@@ -264,8 +265,8 @@ export default function AboutPage() {
                 <p className="font-inter text-[#929296] text-[16px] leading-[24px]">Tell us about your project and we'll recommend the right approach in 48h.</p>
               </div>
               <div className="flex md:flex-row flex-col gap-[16px]">
-                <Link href="/contact" className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">Book a call</Link>
-                <Link href="/project-cost-estimation" className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">Get an Project Estimate</Link>
+                <Link href="/contact" className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300 capitalize">Book a call</Link>
+                <Link href="/project-cost-estimation" className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300 capitalize">Get an Project Estimate</Link>
               </div>
             </div>
           </div>

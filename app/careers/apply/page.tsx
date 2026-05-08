@@ -49,7 +49,7 @@ function ApplyForm() {
         </div>
         <h2 className="font-mont font-bold text-[#111212] text-[32px]">Application sent!</h2>
         <p className="font-inter text-[#929296] text-[16px] leading-[1.65]">We&apos;ll review your application and get back to you within 5 business days.</p>
-        <Link href="/careers" className="inline-flex justify-center items-center bg-black mx-auto px-[24px] py-[12px] rounded-full font-mont font-semibold text-[14px] text-white hover:scale-105 transition-all duration-300">
+        <Link href="/careers" className="inline-flex justify-center items-center bg-black mx-auto px-[24px] py-[12px] rounded-full font-mont font-semibold text-[14px] text-white hover:scale-105 transition-all duration-300 capitalize">
           Back to Careers
         </Link>
       </div>

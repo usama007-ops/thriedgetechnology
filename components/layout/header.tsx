@@ -96,7 +96,7 @@ function AccordionItem({
     return (
       <div>
         <button className={cn('flex', 'justify-between', 'items-center', 'w-full', 'font-semibold', 'text-[28px]', 'text-left', 'leading-[28px]')}>
-          <Link href={item.href!} onClick={onClose} className="text-[#111212]">
+          <Link href={item.href!} onClick={onClose} className="text-[#111212] capitalize">
             {item.label}
           </Link>
         </button>
@@ -126,7 +126,7 @@ function AccordionItem({
               <Link
                 href={child.href}
                 onClick={onClose}
-                className={cn('font-semibold', 'text-[20px]', 'text-black', 'leading-5')}
+                className={cn('font-semibold', 'text-[20px]', 'text-black', 'leading-5', 'capitalize')}
               >
                 {child.label}
               </Link>
@@ -180,7 +180,7 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
           <Link
             href="/contact"
             onClick={onClose}
-            className={cn('flex', 'flex-row', 'justify-center', 'items-center', 'gap-1', 'bg-black', 'px-[24px]', 'pt-[14px]', 'pb-[12px]', 'rounded-full', 'font-semibold', 'text-[14px]', 'text-white', 'hover:scale-105', 'transition-all', 'duration-300', 'ease-in-out', 'cursor-pointer')}
+            className={cn('flex', 'flex-row', 'justify-center', 'items-center', 'gap-1', 'bg-black', 'px-[24px]', 'pt-[14px]', 'pb-[12px]', 'rounded-full', 'font-semibold', 'text-[14px]', 'text-white', 'hover:scale-105', 'transition-all', 'duration-300', 'ease-in-out', 'cursor-pointer', 'capitalize')}
           >
             <span>Book a call</span>
           </Link>
@@ -211,7 +211,7 @@ export function Header() {
             <div className={cn('hidden', 'lg:block')}>
               <Link
                 href="/contact"
-                className={cn('flex', 'justify-center', 'items-center', 'bg-black', 'px-[24px]', 'pt-[14px]', 'pb-[12px]', 'rounded-full', 'font-semibold', 'text-[14px]', 'text-white', 'hover:scale-105', 'transition-all', 'duration-300', 'ease-in-out', 'cursor-pointer', 'uppercase')}
+                className={cn('flex', 'justify-center', 'items-center', 'bg-black', 'px-[24px]', 'pt-[14px]', 'pb-[12px]', 'rounded-full', 'font-semibold', 'text-[14px]', 'text-white', 'hover:scale-105', 'transition-all', 'duration-300', 'ease-in-out', 'cursor-pointer', 'capitalize')}
               >
                 Book a Free Strategy Call
               </Link>

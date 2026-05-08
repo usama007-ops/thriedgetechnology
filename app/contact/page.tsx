@@ -129,7 +129,7 @@ export default function Contact() {
                 Your idea, our brains — we&apos;ll send you a tailored game plan in 48h.
               </p>
               <Link href="/project-cost-estimation"
-                className="inline-flex items-center justify-center bg-white px-6 py-3.5 rounded-full font-mont font-semibold text-[14px] text-[#111212] hover:scale-105 transition-all duration-300 w-fit">
+                className="inline-flex items-center justify-center bg-white px-6 py-3.5 rounded-full font-mont font-semibold text-[14px] text-[#111212] hover:scale-105 transition-all duration-300 w-fit capitalize">
                 Get an Project Estimate
               </Link>
             </div>

@@ -73,7 +73,7 @@ export default async function JobPage({ params }: Props) {
           </div>
           <Link href={`/careers/apply?position=${encodeURIComponent(job.title.rendered)}`}
             className="flex items-center gap-[8px] bg-black px-[28px] pt-[14px] pb-[12px] rounded-full font-mont font-semibold text-[14px] text-white hover:scale-105 transition-all duration-300 shrink-0">
-            Apply now <ArrowRight size={16} />
+            Apply Now <ArrowRight size={16} />
           </Link>
         </div>
       </Animate>
@@ -127,7 +127,7 @@ export default async function JobPage({ params }: Props) {
               <p className="font-mont font-semibold text-[15px] text-white leading-[1.35]">Apply for this role today.</p>
               <Link href={`/careers/apply?position=${encodeURIComponent(job.title.rendered)}`}
                 className="inline-flex items-center gap-[7px] bg-white hover:bg-white/90 px-[14px] py-[8px] rounded-[8px] w-fit font-mont font-semibold text-[12px] text-black transition-colors duration-200">
-                Apply now <ArrowRight size={12} />
+                Apply Now <ArrowRight size={12} />
               </Link>
             </div>
           </div>

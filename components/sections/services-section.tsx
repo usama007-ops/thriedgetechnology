@@ -104,7 +104,7 @@ export async function ServicesSection({ show = 12 }: { show?: number }) {
           <div className="text-center pt-8">
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-accent text-accent hover:bg-accent/10 transition-all duration-300 font-semibold"
+              className="capitalize inline-flex items-center gap-2 px-6 py-3 rounded-full border border-accent text-accent hover:bg-accent/10 transition-all duration-300 font-semibold"
             >
               View All Services
               <ArrowRight size={18} />

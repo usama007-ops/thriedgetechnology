@@ -112,7 +112,7 @@ export async function WorkSection({ show = 6, industry }: { show?: number; indus
             <div className="text-center pt-4">
               <Link
                 href="/work"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[#111212] text-[#111212] hover:bg-[#111212] hover:text-white transition-all duration-300 font-semibold text-sm"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[#111212] text-[#111212] hover:bg-[#111212] hover:text-white transition-all duration-300 font-semibold text-sm capitalize"
               >
                 View All Work
                 <ArrowRight size={16} />

@@ -41,7 +41,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         <div className="mx-auto max-w-6xl">
           <Link
             href="/categories"
-            className="inline-flex items-center gap-2 text-accent hover:text-primary transition-colors"
+            className="inline-flex items-center gap-2 text-accent hover:text-primary transition-colors capitalize"
           >
             <ArrowLeft size={20} />
             Back to Categories

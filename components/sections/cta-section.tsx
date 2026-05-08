@@ -37,6 +37,7 @@ export function CTASection() {
                   font-semibold text-lg
                   flex items-center gap-2 group
                   hover:scale-105
+                  capitalize
                 "
               >
                 <Mail size={20} />
@@ -51,6 +52,7 @@ export function CTASection() {
                   hover:bg-primary/5 transition-all duration-300
                   font-semibold text-lg
                   hover:scale-105
+                  capitalize
                 "
               >
                 Schedule a Call

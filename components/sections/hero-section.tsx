@@ -214,12 +214,12 @@ export default function HeroSection() {
         <div className={cn('flex', 'sm:flex-row', 'flex-col', 'items-center', 'gap-3', 'mb-14', 'animate-fade-in-up')}
           style={{ animationDelay: "240ms" }}>
           <Link href="/contact"
-            className={cn('flex', 'items-center', 'gap-2', 'bg-white', 'shadow-[0_0_50px_rgba(255,255,255,0.15)]', 'px-8', 'py-4', 'rounded-full', 'font-mont', 'font-semibold', 'text-[#111212]', 'text-[14px]', 'hover:scale-105', 'transition-all', 'duration-300')}>
+            className={cn('flex', 'items-center', 'gap-2', 'bg-white', 'shadow-[0_0_50px_rgba(255,255,255,0.15)]', 'px-8', 'py-4', 'rounded-full', 'font-mont', 'font-semibold', 'text-[#111212]', 'text-[14px]', 'hover:scale-105', 'transition-all', 'duration-300', 'capitalize')}>
             Book a Free Strategy Call
             <ArrowUpRight size={15} />
           </Link>
           <Link href="/project-cost-estimation"
-            className={cn('flex', 'items-center', 'gap-2', 'bg-white/5', 'hover:bg-white/10', 'backdrop-blur-md', 'px-8', 'py-4', 'border', 'border-white/10', 'hover:border-white/20', 'rounded-full', 'font-mont', 'font-semibold', 'text-[14px]', 'text-white', 'transition-all', 'duration-300')}>
+            className={cn('flex', 'items-center', 'gap-2', 'bg-white/5', 'hover:bg-white/10', 'backdrop-blur-md', 'px-8', 'py-4', 'border', 'border-white/10', 'hover:border-white/20', 'rounded-full', 'font-mont', 'font-semibold', 'text-[14px]', 'text-white', 'transition-all', 'duration-300', 'capitalize')}>
             Get a Free Estimate →
           </Link>
         </div>

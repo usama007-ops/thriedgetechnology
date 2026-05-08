@@ -48,7 +48,7 @@ export default function PublicReviewPage() {
                 </div>
                 <h1 className="text-[32px] font-mont font-bold text-[#111212]">Thank you!</h1>
                 <p className="text-[16px] font-inter text-[#929296] leading-[1.65]">Your review has been submitted and is pending approval. We appreciate your feedback.</p>
-                <Link href="/client-reviews" className="inline-flex items-center justify-center px-[24px] py-[12px] bg-black text-white font-mont text-[14px] font-semibold rounded-full hover:scale-105 transition-all duration-300 mx-auto">
+                <Link href="/client-reviews" className="inline-flex items-center justify-center px-[24px] py-[12px] bg-black text-white font-mont text-[14px] font-semibold rounded-full hover:scale-105 transition-all duration-300 mx-auto capitalize">
                     Back to Reviews
                 </Link>
             </div>
