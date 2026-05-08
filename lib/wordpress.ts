@@ -228,6 +228,21 @@ export interface Service {
     about_us?: {
       title?: string
       text?: string
+      about_item_1?: {
+        image?: { url: string; alt?: string } | string
+        title?: string
+        text?: string
+      }
+      about_item_2?: {
+        image?: { url: string; alt?: string } | string
+        title?: string
+        text?: string
+      }
+      about_item_3?: {
+        image?: { url: string; alt?: string } | string
+        title?: string
+        text?: string
+      }
     }
 
     image?: WorkAcfImageField

@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useEffect, useMemo } from 'react'
+import { useRef, useEffect, useMemo, useState } from 'react'
 import { useService } from '@/hooks/use-services'
 import { useQuery } from '@tanstack/react-query'
 import { Loader, ArrowUpRight } from 'lucide-react'
@@ -29,7 +29,6 @@ export function ServiceClient({ slug }: { slug: string }) {
 
   const acf = service.acf ?? {}
   const heroImg = service._embedded?.['wp:featuredmedia']?.[0]?.source_url
-  const aboutImage = acf.image?.url
 
   const howWeWork = acf.how_we_work ?? {}
   const hwwSteps = Object.entries(howWeWork)
@@ -92,38 +91,9 @@ export function ServiceClient({ slug }: { slug: string }) {
           )}
 
           {/* About / Description */}
-          <Animate variant="fade-up" delay={80}>
-            <div className="grid lg:grid-cols-[60%_40%] gap-10 mt-16 items-center">
-              {(acf.about_us?.title || acf.about_us?.text) && (
-                <div className="flex flex-col gap-10 w-full">
-                  {acf.about_us.title && (
-                    <h2 className="w-full font-mont font-semibold text-[32px] md:text-[48px] leading-[1.1]">
-                      {acf.about_us.title}
-                    </h2>
-                  )}
-                  {acf.about_us.text && (
-                    <div
-                      className="flex flex-col gap-4 w-full font-inter text-[#555] text-[18px] [&_p]:text-[18px] leading-7.5 [&_p]:leading-7.5 [&_strong]:font-semibold [&_strong]:text-[#111212]"
-                      dangerouslySetInnerHTML={{ __html: acf.about_us.text }}
-                    />
-                  )}
-                </div>
-              )}
-
-              {/* Service Image */}
-              {acf.image?.url && (
-                <div className="relative rounded-[20px] w-full overflow-hidden">
-                  <Image
-                    src={aboutImage || ''}
-                    alt={acf.image.alt || service.title.rendered}
-                    width={300}
-                    height={450}
-                    className="rounded-[20px] w-full h-175 object-cover center"
-                  />
-                </div>
-              )}
-            </div>
-          </Animate>
+          {acf.about_us && (
+            <AboutTabs aboutUs={acf.about_us} serviceTitle={service.title.rendered} />
+          )}
         </div>
       </section>
 
@@ -230,6 +200,157 @@ export function ServiceClient({ slug }: { slug: string }) {
       </div>
 
     </div>
+  )
+}
+
+/* ── About Us Vertical Tabs ── */
+type AboutUsAcf = NonNullable<NonNullable<import('@/lib/wordpress').Service['acf']>['about_us']>
+
+function getItemImageUrl(image: { url: string; alt?: string } | string | undefined): string {
+  if (!image) return ''
+  if (typeof image === 'string') return image
+  return image.url ?? ''
+}
+
+function getItemImageAlt(image: { url: string; alt?: string } | string | undefined, fallback: string): string {
+  if (!image) return fallback
+  if (typeof image === 'string') return fallback
+  return image.alt || fallback
+}
+
+function AboutTabs({ aboutUs, serviceTitle }: { aboutUs: AboutUsAcf; serviceTitle: string }) {
+  const items = [
+    aboutUs.about_item_1,
+    aboutUs.about_item_2,
+    aboutUs.about_item_3,
+  ].filter(item => item?.title || item?.text || item?.image)
+
+
+  const [activeTab, setActiveTab] = useState(0)
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const AUTO_INTERVAL = 4000
+
+  const startAuto = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current)
+    intervalRef.current = setInterval(() => {
+      setActiveTab(prev => (prev + 1) % items.length)
+    }, AUTO_INTERVAL)
+  }
+
+  useEffect(() => {
+    if (items.length < 2) return
+    startAuto()
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current) }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items.length])
+
+  const handleTabClick = (idx: number) => {
+    setActiveTab(idx)
+    startAuto()
+  }
+
+  const activeItem = items[activeTab]
+  const activeImageUrl = getItemImageUrl(activeItem?.image)
+  const activeImageAlt = getItemImageAlt(activeItem?.image, activeItem?.title || serviceTitle)
+
+  if (!aboutUs.title && !aboutUs.text && items.length === 0) return null
+
+  return (
+    <Animate variant="fade-up" delay={80}>
+      <div className="mt-16">
+        {/* Tabs layout — only render if there are items */}
+        {items.length > 0 && (
+          <div className="grid lg:grid-cols-[1fr_45%] gap-10 items-stretch">
+            {/* Left — vertical tabs */}
+            <div className="flex flex-col justify-center gap-0">
+              {/* Section header */}
+              {(aboutUs.title || aboutUs.text) && (
+                <div className="mb-12">
+                  {aboutUs.title && (
+                    <h2 className="font-mont font-semibold text-[32px] md:text-[48px] leading-[1.1] mb-5">
+                      {aboutUs.title}
+                    </h2>
+                  )}
+                </div>
+              )}
+
+              {items.map((item, idx) => {
+                const isActive = idx === activeTab
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => handleTabClick(idx)}
+                    className={cn(
+                      'group text-left flex flex-col gap-3 px-6 relative transition-all duration-300',
+                      isActive ? 'rounded-r-2xl' : 'py-6'
+                    )}
+                  >
+                    {/* Vertical progress bar  */}
+                    <div className="top-0 left-0 absolute w-0.5 h-full bg-[#E5E5E5]">
+                      {isActive ? (
+                        <div
+                          key={activeTab}
+                          className="absolute top-0 left-0 w-full bg-[#111212]"
+                          style={{ animation: `tab-progress ${AUTO_INTERVAL}ms linear forwards` }}
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-[#D9D9D9] group-hover:bg-[#999] transition-colors duration-300" />
+                      )}
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className={cn(
+                        'font-mont font-bold text-[13px] tabular-nums transition-colors duration-300',
+                        isActive ? 'text-[#111212]' : 'text-[#CCCCCC]'
+                      )}>
+                        {String(idx + 1).padStart(2, '0')}
+                      </span>
+                      {item?.title && (
+                        <h3 className={cn(
+                          'font-mont font-semibold text-[24px] md:text-[24px] transition-colors duration-300',
+                          isActive ? 'text-[#111212]' : 'text-[#999]'
+                        )}>
+                          {item.title}
+                        </h3>
+                      )}
+                    </div>
+                    {isActive && item?.text && (
+                      <div
+                        className="font-inter text-[#111212] text-[20px] leading-9 mt-1 animate-in fade-in duration-300 [&_p]:mb-4 [&_p:last-child]:mb-0"
+                        dangerouslySetInnerHTML={{ __html: item.text }}
+                      />
+                    )}
+                  </button>
+                )
+              })}
+            </div>
+
+            {/* Right — image */}
+            <div className="relative rounded-[20px] overflow-hidden min-h-175">
+              {activeImageUrl ? (
+                <Image
+                  key={activeTab}
+                  src={activeImageUrl}
+                  alt={activeImageAlt}
+                  fill
+                  className="object-cover animate-in fade-in duration-500"
+                  sizes="(max-width: 1024px) 100vw, 45vw"
+                />
+              ) : (
+                <div className="absolute inset-0 bg-[#E5E5E5] rounded-[20px]" />
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Keyframe for progress bar */}
+      <style>{`
+        @keyframes tab-progress {
+          from { height: 0% }
+          to   { height: 100% }
+        }
+      `}</style>
+    </Animate>
   )
 }
 
