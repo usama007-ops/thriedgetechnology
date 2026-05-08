@@ -117,7 +117,7 @@ function BadgeLogo({ src, alt }: { src: string; alt: string }) {
       alt={alt}
       width={100}
       height={100}
-      className={cn('w-[67px]', 'xl:w-[100px] opacity-[60%] hover:opacity-[100%]')}
+      className={cn('w-16.75', 'xl:w-25 opacity-60 hover:opacity-100')}
       onError={() => setErr(true)}
     />
   )
@@ -167,27 +167,27 @@ export function MegaMenu() {
       {/* single shared panelpositioned from the header via fixed top */}
       {activeMenu && (
         <div
-          className={cn('right-0', 'left-0', 'z-[9999]', 'fixed', 'flex', 'justify-center', 'px-4')}
+          className={cn('right-0', 'left-0', 'z-9999', 'fixed', 'flex', 'justify-center', 'px-4')}
           style={{ top: '55px' }}
           onMouseEnter={() => setActive(activeMenu.label)}
           onMouseLeave={() => setActive(null)}
         >
-          <div className={cn('flex', 'flex-col', 'gap-[24px]', 'bg-white', 'p-[12px]', 'rounded-[20px]', 'w-full', 'max-w-[1440px]', 'mega-shadow','border border-[#f0f0f0]')}>
-            <div className={cn('px-[32px]', 'py-[40px]', 'w-full')}>
+          <div className={cn('flex', 'flex-col', 'gap-6', 'bg-white', 'p-3', 'rounded-[20px]', 'w-full', 'max-w-360', 'mega-shadow','border border-[#f0f0f0]')}>
+            <div className={cn('px-8', 'py-10', 'w-full')}>
               <p className={cn('mb-4', 'font-normal', 'text-[#929296]', 'text-[16px]')}>{activeMenu.categoryLabel}</p>
-              <ul className={cn('gap-[24px]', 'grid', 'grid-cols-3')}>
+              <ul className={cn('gap-6', 'grid', 'grid-cols-3')}>
                 {(activeMenu.items ?? []).map((item) => (
                   <li key={item.href} className="h-full">
                     <Link
                       href={item.href}
                       onClick={() => setActive(null)}
-                      className={cn('block', 'box-border', 'hover:bg-gray-50', 'px-4', 'py-2', 'border', 'border-white', 'hover:border-[#F2F2F2]', 'rounded-[8px]', 'w-full', 'h-full', 'font-semibold', 'text-[16px]', 'text-black', 'leading-[24px]', 'cursor-pointer')}
+                      className={cn('block', 'box-border', 'hover:bg-gray-50', 'px-4', 'py-2', 'border', 'border-white', 'hover:border-[#F2F2F2]', 'rounded-xl', 'w-full', 'h-full', 'font-semibold', 'text-[16px]', 'text-black', 'leading-6', 'cursor-pointer')}
                     >
-                      <div className={cn('flex', 'items-start', 'gap-[16px]')}>
+                      <div className={cn('flex', 'items-start', 'gap-4')}>
                         <MenuIcon icon={item.icon} />
-                        <div className={cn('flex', 'flex-col', 'gap-[8px]')}>
+                        <div className={cn('flex', 'flex-col', 'gap-2')}>
                           <p>{item.label}</p>
-                          <p className={cn('font-normal', 'text-[#929296]', 'text-[14px]', 'leading-[18px]')}>{item.description}</p>
+                          <p className={cn('font-normal', 'text-[#929296]', 'text-[14px]', 'leading-4.5')}>{item.description}</p>
                         </div>
                       </div>
                     </Link>
@@ -197,11 +197,11 @@ export function MegaMenu() {
 
             </div>
             <div className="border-t border-[#ebebeb] py-4 pl-6">
-              <p className="text-[10px] font-mont font-semibold text-[#c8c8cc] uppercase tracking-[0.1em] mb-[14px]">
+              <p className="text-[10px] font-mont font-semibold text-[#c8c8cc] uppercase tracking-widest mb-3.5">
                 Recognized By
               </p>
 
-              <div className="flex items-center gap-[60px] flex-wrap">
+              <div className="flex items-center gap-15 flex-wrap">
                 {badgeLogos.map((logo, index) => (
                   <BadgeLogo key={index} src={logo.src} alt={logo.alt} />
                 ))}

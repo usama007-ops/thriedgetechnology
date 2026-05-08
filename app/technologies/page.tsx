@@ -35,10 +35,10 @@ export default function TechnologiesPage() {
 
       {/* Hero */}
       <section className="mx-auto p-2 w-full">
-        <div className="relative bg-[#111212] rounded-[20px] w-full h-[480px] overflow-hidden">
+        <div className="relative bg-[#111212] rounded-[20px] w-full h-120 overflow-hidden">
           <div className="absolute inset-0 opacity-[0.04]"
             style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '80px 80px' }} />
-          <div className="right-0 bottom-0 left-0 absolute flex lg:flex-row flex-col justify-between lg:items-end gap-4 mx-auto px-5 lg:px-9 py-8 lg:py-10 max-w-[1440px]">
+          <div className="right-0 bottom-0 left-0 absolute flex lg:flex-row flex-col justify-between lg:items-end gap-4 mx-auto px-5 lg:px-9 py-8 lg:py-10 max-w-360">
             <div className="flex flex-col gap-3">
               <span className="font-inter font-semibold text-[11px] text-white/30 uppercase tracking-[0.2em]">Our stack</span>
               <h1 className="max-w-2xl font-mont font-bold text-[40px] text-white lg:text-[72px] leading-none">
@@ -53,7 +53,7 @@ export default function TechnologiesPage() {
       </section>
 
       {/* Tech cards */}
-      <div className="mx-auto px-4 md:px-9 py-20 max-w-[1440px]">
+      <div className="mx-auto px-4 md:px-9 py-20 max-w-360">
         <div className="gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {TECHNOLOGIES.map((tech, idx) => (
             <Animate key={tech.slug} variant="scale-in" delay={idx * 80}>
@@ -90,15 +90,15 @@ export default function TechnologiesPage() {
 
       {/* Full stack strip */}
       <div className="bg-[#f3f3f3] w-full">
-        <div className="mx-auto px-4 md:px-9 py-16 max-w-[1440px]">
+        <div className="mx-auto px-4 md:px-9 py-16 max-w-360">
           <div className="flex md:flex-row flex-col justify-between md:items-end gap-6 mb-14">
             <Animate variant="slide-left">
-              <h2 className="max-w-[500px] font-mont font-bold text-[#111212] text-[32px] md:text-[48px] leading-tight">
+              <h2 className="max-w-125 font-mont font-bold text-[#111212] text-[32px] md:text-[48px] leading-tight">
                 Tools we use every day
               </h2>
             </Animate>
             <Animate variant="slide-right" delay={100}>
-              <p className="max-w-[360px] font-inter text-[#929296] text-[15px]">
+              <p className="max-w-90 font-inter text-[#929296] text-[15px]">
                 Chosen for reliability, performance, and developer experience not hype.
               </p>
             </Animate>
@@ -111,7 +111,7 @@ export default function TechnologiesPage() {
                   <div className="gap-3 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12">
                     {group.tools.map(tool => (
                       <div key={tool.name}
-                        className="flex flex-col items-center gap-3 bg-white p-4 border border-[#e5e5e5] hover:border-[#111212] rounded-[16px] transition-colors duration-300">
+                        className="flex flex-col items-center gap-3 bg-white p-4 border border-[#e5e5e5] hover:border-[#111212] rounded-2xl transition-colors duration-300">
                         <div className="relative w-8 h-8 shrink-0">
                           <Image src={tool.icon} alt={tool.name} fill sizes="32px" className="object-contain" />
                         </div>
@@ -132,15 +132,15 @@ export default function TechnologiesPage() {
 
       {/* CTA */}
       <Animate variant="scale-in">
-        <div className="bg-[#111212] max-w-[1440px] mx-auto rounded-[30px]">
-          <div className="flex lg:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[30px] py-[96px] w-full max-w-[1440px]">
-            <div className="flex flex-col items-center md:items-items-start gap-[16px] lg:max-w-[500px]">
-              <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">Not sure which service fits?</h2>
-              <p className="font-inter text-[#929296] text-[16px] leading-[24px]">Tell us about your project and we'll recommend the right approach in 48h.</p>
+        <div className="bg-[#111212] max-w-360 mx-auto rounded-[30px]">
+          <div className="flex lg:flex-row flex-col justify-between md:items-center gap-12 mx-auto px-7.5 py-24 w-full max-w-360">
+            <div className="flex flex-col items-center md:items-items-start gap-4 lg:max-w-125">
+              <h2 className="font-mont font-bold text-[48px] text-white leading-13">Not sure which service fits?</h2>
+              <p className="font-inter text-[#929296] text-[16px] leading-6">Tell us about your project and we'll recommend the right approach in 48h.</p>
             </div>
-            <div className="flex md:flex-row flex-col gap-[16px]">
-              <Link href="/contact" className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">Book a call</Link>
-              <Link href="/project-cost-estimation" className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">Get an Project Estimate</Link>
+            <div className="flex md:flex-row flex-col gap-4">
+              <Link href="/contact" className="flex justify-center items-center bg-white px-8 py-4 rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">Book a call</Link>
+              <Link href="/project-cost-estimation" className="flex justify-center items-center hover:bg-white px-8 py-4 border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">Get an Project Estimate</Link>
             </div>
           </div>
         </div>

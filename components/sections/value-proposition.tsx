@@ -23,7 +23,7 @@ const PILLARS = [
 export default function ValuePropositionSection() {
   return (
     <section className="bg-[#111212] w-full overflow-hidden">
-      <div className="mx-auto px-4 md:px-9 py-20 lg:py-28 max-w-[1440px]">
+      <div className="mx-auto px-4 md:px-9 py-20 lg:py-28 max-w-360">
 
         {/* Top row */}
         <div className="flex flex-col gap-6 pb-16 border-white/10 border-b">
@@ -33,7 +33,7 @@ export default function ValuePropositionSection() {
             </span>
           </Animate>
           <Animate variant="blur-in" delay={100}>
-            <h2 className="max-w-[900px] font-mont font-bold text-[40px] text-white md:text-[64px] lg:text-[80px] leading-none">
+            <h2 className="max-w-225 font-mont font-bold text-[40px] text-white md:text-[64px] lg:text-[80px] leading-none">
               What&apos;s the maximum value we can contribute?
             </h2>
           </Animate>
@@ -43,7 +43,7 @@ export default function ValuePropositionSection() {
         <div className="flex md:flex-row flex-col gap-12 md:gap-20 pt-16">
 
           {/* Left */}
-          <Animate variant="slide-left" delay={80} className="flex flex-col gap-6 md:w-[380px] shrink-0">
+          <Animate variant="slide-left" delay={80} className="flex flex-col gap-6 md:w-95 shrink-0">
             <p className="font-mont font-semibold text-[24px] text-white md:text-[32px] leading-tight">
               We build software that builds your bottom line.
             </p>

@@ -108,7 +108,7 @@ function AccordionItem({
     <div>
       <button
         onClick={() => setOpen((v) => !v)}
-        className={cn('flex', 'justify-between', 'items-center', 'w-full', 'font-semibold', 'text-[28px]', 'text-left', 'leading-[28px]')}
+        className={cn('flex', 'justify-between', 'items-center', 'w-full', 'font-semibold', 'text-[28px]', 'text-left', 'leading-7')}
       >
         <span className="text-[#111212]">{item.label}</span>
         <div className={`transition-transform duration-300 ${open ? 'rotate-180' : 'rotate-0'}`}>
@@ -120,13 +120,13 @@ function AccordionItem({
         className={cn('overflow-hidden', 'transition-all', 'duration-300')}
         style={{ maxHeight: open ? `${item.children.length * 44}px` : '0px', opacity: open ? 1 : 0 }}
       >
-        <ul className={cn('flex', 'flex-col', 'gap-[12px]', 'pt-[12px]')}>
+        <ul className={cn('flex', 'flex-col', 'gap-3', 'pt-3')}>
           {item.children.map((child) => (
             <li key={child.href}>
               <Link
                 href={child.href}
                 onClick={onClose}
-                className={cn('font-semibold', 'text-[20px]', 'text-black', 'leading-[20px]')}
+                className={cn('font-semibold', 'text-[20px]', 'text-black', 'leading-5')}
               >
                 {child.label}
               </Link>
@@ -196,13 +196,12 @@ export function Header() {
 
   return (
     <>
-      <header className={cn('top-0', 'z-40', 'sticky', 'bg-white')}>
-        <div className={cn('px-4', 'sm:px-6', 'lg:px-8')}>
+      <header className={cn('top-0', 'z-40', 'sticky', 'bg-white',)}>
+        <div className={cn('px-4','max-w-360', 'mx-auto')}>
           <div className={cn('flex', 'justify-between', 'items-center', 'h-20')}>
             {/* Logo */}
             <Link href="/" className={cn('flex', 'items-center', 'gap-2', 'font-bold', 'text-[#111212]', 'hover:text-primary', 'text-2xl', 'transition-colors')}>
-                         <Image src={"/logo.png"} width={165} height={28} alt={'Thrill Edge Technologies'}></Image>
-
+              <Image src={"/logo.png"} width={165} height={28} alt={'Thrill Edge Technologies'}></Image>
             </Link>
 
             {/* Desktop mega menu */}
@@ -212,7 +211,7 @@ export function Header() {
             <div className={cn('hidden', 'lg:block')}>
               <Link
                 href="/contact"
-                className={cn('flex', 'justify-center', 'items-center', 'bg-black', 'px-[24px]', 'pt-[14px]', 'pb-[12px]', 'rounded-full', 'font-semibold', 'text-[14px]', 'text-white', 'hover:scale-105', 'transition-all', 'duration-300', 'ease-in-out', 'cursor-pointer')}
+                className={cn('flex', 'justify-center', 'items-center', 'bg-black', 'px-[24px]', 'pt-[14px]', 'pb-[12px]', 'rounded-full', 'font-semibold', 'text-[14px]', 'text-white', 'hover:scale-105', 'transition-all', 'duration-300', 'ease-in-out', 'cursor-pointer', 'uppercase')}
               >
                 Book a Free Strategy Call
               </Link>

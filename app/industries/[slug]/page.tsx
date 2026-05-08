@@ -101,7 +101,7 @@ const INDUSTRIES: Record<string, IndustryData> = {
         desc: "Population health dashboards and predictive analytics that help providers identify at-risk patients and optimize care delivery.",
       },
     ],
-    image: "/healthcare.jfif",
+    image: "/healthcare.png",
     workIndustry: "healthcare",
   },
   education: {
@@ -285,7 +285,7 @@ const INDUSTRIES: Record<string, IndustryData> = {
     stats: [
       { number: "40+", label: "Blockchain products shipped" },
       { number: "$500M+", label: "Total value locked in our contracts" },
-      { number: "0", label: "Smart contract exploits on audited code" },
+      { number: "10+", label: "Smart contract exploits on audited code" },
     ],
     challenges: [
       {
@@ -642,11 +642,11 @@ export default async function IndustryPage({
         ))}
       </div>
 
-      <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[96px]', 'w-full', 'max-w-[1440px]')}>
+      {/* <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[96px]', 'w-full', 'max-w-[1440px]')}>
         <p className={cn('max-w-[800px]', 'font-inter', 'text-[#555]', 'text-[20px]', 'leading-[32px]')}>
           {industry.description}
         </p>
-      </div>
+      </div> */}
 
       <div className={cn('bg-white', 'w-full')}>
         <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[96px]', 'w-full', 'max-w-[1440px]')}>

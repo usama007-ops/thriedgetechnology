@@ -96,18 +96,26 @@ export default function AboutPage() {
       {/* Who We Are */}
       <section className="bg-white px-[16px] py-[64px] md:py-[96px]">
         <div className="max-w-[1440px] mx-auto">
-          <div className="flex md:flex-row flex-col items-center gap-[32px]">
-            <Animate variant="slide-left" className="w-full md:w-1/2 flex justify-center items-center">
+          <div className="grid lg:grid-cols-2 items-center gap-10">
+            <Animate variant="slide-left" className="w-full flex justify-center items-center">
               <Image src="/zeerak.jpeg" alt="team collaboration" width={500} height={400}
                 className="rounded-xl object-cover w-full h-[500px]" />
             </Animate>
-            <Animate variant="slide-right" delay={120} className="flex flex-col gap-[16px] w-full md:w-1/2 font-inter font-normal text-[#111212] text-[16px] leading-[24px]">
-              <p className="font-medium text-[20px] leading-[28px] text-gray-500">About Us</p>
-              <h2 className="font-mont font-semibold text-[32px] md:text-[40px] leading-[40px] md:leading-[48px]">Who We Are</h2>
+            <div className='w-full'>
+              <Animate variant="slide-right" delay={120} className="flex flex-col gap-4 w-full font-inter font-normal text-[#111212] text-[16px] leading-[24px]">
+              <p className="font-medium text-[20px] leading-7 text-gray-500">About Us</p>
+              <h2 className="font-mont font-semibold text-[32px] md:text-[40px] leading-10 md:leading-12">Who We Are</h2>
               <p>Thrill Edge Technologies is a full-stack software agency founded by Zeerak Jamshaid, built on the principle that exceptional software must be engineered with precision not pieced together.</p>
               <p>Today, Thrill Edge Technologies operates as a fully integrated software partner, delivering product strategy, UI/UX design, frontend, backend, mobile development, cloud infrastructure, and AI solutions.</p>
               <p>With a 4.9-star client rating and more than a decade of experience delivering production-grade systems, we apply senior-level expertise to every project.</p>
             </Animate>
+            {/* book a free call */}
+            <div className='mt-10'>
+              <Link href="/contact" className="w-fit bg-black text-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[16px] hover:scale-105 transition-all duration-300">
+              Book a free call
+            </Link>
+            </div>
+            </div>
           </div>
 
           <div className="mt-20 flex md:flex-row flex-col items-center gap-[32px]">

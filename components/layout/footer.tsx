@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "../../lib/utils";
-import { Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import { Facebook, Linkedin, Instagram } from "lucide-react";
 import { Animate } from "@/components/common/animate";
 
 export default function Footer() {
@@ -11,7 +11,7 @@ export default function Footer() {
     <footer className={cn("w-full", "bg-[#111212]")}>
       <div
         className={cn(
-          "max-w-[1440px]",
+          "max-w-360",
           "mx-auto",
           "flex",
           "flex-col",
@@ -24,7 +24,7 @@ export default function Footer() {
       >
         {/* GRID */}
         <Animate variant="fade-up">
-          <div className="w-full lg:grid grid-cols-1 grid-cols-[40%_60%] gap-8">
+          <div className="w-full lg:grid grid-cols-[40%_60%] gap-8">
           {/* LOGO + DESC */}
           <div className="flex flex-col gap-4 text-white md:pr-20">
             <Image src="/Thrill Edge.png" width={180} height={60} alt="logo" />

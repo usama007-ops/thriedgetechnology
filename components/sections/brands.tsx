@@ -5,9 +5,8 @@ import { useRef, useEffect } from "react";
 import { useInView } from "@/hooks/use-in-view";
 
 const brands = [
-  "connected-railway","rsvlts","stand","hws","rodeo",
-  "investment-list","eddy","saudia-cargo","attic","blendjet","jot","wild",
-];
+  "ledgerplustax.jpeg","mrcsaudi.png","alfalah.png","bithub.png","Inviveo.png",
+  "colbeck.webp"];
 
 export default function BrandsMarquee() {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -50,12 +49,12 @@ export default function BrandsMarquee() {
       <div ref={trackRef} className="flex items-center will-change-transform w-max">
         {doubled.map((brand, i) => (
           <div key={i} className="sm:mx-[80px] mx-[40px] flex items-center shrink-0">
-            <div className="relative h-[30px] w-[124px]">
+            <div className="relative h-[50px] w-[154px]">
               <Image
-                src={`/${brand}.svg`}
+                src={`/${brand}`}
                 alt={brand}
                 fill
-                sizes="124px"
+                sizes="154px"
                 className="object-contain"
               />
             </div>

@@ -18,14 +18,14 @@ export default async function ServicesPage() {
   return (
     <div className="bg-[#F3F3F3] min-h-screen pb-20">
       {/* Hero */}
-      <section className="px-[12px] md:px-[10px] w-full">
-        <div className="relative rounded-[20px] w-full h-[480px] overflow-hidden">
+      <section className="px-3 md:px-2.5 w-full">
+        <div className="relative rounded-[20px] w-full h-120 overflow-hidden">
           <Image src="/services.png" alt="Our Work" fill className={cn('object-center', 'object-cover')} sizes="100vw" priority />
           <div className={cn("absolute", "inset-0", "rounded-[20px]")} style={{ background: "linear-gradient(to top, rgba(0,0,0), rgba(0,0,0,0.6), rgba(0,0,0,0))" }} />
-          <div className={cn("max-w-[1440px]", "mx-auto", "absolute", "bottom-0", "left-0", "right-0", "flex", "lg:flex-row", "flex-col", "justify-between", "lg:items-end", "gap-4", "lg:px-9", "px-5", "lg:py-8", "py-6")}>
+          <div className={cn("max-w-360", "mx-auto", "absolute", "bottom-0", "left-0", "right-0", "flex", "lg:flex-row", "flex-col", "justify-between", "lg:items-end", "gap-4", "lg:px-9", "px-5", "lg:py-8", "py-6")}>
             <div>
               <span className="font-inter font-semibold text-[11px] text-white/30 uppercase tracking-[0.2em]">Portfolio</span>
-              <h2 className={cn("text-[32px]", "lg:text-[56px]", "lg:leading-[60px]", "leading-9", "font-mont", "font-semibold", "text-white", "max-w-2xl")}>
+              <h2 className={cn("text-[32px]", "lg:text-[56px]", "lg:leading-15", "leading-9", "font-mont", "font-semibold", "text-white", "max-w-2xl")}>
                 We deliver.<br />Period.
               </h2>
             </div>
@@ -37,8 +37,8 @@ export default async function ServicesPage() {
       </section>
 
       {/* Services grid */}
-      <div className="px-[16px] py-[64px] md:py-[96px]">
-        <div className="max-w-[1440px] mx-auto">
+      <div className="px-4 py-16 md:py-24">
+        <div className="max-w-360 mx-auto">
           {services.length === 0 ? (
             <div className="py-24 border border-[#e5e5e5] border-dashed rounded-[20px] text-center">
               <p className="font-mont font-semibold text-[#111212] text-[20px]">Services coming soon.</p>
@@ -62,7 +62,7 @@ export default async function ServicesPage() {
                             <span className="font-mont font-bold text-white/10 text-[80px]">{service.title.rendered.charAt(0)}</span>
                           </div>
                         )}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                        <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
                       </div>
                       <div className="flex flex-col flex-1 gap-4 p-6">
                         <div className="flex justify-between items-start gap-3">
@@ -97,15 +97,15 @@ export default async function ServicesPage() {
 
       {/* CTA */}
       <Animate variant="scale-in">
-        <div className="bg-[#111212] max-w-[1440px] mx-auto rounded-[30px]">
-          <div className="flex lg:flex-row flex-col justify-between md:items-center gap-[48px] mx-auto px-[30px] py-[96px] w-full max-w-[1440px]">
-            <div className="flex flex-col items-center md:items-items-start gap-[16px] lg:max-w-[500px]">
-              <h2 className="font-mont font-bold text-[48px] text-white leading-[52px]">Not sure which service fits?</h2>
-              <p className="font-inter text-[#929296] text-[16px] leading-[24px]">Tell us about your project and we'll recommend the right approach in 48h.</p>
+        <div className="bg-[#111212] max-w-360 mx-auto rounded-[30px]">
+          <div className="flex lg:flex-row flex-col justify-between md:items-center gap-12 mx-auto px-7.5 py-24 w-full max-w-360">
+            <div className="flex flex-col items-center md:items-items-start gap-4 lg:max-w-125">
+              <h2 className="font-mont font-bold text-[48px] text-white leading-13">Not sure which service fits?</h2>
+              <p className="font-inter text-[#929296] text-[16px] leading-6">Tell us about your project and we'll recommend the right approach in 48h.</p>
             </div>
-            <div className="flex md:flex-row flex-col gap-[16px]">
-              <Link href="/contact" className="flex justify-center items-center bg-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">Book a call</Link>
-              <Link href="/project-cost-estimation" className="flex justify-center items-center hover:bg-white px-[32px] py-[16px] border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">Get an Project Estimate</Link>
+            <div className="flex md:flex-row flex-col gap-4">
+              <Link href="/contact" className="flex justify-center items-center bg-white px-8 py-4 rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300">Book a call</Link>
+              <Link href="/project-cost-estimation" className="flex justify-center items-center hover:bg-white px-8 py-4 border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300">Get an Project Estimate</Link>
             </div>
           </div>
         </div>
