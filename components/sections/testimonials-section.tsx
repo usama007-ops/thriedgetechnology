@@ -10,7 +10,7 @@ export async function TestimonialsSection({ show = 20 }: { show?: number }) {
     <section className="py-24 bg-[#111212] overflow-hidden">
       <div className="mb-6">
         <Animate variant="blur-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-white text-center">
+          <h2 className="text-3xl md:text-5xl font-bold text-white text-center">
             What Our Clients Say
           </h2>
         </Animate>

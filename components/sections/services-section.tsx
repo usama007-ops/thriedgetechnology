@@ -101,7 +101,7 @@ export async function ServicesSection({ show = 12 }: { show?: number }) {
         )}
 
         <Animate variant="fade-up" delay={200}>
-          <div className="text-center pt-8">
+          <div className="text-center">
             <Link
               href="/services"
               className="capitalize inline-flex items-center gap-2 px-6 py-3 rounded-full border border-accent text-accent hover:bg-accent/10 transition-all duration-300 font-semibold"
