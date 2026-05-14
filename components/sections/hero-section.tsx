@@ -201,7 +201,7 @@ export default function HeroSection() {
           <br />
           <Typewriter />
           <br />
-          <span className="text-white/60">That Ships.</span>
+          <span className="text-white/60">That Ships Hello.</span>
         </h1>
           {/* ── Heavy paragraph ── */}
         <p className={cn('mb-4', 'max-w-[680px]', 'font-inter', 'text-white/50', 'leading-[1.8]', 'animate-fade-in-up')}
