@@ -79,7 +79,7 @@ export default async function JobPage({ params }: Props) {
       </Animate>
 
       {/* Content + sidebar */}
-      <div className="flex md:flex-row flex-col items-start gap-[64px] mx-auto px-[16px] md:px-[36px] pb-[96px] w-full max-w-[1440px]">
+      <div className="flex md:flex-row flex-col items-start gap-5 md:gap-[64px] mx-auto px-[16px] md:px-[36px] pb-[64px] md:pb-[96px] w-full max-w-[1440px]">
 
         {/* Job description */}
         <Animate variant="fade-up" className="flex-1 min-w-0">
