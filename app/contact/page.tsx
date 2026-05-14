@@ -3,6 +3,7 @@ import Link from "next/link";
 import { cn } from "../../lib/utils";
 import MeetingBooker from "../../components/sections/meeting-booker";
 import { Animate } from "@/components/common/animate";
+import { CTASection } from "@/components/sections/cta-section";
 
 export default function Contact() {
   return (
@@ -147,29 +148,7 @@ export default function Contact() {
       </div>
 
       {/* Dark CTA Banner */}
-      <Animate variant="scale-in">
-        <div className="bg-[#111212] max-w-[1440px] mx-5 lg:mx-9 xl:mx-auto rounded-[30px]">
-          <div className="flex md:flex-row flex-col justify-between md:items-center gap-12 px-8 md:px-14 py-16 w-full">
-            <div className="flex flex-col gap-3 max-w-[420px]">
-              <h2 className="font-mont font-bold text-[36px] lg:text-[48px] text-white leading-[1.1]">
-                Let&apos;s Build Your Next Big Thing
-              </h2>
-              <p className="font-inter text-[#929296] text-[16px] leading-[24px]">
-                Tell us about your project and we'll recommend the right approach in 48h.
-              </p>
-            </div>
-            <div className="flex flex-col gap-3 md:max-w-[340px]">
-              <p className="font-inter text-[14px] text-[#929296] leading-[1.7]">
-                Your idea, our brains — we&apos;ll send you a tailored game plan in 48h.
-              </p>
-              <Link href="/project-cost-estimation"
-                className="inline-flex items-center justify-center bg-white px-6 py-3.5 rounded-full font-mont font-semibold text-[14px] text-[#111212] hover:scale-105 transition-all duration-300 w-fit capitalize">
-                Get an Project Estimate
-              </Link>
-            </div>
-          </div>
-        </div>
-      </Animate>
+      <CTASection/>
 
     </div>
   )

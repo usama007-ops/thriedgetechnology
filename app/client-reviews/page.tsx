@@ -4,6 +4,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Animate } from "@/components/common/animate";
+import { CTASection } from "@/components/sections/cta-section";
 
 export const metadata: Metadata = {
   title: "Client Reviews | Thrill Edge Technologies",
@@ -48,25 +49,36 @@ export default async function ClientReviewsPage() {
       </div>
 
       {/* Stats bar */}
-      <div className="mx-auto px-4 md:px-9 py-8 md:py-16 w-full max-w-360">
-        <Animate variant="fade-up">
-          <div className="gap-px grid grid-cols-2 md:grid-cols-4 bg-[#e5e5e5] rounded-2xl overflow-hidden">
-            {[
-              { num: "4.9★", label: "Average Rating" },
-              { num: "98%", label: "Satisfaction Rate" },
-              { num: `${testimonials.length}+`, label: "Happy Clients" },
-              { num: "15+", label: "Years Experience" },
-            ].map((s, i) => (
-              <Animate key={s.label} variant="scale-in" delay={i * 80}>
-                <div className="flex flex-col gap-1 bg-white px-7 py-7">
-                  <p className="font-mont font-bold text-[#111212] text-[36px] leading-none">{s.num}</p>
-                  <p className="font-inter text-[#929296] text-[14px]">{s.label}</p>
-                </div>
-              </Animate>
-            ))}
+<div className="mx-auto px-4 md:px-9 py-8 md:py-16 w-full max-w-360">
+  <Animate variant="fade-up">
+    <div className="gap-px grid grid-cols-2 md:grid-cols-4 bg-[#e5e5e5] rounded-2xl overflow-hidden">
+
+      {[
+        { num: "4.9★", label: "Average Rating" },
+        { num: "98%", label: "Satisfaction Rate" },
+        { num: `${testimonials?.length ?? 0}+`, label: "Happy Clients" },
+        { num: "15+", label: "Years Experience" },
+      ].map((s, i) => (
+        <Animate key={s.label} variant="scale-in" delay={i * 80}>
+          
+          <div className="flex flex-col items-center md:items-start gap-1 bg-white px-4 md:px-7 py-5 md:py-7 text-center md:text-left">
+            
+            <p className="font-mont font-bold text-[#111212] text-[28px] md:text-[36px] leading-none tabular-nums whitespace-nowrap">
+              {s.num}
+            </p>
+
+            <p className="font-inter text-[#929296] text-[13px] md:text-[14px]">
+              {s.label}
+            </p>
+
           </div>
+
         </Animate>
-      </div>
+      ))}
+
+    </div>
+  </Animate>
+</div>
 
       {/* Submit Review button */}
       <Animate variant="fade-up" className="flex justify-center mx-auto px-4 md:px-9 pb-8 md:pb-16 w-full max-w-360">
@@ -111,20 +123,7 @@ export default async function ClientReviewsPage() {
       )}
 
       {/* CTA */}
-      <Animate variant="scale-in">
-        <div className="bg-[#111212] max-w-360 mx-auto rounded-[30px] mb-20">
-          <div className="flex lg:flex-row flex-col justify-between md:items-center gap-12 mx-auto px-7.5 py-24 w-full max-w-360">
-            <div className="flex flex-col items-center md:items-items-start gap-4 lg:max-w-125">
-              <h2 className="font-mont font-bold text-[48px] text-white leading-13">Not sure which service fits?</h2>
-              <p className="font-inter text-[#929296] text-[16px] leading-6">Tell us about your project and we'll recommend the right approach in 48h.</p>
-            </div>
-            <div className="flex md:flex-row flex-col gap-4">
-              <Link href="/contact" className="flex justify-center items-center bg-white px-8 py-4 rounded-full font-mont font-semibold text-[#111212] text-[16px] hover:scale-105 transition-all duration-300 capitalize">Book a call</Link>
-              <Link href="/project-cost-estimation" className="flex justify-center items-center hover:bg-white px-8 py-4 border border-white rounded-full font-mont font-semibold text-[16px] text-white hover:text-[#111212] transition-all duration-300 capitalize">Get an Project Estimate</Link>
-            </div>
-          </div>
-        </div>
-      </Animate>
+      <CTASection/>
     </div>
   );
 }

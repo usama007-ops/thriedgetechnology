@@ -9,6 +9,7 @@ import { useQuery } from '@tanstack/react-query'
 import { ArrowRight, MapPin } from 'lucide-react'
 import { cn } from "../../lib/utils"
 import { Animate } from '@/components/common/animate'
+import { CTASection } from '@/components/sections/cta-section'
 
 const PAGE_SIZE = 9
 
@@ -146,25 +147,7 @@ export default function CareersPage() {
       </div>
 
       {/* Bottom CTA */}
-      <Animate variant="scale-in">
-        <div className={cn('bg-[#111212]', 'max-w-360', 'mx-auto', 'rounded-[30px]', 'mt-10', 'mb-20')}>
-          <div className={cn('flex', 'md:flex-row', 'flex-col', 'justify-between', 'md:items-center', 'gap-8', 'mx-auto', 'px-4', 'md:px-7.5', ' py-24', 'max-w-360')}>
-            <div className={cn('flex', 'flex-col', 'gap-3')}>
-              <p className={cn('font-inter', 'font-semibold', 'text-[11px]', 'text-white/30', 'uppercase', 'tracking-[0.15em]')}>Don&apos;t see your role?</p>
-              <h3 className={cn('max-w-120', 'font-mont', 'font-bold', 'text-[32px]', 'text-white', 'md:text-[40px]', 'leading-[1.15]')}>
-                Send us your CV anyway.
-              </h3>
-              <p className={cn('max-w-100', 'font-inter', 'text-[15px]', 'text-white/50', 'leading-[1.65]')}>
-                We&apos;re always looking for great engineers, designers, and product thinkers.
-              </p>
-            </div>
-            <Link href="/careers/apply?position=General+Application"
-              className={cn('flex', 'items-center', 'gap-2.5', 'bg-white', 'hover:bg-white/90', 'px-7', 'py-3.5', 'rounded-[10px]', 'font-mont', 'font-semibold', 'text-[14px]', 'text-black', 'whitespace-nowrap', 'transition-all', 'duration-200', 'shrink-0')}>
-              Send Your CV <ArrowRight size={14} />
-            </Link>
-          </div>
-        </div>
-      </Animate>
+    <CTASection/>
 
     </div>
   )

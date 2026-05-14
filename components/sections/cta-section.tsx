@@ -5,83 +5,111 @@
 
 import Link from 'next/link'
 import { ArrowRight, Mail } from 'lucide-react'
+import { Animate } from '../common/animate'
 
 export function CTASection() {
   return (
-    <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="relative rounded-2xl bg-card border border-border p-12 md:p-16 overflow-hidden shadow-sm">
-          {/* Background decoration */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full filter blur-3xl -z-10 -translate-y-1/2 translate-x-1/2" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 rounded-full filter blur-3xl -z-10 translate-y-1/2 -translate-x-1/2" />
+          <section className="bg-white px-[16px] pb-[24px]">
+        <Animate variant="scale-in">
+          <div className="bg-[#111212] max-w-[1440px] mx-auto rounded-[24px] overflow-hidden">
+            <div
+              className="
+          flex
+          flex-col
+          lg:flex-row
+          justify-between
+          lg:items-center
+          gap-[28px]
+          px-[20px]
+          sm:px-[28px]
+          md:px-[40px]
+          py-[32px]
+          md:py-[48px]
+        "
+            >
+              {/* Left Content */}
+              <div className="flex flex-col gap-[12px] max-w-[520px]">
+                <h2
+                  className="
+              font-mont
+              font-bold
+              text-[28px]
+              leading-[32px]
+              sm:text-[34px]
+              sm:leading-[38px]
+              md:text-[48px]
+              md:leading-[52px]
+              text-white
+            "
+                >
+                  Not sure which service fits?
+                </h2>
 
-          <div className="space-y-8 text-center">
-            {/* Heading */}
-            <div className="space-y-4">
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground">
-                Ready to Transform Your Business?
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Let&apos;s discuss how Thrill Edge Technologies can help you achieve your goals.
-              </p>
-            </div>
+                <p
+                  className="
+              font-inter
+              text-[14px]
+              md:text-[16px]
+              leading-[1.7]
+              text-[#b7b7b9]
+            "
+                >
+                  Tell us about your project and we’ll recommend the right
+                  approach within 48 hours.
+                </p>
+              </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-              <Link
-                href="mailto:hello@thrilledge.com"
-                className="
-                  px-8 py-4 rounded-lg
-                  bg-primary text-primary-foreground
-                  hover:bg-primary/90 transition-all duration-300
-                  font-semibold text-lg
-                  flex items-center gap-2 group
-                  hover:scale-105
-                  capitalize
-                "
-              >
-                <Mail size={20} />
-                Get Started Today
-                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link
-                href="/contact"
-                className="
-                  px-8 py-4 rounded-lg
-                  border-2 border-primary text-primary
-                  hover:bg-primary/5 transition-all duration-300
-                  font-semibold text-lg
-                  hover:scale-105
-                  capitalize
-                "
-              >
-                Schedule a Call
-              </Link>
-            </div>
+              {/* Buttons */}
+              <div className="flex flex-col sm:flex-row gap-[12px] w-full lg:w-auto">
+                <Link
+                  href="/contact"
+                  className="
+              flex
+              justify-center
+              items-center
+              h-[50px]
+              px-[24px]
+              bg-white
+              rounded-full
+              font-mont
+              font-semibold
+              text-[#111212]
+              text-[14px]
+              hover:scale-[1.02]
+              transition-all
+              duration-300
+            "
+                >
+                  Book a call
+                </Link>
 
-            {/* Contact Info */}
-            <div className="pt-8 border-t border-border/50 space-y-2">
-              <p className="text-muted-foreground text-sm">
-                Or contact us directly:
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <a
-                href="mailto:hello@thrilledge.com"
-                className="text-primary hover:text-primary/80 transition-colors font-semibold"
-              >
-                hello@thrilledge.com
-              </a>
-              <a
-                href="tel:+1234567890"
-                className="text-primary hover:text-primary/80 transition-colors font-semibold"
-              >
-                +1 (234) 567-890
-              </a>
+                <Link
+                  href="/project-cost-estimation"
+                  className="
+              flex
+              justify-center
+              items-center
+              h-[50px]
+              px-[24px]
+              border
+              border-white/20
+              rounded-full
+              font-mont
+              font-semibold
+              text-[14px]
+              text-white
+              hover:bg-white
+              hover:text-[#111212]
+              transition-all
+              duration-300
+            "
+                >
+                  Get Project Estimate
+                </Link>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </Animate>
+      </section>
   )
 }
