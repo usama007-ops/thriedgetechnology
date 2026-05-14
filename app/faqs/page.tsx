@@ -106,32 +106,95 @@ export default function FAQsPage() {
               </p>
             </Animate>
           )}
-          <div className={cn('border-[#e5e5e5]', 'border-t')}>
-            {filtered.map((item, i) => (
-              <Animate key={i} variant="fade-up" delay={i * 40}>
-                <div className={cn('border-[#e5e5e5]', 'border-b')}>
-                  <button onClick={() => setOpenIdx(openIdx === i ? null : i)}
-                    className={cn('flex', 'justify-between', 'items-start', 'gap-[24px]', 'py-[24px]', 'w-full', 'text-left', 'cursor-pointer')}>
-                    <span className={cn('pr-[8px]', 'font-mont', 'font-semibold', 'text-[#111212]', 'text-[17px]', 'leading-[1.4]')}>
-                      <span className={cn('mr-[12px]', 'font-inter', 'font-normal', 'tabular-nums', 'text-[#999]', 'text-[12px]')}>
-                        {String(i + 1).padStart(2, '0')}
-                      </span>
-                      {item.q}
-                    </span>
-                    <span className={cn('flex', 'flex-shrink-0', 'justify-center', 'items-center', 'mt-[3px]', 'w-[22px]', 'h-[22px]', 'transition-transform', 'duration-300')}
-                      style={{ transform: openIdx === i ? 'rotate(45deg)' : 'none' }}>
-                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                        <path d="M8 1V15M1 8H15" stroke="#111212" strokeWidth="1.5" strokeLinecap="round" />
-                      </svg>
-                    </span>
-                  </button>
-                  {openIdx === i && (
-                    <p className={cn('pb-[24px]', 'max-w-[680px]', 'font-inter', 'text-[#555]', 'text-[16px]', 'leading-[1.75]')}>{item.a}</p>
-                  )}
-                </div>
-              </Animate>
-            ))}
+<div className={cn('border-[#e5e5e5]', 'border-t')}>
+  {filtered.map((item, i) => (
+    <Animate key={i} variant="fade-up" delay={i * 40}>
+      <div className={cn('border-[#e5e5e5]', 'border-b')}>
+        <button
+          onClick={() => setOpenIdx(openIdx === i ? null : i)}
+          className={cn(
+            'flex',
+            'justify-between',
+            'items-start',
+            'gap-[24px]',
+            'py-[24px]',
+            'w-full',
+            'text-left',
+            'cursor-pointer'
+          )}
+        >
+          <div className="flex gap-[12px] flex-1">
+            <span
+              className={cn(
+                'w-[24px]',
+                'flex-shrink-0',
+                'font-inter',
+                'font-normal',
+                'tabular-nums',
+                'text-[#999]',
+                'text-[12px]'
+              )}
+            >
+              {String(i + 1).padStart(2, '0')}
+            </span>
+
+            <span
+              className={cn(
+                'font-mont',
+                'font-semibold',
+                'text-[#111212]',
+                'text-[17px]',
+                'leading-[1.4]'
+              )}
+            >
+              {item.q}
+            </span>
           </div>
+
+          <span
+            className={cn(
+              'flex',
+              'flex-shrink-0',
+              'justify-center',
+              'items-center',
+              'mt-[3px]',
+              'w-[22px]',
+              'h-[22px]',
+              'transition-transform',
+              'duration-300'
+            )}
+            style={{ transform: openIdx === i ? 'rotate(45deg)' : 'none' }}
+          >
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M8 1V15M1 8H15"
+                stroke="#111212"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+            </svg>
+          </span>
+        </button>
+
+        {openIdx === i && (
+          <p
+            className={cn(
+              'pb-[24px]',
+              'pl-[36px]',
+              'max-w-[680px]',
+              'font-inter',
+              'text-[#555]',
+              'text-[16px]',
+              'leading-[1.75]'
+            )}
+          >
+            {item.a}
+          </p>
+        )}
+      </div>
+    </Animate>
+  ))}
+</div>
         </div>
       </div>
 
