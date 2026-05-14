@@ -154,18 +154,43 @@ export default function Footer() {
         <div className="w-full border-t border-[#313131]" />
 
         {/* Bottom */}
-        <div className="w-full flex lg:flex-row flex-col-reverse gap-4 items-center justify-between text-sm">
-          <span className="text-sm text-white/40">
-            © {currentYear} Thrill Edge Technologies. All rights reserved.
-          </span>
+      <div className="w-full flex flex-col gap-4 items-center justify-center text-center lg:flex-row lg:justify-between lg:text-left">
+  
+  <span className="text-sm text-white/40 whitespace-nowrap">
+    © {currentYear} Thrill Edge Technologies. All rights reserved.
+  </span>
 
-          <div className="flex gap-3 text-white">
-            <Link className="text-sm text-white/40" href="/sitemap.xml">Sitemap</Link>
-            <Link className="text-sm text-white/40" href="/privacy-policy">Privacy Policy</Link>
-            <Link className="text-sm text-white/40" href="/terms-condition">Terms & Conditions</Link>
-            <Link className="text-sm text-white/40" href="/terms-of-service">Terms of Service</Link>
-          </div>
-        </div>
+  <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-white">
+    <Link
+      className="text-sm text-white/40 hover:text-white transition-colors whitespace-nowrap"
+      href="/sitemap.xml"
+    >
+      Sitemap
+    </Link>
+
+    <Link
+      className="text-sm text-white/40 hover:text-white transition-colors whitespace-nowrap"
+      href="/privacy-policy"
+    >
+      Privacy Policy
+    </Link>
+
+    <Link
+      className="text-sm text-white/40 hover:text-white transition-colors whitespace-nowrap"
+      href="/terms-condition"
+    >
+      Terms & Conditions
+    </Link>
+
+    <Link
+      className="text-sm text-white/40 hover:text-white transition-colors whitespace-nowrap"
+      href="/terms-of-service"
+    >
+      Terms of Service
+    </Link>
+  </div>
+
+</div>
       </div>
     </footer>
   );

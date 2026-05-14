@@ -203,8 +203,7 @@ export default function HeroSection() {
           <br />
           <span className="text-white/60">That Ships.</span>
         </h1>
-
-        {/* ── Heavy paragraph ── */}
+          {/* ── Heavy paragraph ── */}
         <p className={cn('mb-4', 'max-w-[680px]', 'font-inter', 'text-white/50', 'leading-[1.8]', 'animate-fade-in-up')}
           style={{ fontSize: "clamp(15px, 1.8vw, 19px)", animationDelay: "140ms" }}>
           From initial idea to production ready product, we architect, design, and develop software that <span className={cn('font-medium', 'text-white/80')}>drives real revenue</span>.We deliver clean code, exceptional user experiences, and high performing products your customers will love on time and without compromise.
@@ -219,30 +218,83 @@ export default function HeroSection() {
             <ArrowUpRight size={15} />
           </Link>
           <Link href="/project-cost-estimation"
-            className={cn('flex', 'items-center', 'gap-2', 'bg-white/5', 'hover:bg-white/10', 'backdrop-blur-md', 'px-8', 'py-4', 'border', 'border-white/10', 'hover:border-white/20', 'rounded-full', 'font-mont', 'font-semibold', 'text-[14px]', 'text-white', 'transition-all', 'duration-300', 'capitalize')}>
+            className={cn('flex', 'items-center', 'gap-2', 'bg-white/5', 'hover:bg-white/10', 'backdrop-blur-md', 'px-8', 'py-4', 'border', 'border-white/10', 'hover:border-white/20', 'rounded-full', 'font-mont', 'font-semibold', 'text-[14px]', 'text-white', 'transition-all', 'duration-300', 'capitalize', 'hidden', 'md:flex')}>
             Get a Free Estimate →
           </Link>
         </div>
 
         {/* Stats row */}
-        <div className={cn('flex', 'flex-wrap', 'justify-center', 'gap-px', 'bg-white/5', 'border', 'border-white/5', 'rounded-2xl', 'overflow-hidden', 'animate-fade-in-up')}
-          style={{ animationDelay: "320ms" }}>
-          {[
-            { number: "4.9★", label: "Clutch Rating" },
-            { number: "50+",  label: "Products Shipped" },
-            { number: "8+",   label: "Years in Market" },
-            { number: "98%",  label: "Client Satisfaction" },
-            { number: "<4wk", label: "Avg. MVP Timeline" },
-          ].map((s) => (
-            <div key={s.label} className={cn('flex', 'flex-col', 'items-center', 'gap-0.5', 'bg-white/3', 'hover:bg-white/7', 'px-6', 'py-4', 'transition-colors', 'duration-300')}>
-              <span className={cn('font-mont', 'font-bold', 'text-[20px]', 'text-white', 'leading-none')}>{s.number}</span>
-              <span className={cn('font-inter', 'text-[11px]', 'text-white/30', 'whitespace-nowrap')}>{s.label}</span>
-            </div>
-          ))}
-        </div>
+   <div
+  className={cn(
+    'grid',
+    'grid-cols-3',
+    'md:flex',
+    'justify-center',
+    'gap-px',
+    'bg-white/5',
+    'border',
+    'border-white/5',
+    'rounded-2xl',
+    'overflow-hidden',
+    'animate-fade-in-up'
+  )}
+  style={{ animationDelay: "320ms" }}
+>
+  {[
+    { number: "4.9★", label: "Clutch Rating" },
+    { number: "50+", label: "Products Shipped" },
+    { number: "8+", label: "Years in Market" },
+    { number: "98%", label: "Client Satisfaction" },
+    { number: "<4wk", label: "Avg. MVP Timeline" },
+  ].map((s, index) => (
+    <div
+      key={s.label}
+      className={cn(
+        'flex',
+        'flex-col',
+        'items-center',
+        'justify-center',
+        'gap-0.5',
+        'bg-white/3',
+        'hover:bg-white/7',
+        'px-4',
+        'py-4',
+        'transition-colors',
+        'duration-300',
+        'w-full',
+
+        // Hide last 2 boxes on mobile
+        index >= 3 ? 'hidden md:flex' : 'flex'
+      )}
+    >
+      <span
+        className={cn(
+          'font-mont',
+          'font-bold',
+          'text-[20px]',
+          'text-white',
+          'leading-none'
+        )}
+      >
+        {s.number}
+      </span>
+
+      <span
+        className={cn(
+          'font-inter',
+          'text-[11px]',
+          'text-white/30',
+          'whitespace-nowrap',
+          'text-center'
+        )}
+      >
+        {s.label}
+      </span>
+    </div>
+  ))}
+</div>
 
       </div>
-
       {/* Bottom fade */}
       <div className={cn('right-0', 'bottom-0', 'left-0', 'absolute', 'h-40', 'pointer-events-none')}
         style={{ background: "linear-gradient(to bottom,transparent,#080808)" }} />
