@@ -25,7 +25,7 @@ export default function Contact() {
       </section>
 
       {/* Main Content */}
-      <section className="mx-auto px-5 lg:px-9 py-20 max-w-[1440px]">
+   <section className="mx-auto px-5 lg:px-9 pt-20 pb-10 lg:py-20 max-w-[1440px]">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
 
           {/* Left Column */}
@@ -41,24 +41,58 @@ export default function Contact() {
                 Describe your product, timeline, and key requirements. A senior member of
                 our team will review your submission and reply with a clear next step.
               </p>
-              <div className="flex flex-col gap-3 mt-1">
-                <a href="mailto:info@thrilledge.com" className="flex items-center gap-3 group w-fit">
-                  <span className="flex items-center justify-center w-9 h-9 rounded-full bg-[#111212] shrink-0">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                    </svg>
-                  </span>
-                  <span className="font-inter font-semibold text-[15px] text-[#111212] group-hover:opacity-70 transition-opacity">info@thrilledge.com</span>
-                </a>
-                <a href="tel:+923094701831" className="flex items-center gap-3 group w-fit">
-                  <span className="flex items-center justify-center w-9 h-9 rounded-full bg-[#111212] shrink-0">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.06 6.06l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-                    </svg>
-                  </span>
-                  <span className="font-inter font-semibold text-[15px] text-[#111212] group-hover:opacity-70 transition-opacity">+92 309 4701831</span>
-                </a>
-              </div>
+        <div className="flex flex-wrap items-center gap-6 mt-1">
+  
+  <a
+    href="mailto:info@thrilledge.com"
+    className="flex items-center gap-3 group w-fit"
+  >
+    <span className="flex items-center justify-center w-9 h-9 rounded-full bg-[#111212] shrink-0">
+      <svg
+        width="15"
+        height="15"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="white"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <rect width="20" height="16" x="2" y="4" rx="2" />
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+      </svg>
+    </span>
+
+    <span className="font-inter font-semibold text-[15px] text-[#111212] group-hover:opacity-70 transition-opacity">
+      info@thrilledge.com
+    </span>
+  </a>
+
+  <a
+    href="tel:+923094701831"
+    className="flex items-center gap-3 group w-fit"
+  >
+    <span className="flex items-center justify-center w-9 h-9 rounded-full bg-[#111212] shrink-0">
+      <svg
+        width="15"
+        height="15"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="white"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.06 6.06l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+      </svg>
+    </span>
+
+    <span className="font-inter font-semibold text-[15px] text-[#111212] group-hover:opacity-70 transition-opacity">
+   +44 7576 532096
+    </span>
+  </a>
+
+</div>
             </div>
 
             {/* Social Proof Card */}
