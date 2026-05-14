@@ -190,7 +190,7 @@ export default function HeroSection() {
         <div className={cn('inline-flex', 'items-center', 'gap-2', 'bg-white/5', 'backdrop-blur-md', 'mb-8', 'px-4', 'py-2', 'border', 'border-white/10', 'rounded-full', 'animate-fade-in-up')}>
           <Zap size={11} className={cn('opacity-60', 'fill-white', 'text-white')} />
           <span className={cn('font-inter', 'font-semibold', 'text-[11px]', 'text-white/50', 'uppercase', 'tracking-[0.2em]')}>
-            Trusted by 50+ product teams worldwide
+            Trusted by 50+ product teams worldwides
           </span>
         </div>
 
