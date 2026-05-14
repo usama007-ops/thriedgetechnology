@@ -81,9 +81,11 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} antialiased`} suppressHydrationWarning>
         <Providers>
-          <Header />
-          {children}
-          <Footer />
+          <div style={{ overflowX: 'clip' }}>
+            <Header />
+            {children}
+            <Footer />
+          </div>
         </Providers>
         <Analytics />
       </body>

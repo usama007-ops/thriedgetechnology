@@ -197,7 +197,7 @@ export default function AboutPage() {
       </section>
 
       {/* Timeline */}
-      <section className="px-[16px] py-[64px] md:py-[96px]">
+      <section className="px-[16px] py-[64px] md:py-[96px]" style={{ overflow: 'visible' }}>
         <div className="max-w-[1440px] mx-auto">
           <Animate variant="blur-in" className="text-center lg:max-w-[40%] mx-auto mb-16">
             <span className="font-inter font-semibold text-[11px] text-[#929296] uppercase tracking-[0.2em]">Since 2022</span>
@@ -206,37 +206,34 @@ export default function AboutPage() {
               Over a decade of shipping production-grade software for companies that needed more than templates.
             </p>
           </Animate>
-          <div className="grid lg:grid-cols-2 gap-10">
-            <div className="flex-1 flex flex-col gap-10">
+          <div className="grid lg:grid-cols-2 gap-10 items-start">
+            <div>
               {TIMELINE.map((t, i) => (
-
-                <div className="md:sticky" key={t.year} style={{ top: `${80 + i * 24}px`, zIndex: i + 1 }}>
-                  <Animate variant="slide-left" delay={i * 60}>
-                    <div className="rounded-[20px] p-9 md:p-12 mb-3 transition-shadow duration-300 lg:max-w-full mx-auto h-100 flex flex-col justify-center"
-                      style={{ backgroundColor: i % 2 === 0 ? '#111212' : '#ffffff', boxShadow: '0 8px 40px rgba(0,0,0,0.12)' }}>
-                      <span className="inline-flex items-center px-3.5 py-1.5 rounded-full font-inter font-semibold text-[12px] uppercase tracking-[0.15em] mb-[24px] w-[65px]"
-                        style={{ backgroundColor: i % 2 === 0 ? 'rgba(255,255,255,0.08)' : '#F3F3F3', color: i % 2 === 0 ? 'rgba(255,255,255,0.5)' : '#929296' }}>
-                        {t.year}
+                <div key={t.year} style={{ position: 'sticky', top: `${80 + i * 20}px`, zIndex: i + 1, marginBottom: i < TIMELINE.length - 1 ? '16px' : '0' }}>
+                  <div className="rounded-[20px] p-9 md:p-12 transition-shadow duration-300 flex flex-col justify-center"
+                    style={{ backgroundColor: i % 2 === 0 ? '#111212' : '#ffffff', boxShadow: '0 8px 40px rgba(0,0,0,0.12)', minHeight: '280px' }}>
+                    <span className="inline-flex items-center px-3.5 py-1.5 rounded-full font-inter font-semibold text-[12px] uppercase tracking-[0.15em] mb-[24px] w-[65px]"
+                      style={{ backgroundColor: i % 2 === 0 ? 'rgba(255,255,255,0.08)' : '#F3F3F3', color: i % 2 === 0 ? 'rgba(255,255,255,0.5)' : '#929296' }}>
+                      {t.year}
+                    </span>
+                    <p className="font-mont font-semibold text-[18px] md:text-[22px] leading-normal"
+                      style={{ color: i % 2 === 0 ? '#ffffff' : '#111212' }}>{t.text}</p>
+                    <div className="flex justify-between items-center mt-[32px] pt-[24px]"
+                      style={{ borderTop: `1px solid ${i % 2 === 0 ? 'rgba(255,255,255,0.08)' : '#f0f0f0'}` }}>
+                      <span className="font-inter tabular-nums text-[13px]" style={{ color: i % 2 === 0 ? 'rgba(255,255,255,0.2)' : '#ccc' }}>
+                        {String(i + 1).padStart(2, '0')} / {String(TIMELINE.length).padStart(2, '0')}
                       </span>
-                      <p className="font-mont font-semibold text-[18px] md:text-[22px] leading-normal"
-                        style={{ color: i % 2 === 0 ? '#ffffff' : '#111212' }}>{t.text}</p>
-                      <div className="flex justify-between items-center mt-[32px] pt-[24px]"
-                        style={{ borderTop: `1px solid ${i % 2 === 0 ? 'rgba(255,255,255,0.08)' : '#f0f0f0'}` }}>
-                        <span className="font-inter tabular-nums text-[13px]" style={{ color: i % 2 === 0 ? 'rgba(255,255,255,0.2)' : '#ccc' }}>
-                          {String(i + 1).padStart(2, '0')} / {String(TIMELINE.length).padStart(2, '0')}
-                        </span>
-                        <span className="font-mont font-bold text-[48px] leading-none tabular-nums select-none"
-                          style={{ color: i % 2 === 0 ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)' }}>{t.year}</span>
-                      </div>
+                      <span className="font-mont font-bold text-[48px] leading-none tabular-nums select-none"
+                        style={{ color: i % 2 === 0 ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)' }}>{t.year}</span>
                     </div>
-                  </Animate>
+                  </div>
                 </div>
               ))}
             </div>
-            <Animate variant="fade-in" className="relative">
+            <div className="hidden lg:block" style={{ position: 'sticky', top: '100px', alignSelf: 'start' }}>
               <Image src="/our-history-2.png" alt="team collaboration" width={500} height={400}
-                className="rounded-xl object-cover w-full sticky top-[100px]" />
-            </Animate>
+                className="rounded-xl object-cover w-full" />
+            </div>
           </div>
         </div>
       </section>

@@ -7,7 +7,7 @@ export async function TestimonialsSection({ show = 20 }: { show?: number }) {
   if (!testimonials.length) return null
 
   return (
-    <section className="py-24 bg-[#111212] overflow-hidden">
+    <section className="py-20 lg:py-24 bg-[#111212] overflow-hidden">
       <div className="mb-6">
         <Animate variant="blur-in">
           <h2 className="text-3xl md:text-5xl font-bold text-white text-center">

@@ -84,7 +84,7 @@ export default function Home() {
       {/* <WorkSection show={3} /> */}
       <TestimonialsSection show={12} />
       <ProcessSection />
-      <div className="py-[100px] bg-[#eee]">
+      <div className="py-20 lg:py-25 bg-[#eee]">
       <IndustriesSection />
       </div>
       <ValueFeaturesSection />
