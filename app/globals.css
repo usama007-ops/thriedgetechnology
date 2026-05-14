@@ -540,3 +540,11 @@ figure.wp-block-image.size-large {
   filter: blur(0px);
   transform: translateY(0);
 }
+
+.testimonials-swiper .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.testimonials-swiper .swiper-pagination-bullet-active {
+  background: #ffffff;
+}

@@ -18,3 +18,4 @@ CONTRIBUTING.md
 GIT-WORKFLOW.md
 **/*.backup.tsx
 **/*.backup.ts
+main.py

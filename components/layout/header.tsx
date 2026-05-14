@@ -9,7 +9,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
-import { Menu } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { MegaMenu } from './mega-menu'
 import { useUIStore } from '@/lib/store'
 import { cn } from "../../lib/utils";
@@ -94,23 +94,25 @@ function AccordionItem({
 
   if (!item.children) {
     return (
-      <div>
-        <button className={cn('flex', 'justify-between', 'items-center', 'w-full', 'font-semibold', 'text-[28px]', 'text-left', 'leading-[28px]')}>
-          <Link href={item.href!} onClick={onClose} className="text-[#111212] capitalize">
-            {item.label}
-          </Link>
-        </button>
+      <div className="border-b border-[#f0f0f0] pb-3">
+        <Link
+          href={item.href!}
+          onClick={onClose}
+          className={cn('flex', 'items-center', 'w-full', 'font-semibold', 'text-[15px]', 'text-[#111212]', 'capitalize', 'py-1')}
+        >
+          {item.label}
+        </Link>
       </div>
     )
   }
 
   return (
-    <div>
+    <div className="border-b border-[#f0f0f0] pb-3">
       <button
         onClick={() => setOpen((v) => !v)}
-        className={cn('flex', 'justify-between', 'items-center', 'w-full', 'font-semibold', 'text-[28px]', 'text-left', 'leading-7')}
+        className={cn('flex', 'justify-between', 'items-center', 'w-full', 'font-semibold', 'text-[15px]', 'text-[#111212]', 'text-left', 'py-1')}
       >
-        <span className="text-[#111212]">{item.label}</span>
+        <span>{item.label}</span>
         <div className={`transition-transform duration-300 ${open ? 'rotate-180' : 'rotate-0'}`}>
           <ChevronDown />
         </div>
@@ -118,15 +120,15 @@ function AccordionItem({
 
       <div
         className={cn('overflow-hidden', 'transition-all', 'duration-300')}
-        style={{ maxHeight: open ? `${item.children.length * 44}px` : '0px', opacity: open ? 1 : 0 }}
+        style={{ maxHeight: open ? `${item.children.length * 36}px` : '0px', opacity: open ? 1 : 0 }}
       >
-        <ul className={cn('flex', 'flex-col', 'gap-3', 'pt-3')}>
+        <ul className={cn('flex', 'flex-col', 'gap-0', 'pt-2', 'pl-2')}>
           {item.children.map((child) => (
             <li key={child.href}>
               <Link
                 href={child.href}
                 onClick={onClose}
-                className={cn('font-semibold', 'text-[20px]', 'text-black', 'leading-5', 'capitalize')}
+                className={cn('block', 'py-1.5', 'text-[13px]', 'font-medium', 'text-[#555]', 'hover:text-black', 'capitalize', 'transition-colors')}
               >
                 {child.label}
               </Link>
@@ -156,33 +158,37 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
 
       {/* drawer panel */}
       <div
-        className={`fixed top-0 right-0 h-full w-full sm:w-[80%] sm:max-w-[400px] bg-white z-[9999] flex flex-col px-[16px] transition-transform duration-300 md:hidden ${open ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`fixed top-0 right-0 h-full w-[85%] max-w-[340px] bg-white z-[9999] flex flex-col transition-transform duration-300 md:hidden shadow-2xl ${open ? 'translate-x-0' : 'translate-x-full'}`}
       >
         {/* header row */}
-        <div className={cn('flex', 'justify-between', 'items-center', 'py-[20px]')}>
-          <Link href="/" onClick={onClose} aria-label="Go to homepage" className={cn('font-bold', 'text-[#111212]', 'text-xl')}>
-           <Image src={"/logo.png"} width={165} height={28} alt={'Thrill Edge Technologies'}></Image>
+        <div className={cn('flex', 'justify-between', 'items-center', 'px-5', 'py-4', 'border-b', 'border-[#f0f0f0]')}>
+          <Link href="/" onClick={onClose} aria-label="Go to homepage">
+            <Image src={"/logo.png"} width={140} height={24} alt={'Thrill Edge Technologies'} />
           </Link>
-          <button onClick={onClose} aria-label="close menu">
-            <CloseIcon />
+          <button
+            onClick={onClose}
+            aria-label="close menu"
+            className="flex items-center justify-center w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+          >
+            <X size={18} color="#111212" strokeWidth={2.5} />
           </button>
         </div>
 
         {/* nav accordion */}
-        <nav className={cn('flex', 'flex-col', 'flex-1', 'gap-[24px]', 'py-[16px]', 'overflow-x-hidden', 'overflow-y-auto')}>
+        <nav className={cn('flex', 'flex-col', 'flex-1', 'gap-0', 'px-5', 'py-4', 'overflow-x-hidden', 'overflow-y-auto')}>
           {mobileNav.map((item) => (
             <AccordionItem key={item.label} item={item} onClose={onClose} />
           ))}
         </nav>
 
         {/* CTA pinned to bottom */}
-        <div className="py-[16px]">
+        <div className="px-5 py-5 border-t border-[#f0f0f0]">
           <Link
             href="/contact"
             onClick={onClose}
-            className={cn('flex', 'flex-row', 'justify-center', 'items-center', 'gap-1', 'bg-black', 'px-[24px]', 'pt-[14px]', 'pb-[12px]', 'rounded-full', 'font-semibold', 'text-[14px]', 'text-white', 'hover:scale-105', 'transition-all', 'duration-300', 'ease-in-out', 'cursor-pointer', 'capitalize')}
+            className={cn('flex', 'justify-center', 'items-center', 'w-full', 'bg-black', 'py-3', 'rounded-full', 'font-semibold', 'text-[14px]', 'text-white', 'hover:bg-gray-800', 'transition-colors', 'duration-200')}
           >
-            <span>Book a call</span>
+            Book a Free Strategy Call
           </Link>
         </div>
       </div>
