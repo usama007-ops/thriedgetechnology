@@ -3,17 +3,17 @@
  * Final CTA for conversions
  */
 
-import Link from 'next/link'
-import { ArrowRight, Mail } from 'lucide-react'
-import { Animate } from '../common/animate'
+import Link from "next/link";
+import { ArrowRight, Mail } from "lucide-react";
+import { Animate } from "../common/animate";
 
 export function CTASection() {
   return (
-          <section className="bg-white px-[16px] pb-[24px]">
-        <Animate variant="scale-in">
-          <div className="bg-[#111212] max-w-[1440px] mx-auto rounded-[24px] overflow-hidden">
-            <div
-              className="
+    <section className="bg-white px-4 py-20">
+      <Animate variant="scale-in">
+        <div className="bg-[#111212] max-w-[1440px] mx-auto rounded-[24px] overflow-hidden">
+          <div
+            className="
           flex
           flex-col
           lg:flex-row
@@ -26,11 +26,11 @@ export function CTASection() {
           py-[32px]
           md:py-[48px]
         "
-            >
-              {/* Left Content */}
-              <div className="flex flex-col gap-[12px] max-w-[520px]">
-                <h2
-                  className="
+          >
+            {/* Left Content */}
+            <div className="flex flex-col gap-[12px] max-w-[520px]">
+              <h2
+                className="
               font-mont
               font-bold
               text-[28px]
@@ -41,29 +41,29 @@ export function CTASection() {
               md:leading-[52px]
               text-white
             "
-                >
-                  Not sure which service fits?
-                </h2>
+              >
+                Not sure which service fits?
+              </h2>
 
-                <p
-                  className="
+              <p
+                className="
               font-inter
               text-[14px]
               md:text-[16px]
               leading-[1.7]
               text-[#b7b7b9]
             "
-                >
-                  Tell us about your project and we’ll recommend the right
-                  approach within 48 hours.
-                </p>
-              </div>
+              >
+                Tell us about your project and we’ll recommend the right
+                approach within 48 hours.
+              </p>
+            </div>
 
-              {/* Buttons */}
-              <div className="flex flex-col sm:flex-row gap-[12px] w-full lg:w-auto">
-                <Link
-                  href="/contact"
-                  className="
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row gap-[12px] w-full lg:w-auto">
+              <Link
+                href="/contact"
+                className="
               flex
               justify-center
               items-center
@@ -79,13 +79,13 @@ export function CTASection() {
               transition-all
               duration-300
             "
-                >
-                  Book a call
-                </Link>
+              >
+                Book a call
+              </Link>
 
-                <Link
-                  href="/project-cost-estimation"
-                  className="
+              <Link
+                href="/project-cost-estimation"
+                className="
               flex
               justify-center
               items-center
@@ -103,13 +103,13 @@ export function CTASection() {
               transition-all
               duration-300
             "
-                >
-                  Get Project Estimate
-                </Link>
-              </div>
+              >
+                Get Project Estimate
+              </Link>
             </div>
           </div>
-        </Animate>
-      </section>
-  )
+        </div>
+      </Animate>
+    </section>
+  );
 }

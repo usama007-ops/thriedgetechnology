@@ -13,7 +13,7 @@ export async function ServicesSection({ show = 12 }: { show?: number }) {
   const services = await getServices(show).catch(() => [])
 
   return (
-    <section id="services" className="py-16 sm:py-6 px-4 sm:px-6 lg:px-8 bg-[#F3F3F3]">
+    <section id="services" className="md:py-20 py-16 px-4  lg:px-8 bg-[#F3F3F3]">
       <div className="max-w-[1440px] mx-auto">
 
         {/* Header */}

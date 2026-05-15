@@ -89,7 +89,7 @@ export default async function ClientReviewsPage() {
       </Animate>
 
       {testimonials.length > 0 ? (
-        <div className="mx-auto px-4 md:px-9 pb-24 w-full max-w-360">
+        <div className="mx-auto px-4 md:px-9 pb-6 w-full max-w-360">
           <div className="gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {testimonials.map((t, i) => {
               const quote = t.content.rendered.replace(/<[^>]*>/g, "").trim();

@@ -180,7 +180,7 @@ export default function FAQsPage() {
         {openIdx === i && (
           <p
             className={cn(
-              'pb-[24px]',
+              'pb-[16px]',
               'pl-[36px]',
               'max-w-[680px]',
               'font-inter',

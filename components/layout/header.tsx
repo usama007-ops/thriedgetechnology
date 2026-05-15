@@ -94,7 +94,7 @@ function AccordionItem({
 
   if (!item.children) {
     return (
-      <div className="border-b border-[#f0f0f0] pb-3">
+      <div className="border-b border-[#f0f0f0] py-3">
         <Link
           href={item.href!}
           onClick={onClose}
@@ -107,7 +107,7 @@ function AccordionItem({
   }
 
   return (
-    <div className="border-b border-[#f0f0f0] pb-3">
+    <div className="border-b border-[#f0f0f0] py-3 ">
       <button
         onClick={() => setOpen((v) => !v)}
         className={cn('flex', 'justify-between', 'items-center', 'w-full', 'font-semibold', 'text-[15px]', 'text-[#111212]', 'text-left', 'py-1')}

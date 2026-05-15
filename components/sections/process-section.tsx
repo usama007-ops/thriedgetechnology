@@ -73,7 +73,7 @@ export function ProcessSection() {
 
   return (
     <section className={cn('flex', 'justify-center', 'items-center', 'w-full')}>
-      <div className={cn('flex', 'flex-col', 'items-start', 'gap-[32px]', 'px-[16px]', 'lg:px-[36px]', 'py-[64px]', 'lg:py-[96px]', 'w-full', 'max-w-[1440px]')}>
+      <div className={cn('flex', 'flex-col', 'items-start', 'gap-[32px]', 'px-[16px]', 'lg:px-[36px]', 'py-16', 'lg:py-[96px]', 'w-full', 'max-w-[1440px]')}>
 
         <Animate variant="blur-in">
           <h2 className={cn('font-mont', 'font-semibold', 'md:font-bold', 'text-[32px]', 'text-black', 'md:text-[64px]', 'leading-[32px]', 'md:leading-[64px]')}>
@@ -129,7 +129,7 @@ export function ProcessSection() {
 
         {/* Content */}
         <div key={contentKey}
-          className={cn('flex', 'md:flex-row', 'flex-col', 'gap-[20px]', 'py-[40px]', 'border-[#D9D9D9]', 'border-t', 'w-full', 'text-[#111212]', 'animate-fade-in-up')}>
+          className={cn('flex', 'md:flex-row', 'flex-col', 'gap-[20px]', 'md:py-[40px]', 'border-[#D9D9D9]', 'border-t', 'w-full', 'text-[#111212]', 'animate-fade-in-up')}>
           <div className={cn('w-full', 'md:max-w-[585px]', 'overflow-hidden')}>
             <h3 className={cn('md:max-w-[50%]', 'font-mont', 'font-bold', 'text-[28px]', 'md:text-[48px]', 'leading-[28px]', 'md:leading-[50px]')}>
               {step.label}

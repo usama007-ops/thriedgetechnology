@@ -17,7 +17,7 @@ export default async function ServicesPage() {
   const services = await getServices(50).catch(() => [])
 
   return (
-    <div className="bg-[#F3F3F3] min-h-screen pb-20">
+    <div className="bg-[#F3F3F3] min-h-screen">
       {/* Hero */}
       <section className="px-3 md:px-2.5 w-full">
         <div className="relative rounded-[20px] w-full h-120 overflow-hidden">

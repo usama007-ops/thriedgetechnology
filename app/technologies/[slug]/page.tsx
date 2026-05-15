@@ -370,7 +370,7 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
   }
 
   return (
-    <div className={cn('relative', 'bg-[#F3F3F3] pb-24')}>
+    <div className={cn('relative', 'bg-[#F3F3F3]')}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       {/* <PageHero
         label={tech.title}
@@ -379,7 +379,7 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
       /> */}
 
       <section className={cn('w-full', 'mx-auto', 'p-2')}>
-        <div className={cn('relative', 'rounded-[20px]', 'w-full', 'h-[300px]', 'lg:h-[480px]', 'overflow-hidden')}>
+        <div className={cn('relative', 'rounded-[20px]', 'w-full', 'h-[500px]', 'lg:h-[480px]', 'overflow-hidden')}>
           <Image
             src={tech.image}
             alt={tech.title}
@@ -409,8 +409,8 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
           </div>
         </div>
       </section>
-
-      <div className={cn('gap-[20px]', 'text-center', 'mt-20', 'grid', 'grid-cols-3', 'mx-auto', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
+      {/* stats */}
+      <div className={cn('gap-[20px]', 'text-center', 'md:mt-20','mt-10', 'grid', 'grid-cols-3', 'mx-auto', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
         {tech.stats.map((s, i) => (
           <Animate key={i} variant="fade-up" delay={i * 100}>
             <div className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[10px]', 'md:py-[32px]', 'border-[#CCCCCC]', 'border-l', 'first:border-l-0')}>
@@ -422,7 +422,7 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
       </div>
 
       {/* Description */}
-      <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'pb-[96px]', 'w-full', 'mt-10', 'max-w-[1440px]')}>
+      <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'md:pb-[96px]', 'w-full', 'md:mt-10', 'mt-2', 'max-w-[1440px]')}>
         <p className={cn('max-w-[800px]', 'font-inter', 'text-[#555]', 'text-[20px]', 'leading-[32px]')}>{tech.description}</p>
       </div>
 

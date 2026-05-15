@@ -365,7 +365,7 @@ const INDUSTRIES: Record<string, IndustryData> = {
     ],
     stats: [
       { number: "$2B+", label: "Transactions processed annually" },
-      { number: "99.99%", label: "Payment uptime across our platforms" },
+      { number: "99%", label: "Payment uptime across our platforms" },
       { number: "100%", label: "PCI-DSS compliance on payment builds" },
     ],
     challenges: [
@@ -562,13 +562,13 @@ export default async function IndustryPage({
   };
 
   return (
-    <div className={cn('relative', 'bg-[#F3F3F3]', 'pb-20')}>
+    <div className={cn('relative', 'bg-[#F3F3F3]')}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
       <section className={cn("w-full", "mx-auto", "p-2")}>
-        <div className={cn('relative', 'rounded-[20px]', 'w-full', 'h-[300px]', 'lg:h-[480px]', 'overflow-hidden')}>
+        <div className={cn('relative', 'rounded-[20px]', 'w-full', 'h-[500px]', 'lg:h-[480px]', 'overflow-hidden')}>
           <Image
             src={industry.image}
             alt={industry.title}
@@ -632,7 +632,7 @@ export default async function IndustryPage({
 
 
 
-      <div className={cn('gap-[20px]', 'text-center', 'mt-20', 'grid', 'grid-cols-3', 'mx-auto', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
+      <div className={cn('gap-[20px]', 'text-center', 'mt-10','md:mt-20', 'grid', 'grid-cols-3', 'mx-auto', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
         {industry.stats.map((s, i) => (
           <Animate key={i} variant="fade-up" delay={i * 100}>
             <div className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[10px]', 'md:py-[32px]', 'border-[#CCCCCC]', 'border-l', 'first:border-l-0')}>
@@ -650,7 +650,7 @@ export default async function IndustryPage({
       </div> */}
 
       <div className={cn('bg-white', 'w-full')}>
-        <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[96px]', 'w-full', 'max-w-[1440px]')}>
+        <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'md:py-[96px]', 'py-[70px]',  'w-full', 'max-w-[1440px]')}>
           <div className={cn('flex', 'md:flex-row', 'flex-col', 'justify-between', 'md:items-end', 'gap-[32px]', 'mb-[64px]')}>
             <h2 className={cn('max-w-[560px]', 'font-mont', 'font-bold', 'text-[#111212]', 'text-[48px]', 'leading-[52px]')}>
               Challenges we solve in {industry.title}
