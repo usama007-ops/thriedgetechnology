@@ -55,7 +55,7 @@ export function BlogList({ initialPosts, categories }: Props) {
           >
             All Posts
           </button>
-          {categories.map((cat) => (
+          {categories.filter(cat => cat.count > 0 ).map((cat) => (
             <button
               key={cat.id}
               onClick={() => handleCategory(cat.id)}

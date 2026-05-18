@@ -49,7 +49,7 @@ const FAQS = [
   },
   {
     q: "Who owns the code and IP at the end of a project?",
-    a: "You do. Full IP transfer is included in every engagement. We retain no rights to your codebase, designs, or data.",
+    a: "At the completion of the project, full ownership of the code, assets, and intellectual property is transferred to the client. This ensures complete control, transparency, and freedom to manage, scale, or modify the solution without limitations.",
   },
   {
     q: "Can your team work inside our existing engineering workflow?",
