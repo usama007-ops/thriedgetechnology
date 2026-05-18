@@ -44,7 +44,7 @@ const INDUSTRIES = [
 export function IndustriesSection() {
   return (
     <section className="w-full flex items-center justify-center">
-      <div className="w-full max-w-[1440px] flex flex-col gap-[48px] lg:px-[36px] px-[16px]">
+      <div className="w-full max-w-[1440px] flex flex-col gap-[48px] lg:px-[36px] px-[16px] py-14">
 
         {/* Header */}
         <div className="flex md:flex-row flex-col md:items-end justify-between gap-[16px]">

@@ -63,7 +63,7 @@ export function ServiceClient({ slug }: { slug: string }) {
               src={heroImg}
               alt={service.title.rendered}
               fill
-              className="object-center object-cover"
+              className="object-[center_35%] object-cover"
               sizes="100vw"
               priority
             />

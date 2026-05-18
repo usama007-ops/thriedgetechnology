@@ -44,11 +44,7 @@ function TestimonialCard({ t }: { t: Testimonial }) {
             {name}
           </p>
 
-          {role && (
-            <p className="text-[12px] font-inter text-[#929296] mt-[3px]">
-              {role}
-            </p>
-          )}
+
         </div>
       </div>
     </div>

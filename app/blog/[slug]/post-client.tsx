@@ -114,60 +114,274 @@ export default function PostPage({ params }: PostPageProps) {
     <div className={cn('relative', 'bg-[#f3f3f3]')}>
 
       {/* Hero banner */}
-      <section className={cn('w-full', 'mx-auto', 'md:px-[24px]', 'px-[16px]')}>
-        <div className={cn('pt-[16px]', 'pb-[20px]')}>
-          <nav aria-label="Breadcrumb">
-            <ol className={cn('flex', 'items-center', 'gap-[6px]', 'flex-wrap', 'font-inter', 'text-[13px]', 'text-[#929296]')}>
-              <li><Link href="/blog" className={cn('hover:text-black', 'transition-colors', 'duration-200')}>Blog</Link></li>
-              <li aria-hidden="true" className="select-none">›</li>
-              <li aria-current="page" className={cn('text-black', 'font-medium', 'line-clamp-1', 'max-w-[300px]', 'sm:max-w-[500px]')}
-                dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-            </ol>
-          </nav>
-        </div>
+   <section className={cn('w-full')}>
 
-        <div className={cn('relative', 'w-full', 'rounded-[24px]', 'overflow-hidden', 'min-h-[480px]', 'md:min-h-[560px]', 'lg:min-h-[620px]')}>
-          {featuredImage && (
-            <Image src={featuredImage} alt={post.title.rendered} fill priority
-              sizes="100vw" className={cn('object-cover', 'object-center')} />
+  {/* Breadcrumb Container */}
+  <div className={cn('max-w-[1440px]', 'mx-auto', 'px-[16px]', 'md:px-[24px]')}>
+    <div className={cn('pt-[16px]', 'pb-[20px]')}>
+      <nav aria-label="Breadcrumb">
+        <ol
+          className={cn(
+            'flex',
+            'items-center',
+            'gap-[6px]',
+            'flex-wrap',
+            'font-inter',
+            'text-[13px]',
+            'text-[#929296]'
           )}
-          {!featuredImage && <div className={cn('absolute', 'inset-0', 'bg-[#111212]')} />}
-          <div className={cn('absolute', 'inset-0')}
-            style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.65) 35%, rgba(0,0,0,0.2) 65%, rgba(0,0,0,0.4) 100%)' }} />
-          <div className={cn('absolute', 'inset-0', 'flex', 'flex-col', 'justify-end', 'p-[24px]', 'md:p-[40px]', 'lg:p-[56px]')}>
-            <div className={cn('flex', 'items-center', 'gap-[8px]', 'flex-wrap', 'mb-[14px]')}>
-              <span className={cn('text-[11px]', 'font-inter', 'font-semibold', 'text-white/90', 'bg-white/15', 'backdrop-blur-sm', 'border', 'border-white/20', 'px-[10px]', 'py-[4px]', 'rounded-full', 'tracking-wider', 'uppercase')}>
+        >
+          <li>
+            <Link
+              href="/blog"
+              className={cn(
+                'hover:text-black',
+                'transition-colors',
+                'duration-200'
+              )}
+            >
+              Blog
+            </Link>
+          </li>
+
+          <li aria-hidden="true" className="select-none">
+            ›
+          </li>
+
+          <li
+            aria-current="page"
+            className={cn(
+              'text-black',
+              'font-medium',
+              'line-clamp-1',
+              'max-w-[300px]',
+              'sm:max-w-[500px]'
+            )}
+            dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+          />
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  {/* Hero Wrapper With Side Padding */}
+  <div className={cn('px-[16px]', 'md:px-[24px]')}>
+    
+    {/* Full Width Hero */}
+    <div
+      className={cn(
+        'relative',
+        'w-full',
+        'overflow-hidden',
+        'rounded-[24px]',
+        'min-h-[480px]',
+        'md:min-h-[560px]',
+        'lg:min-h-[620px]'
+      )}
+    >
+      {featuredImage && (
+        <Image
+          src={featuredImage}
+          alt={post.title.rendered}
+          fill
+          priority
+          sizes="100vw"
+          className={cn('object-cover', 'object-center')}
+        />
+      )}
+
+      {!featuredImage && (
+        <div className={cn('absolute', 'inset-0', 'bg-[#111212]')} />
+      )}
+
+      {/* Overlay */}
+      <div
+        className={cn('absolute', 'inset-0')}
+        style={{
+          background:
+            'linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.65) 35%, rgba(0,0,0,0.2) 65%, rgba(0,0,0,0.4) 100%)'
+        }}
+      />
+
+      {/* Content Container */}
+      <div
+        className={cn(
+          'absolute',
+          'inset-0',
+          'flex',
+          'items-end'
+        )}
+      >
+        <div
+          className={cn(
+            'w-full',
+            'max-w-[1440px]',
+            'mx-auto',
+            'px-[16px]',
+            'md:px-[24px]',
+            'pb-[24px]',
+            'md:pb-[40px]',
+            'lg:pb-[56px]'
+          )}
+        >
+          <div className={cn('max-w-[860px]')}>
+
+            <div
+              className={cn(
+                'flex',
+                'items-center',
+                'gap-[8px]',
+                'flex-wrap',
+                'mb-[14px]'
+              )}
+            >
+              <span
+                className={cn(
+                  'text-[11px]',
+                  'font-inter',
+                  'font-semibold',
+                  'text-white/90',
+                  'bg-white/15',
+                  'backdrop-blur-sm',
+                  'border',
+                  'border-white/20',
+                  'px-[10px]',
+                  'py-[4px]',
+                  'rounded-full',
+                  'tracking-wider',
+                  'uppercase'
+                )}
+              >
                 {category?.name ?? 'Article'}
               </span>
-              <span className={cn('flex', 'items-center', 'gap-[5px]', 'text-[12px]', 'font-inter', 'text-white/65', 'bg-white/10', 'backdrop-blur-sm', 'px-[10px]', 'py-[4px]', 'rounded-full')}>
-                <Clock size={12} />{time}
+
+              <span
+                className={cn(
+                  'flex',
+                  'items-center',
+                  'gap-[5px]',
+                  'text-[12px]',
+                  'font-inter',
+                  'text-white/65',
+                  'bg-white/10',
+                  'backdrop-blur-sm',
+                  'px-[10px]',
+                  'py-[4px]',
+                  'rounded-full'
+                )}
+              >
+                <Clock size={12} />
+                {time}
               </span>
             </div>
-            <h1 className={cn('lg:text-[52px]', 'lg:leading-[1.1]', 'md:text-[40px]', 'md:leading-[1.15]', 'text-[30px]', 'leading-[1.2]', 'font-mont', 'font-bold', 'text-white', 'max-w-[860px]', 'mb-[16px]')}
-              dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+
+            <h1
+              className={cn(
+                'lg:text-[52px]',
+                'lg:leading-[1.1]',
+                'md:text-[40px]',
+                'md:leading-[1.15]',
+                'text-[30px]',
+                'leading-[1.2]',
+                'font-mont',
+                'font-bold',
+                'text-white',
+                'mb-[16px]'
+              )}
+              dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+            />
+
             {post.excerpt?.rendered && (
-              <p className={cn('lg:text-[17px]', 'text-[15px]', 'font-inter', 'font-normal', 'text-white/65', 'max-w-[680px]', 'leading-[1.65]', 'mb-[24px]')}
-                dangerouslySetInnerHTML={{ __html: post.excerpt.rendered.replace(/<[^>]*>/g, '') }} />
+              <p
+                className={cn(
+                  'lg:text-[17px]',
+                  'text-[15px]',
+                  'font-inter',
+                  'font-normal',
+                  'text-white/65',
+                  'max-w-[680px]',
+                  'leading-[1.65]',
+                  'mb-[24px]'
+                )}
+                dangerouslySetInnerHTML={{
+                  __html: post.excerpt.rendered.replace(/<[^>]*>/g, '')
+                }}
+              />
             )}
+
             <div className={cn('flex', 'items-center', 'gap-[10px]')}>
               {author?.avatar_urls?.['48'] ? (
-                <Image src={author.avatar_urls['48']} alt={author.name} width={38} height={38}
-                  className={cn('rounded-full', 'object-cover', 'w-[38px]', 'h-[38px]', 'shrink-0', 'ring-2', 'ring-white/25')} />
+                <Image
+                  src={author.avatar_urls['48']}
+                  alt={author.name}
+                  width={38}
+                  height={38}
+                  className={cn(
+                    'rounded-full',
+                    'object-cover',
+                    'w-[38px]',
+                    'h-[38px]',
+                    'shrink-0',
+                    'ring-2',
+                    'ring-white/25'
+                  )}
+                />
               ) : (
-                <div className={cn('w-[38px]', 'h-[38px]', 'rounded-full', 'bg-white/20', 'flex', 'items-center', 'justify-center', 'text-white', 'font-mont', 'font-bold', 'text-sm', 'shrink-0')}>
+                <div
+                  className={cn(
+                    'w-[38px]',
+                    'h-[38px]',
+                    'rounded-full',
+                    'bg-white/20',
+                    'flex',
+                    'items-center',
+                    'justify-center',
+                    'text-white',
+                    'font-mont',
+                    'font-bold',
+                    'text-sm',
+                    'shrink-0'
+                  )}
+                >
                   {author?.name?.charAt(0) ?? 'T'}
                 </div>
               )}
+
               <div className={cn('flex', 'flex-col', 'gap-[2px]')}>
-                <span className={cn('text-[13px]', 'font-mont', 'font-semibold', 'text-white', 'leading-none')}>{author?.name ?? 'Thrill Edge Technologies'}</span>
-                <span className={cn('text-[12px]', 'font-inter', 'text-white/55', 'leading-none')}>
-                  {author?.designation ? `${author.designation} · ` : ''}{format(publishDate, 'MMMM d, yyyy')}
+                <span
+                  className={cn(
+                    'text-[13px]',
+                    'font-mont',
+                    'font-semibold',
+                    'text-white',
+                    'leading-none'
+                  )}
+                >
+                  {author?.name ?? 'Thrill Edge Technologies'}
+                </span>
+
+                <span
+                  className={cn(
+                    'text-[12px]',
+                    'font-inter',
+                    'text-white/55',
+                    'leading-none'
+                  )}
+                >
+                  {author?.designation
+                    ? `${author.designation} · `
+                    : ''}
+                  {format(publishDate, 'MMMM d, yyyy')}
                 </span>
               </div>
             </div>
+
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Content + Sidebar */}
       <section className={cn('max-w-[1440px]', 'mx-auto', 'md:px-[36px]', 'px-[16px]', 'md:py-[96px]', 'py-[64px]')}>
@@ -249,7 +463,7 @@ export default function PostPage({ params }: PostPageProps) {
       </section>
 
       {/* Author card */}
-      <section className={cn('w-full', 'py-[56px]')}>
+      <section className={cn('w-full', 'pb-[30px]')}>
         <div className={cn('max-w-[1440px]', 'mx-auto', 'md:px-[36px]', 'px-[16px]')}>
           <div className={cn('max-w-[720px]', 'bg-[#F7F6F4]', 'rounded-[20px]', 'p-[24px]', 'md:p-[32px]')}>
             <div className={cn('flex', 'items-start', 'gap-[20px]')}>

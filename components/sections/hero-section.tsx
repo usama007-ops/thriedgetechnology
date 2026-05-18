@@ -210,7 +210,7 @@ export default function HeroSection() {
         </p>
 
         {/* CTAs */}
-        <div className={cn('flex', 'sm:flex-row', 'flex-col', 'items-center', 'gap-3', 'mb-14', 'animate-fade-in-up')}
+        <div className={cn('flex', 'sm:flex-row', 'flex-col', 'items-center', 'gap-3', 'mb-14','mt-2', 'animate-fade-in-up')}
           style={{ animationDelay: "240ms" }}>
           <Link href="/contact"
             className={cn('flex', 'items-center', 'gap-2', 'bg-white', 'shadow-[0_0_50px_rgba(255,255,255,0.15)]', 'px-8', 'py-4', 'rounded-full', 'font-mont', 'font-semibold', 'text-[#111212]', 'text-[14px]', 'hover:scale-105', 'transition-all', 'duration-300', 'capitalize')}>
