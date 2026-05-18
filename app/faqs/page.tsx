@@ -14,7 +14,7 @@ const FAQS = [
   { topic: 'Partnership Basics', q: 'What types of clients do you work with?', a: 'We work with startups, scale-ups, and enterprise teams across healthcare, fintech, eCommerce, and SaaS. Most of our clients are US, UK, Canadian, and Australian companies.' },
   { topic: 'Partnership Basics', q: 'Do you work with early-stage startups?', a: 'Yes. We have a dedicated MVP & Product Strategy service for founders who need to validate ideas and get to market fast without burning runway on the wrong features.' },
   { topic: 'Partnership Basics', q: 'Who owns the code and IP at the end of a project?', a: 'You do. Full IP transfer is included in every engagement. We retain no rights to your codebase, designs, or data.' },
-  { topic: 'Partnership Basics', q: 'Can your team work inside our existing engineering workflow?', a: 'Yes. We adapt to your tools, GitHub, Jira, Linear, Slack, whatever you use. We embed into your workflow, not the other way around.' },
+  { topic: 'Partnership Basics', q: 'Can your team work inside our existing engineering workflow?', a: 'Yes. The team can seamlessly integrate into your existing engineering workflow, tools, and processes. Whether using Agile, Scrum, Git-based version control, CI/CD pipelines, or project management platforms, collaboration remains smooth, efficient, and aligned with your development standards and goals.' },
   { topic: 'Partnership Basics', q: 'Do you sign NDAs?', a: 'Yes, we sign NDAs before any detailed project discussions. Confidentiality is standard practice for us.' },
 
   // AI & Emerging Tech (5)

@@ -251,7 +251,7 @@ export default function AboutPage() {
                   Who We Are
                 </h2>
                 <p>
-                  <span className="font-bold  text-black">Thrill Edge Technologies</span> is
+                  Thrill Edge Technologies is
                   a full-stack software agency founded by{" "}
                   <span className="font-bold  text-black">Zeerak Jamshaid</span>, built on
                   the principle that exceptional software must be engineered
@@ -259,7 +259,7 @@ export default function AboutPage() {
                 </p>
                 <p>
                   Today,{" "}
-                  <span className="font-bold  text-black">Thrill Edge Technologies</span>{" "}
+                Thrill Edge Technologies{" "}
                   operates as a fully integrated software partner, delivering
                   product strategy, UI/UX design, frontend, backend, mobile
                   development, cloud infrastructure, and AI solutions.
