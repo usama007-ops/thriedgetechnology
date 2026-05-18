@@ -190,7 +190,7 @@ export default function HeroSection() {
         <div className={cn('inline-flex', 'items-center', 'gap-2', 'bg-white/5', 'backdrop-blur-md', 'mb-8', 'px-4', 'py-2', 'border', 'border-white/10', 'rounded-full', 'animate-fade-in-up')}>
           <Zap size={11} className={cn('opacity-60', 'fill-white', 'text-white')} />
           <span className={cn('font-inter', 'font-semibold', 'text-[8px]','md:text-[11px]', 'text-white/50', 'uppercase', 'tracking-[0.2em]')}>
-            Trusted by 50+ product teams worldwides
+            Trusted by 50+ product teams worldwide
           </span>
         </div>
 
@@ -201,7 +201,7 @@ export default function HeroSection() {
           <br />
           <Typewriter />
           <br />
-          <span className="text-white/60">That Ships.</span>
+          <span className="text-white/60">That Ship.</span>
         </h1>
           {/* ── Heavy paragraph ── */}
         <p className={cn('mb-4', 'max-w-[680px]', 'font-inter', 'text-white/50', 'leading-[1.8]', 'animate-fade-in-up')}
