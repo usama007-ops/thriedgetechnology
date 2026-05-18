@@ -181,7 +181,7 @@ export default function TermsConditions() {
             <div className="gap-5 grid sm:grid-cols-3">
               {[
                 { icon: <Mail size={16} />, label: "Email", value: "info@thrilledge.com", href: "mailto:info@thrilledge.com" },
-                { icon: <Phone size={16} />, label: "Phone", value: "+44 7853 746775", href: "tel:+447853746775" },
+                { icon: <Phone size={16} />, label: "Phone", value: "+44 7576 532096", href: "tel:+44 7576 532096" },
                 { icon: <MapPin size={16} />, label: "Address", value: "25 Luke Street, London EC2A 4DS, UK", href: null },
               ].map((item) => (
                 <div key={item.label} className="flex flex-col gap-2">

@@ -35,8 +35,7 @@ export default function PrivacyPolicy() {
       <div className={cn('bg-[#f5f5f5]', 'border-border', 'border-b')}>
         <div className={cn('mx-auto', 'px-4', 'md:px-9', 'py-8', 'max-w-[1440px]')}>
           <p className={cn('max-w-3xl', 'font-inter', 'text-[#444]', 'text-[15px]', 'leading-[1.8]')}>
-            Thrill Edge Technologies (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) is committed to protecting your privacy.
-            This policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
+           Thrill Edge Technologies is committed to protecting your privacy. This policy explains how personal information is collected, used, and safeguarded when you visit the website or use the services, ensuring full transparency and data security.
           </p>
         </div>
       </div>
@@ -184,7 +183,7 @@ export default function PrivacyPolicy() {
             <div className={cn('gap-5', 'grid', 'sm:grid-cols-3')}>
               {[
                 { icon: <Mail size={16} />, label: "Email", value: "info@thrilledge.com", href: "mailto:info@thrilledge.com" },
-                { icon: <Phone size={16} />, label: "Phone", value: "+44 7853 746775", href: "tel:+447853746775" },
+                { icon: <Phone size={16} />, label: "Phone", value: "+44 7576 532096", href: "tel:+44 7576 532096" },
                 { icon: <MapPin size={16} />, label: "Address", value: "25 Luke Street, London EC2A 4DS, UK", href: null },
               ].map((item) => (
                 <div key={item.label} className={cn('flex', 'flex-col', 'gap-2')}>
