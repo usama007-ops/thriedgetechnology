@@ -1,12 +1,11 @@
 'use client'
 
-import { useState } from 'react'
-import type { Metadata } from 'next'
-import Link from 'next/link'
+import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { cn } from "../../lib/utils"
 import { Animate } from '@/components/common/animate'
 import { CTASection } from '@/components/sections/cta-section'
+import { ChevronDown, Check } from 'lucide-react'
 
 const FAQS = [
   // Partnership Basics (6)
@@ -57,8 +56,22 @@ const TOPIC_COUNTS: Record<string, number> = {
 export default function FAQsPage() {
   const [activeTopic, setActiveTopic] = useState('All')
   const [openIdx, setOpenIdx] = useState<number | null>(null)
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
   const filtered = activeTopic === 'All' ? FAQS : FAQS.filter(f => f.topic === activeTopic)
+
+  // close dropdown on outside click
+  useEffect(() => {
+    function handler(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [])
+
 
   return (
     <div className={cn('relative', 'bg-white')}>
@@ -80,17 +93,53 @@ export default function FAQsPage() {
       </section>
 
       {/* Topics + FAQ */}
-      <div className={cn('flex', 'md:flex-row', 'flex-col', 'items-start', 'gap-[32px]', 'md:gap-[48px]', 'mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[40px]', 'md:py-[96px]', 'w-full', 'max-w-[1440px]')}>
+      <div className={cn('flex', 'md:flex-row', 'flex-col', 'items-start', 'gap-8', 'md:gap-12', 'mx-auto', 'px-4', 'md:px-[36px]', 'py-[40px]', 'md:py-[96px]', 'w-full', 'max-w-[1440px]')}>
 
         {/* Sidebar topics */}
-        <div className={cn('md:top-[100px]', 'md:sticky', 'w-full', 'md:w-[260px]', 'shrink-0')}>
-          <p className={cn('mb-[12px]', 'md:mb-[16px]', 'font-inter', 'font-semibold', 'text-[#929296]', 'text-[11px]', 'uppercase', 'tracking-[0.15em]')}>Topics</p>
-          <div className={cn('flex', 'md:flex-col', 'flex-row', 'flex-wrap', 'gap-[6px]', 'md:gap-[4px]')}>
+        <div className={cn('md:top-25', 'md:sticky', 'w-full', 'md:w-65', 'shrink-0')}>
+          <p className={cn('mb-3', 'md:mb-4', 'font-inter', 'font-semibold', 'text-[#929296]', 'text-[11px]', 'uppercase', 'tracking-[0.15em]')}>Topics</p>
+
+          {/* ── Mobile: dropdown ── */}
+          <div className="md:hidden relative" ref={dropdownRef}>
+            <button
+              onClick={() => setDropdownOpen(v => !v)}
+              className="w-full flex items-center justify-between px-5 py-4 bg-white border border-[#e5e5e5] rounded-2xl text-[15px] font-semibold text-[#111212] shadow-sm"
+            >
+              <span>{activeTopic}</span>
+              <ChevronDown
+                size={18}
+                className={`text-[#111212] transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`}
+              />
+            </button>
+
+            {dropdownOpen && (
+              <div className="absolute top-[calc(100%+8px)] left-0 right-0 z-50 bg-white border border-[#e5e5e5] rounded-2xl shadow-lg overflow-hidden">
+                {TOPICS.map((t, i) => (
+                  <div key={t}>
+                    <button
+                      onClick={() => { setActiveTopic(t); setOpenIdx(null); setDropdownOpen(false) }}
+                      className="w-full flex items-center justify-between px-5 py-3.5 text-[14px] font-medium text-[#111212] hover:bg-[#f5f5f5] transition-colors"
+                    >
+                      <span>{t}</span>
+                      <span className="flex items-center gap-2">
+                        <span className="text-[12px] text-[#929296] tabular-nums">{TOPIC_COUNTS[t]}</span>
+                        {activeTopic === t && <Check size={14} className="text-black" />}
+                      </span>
+                    </button>
+                    {i < TOPICS.length - 1 && <div className="h-px bg-[#f0f0f0] mx-4" />}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* ── Desktop: vertical list ── */}
+          <div className={cn('hidden', 'md:flex', 'md:flex-col', 'gap-[4px]')}>
             {TOPICS.map(t => (
               <button key={t} onClick={() => { setActiveTopic(t); setOpenIdx(null) }}
-                className={`flex items-center justify-between gap-2 text-left px-[12px] md:px-[14px] py-[8px] md:py-[10px] rounded-[10px] transition-all duration-200 ${activeTopic === t ? 'bg-[#111212] text-white' : 'text-[#111212] hover:bg-[#f3f3f3] bg-[#f3f3f3] md:bg-transparent'}`}>
-                <span className={cn('font-inter', 'font-medium', 'text-[13px]', 'md:text-[14px]', 'whitespace-nowrap')}>{t}</span>
-                <span className={`text-[11px] md:text-[12px] font-inter tabular-nums ${activeTopic === t ? 'text-white/60' : 'text-[#929296]'}`}>
+                className={`flex items-center justify-between gap-2 text-left px-[14px] py-[10px] rounded-[10px] transition-all duration-200 ${activeTopic === t ? 'bg-[#111212] text-white' : 'text-[#111212] hover:bg-[#f3f3f3]'}`}>
+                <span className={cn('font-inter', 'font-medium', 'text-[14px]')}>{t}</span>
+                <span className={`text-[12px] font-inter tabular-nums ${activeTopic === t ? 'text-white/60' : 'text-[#929296]'}`}>
                   {TOPIC_COUNTS[t]}
                 </span>
               </button>
