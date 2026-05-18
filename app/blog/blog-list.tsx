@@ -104,7 +104,8 @@ export function BlogList({ initialPosts, categories }: Props) {
                       className="w-full flex items-center justify-between px-5 py-3.5 text-[14px] font-medium text-[#111212] hover:bg-[#f5f5f5] transition-colors"
                     >
                       <span>{decodeHtml(cat.name)}</span>
-                      {selectedCategory === cat.id && <Check size={15} className="text-black" />}
+                      <div><span className="text-[12px] text-[#929296] tabular-nums">{cat.count}</span>
+                        {selectedCategory === cat.id && <Check size={15} className="text-black" />}</div>
                     </button>
                     {i < visibleCats.length - 1 && <div className="h-px bg-[#f0f0f0] mx-4" />}
                   </div>
