@@ -21,7 +21,7 @@ export async function LatestArticlesSection({ show = 3, categories }: LatestArti
 
   return (
     <section className="w-full flex items-center justify-center bg-[#eee]">
-      <div className="w-full max-w-[1440px] flex flex-col items-center gap-[40px] lg:py-[96px] py-[64px] lg:px-[36px] px-[16px]">
+      <div className="w-full max-w-[1440px] flex flex-col items-center gap-[40px] lg:py-[76px] py-[54px] lg:px-[36px] px-[16px]">
 
         {/* Heading */}
         <Animate variant="slide-left" className="w-full">
