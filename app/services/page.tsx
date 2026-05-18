@@ -5,7 +5,9 @@ import { ArrowUpRight } from 'lucide-react'
 import { getServices } from '@/lib/wordpress'
 import { cn } from "@/lib/utils"
 import { Animate } from '@/components/common/animate'
+import { TestimonialsSection } from '@/components/sections/testimonials-section'
 import { CTASection } from '@/components/sections/cta-section'
+
 
 export const metadata: Metadata = {
   title: 'Services | Thrill Edge Technologies',
@@ -95,7 +97,8 @@ export default async function ServicesPage() {
           )}
         </div>
       </div>
-
+      {/* reviews */}
+ <TestimonialsSection show={12} />
       {/* CTA */}
      <CTASection/>
 
