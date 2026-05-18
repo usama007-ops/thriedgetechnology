@@ -494,10 +494,10 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
       <div className="bg-[#F3F3F3]">
         <ValueFeaturesSection />
       </div>
-
+<div className='pb-20'>
       {/* Industries */}
       <IndustriesSection />
-
+</div>
       {/* CTA */}
      <CTASection/>
 
