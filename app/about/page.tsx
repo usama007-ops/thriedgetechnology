@@ -330,7 +330,7 @@ export default function AboutPage() {
               const Icon = item.icon;
               return (
                 <Animate key={item.title} variant="scale-in" delay={i * 80}>
-                  <div className="group bg-[#111212] border border-[#1f1f1f] rounded-2xl p-5 md:p-6 transition-all duration-300">
+                  <div className="group bg-[#111212] border border-[#1f1f1f] rounded-2xl p-5 md:p-6 transition-all duration-300 h-full">
                     <div className="mb-3 md:mb-4 w-10 h-10 flex items-center justify-center rounded-lg bg-[#1a1a1a] group-hover:bg-[#eee]/10 transition">
                       <Icon className="w-5 h-5 text-white" />
                     </div>
