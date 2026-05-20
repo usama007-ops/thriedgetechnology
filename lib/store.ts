@@ -22,6 +22,11 @@ interface UIState {
   // Filters
   searchQuery: string
   setSearchQuery: (query: string) => void
+
+  // Chat widget
+  isChatOpen: boolean
+  setChatOpen: (open: boolean) => void
+  toggleChat: () => void
 }
 
 export const useUIStore = create<UIState>((set) => ({
@@ -41,4 +46,9 @@ export const useUIStore = create<UIState>((set) => ({
   // Filters
   searchQuery: '',
   setSearchQuery: (query: string) => set({ searchQuery: query }),
+
+  // Chat widget
+  isChatOpen: false,
+  setChatOpen: (open: boolean) => set({ isChatOpen: open }),
+  toggleChat: () => set((state) => ({ isChatOpen: !state.isChatOpen })),
 }))
