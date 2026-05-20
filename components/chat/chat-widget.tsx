@@ -173,6 +173,12 @@ export function ChatWidget() {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, loading, bookingStep])
 
+  // Auto-open after 2 seconds on first mount
+  useEffect(() => {
+    const timer = setTimeout(() => setChatOpen(true), 2000)
+    return () => clearTimeout(timer)
+  }, [])
+
   useEffect(() => {
     if (isChatOpen) setTimeout(() => inputRef.current?.focus(), 300)
   }, [isChatOpen])
