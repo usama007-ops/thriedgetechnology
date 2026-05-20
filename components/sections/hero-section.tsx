@@ -206,7 +206,7 @@ export default function HeroSection() {
           {/* ── Heavy paragraph ── */}
         <p className={cn('mb-4', 'max-w-[680px]', 'font-inter', 'text-white/50', 'leading-[1.8]', 'animate-fade-in-up')}
           style={{ fontSize: "clamp(15px, 1.8vw, 19px)", animationDelay: "140ms" }}>
-          From initial idea to production ready product, we architect, design, and develop software that <span className={cn('font-medium', 'text-white/80')}>drives real revenue</span>.We deliver clean code, exceptional user experiences, and high performing products your customers will love on time and without compromise.
+          From initial idea to production ready product, we architect, design, and develop software that <span className={cn('font-medium', 'text-white/80')}>drives real revenue</span>. We deliver clean code, exceptional user experiences, and high performing products your customers will love on time and without compromise.
         </p>
 
         {/* CTAs */}

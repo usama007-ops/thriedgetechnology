@@ -56,7 +56,7 @@ export function ServiceClient({ slug }: { slug: string }) {
   return (
     <div className="relative bg-[#F3F3F3]">
       {/* Hero */}
-      <section className="px-3 md:px-2.5full">
+      <section className="px-3 md:px-2.5 w-full">
         <div className="relative rounded-[20px] w-full h-120 overflow-hidden ">
           {heroImg ? (
             <Image
@@ -361,7 +361,7 @@ function AboutTabs({
 
   return (
     <Animate variant="fade-up" delay={80}>
-      <div className="mt-12 md:mt-5  ">
+      <div className="mt-12 md:mt-5">
         {/* Tabs layout — only render if there are items */}
         {items.length > 0 && (
           <div className="grid lg:grid-cols-[1fr_45%] gap-10 items-stretch">

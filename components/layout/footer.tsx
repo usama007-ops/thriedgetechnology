@@ -27,7 +27,7 @@ export default function Footer() {
           <div className="w-full lg:grid grid-cols-[40%_60%] gap-8">
           {/* LOGO + DESC */}
           <div className="flex flex-col gap-4 text-white md:pr-20">
-            <Image src="/Thrill Edge.png" width={180} height={60} alt="logo" />
+            <Image src="/thrill-edge-logo.png" width={180} height={60} alt="logo" />
             <p className=" leading-relaxed text-sm text-white/40">
               Thrill Edge Technologies delivers innovative web, mobile, and AI
               solutions, transforming ideas into scalable, high-impact software

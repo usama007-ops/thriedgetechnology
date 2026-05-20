@@ -30,7 +30,7 @@ import {
   Smartphone,
   Rocket,
   Cloud,
-  ShoppingBag,
+  ShoppingCart,
   Monitor,
   Server,
   Database,
@@ -44,6 +44,7 @@ import {
   Globe,
   Linkedin,
   Instagram,
+  
 } from 'lucide-react'
 
 import { MegaMenu } from './mega-menu'
@@ -152,7 +153,7 @@ const mobileNav = [
         label: 'Shopify Plus Agency',
         href: '/services/shopify-plus-agency',
         desc: 'High converting Shopify stores',
-        icon: ShoppingBag,
+        icon: ShoppingCart,
       },
     ],
   },

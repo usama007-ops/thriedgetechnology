@@ -291,9 +291,6 @@
 figure.wp-block-image.size-large {
     margin-bottom: 80px !important;
 }
-#services .relative.rounded-lg.p-8.transition-all.duration-300.bg-card.shadow-sm.hover\:shadow-lg.hover\:-translate-y-1.cursor-pointer.h-full.overflow-hidden {
-    padding: 0 !important;
-}
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

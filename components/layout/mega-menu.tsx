@@ -11,7 +11,7 @@ import {
   ChevronDown, Users, Star, HelpCircle, Briefcase, BookOpen, Mail,
   Brain, Globe, Palette, Smartphone, Rocket, Cloud,
   Cpu, PanelsTopLeft, Server, Database, GitBranch,
-  Heart, GraduationCap, Building2, Blocks, Landmark, Truck,ShoppingCart,
+  Heart, GraduationCap, Building2, Blocks, Landmark, Truck, ShoppingCart,
   type LucideIcon,
 } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
@@ -43,10 +43,10 @@ const menus: MenuGroup[] = [
   {
     label: 'Company', categoryLabel: 'Company', image: '/company-menu.avif', imageAlt: 'About us', ctaLabel: 'About us', ctaHref: '/about',
     items: [
-      { label: 'About', href: '/about', icon: Users, description: 'A global team of organic media planners behind some of the worlds biggest category leaders' },
+      { label: 'About', href: '/about', icon: Users, description: `Learn about our mission, team, and the innovative solutions driving businesses forward worldwide.` },
       { label: 'Reviews', href: '/client-reviews', icon: Star, description: 'Read client reviews and testimonials about our software, web, and IT solutions.' },
       { label: 'FAQs', href: '/faqs', icon: HelpCircle, description: 'Explore answers to frequently asked questions about our software, AI solutions, and partnership processes.' },
-      { label: 'Careers', href: '/careers', icon: Briefcase, description: 'A global team of organic media planners behind some of the worlds biggest category leaders' },
+      { label: 'Careers', href: '/careers', icon: Briefcase, description: 'Join our growing team and build impactful digital products alongside talented developers and creatives.' },
       { label: 'Blogs', href: '/blog', icon: BookOpen, description: 'Discover expert insights, tutorials, and industry updates on our blog.' },
       { label: 'Contact', href: '/contact', icon: Mail, description: "You can tell us about your product, your timeline, how you heard about us, and where you're located." },
     ],
@@ -95,7 +95,7 @@ function MenuIcon({ icon: Icon }: { icon: LucideIcon }) {
 
 // ─── badge logos ──────────────────────────────────────────────────────────────
 const badgeLogos = [
-  { src: '/google.svg', alt: 'google' },
+  { src: '/google.svg', alt: 'Google' },
   { src: '/trustpilot.svg', alt: 'trustpilot' },
   { src: '/clutch.svg', alt: 'clutch' },
   { src: '/awwwards-black.svg', alt: 'Awwwards' },
@@ -164,7 +164,7 @@ export function MegaMenu() {
         )
       ))}
 
-      {/* single shared panelpositioned from the header via fixed top */}
+      {/* single shared panel positioned from the header via fixed top */}
       {activeMenu && (
         <div
           className={cn('right-0', 'left-0', 'z-9999', 'fixed', 'flex', 'justify-center', 'px-4')}

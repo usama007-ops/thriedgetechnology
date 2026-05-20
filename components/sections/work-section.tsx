@@ -22,7 +22,7 @@ export async function WorkSection({ show = 6, industry }: { show?: number; indus
         {/* Header */}
         <div className="mb-16 ">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground">
-            We deliver Period
+            We deliver. Period.
           </h2>
         </div>
 

@@ -27,7 +27,7 @@ export default async function ServicesPage() {
           <div className={cn("absolute", "inset-0", "rounded-[20px]")} style={{ background: "linear-gradient(to top, rgba(0,0,0), rgba(0,0,0,0.6), rgba(0,0,0,0))" }} />
           <div className={cn("max-w-360", "mx-auto", "absolute", "bottom-0", "left-0", "right-0", "flex", "lg:flex-row", "flex-col", "justify-between", "lg:items-end", "gap-4", "lg:px-9", "px-5", "lg:py-8", "py-6")}>
             <div>
-              <span className="font-inter font-semibold text-[11px] text-white/30 uppercase tracking-[0.2em]">Portfolio</span>
+              <span className="font-inter font-semibold text-[11px] text-white/30 uppercase tracking-[0.2em]">Services</span>
               <h2 className={cn("text-[32px]", "lg:text-[56px]", "lg:leading-15", "leading-9", "font-mont", "font-semibold", "text-white", "max-w-2xl")}>
                 We deliver.<br />Period.
               </h2>

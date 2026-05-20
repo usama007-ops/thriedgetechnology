@@ -80,7 +80,7 @@ export default function Home() {
       <HeroSection />
       <BrandsMarquee />
       <ValuePropositionSection />
-      <ServicesSection show={4}  />
+      <ServicesSection show={4} />
       {/* <WorkSection show={3} /> */}
       <TestimonialsSection show={12} />
       <ProcessSection />

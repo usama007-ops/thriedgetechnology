@@ -4,7 +4,7 @@ import { getAllPostSlugs, getAllCategorySlugs, getAllWorkSlugs, getJobs } from '
 const BASE = 'https://thrilledge.com'
 
 const SERVICE_SLUGS = [
-  'ai-and-ml-solutions',
+  'ai-ml-solutions',
   'custom-web-development',
   'ui-ux-design',
   'mobile-app-development',
@@ -28,7 +28,6 @@ const TECHNOLOGY_SLUGS = [
   'backend-development',
   'mobile-development',
   'databases',
-  'devops',
 ]
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
