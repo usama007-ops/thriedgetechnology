@@ -17,33 +17,11 @@ interface Message {
 
 type BookingStep = 'idle' | 'date' | 'time' | 'details'
 
+// ── Constants ─────────────────────────────────────────────────────────────────
 const TIME_SLOTS = [
   '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
   '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00',
 ]
-
-function formatTime(t: string) {
-  const [h, m] = t.split(':').map(Number)
-  const ampm = h >= 12 ? 'PM' : 'AM'
-  return `${h % 12 || 12}:${m.toString().padStart(2, '0')} ${ampm}`
-}
-
-function getNext7Days() {
-  const days: Date[] = []
-  const today = new Date()
-  for (let i = 1; i <= 7; i++) {
-    const d = new Date(today)
-    d.setDate(today.getDate() + i)
-    days.push(d)
-  }
-  return days
-}
-
-// unique id — counter-based to avoid Date.now() collisions
-let msgCounter = 0
-function nextId() {
-  return `msg_${++msgCounter}_${Math.random().toString(36).slice(2, 7)}`
-}
 
 const QUICK_REPLIES = [
   'What services do you offer?',
@@ -52,9 +30,77 @@ const QUICK_REPLIES = [
   'Talk to a human',
 ]
 
-// simple greeting patterns
 const GREETING_RE = /^(hi|hello|hey|salam|assalam|good morning|good afternoon|good evening|howdy|sup|yo)\b/i
 
+const BOOKING_INTENT_RE =
+  /\b(book|meeting|schedule|call|appointment|talk to zeerak|set up a call|get on a call|speak with someone|free call)\b/i
+
+const ALREADY_BOOKED_RE =
+  /already\s+(booked|scheduled|have a meeting|meeting is set|we have a call|confirmed my booking|done)/i
+
+const PRICING_RE = /\b(price|pricing|cost|how much|rates|budget|quote|charges)\b/i
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function nextId(): string {
+  return crypto.randomUUID()
+}
+
+function formatTime(t: string): string {
+  const [h, m] = t.split(':').map(Number)
+  const ampm = h >= 12 ? 'PM' : 'AM'
+  return `${h % 12 || 12}:${m.toString().padStart(2, '0')} ${ampm}`
+}
+
+function getNext7Weekdays(): Date[] {
+  const days: Date[] = []
+  const cursor = new Date()
+  while (days.length < 7) {
+    cursor.setDate(cursor.getDate() + 1)
+    const day = cursor.getDay()
+    if (day !== 0 && day !== 6) {
+      days.push(new Date(cursor))
+    }
+  }
+  return days
+}
+
+function delay(ms: number): Promise<void> {
+  return new Promise(r => setTimeout(r, ms))
+}
+
+// ── Session context extractor (fix #12) ──────────────────────────────────────
+function extractSessionContext(msgs: Message[]): string {
+  const text = msgs.map(m => m.content).join(' ')
+  const parts: string[] = []
+
+  const nameMatch = text.match(/(?:i(?:'m| am)|my name is)\s+([A-Z][a-z]+)/i)
+  if (nameMatch) parts.push(`User's name: ${nameMatch[1]}`)
+
+  const serviceKeywords: Record<string, string> = {
+    'ai|machine learning|ml': 'AI & ML Solutions',
+    'web|website|frontend|backend': 'Custom Web Development',
+    'mobile|app|ios|android|flutter': 'Mobile App Development',
+    'ui|ux|design': 'UI/UX Design',
+    'mvp|product|startup': 'MVP & Product Strategy',
+    'saas|cloud|platform': 'SaaS Solutions',
+    'shopify|ecommerce|e-commerce': 'Shopify Plus Agency',
+    'marketing|seo|ads': 'Digital Marketing Solutions',
+    'automation|workflow|agent': 'AI Workflow Automation',
+  }
+  for (const [pattern, label] of Object.entries(serviceKeywords)) {
+    if (new RegExp(pattern, 'i').test(text)) {
+      parts.push(`Interested in: ${label}`)
+      break
+    }
+  }
+
+  const pricingCount = (text.match(PRICING_RE) ?? []).length
+  if (pricingCount >= 2) parts.push(`Asked about pricing ${pricingCount} times`)
+
+  return parts.join('. ')
+}
+
+// ── Typing dots ───────────────────────────────────────────────────────────────
 function TypingDots() {
   return (
     <div className="flex items-center gap-1 px-4 py-3">
@@ -69,6 +115,7 @@ function TypingDots() {
   )
 }
 
+// ── Main component ────────────────────────────────────────────────────────────
 export function ChatWidget() {
   const { isChatOpen, setChatOpen, toggleChat } = useUIStore()
 
@@ -76,7 +123,8 @@ export function ChatWidget() {
     {
       id: nextId(),
       role: 'assistant',
-      content: "Welcome to Thrill Edge Technologies! 👋\n\nI'm EdgeAI, your AI assistant. How may I help you today?",
+      content:
+        "Welcome to Thrill Edge Technologies! 👋\n\nI'm EdgeAI, your AI assistant. How may I help you today?",
       timestamp: new Date(),
     },
   ])
@@ -86,7 +134,7 @@ export function ChatWidget() {
 
   // booking state
   const [bookingStep, setBookingStep] = useState<BookingStep>('idle')
-  const [meetingBooked, setMeetingBooked] = useState(false) // once booked, never re-trigger
+  const [meetingBooked, setMeetingBooked] = useState(false)
   const [bookingDate, setBookingDate] = useState<Date | null>(null)
   const [bookingTime, setBookingTime] = useState<string | null>(null)
   const [bookingName, setBookingName] = useState('')
@@ -94,8 +142,11 @@ export function ChatWidget() {
   const [bookingPhone, setBookingPhone] = useState('')
   const [bookingLoading, setBookingLoading] = useState(false)
 
+  // refs — no re-renders needed
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  const pricingCountRef = useRef(0)
+  const nudgeSentRef = useRef(false)
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -106,74 +157,112 @@ export function ChatWidget() {
   }, [isChatOpen])
 
   const addMessage = useCallback((role: Role, content: string) => {
-    const id = nextId()
-    setMessages(prev => [...prev, { id, role, content, timestamp: new Date() }])
+    setMessages(prev => [
+      ...prev,
+      { id: nextId(), role, content, timestamp: new Date() },
+    ])
   }, [])
 
-  function detectBookingIntent(text: string) {
-    return /\b(book|meeting|schedule|call|appointment)\b/i.test(text)
+  function resetBooking() {
+    setBookingStep('idle')
+    setBookingDate(null)
+    setBookingTime(null)
+    setBookingName('')
+    setBookingEmail('')
+    setBookingPhone('')
   }
 
-  function detectHumanIntent(text: string) {
-    return /\b(human|real person|whatsapp|agent|talk to someone|speak to someone)\b/i.test(text)
-  }
-
-  // check if user is saying they already booked
-  function detectAlreadyBooked(text: string) {
-    return /already\s+(booked|scheduled|have a meeting|done)/i.test(text)
-  }
-
+  // ── sendMessage ─────────────────────────────────────────────────────────────
   async function sendMessage(text: string) {
     if (!text.trim() || loading) return
+
+    // snapshot BEFORE any state mutation (fix #6 race condition)
+    const snapshot = [...messages]
+
     setShowQuickReplies(false)
     addMessage('user', text)
     setInput('')
 
-    // greeting — short warm reply, no API call
+    // cancel booking flow
+    if (/^cancel$/i.test(text.trim()) && bookingStep !== 'idle') {
+      resetBooking()
+      await delay(400)
+      addMessage('assistant', "No problem! The booking has been cancelled. How else can I help you?")
+      return
+    }
+
+    // if mid-booking and user types something unrelated, prompt to complete or cancel
+    if (bookingStep !== 'idle') {
+      await delay(400)
+      addMessage(
+        'assistant',
+        "I'm currently helping you book a meeting. Please complete the booking above, or type 'cancel' to stop."
+      )
+      return
+    }
+
+    // greeting
     if (GREETING_RE.test(text.trim())) {
       await delay(500)
-      addMessage('assistant', `Hi there! 😊 How may I help you today?\n\nFeel free to ask about our services, pricing, or anything else — I'm here to help.`)
+      addMessage('assistant', "Hi there! 😊 How may I help you today?\n\nFeel free to ask about our services, pricing, or anything else — I'm here to help.")
       return
     }
 
-    // user says they already booked — acknowledge, don't re-trigger booking
-    if (detectAlreadyBooked(text)) {
+    // already booked acknowledgement
+    if (ALREADY_BOOKED_RE.test(text)) {
       await delay(500)
-      addMessage('assistant', `That's great! 🎉 Your meeting is all set. Is there anything else I can help you with — like learning more about our services or getting answers to any questions?`)
+      addMessage('assistant', "That's great! 🎉 Your meeting is all set. Is there anything else I can help you with — like learning more about our services or getting answers to any questions?")
       return
     }
 
-    // booking intent — only if not already in a booking flow and not already booked
-    if (detectBookingIntent(text) && bookingStep === 'idle' && !meetingBooked) {
+    // booking intent — only if not already booked
+    if (BOOKING_INTENT_RE.test(text) && !meetingBooked) {
       await delay(500)
       addMessage('assistant', "Sure! Let me help you book a free 30-minute strategy call with Zeerak. Please pick a date below 👇")
       setBookingStep('date')
       return
     }
 
-    // if booking is in progress, don't send to AI
-    if (bookingStep !== 'idle') return
+    // track pricing questions for nudge
+    if (PRICING_RE.test(text)) {
+      pricingCountRef.current += 1
+    }
 
     // human/whatsapp intent
-    if (detectHumanIntent(text)) {
+    if (/\b(human|real person|whatsapp|agent|talk to someone|speak to someone)\b/i.test(text)) {
       await delay(500)
       addMessage('assistant', "Of course! You can reach our team directly on WhatsApp — they typically respond within a few minutes during business hours.\n\n👉 [Chat on WhatsApp](https://wa.me/447853746775)\n\nOr email us at info@thrilledge.com")
       return
     }
 
-    // send to Groq
+    // send to Groq API
     setLoading(true)
     try {
-      const history = [...messages, { id: 'tmp', role: 'user' as Role, content: text, timestamp: new Date() }]
-        .map(m => ({ role: m.role, content: m.content }))
+      // build history from snapshot + new user message (fix #6)
+      const history = [
+        ...snapshot.map(m => ({ role: m.role, content: m.content })),
+        { role: 'user' as Role, content: text },
+      ]
+
+      const sessionContext = extractSessionContext(snapshot)
 
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: history }),
+        body: JSON.stringify({ messages: history, sessionContext }),
       })
-      const data = await res.json()
+      const data = (await res.json()) as { reply: string }
       addMessage('assistant', data.reply)
+
+      // proactive booking nudge after 2+ pricing questions (fix #13)
+      if (pricingCountRef.current >= 2 && !nudgeSentRef.current) {
+        nudgeSentRef.current = true
+        await delay(1000)
+        addMessage(
+          'assistant',
+          "It sounds like you're evaluating us seriously — would you like to book a free 30-minute strategy call? We can give you a proper quote on the spot. Just say 'book meeting' to get started. 📅"
+        )
+      }
     } catch {
       addMessage('assistant', "Sorry, I'm having a bit of trouble right now. Please reach us on [WhatsApp](https://wa.me/447853746775) or at info@thrilledge.com")
     } finally {
@@ -181,6 +270,7 @@ export function ChatWidget() {
     }
   }
 
+  // ── Booking handlers ─────────────────────────────────────────────────────────
   function handleDateSelect(date: Date) {
     setBookingDate(date)
     setBookingStep('time')
@@ -196,9 +286,8 @@ export function ChatWidget() {
     addMessage('assistant', "Great choice! Just a few details to confirm your booking 👇")
   }
 
-  async function handleBookingSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    if (!bookingDate || !bookingTime || !bookingName || !bookingEmail || !bookingPhone) return
+  async function handleBookingSubmit() {
+    if (!bookingDate || !bookingTime || !bookingName.trim() || !bookingEmail.trim() || !bookingPhone.trim()) return
     setBookingLoading(true)
 
     const dateStr = bookingDate.toISOString().split('T')[0]
@@ -206,43 +295,60 @@ export function ChatWidget() {
       const res = await fetch('/api/book-meeting', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: bookingName, email: bookingEmail, phone: bookingPhone, date: dateStr, time: bookingTime }),
+        body: JSON.stringify({
+          name: bookingName.trim(),
+          email: bookingEmail.trim(),
+          phone: bookingPhone.trim(),
+          date: dateStr,
+          time: bookingTime,
+        }),
       })
-      if (!res.ok) throw new Error()
+      if (!res.ok) throw new Error('Booking API returned non-OK status')
 
-      const firstName = bookingName.split(' ')[0]
-      const dateLabel = bookingDate.toLocaleDateString('en-GB', { weekday: 'long', month: 'long', day: 'numeric' })
+      const firstName = bookingName.trim().split(' ')[0]
+      const dateLabel = bookingDate.toLocaleDateString('en-GB', {
+        weekday: 'long', month: 'long', day: 'numeric',
+      })
 
-      addMessage('user', `${bookingName} — ${bookingEmail}`)
-      addMessage('assistant', `✅ You're all set, ${firstName}! Your meeting is confirmed for **${dateLabel} at ${formatTime(bookingTime)}**.\n\nA confirmation has been sent to ${bookingEmail}. Looking forward to speaking with you! 🎉`)
+      addMessage('user', `${bookingName.trim()} — ${bookingEmail.trim()}`)
+      addMessage(
+        'assistant',
+        `✅ You're all set, ${firstName}! Your meeting is confirmed for **${dateLabel} at ${formatTime(bookingTime)}**.\n\nA confirmation has been sent to ${bookingEmail.trim()}. Looking forward to speaking with you! 🎉`
+      )
 
       setMeetingBooked(true)
-      setBookingStep('idle')
-      // reset form fields
-      setBookingName('')
-      setBookingEmail('')
-      setBookingPhone('')
-      setBookingDate(null)
-      setBookingTime(null)
+      resetBooking()
     } catch {
-      addMessage('assistant', "Something went wrong. Please try booking at [/contact](/contact) or reach us on [WhatsApp](https://wa.me/447853746775).")
-      setBookingStep('idle')
+      addMessage(
+        'assistant',
+        "Something went wrong. Please try booking at [/contact](/contact) or reach us on [WhatsApp](https://wa.me/447853746775)."
+      )
+      resetBooking()
     } finally {
       setBookingLoading(false)
     }
   }
 
+  // ── Markdown renderer ────────────────────────────────────────────────────────
   function renderContent(content: string) {
     const parts = content.split(/(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\)|\n)/)
     return parts.filter(Boolean).map((part, i) => {
       if (part === '\n') return <br key={i} />
       if (/^\*\*(.+)\*\*$/.test(part)) return <strong key={i}>{part.slice(2, -2)}</strong>
       const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/)
-      if (linkMatch) return <a key={i} href={linkMatch[2]} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 font-medium">{linkMatch[1]}</a>
+      if (linkMatch) {
+        return (
+          <a key={i} href={linkMatch[2]} target="_blank" rel="noopener noreferrer"
+            className="underline underline-offset-2 font-medium">
+            {linkMatch[1]}
+          </a>
+        )
+      }
       return part
     })
   }
 
+  // ── Render ───────────────────────────────────────────────────────────────────
   return (
     <>
       {/* Floating button */}
@@ -296,7 +402,7 @@ export function ChatWidget() {
 
         {/* Messages */}
         <div className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-3 scroll-smooth">
-          {messages.map((msg) => (
+          {messages.map(msg => (
             <div key={msg.id} className={cn('flex', msg.role === 'user' ? 'justify-end' : 'justify-start')}>
               <div
                 className={cn(
@@ -326,14 +432,14 @@ export function ChatWidget() {
               <div className="bg-[#f3f3f3] rounded-2xl rounded-bl-sm p-3 w-full">
                 <p className="font-inter text-[12px] text-[#929296] mb-2 px-1">Select a date</p>
                 <div className="grid grid-cols-2 gap-1.5">
-                  {getNext7Days().map((d) => (
+                  {getNext7Weekdays().map(d => (
                     <button
                       key={d.toDateString()}
                       onClick={() => handleDateSelect(d)}
                       className="py-2 px-3 rounded-xl bg-white border border-[#e5e5e5] hover:border-[#111212] hover:bg-[#111212] hover:text-white font-inter text-[12px] text-[#111212] transition-all text-left"
                     >
                       <span className="font-semibold">{d.toLocaleDateString('en-GB', { weekday: 'short' })}</span>
-                      <span className="text-[#929296] ml-1 group-hover:text-white">{d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}</span>
+                      <span className="text-[#929296] ml-1">{d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}</span>
                     </button>
                   ))}
                 </div>
@@ -347,7 +453,7 @@ export function ChatWidget() {
               <div className="bg-[#f3f3f3] rounded-2xl rounded-bl-sm p-3 w-full">
                 <p className="font-inter text-[12px] text-[#929296] mb-2 px-1">Select a time</p>
                 <div className="grid grid-cols-3 gap-1.5">
-                  {TIME_SLOTS.map((t) => (
+                  {TIME_SLOTS.map(t => (
                     <button
                       key={t}
                       onClick={() => handleTimeSelect(t)}
@@ -361,35 +467,47 @@ export function ChatWidget() {
             </div>
           )}
 
-          {/* Booking: details form */}
+          {/* Booking: details form (div, not form — fix #11) */}
           {bookingStep === 'details' && (
             <div className="flex justify-start w-full">
               <div className="bg-[#f3f3f3] rounded-2xl rounded-bl-sm p-3 w-full">
-                <form onSubmit={handleBookingSubmit} className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2">
                   <input
-                    type="text" required placeholder="Your full name"
-                    value={bookingName} onChange={e => setBookingName(e.target.value)}
+                    type="text"
+                    placeholder="Your full name"
+                    value={bookingName}
+                    onChange={e => setBookingName(e.target.value)}
                     className="w-full px-3 py-2 rounded-xl border border-[#e5e5e5] bg-white font-inter text-[13px] text-[#111212] placeholder:text-[#c8c8c8] focus:outline-none focus:border-[#111212] transition-colors"
                   />
                   <input
-                    type="email" required placeholder="Email address"
-                    value={bookingEmail} onChange={e => setBookingEmail(e.target.value)}
+                    type="email"
+                    placeholder="Email address"
+                    value={bookingEmail}
+                    onChange={e => setBookingEmail(e.target.value)}
                     className="w-full px-3 py-2 rounded-xl border border-[#e5e5e5] bg-white font-inter text-[13px] text-[#111212] placeholder:text-[#c8c8c8] focus:outline-none focus:border-[#111212] transition-colors"
                   />
                   <input
-                    type="tel" required placeholder="Phone number"
-                    value={bookingPhone} onChange={e => setBookingPhone(e.target.value)}
+                    type="tel"
+                    placeholder="Phone number"
+                    value={bookingPhone}
+                    onChange={e => setBookingPhone(e.target.value)}
                     className="w-full px-3 py-2 rounded-xl border border-[#e5e5e5] bg-white font-inter text-[13px] text-[#111212] placeholder:text-[#c8c8c8] focus:outline-none focus:border-[#111212] transition-colors"
                   />
                   <button
-                    type="submit" disabled={bookingLoading}
+                    onClick={handleBookingSubmit}
+                    disabled={
+                      bookingLoading ||
+                      !bookingName.trim() ||
+                      !bookingEmail.trim() ||
+                      !bookingPhone.trim()
+                    }
                     className="w-full py-2.5 rounded-xl bg-[#111212] text-white font-mont font-semibold text-[13px] hover:bg-black transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
                   >
                     {bookingLoading
                       ? <><Loader2 size={14} className="animate-spin" /> Booking…</>
                       : <><Calendar size={14} /> Confirm Meeting</>}
                   </button>
-                </form>
+                </div>
               </div>
             </div>
           )}
@@ -400,7 +518,7 @@ export function ChatWidget() {
         {/* Quick replies */}
         {showQuickReplies && messages.length <= 1 && (
           <div className="px-4 pb-2 flex flex-wrap gap-1.5 shrink-0">
-            {QUICK_REPLIES.map((q) => (
+            {QUICK_REPLIES.map(q => (
               <button
                 key={q}
                 onClick={() => sendMessage(q)}
@@ -454,9 +572,4 @@ export function ChatWidget() {
       </div>
     </>
   )
-}
-
-// small helper to avoid inline setTimeout promises everywhere
-function delay(ms: number) {
-  return new Promise<void>(r => setTimeout(r, ms))
 }
