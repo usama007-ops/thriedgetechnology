@@ -40,6 +40,10 @@ import {
   Bitcoin,
   Landmark,
   Truck,
+  ArrowRight,
+  Globe,
+  Linkedin,
+  Instagram,
 } from 'lucide-react'
 
 import { MegaMenu } from './mega-menu'
@@ -286,31 +290,18 @@ function AccordionItem({
         className="flex items-center justify-between w-full py-3"
       >
         <div className="flex items-center gap-3">
-          <div
-            className="
-              w-10 h-10
-              rounded-xl
-              bg-neutral-100
-              flex items-center justify-center
-            "
-          >
+          <div className="w-10 h-10 rounded-xl bg-neutral-100 flex items-center justify-center">
             <Icon size={18} />
           </div>
 
-          <span
-            className="
-              text-[15px]
-              font-semibold
-              text-neutral-900
-            "
-          >
+          <span className="text-[15px] font-semibold text-neutral-900">
             {item.label}
           </span>
         </div>
 
         <div
           className={cn(
-            'transition-transform duration-300',
+            'transition-transform duration-300 pr-1.5',
             open && 'rotate-180'
           )}
         >
@@ -345,7 +336,7 @@ function AccordionItem({
                 "
               >
                 <div className="flex items-start gap-3">
-                  {/* child icon */}
+                  {/* icon */}
                   <div
                     className="
                       w-10 h-10
@@ -369,11 +360,7 @@ function AccordionItem({
 
                   {/* content */}
                   <div className="flex-1">
-                    <div
-                      className="
-                        flex items-center justify-between
-                      "
-                    >
+                    <div className="flex items-center justify-between">
                       <h4
                         className="
                           text-[14px]
@@ -399,14 +386,7 @@ function AccordionItem({
                       />
                     </div>
 
-                    <p
-                      className="
-                        text-[12px]
-                        text-neutral-500
-                        mt-1
-                        leading-relaxed
-                      "
-                    >
+                    <p className="text-[12px] text-neutral-500 mt-1 leading-relaxed">
                       {child.desc}
                     </p>
                   </div>
@@ -428,7 +408,6 @@ function MobileDrawer({
   open: boolean
   onClose: () => void
 }) {
-  // lock body scroll
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
 
@@ -499,16 +478,132 @@ function MobileDrawer({
           </button>
         </div>
 
-        {/* nav */}
-        <nav className="flex-1 overflow-y-auto px-5 py-4">
-          {mobileNav.map((item) => (
-            <AccordionItem
-              key={item.label}
-              item={item}
-              onClose={onClose}
-            />
-          ))}
-        </nav>
+        {/* scrollable content */}
+        <div className="flex-1 overflow-y-auto">
+          {/* nav */}
+          <nav className="px-5 py-4">
+            {mobileNav.map((item) => (
+              <AccordionItem
+                key={item.label}
+                item={item}
+                onClose={onClose}
+              />
+            ))}
+          </nav>
+
+          {/* featured service */}
+          <div className="px-5 mt-2">
+            <div className="bg-white border border-neutral-200 p-6 rounded-3xl space-y-4 shadow-sm">
+              <p className="uppercase tracking-[0.2em] text-[11px] font-bold text-neutral-500">
+                Featured Service
+              </p>
+
+              <h3 className="text-[24px] font-bold text-black leading-tight">
+                AI Strategy Audit
+              </h3>
+
+              <p className="text-[14px] leading-relaxed text-neutral-600">
+                Unlock the potential of your datasets with a specialized audit
+                of your current tech stack for AI readiness.
+              </p>
+
+              <Link
+                href="/services/ai-ml-solutions"
+                onClick={onClose}
+                className="
+                  inline-flex items-center gap-2
+                  text-black font-semibold text-[14px]
+                  hover:gap-3
+                  transition-all duration-300
+                "
+              >
+                Explore AI Solutions
+                <ArrowRight size={16} />
+              </Link>
+            </div>
+          </div>
+
+          {/* footer section */}
+          <div className="px-5 pt-10 pb-32 mt-10 border-t border-neutral-200 space-y-8">
+            {/* socials */}
+            <div className="space-y-4">
+              <p className="uppercase tracking-[0.2em] text-[11px] font-bold text-neutral-500">
+                Connect With Us
+              </p>
+
+              <div className="flex gap-4">
+                <Link
+                  href="https://www.facebook.com/ThrillEdge"
+                  target="_blank"
+                  className="
+                    w-12 h-12
+                    rounded-2xl
+                    bg-white
+                    border border-neutral-200
+                    flex items-center justify-center
+                    text-neutral-600
+                    hover:text-black
+                    hover:scale-105
+                    transition-all
+                  "
+                >
+                  <Globe size={18} />
+                </Link>
+
+                <Link
+                  href="https://www.linkedin.com/company/thrill-edge-technologies/"
+                  target="_blank"
+                  className="
+                    w-12 h-12
+                    rounded-2xl
+                    bg-white
+                    border border-neutral-200
+                    flex items-center justify-center
+                    text-neutral-600
+                    hover:text-black
+                    hover:scale-105
+                    transition-all
+                  "
+                >
+                  <Linkedin size={18} />
+                </Link>
+
+                <Link
+                  href="https://www.instagram.com/thrilledge_technologies/"
+                  target="_blank"
+                  className="
+                    w-12 h-12
+                    rounded-2xl
+                    bg-white
+                    border border-neutral-200
+                    flex items-center justify-center
+                    text-neutral-600
+                    hover:text-black
+                    hover:scale-105
+                    transition-all
+                  "
+                >
+                 <Instagram size={18} />
+                </Link>
+              </div>
+            </div>
+
+            {/* footer links */}
+            <div className="space-y-3">
+              <p className="text-[13px] text-neutral-500">
+                © 2026 Thrill Edge Technologies.
+              </p>
+
+              <div className="flex flex-wrap gap-4 text-[11px] uppercase tracking-[0.15em] font-semibold text-neutral-400">
+                <Link href="/privacy-policy">Privacy</Link>
+
+                <Link href="/terms-condition">Terms</Link>
+
+                <Link href="/sitemap.xml">Sitemap</Link>
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* bottom cta */}
         <div className="border-t border-neutral-200 p-5 bg-[#fafafa]">
